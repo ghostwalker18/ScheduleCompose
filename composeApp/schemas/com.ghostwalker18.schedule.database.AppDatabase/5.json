@@ -1,0 +1,113 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 5,
+    "identityHash": "d5f06b0be656819d0ac03b43528fe31a",
+    "entities": [
+      {
+        "tableName": "tblSchedule",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lessonDate` TEXT NOT NULL, `lessonNumber` TEXT NOT NULL, `roomNumber` TEXT, `lessonTimes` TEXT, `groupName` TEXT NOT NULL, `subjectName` TEXT NOT NULL, `teacherName` TEXT, PRIMARY KEY(`lessonDate`, `lessonNumber`, `groupName`, `subjectName`))",
+        "fields": [
+          {
+            "fieldPath": "date",
+            "columnName": "lessonDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lessonNumber",
+            "columnName": "lessonNumber",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "roomNumber",
+            "columnName": "roomNumber",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "times",
+            "columnName": "lessonTimes",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "groupName",
+            "columnName": "groupName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subject",
+            "columnName": "subjectName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teacher",
+            "columnName": "teacherName",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "lessonDate",
+            "lessonNumber",
+            "groupName",
+            "subjectName"
+          ]
+        }
+      },
+      {
+        "tableName": "tblNote",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `noteDate` TEXT NOT NULL, `noteGroup` TEXT NOT NULL, `noteTheme` TEXT, `noteText` TEXT NOT NULL, `notePhotoID` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "noteDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "group",
+            "columnName": "noteGroup",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "theme",
+            "columnName": "noteTheme",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "noteText",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "photoIDs",
+            "columnName": "notePhotoID",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd5f06b0be656819d0ac03b43528fe31a')"
+    ]
+  }
+}
