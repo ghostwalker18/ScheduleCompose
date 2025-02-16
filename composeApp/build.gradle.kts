@@ -27,19 +27,28 @@ kotlin {
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
             implementation(libs.sqlite)
+            implementation("com.github.pjfanning:excel-streaming-reader:5.0.2")
+            implementation("org.apache.xmlbeans:xmlbeans:3.1.0")
+            implementation("javax.xml.stream:stax-api:1.0")
+            implementation("com.fasterxml:aalto-xml:1.2.2")
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
+            implementation("com.squareup.retrofit2:retrofit:2.9.0")
+            implementation("org.jsoup:jsoup:1.12.2")
             implementation("com.google.code.gson:gson:2.11.0")
         }
 
         val desktopMain by getting
 
         desktopMain.dependencies {
+            implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(compose.desktop.currentOs)
             implementation(compose.components.resources)
             implementation(libs.kotlinx.coroutines.swing)
+            implementation(compose.materialIconsExtended)
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
         }
     }
 }
-
 
 compose.desktop {
     application {

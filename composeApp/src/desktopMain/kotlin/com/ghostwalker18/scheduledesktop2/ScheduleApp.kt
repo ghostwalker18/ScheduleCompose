@@ -14,37 +14,55 @@
 
 package com.ghostwalker18.scheduledesktop2
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
+import ScheduleTheme
+import URLs
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import scheduledesktop2.composeapp.generated.resources.Res
-import scheduledesktop2.composeapp.generated.resources.compose_multiplatform
+import androidx.compose.runtime.*
+import com.ghostwalker18.scheduledesktop2.models.ScheduleRepositoryDesktop
+import com.ghostwalker18.scheduledesktop2.network.NetworkService
+import com.ghostwalker18.scheduledesktop2.views.MainActivity
+import database.AppDatabase
+import models.ScheduleRepository
+import java.util.prefs.Preferences
 
-@Composable
-@Preview
-fun App() {
-    MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
-                }
-            }
+class ScheduleApp{
+    private val db: AppDatabase
+    private val scheduleRepository: ScheduleRepository
+    private val preferences: Preferences = Preferences.userNodeForPackage(ScheduleApp::class.java)
+
+    init {
+        instance = this
+        db = AppDatabase.getInstance()
+        scheduleRepository = ScheduleRepositoryDesktop(
+            NetworkService(URLs.BASE_URI).getScheduleAPI(),
+            preferences)
+        scheduleRepository.update()
+    }
+
+
+
+    fun getScheduleRepository(): ScheduleRepository{
+        return scheduleRepository
+    }
+
+    fun getDatabase(): AppDatabase{
+        return db
+    }
+
+    @Composable
+    @Preview
+    fun App() {
+        ScheduleTheme(true){
+            MainActivity()
+        }
+    }
+
+    companion object{
+        private lateinit var instance: ScheduleApp
+        val preferences: Preferences = Preferences.userNodeForPackage(ScheduleApp::class.java)
+
+        fun getInstance(): ScheduleApp{
+            return instance
         }
     }
 }

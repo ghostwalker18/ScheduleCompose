@@ -1,4 +1,6 @@
 import com.ghostwalker18.scheduledesktop2.ScheduleApp
-import models.IScheduleRepository
+import database.AppDatabase
+import models.ScheduleRepository
 
-actual fun getScheduleRepository(): IScheduleRepository = ScheduleApp.getInstance().getScheduleRepository()
+actual fun getScheduleRepository(): ScheduleRepository = ScheduleApp.getInstance().getScheduleRepository()
+actual fun getDatabase(): AppDatabase = ScheduleApp.getInstance().getDatabase()

@@ -1,3 +1,5 @@
-import models.IScheduleRepository
+import database.AppDatabase
+import models.ScheduleRepository
 
-expect fun getScheduleRepository(): IScheduleRepository
+expect fun getScheduleRepository(): ScheduleRepository
+expect fun getDatabase(): AppDatabase

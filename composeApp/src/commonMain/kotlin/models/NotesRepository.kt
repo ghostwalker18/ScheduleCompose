@@ -1,9 +1,22 @@
-package com.ghostwalker18.scheduledesktop2.models
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package models
 
 import database.AppDatabase
 import database.NoteDao
 import kotlinx.coroutines.flow.Flow
-import models.Note
 import java.util.*
 
 
@@ -11,7 +24,7 @@ import java.util.*
  * Этот класс представляет репозиторий данных приложения о заметках.
  *
  * @author Ипатов Никита
- * @since 3.1
+ * @since 1.0
  * @see NoteDao
  */
 class NotesRepository(private val db: AppDatabase) {
@@ -20,7 +33,7 @@ class NotesRepository(private val db: AppDatabase) {
      *
      * @param note заметка
      */
-    fun saveNote(note: Note) {
+    suspend fun saveNote(note: Note) {
         db.noteDao().insert(note)
     }
 
@@ -29,7 +42,7 @@ class NotesRepository(private val db: AppDatabase) {
      *
      * @param note заметка
      */
-    fun updateNote(note: Note) {
+    suspend fun updateNote(note: Note) {
         db.noteDao().update(note)
     }
 
@@ -50,9 +63,11 @@ class NotesRepository(private val db: AppDatabase) {
      * @param dates список дат для выдачи
      * @return заметки
      */
-    fun getNotes(group: String, dates: Array<Calendar?>): Flow<Array<Note>> {
-        if (dates.size == 1) return db.noteDao().getNotes(dates[0]!!, group)
-        return db.noteDao().getNotesForDays(Flow, group)
+    fun getNotes(group: String, dates: Array<Calendar>): Flow<Array<Note>> {
+        return if(dates.size == 1)
+            db.noteDao().getNotes(dates[0], group)
+        else
+            db.noteDao().getNotesForDays(dates, group)
     }
 
     /**
@@ -71,7 +86,7 @@ class NotesRepository(private val db: AppDatabase) {
      *
      * @param notes заметки для удаления
      */
-    fun deleteNotes(notes: Collection<Note?>) {
+    suspend fun deleteNotes(notes: Collection<Note>) {
         for (note in notes) db.noteDao().delete(note)
     }
 }

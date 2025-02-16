@@ -14,6 +14,51 @@
 
 package com.ghostwalker18.scheduledesktop2.network
 
-class NetworkService {
+import network.CacheInterceptor
+import network.JsoupConverterFactory
+import network.ScheduleNetworkAPI
+import okhttp3.Cache
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import java.io.File
+import com.ghostwalker18.scheduledesktop2.ScheduleApp
+import java.util.concurrent.Executors
+import java.util.prefs.Preferences
 
+class NetworkService(private val baseUri: String) {
+    private val sizeOfCache: Long = 10 * 1024 * 1024
+    private val preferences: Preferences = ScheduleApp.preferences
+
+
+    /**
+     * Этот метод позволяет получить API сайта ПТГХ.
+     * @return API сайта для доступа к скачиванию файлов расписания
+     */
+    fun getScheduleAPI(): ScheduleNetworkAPI {
+        val apiBuilder = Retrofit.Builder()
+            .baseUrl(baseUri)
+            .callbackExecutor(Executors.newFixedThreadPool(4))
+            .addConverterFactory(JsoupConverterFactory())
+
+        val isCachingEnabled = preferences.getBoolean("isCachingEnabled", true)
+        if (isCachingEnabled) {
+            try {
+                val path = javaClass.getResource("/cache")?.path
+                path?.let {
+                    val cache = Cache(File(it), sizeOfCache)
+                    val client = OkHttpClient().newBuilder()
+                        .cache(cache)
+                        .addInterceptor(CacheInterceptor())
+                        .build()
+                    apiBuilder.client(client)
+                }
+            } catch (e: Exception) {
+                System.err.println("Cannot enable caching: " + e.message)
+            }
+        }
+
+        return apiBuilder
+            .build()
+            .create(ScheduleNetworkAPI::class.java)
+    }
 }
