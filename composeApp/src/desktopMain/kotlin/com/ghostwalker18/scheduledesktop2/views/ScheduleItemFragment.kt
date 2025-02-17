@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
+import getNavigator
 import kotlinx.coroutines.launch
 import models.Lesson
 import org.jetbrains.compose.resources.StringResource
@@ -44,6 +45,7 @@ import java.util.*
 
 @Composable
 fun ScheduleItemFragment(dayOfWeek: StringResource) {
+    val navigator = getNavigator()
     val scheduleModel = viewModel{ScheduleModel()}
     val weekDayNumbers = hashMapOf(
         Res.string.monday to Calendar.MONDAY,
@@ -128,7 +130,9 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 ScheduleTable(lessons)
-                IconButton({}){
+                IconButton(
+                    { navigator.goNotesActivity() }
+                ){
                     Icon(Icons.AutoMirrored.Filled.Notes, "")
                 }
             }

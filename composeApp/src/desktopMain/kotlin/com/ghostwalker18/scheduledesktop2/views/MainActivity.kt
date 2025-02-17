@@ -14,8 +14,8 @@
 
 package com.ghostwalker18.scheduledesktop2.views
 
+import Navigator
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
@@ -25,11 +25,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import getNavigator
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
@@ -40,13 +40,26 @@ import scheduledesktop2.composeapp.generated.resources.days_tab
 @Preview
 @Composable
 fun MainActivity() {
+    val navigator = getNavigator()
     Scaffold(topBar = {
         TopAppBar(
             title = { Text(stringResource(Res.string.app_name)) },
             actions = {
-                IconButton({}){Icon(Icons.Filled.Share, "")}
-                IconButton({}){Icon(Icons.Filled.Download, "")}
-                IconButton({}){Icon(Icons.Filled.Settings, "")}
+                IconButton(
+                    {}
+                ){
+                    Icon(Icons.Filled.Share, "")
+                }
+                IconButton(
+                    {}
+                ){
+                    Icon(Icons.Filled.Download, "")
+                }
+                IconButton(
+                    { navigator.goSettingsActivity() }
+                ) {
+                    Icon(Icons.Filled.Settings, "")
+                }
             }
         )
     }

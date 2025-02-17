@@ -18,31 +18,37 @@ import ScheduleTheme
 import URLs
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.runtime.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.ghostwalker18.scheduledesktop2.models.ScheduleRepositoryDesktop
 import com.ghostwalker18.scheduledesktop2.network.NetworkService
+import com.ghostwalker18.scheduledesktop2.views.EditNoteActivity
 import com.ghostwalker18.scheduledesktop2.views.MainActivity
+import com.ghostwalker18.scheduledesktop2.views.NotesActivity
+import com.ghostwalker18.scheduledesktop2.views.SettingsActivity
 import database.AppDatabase
+import models.NotesRepository
 import models.ScheduleRepository
 import java.util.prefs.Preferences
 
 class ScheduleApp{
     private val db: AppDatabase
-    private val scheduleRepository: ScheduleRepository
-    private val preferences: Preferences = Preferences.userNodeForPackage(ScheduleApp::class.java)
+    val scheduleRepository: ScheduleRepository
+    val notesRepository: NotesRepository
+    val preferences: Preferences = Preferences.userNodeForPackage(ScheduleApp::class.java)
+    lateinit var navigator: NavigatorDesktop
 
     init {
         instance = this
         db = AppDatabase.getInstance()
         scheduleRepository = ScheduleRepositoryDesktop(
+            db,
             NetworkService(URLs.BASE_URI).getScheduleAPI(),
-            preferences)
+            preferences
+        )
+        notesRepository = NotesRepository(db)
         scheduleRepository.update()
-    }
-
-
-
-    fun getScheduleRepository(): ScheduleRepository{
-        return scheduleRepository
     }
 
     fun getDatabase(): AppDatabase{
@@ -52,8 +58,24 @@ class ScheduleApp{
     @Composable
     @Preview
     fun App() {
+        val navController = rememberNavController()
+        navigator = NavigatorDesktop(navController)
         ScheduleTheme(true){
-            MainActivity()
+            NavHost(navController = navController, startDestination = "main"){
+                composable(route = "main"){
+                    MainActivity()
+                }
+                composable(route = "settings"){
+                    SettingsActivity()
+                }
+                composable(route = "notes") {
+                    NotesActivity()
+                }
+                composable(route = "editNote"){
+                    EditNoteActivity()
+                }
+            }
+
         }
     }
 

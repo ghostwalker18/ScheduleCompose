@@ -15,6 +15,16 @@
 package viewmodels
 
 import androidx.lifecycle.ViewModel
+import getNotesRepository
+import getScheduleRepository
 
+/**
+ * Этот класс используется для отслеживания изменений состояния редактируемой заметки.
+ *
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 class EditNoteModel() : ViewModel() {
+    val scheduleRepository = getScheduleRepository()
+    val notesRepository = getNotesRepository()
 }

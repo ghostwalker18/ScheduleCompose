@@ -12,22 +12,26 @@
  * limitations under the License.
  */
 
-import models.NotesRepository
-import models.ScheduleRepository
-import java.util.prefs.Preferences
+package com.ghostwalker18.scheduledesktop2
 
-expect fun getScheduleRepository(): ScheduleRepository
+import Navigator
+import androidx.navigation.NavController
 
-expect fun getNotesRepository(): NotesRepository
+class NavigatorDesktop(private val navController: NavController) : Navigator {
 
-expect fun getPreferences(): Preferences
+    override fun goBack() {
+        navController.navigateUp()
+    }
 
-@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect interface Navigator{
-    fun goBack()
-    fun goSettingsActivity()
-    fun goNotesActivity()
-    fun goEditNoteActivity()
+    override fun goSettingsActivity(){
+        navController.navigate("settings")
+    }
+
+    override fun goNotesActivity() {
+        navController.navigate("notes")
+    }
+
+    override fun goEditNoteActivity(){
+        navController.navigate("editNote")
+    }
 }
-
-expect fun getNavigator(): Navigator

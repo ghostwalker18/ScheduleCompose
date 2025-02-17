@@ -15,6 +15,36 @@
 package viewmodels
 
 import androidx.lifecycle.ViewModel
+import getNotesRepository
+import java.util.*
 
+/**
+ * Этот класс служит для отслеживания изменений состояния списка заметок, отображаемого пользователю.
+ *
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 class NotesModel() : ViewModel() {
+    val repository = getNotesRepository()
+
+    /**
+     * Этот метод позволяет получить последовательность дат, основываясь на начальной и конечной.
+     * @param startDate начальная дата (включается в интервал)
+     * @param endDate конечная дата (включается в интервал)
+     * @return массив дат
+     */
+    private fun generateDateSequence(startDate: Calendar, endDate: Calendar): Array<Calendar> {
+        if (startDate == endDate || endDate.before(startDate))
+            return arrayOf(startDate)
+        val resultList: MutableList<Calendar> = ArrayList()
+        //remember of reference nature of Java
+        val counter = startDate.clone() as Calendar
+        while (counter.before(endDate)) {
+            //remember of reference nature of Java (also here)
+            val date = counter.clone() as Calendar
+            resultList.add(date)
+            counter.add(Calendar.DATE, 1)
+        }
+        return resultList.toTypedArray()
+    }
 }

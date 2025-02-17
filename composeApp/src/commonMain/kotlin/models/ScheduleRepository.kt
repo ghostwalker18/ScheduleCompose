@@ -18,7 +18,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import converters.IConverter
 import converters.XMLStoLessonsConverter
 import database.AppDatabase
-import getDatabase
 import kotlinx.coroutines.flow.*
 import network.ScheduleNetworkAPI
 import org.apache.poi.ss.usermodel.Workbook
@@ -39,7 +38,7 @@ import kotlin.reflect.KFunction1
  * @author  Ипатов Никита
  * @since 1.0
  */
-abstract class ScheduleRepository(protected val db: AppDatabase = getDatabase(),
+abstract class ScheduleRepository(protected open val db: AppDatabase,
                                   private val api: ScheduleNetworkAPI,
                                   private val preferences: Preferences) {
     private val mainSelector = "h2:contains(Расписание занятий и объявления:) + div > table > tbody"

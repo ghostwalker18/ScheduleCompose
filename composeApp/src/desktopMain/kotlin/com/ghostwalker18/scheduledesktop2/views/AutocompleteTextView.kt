@@ -34,7 +34,7 @@ fun AutocompleteTextView(
 ) {
     var selectedOption by remember { mutableStateOf(value) }
     var exp by remember { mutableStateOf(false) }
-    Box(modifier) {
+    Column(modifier) {
         TextField(
             modifier = Modifier
                 .fillMaxWidth()

@@ -14,6 +14,7 @@
 
 package com.ghostwalker18.scheduledesktop2.views
 
+import Navigator
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.scheduledesktop2.ScheduleApp
+import getScheduleRepository
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
@@ -40,9 +42,9 @@ import viewmodels.ScheduleModel
 @Preview
 @Composable
 fun DaysFragment(){
-    val repository by remember { mutableStateOf(ScheduleApp.getInstance().getScheduleRepository()) }
+    val repository by remember { mutableStateOf(getScheduleRepository()) }
     val model: ScheduleModel = viewModel { ScheduleModel() }
-    var group by remember { mutableStateOf("") }
+    var group by remember { mutableStateOf(repository.savedGroup) }
     var teacher by remember { mutableStateOf("") }
     var status by remember { mutableStateOf("") }
     var progress by remember { mutableStateOf(0f) }
