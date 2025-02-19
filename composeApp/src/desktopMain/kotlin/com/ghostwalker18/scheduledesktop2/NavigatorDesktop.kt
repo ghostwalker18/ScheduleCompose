@@ -16,6 +16,8 @@ package com.ghostwalker18.scheduledesktop2
 
 import Navigator
 import androidx.navigation.NavController
+import converters.DateConverters
+import java.util.*
 
 class NavigatorDesktop(private val navController: NavController) : Navigator {
 
@@ -27,11 +29,14 @@ class NavigatorDesktop(private val navController: NavController) : Navigator {
         navController.navigate("settings")
     }
 
-    override fun goNotesActivity() {
-        navController.navigate("notes")
+    override fun goNotesActivity(group: String, date: Calendar) {
+        val dateString = DateConverters().toString(date)!!
+        navController.navigate("notes/{$group}/{$dateString}")
     }
 
-    override fun goEditNoteActivity(){
-        navController.navigate("editNote")
+    override fun goEditNoteActivity(group: String, date: Calendar, noteID: Int){
+        val dateString = DateConverters().toString(date)!!
+        val id = noteID
+        navController.navigate("editNote/{$group}/{$dateString}/{$id}")
     }
 }

@@ -40,6 +40,13 @@ import scheduledesktop2.composeapp.generated.resources.schedule_style_entries
 import scheduledesktop2.composeapp.generated.resources.share
 import java.util.prefs.Preferences
 
+
+/**
+ * Эта функция представляет собой экран настроек приложения
+ *
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 @Preview
 @Composable
 fun SettingsActivity() {
@@ -151,7 +158,7 @@ fun SwitchPreference(title: StringResource,
                      key: String,
                      defaultValue: Boolean = false,
                      preferences: Preferences){
-    var checked by remember { mutableStateOf(defaultValue) }
+    var checked by remember { mutableStateOf(preferences.getBoolean(key, defaultValue)) }
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically

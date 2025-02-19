@@ -20,28 +20,22 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.graphics.painter.Painter
 import getScheduleRepository
-import kotlinx.coroutines.launch
 
+
+/**
+ * Эта функция представляет собой элемент интерфейса для отображения
+ * расписания звонков.
+ *
+ * @author  Ипатов Никита
+ * @since 1.0
+ */
 @Preview
 @Composable
 fun TimesFragment(){
-    var mondayPainter by remember { mutableStateOf<Painter?>(null) }
-    var otherPainter by remember { mutableStateOf<Painter?>(null) }
-    val scope = rememberCoroutineScope()
     val repository = getScheduleRepository()
-
-    scope.launch {
-        repository.mondayTimes.collect{
-            mondayPainter = it
-        }
-    }
-    scope.launch {
-        repository.otherTimes.collect{
-            otherPainter = it
-        }
-    }
+    val mondayPainter by repository.mondayTimes.collectAsState()
+    val otherPainter by repository.otherTimes.collectAsState()
 
     Row(
         modifier = Modifier

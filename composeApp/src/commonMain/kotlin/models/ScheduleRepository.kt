@@ -62,8 +62,9 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
     val groups: Flow<Array<String>>
         get() = db.lessonDao().getGroups()
 
-    val savedGroup: String
-        get() = preferences.get("savedGroup", "")
+    var savedGroup: String?
+        get() = preferences.get("savedGroup", null)
+        set (value) = preferences.put("savedGroup", value)
 
     val mondayTimes: StateFlow<Painter?>
         get() = _mondayTimes.asStateFlow()

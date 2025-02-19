@@ -25,7 +25,9 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import converters.DateConverters
 import getNavigator
+import getScheduleRepository
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -33,15 +35,28 @@ import scheduledesktop2.composeapp.generated.resources.date
 import scheduledesktop2.composeapp.generated.resources.edit_notes_activity
 import scheduledesktop2.composeapp.generated.resources.for_group
 import viewmodels.EditNoteModel
+import java.util.*
 
+/**
+ * Эта функция представляет собой экран редактирования или добавления новой заметки.
+ *
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 @Composable
-fun EditNoteActivity(){
+fun EditNoteActivity(
+    noteID: Int? = null,
+    group: String? = getScheduleRepository().savedGroup,
+    date: Calendar = Calendar.getInstance()
+){
     val navigator = getNavigator()
-    var date by remember { mutableStateOf("") }
-    var group by remember { mutableStateOf("") }
-    var theme by remember { mutableStateOf("") }
-    var text by remember { mutableStateOf("") }
     val model = viewModel { EditNoteModel() }
+    val themes = model.themes.collectAsState()
+    val date  = model.date.collectAsState()
+    val group by model.group.collectAsState()
+    var theme = model.theme.collectAsState()
+    val text = model.text.collectAsState()
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -62,25 +77,25 @@ fun EditNoteActivity(){
         ) {
             Row {
                 Text(text = stringResource(Res.string.date))
-                Text(text = date)
+                Text(text = DateConverters().toString(date.value)!!)
                 IconButton({}){
                     Icon(Icons.Filled.ArrowDropDown, null)
                 }
             }
             Row {
                 TextField(
-                    value = group,
+                    value = group ?: "",
                     modifier = Modifier
                         .weight(1f),
                     onValueChange = {
-                        group = it
+                        model.setGroup(it)
                     },
                     placeholder = {
                         Text(text = stringResource(Res.string.for_group))
                     }
                 )
                 IconButton({
-                        group = ""
+                        model.setGroup("")
                     }
                 ){
                     Icon(Icons.Filled.Close, null)
@@ -88,18 +103,18 @@ fun EditNoteActivity(){
             }
             Row {
                 TextField(
-                    value = theme,
+                    value = theme.value ?: "",
                     modifier = Modifier
                         .weight(1f),
                     onValueChange = {
-                        theme = it
+                        model.theme.value = it
                     },
                     placeholder = {
                         Text(text = stringResource(Res.string.theme))
                     }
                 )
                 IconButton({
-                    theme = ""
+                    model.theme.value = null
                 }
                 ){
                     Icon(Icons.Filled.Close, null)
@@ -107,18 +122,18 @@ fun EditNoteActivity(){
             }
             Row {
                 TextField(
-                    value = text,
+                    value = text.value,
                     modifier = Modifier
                         .weight(1f),
                     onValueChange = {
-                        text = it
+                        model.text.value = it
                     },
                     placeholder = {
                         Text(text = stringResource(Res.string.text))
                     }
                 )
                 IconButton({
-                    text = ""
+                    model.text.value = ""
                 }
                 ){
                     Icon(Icons.Filled.Close, null)

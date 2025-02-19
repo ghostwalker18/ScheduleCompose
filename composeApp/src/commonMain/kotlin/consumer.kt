@@ -14,6 +14,7 @@
 
 import models.NotesRepository
 import models.ScheduleRepository
+import java.util.*
 import java.util.prefs.Preferences
 
 expect fun getScheduleRepository(): ScheduleRepository
@@ -26,8 +27,8 @@ expect fun getPreferences(): Preferences
 expect interface Navigator{
     fun goBack()
     fun goSettingsActivity()
-    fun goNotesActivity()
-    fun goEditNoteActivity()
+    fun goNotesActivity(group: String, date: Calendar)
+    fun goEditNoteActivity(group: String, date: Calendar, noteID: Int)
 }
 
 expect fun getNavigator(): Navigator

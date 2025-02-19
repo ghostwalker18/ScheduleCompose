@@ -52,7 +52,7 @@ class NotesRepository(private val db: AppDatabase) {
      * @param id первичный ключ
      * @return заметка
      */
-    fun getNote(id: Int): Flow<Note> {
+    fun getNote(id: Int): Flow<Note?> {
         return db.noteDao().getNote(id)
     }
 

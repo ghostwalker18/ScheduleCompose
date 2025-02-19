@@ -14,7 +14,6 @@
 
 package com.ghostwalker18.scheduledesktop2.views
 
-import Navigator
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,16 +27,28 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import getNavigator
+import getScheduleRepository
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.notes_activity
 import viewmodels.NotesModel
+import java.util.*
 
+
+/**
+ * Эта функция представляет собой экран заметок приложения
+ *
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 @Composable
-fun NotesActivity(){
+fun NotesActivity(
+    group: String? = getScheduleRepository().savedGroup,
+    date: Calendar = Calendar.getInstance()
+){
     val navigator = getNavigator()
     val model = viewModel { NotesModel() }
-    var isFilterEnabled by remember { mutableStateOf(false) }
+    val isFilterEnabled by model.isFilterEnabled.collectAsState()
     var keyWord by remember { mutableStateOf("") }
     Scaffold(
         topBar = {
@@ -64,7 +75,7 @@ fun NotesActivity(){
             )
         },
         floatingActionButton = {
-            FloatingActionButton({ navigator.goEditNoteActivity() }){
+            FloatingActionButton({ navigator.goEditNoteActivity(model.group!!, model.startDate.value, 0) }){
                 Icon(Icons.AutoMirrored.Filled.NoteAdd, null)
             }
         }
@@ -81,7 +92,7 @@ fun NotesActivity(){
                         keyWord = it
                     }
                 )
-                IconButton({isFilterEnabled = true}){
+                IconButton({ model.isFilterEnabled.value = true }){
                     Icon(Icons.Filled.Tune, null)
                 }
             }
@@ -90,7 +101,7 @@ fun NotesActivity(){
                 enter = fadeIn() + expandHorizontally(),
                 exit = fadeOut() + shrinkHorizontally()
             ){
-                NotesFilterFragment(isFilterEnabled)
+                NotesFilterFragment()
             }
             LazyColumn {
 

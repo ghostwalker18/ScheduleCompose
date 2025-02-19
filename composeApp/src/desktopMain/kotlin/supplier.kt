@@ -13,9 +13,9 @@
  */
 
 import com.ghostwalker18.scheduledesktop2.ScheduleApp
-import database.AppDatabase
 import models.NotesRepository
 import models.ScheduleRepository
+import java.util.*
 import java.util.prefs.Preferences
 
 actual fun getScheduleRepository(): ScheduleRepository = ScheduleApp.getInstance().scheduleRepository
@@ -28,8 +28,8 @@ actual fun getPreferences(): Preferences = ScheduleApp.getInstance().preferences
 actual interface Navigator{
     actual fun goBack()
     actual fun goSettingsActivity()
-    actual fun goNotesActivity()
-    actual fun goEditNoteActivity()
+    actual fun goNotesActivity(group: String, date: Calendar)
+    actual fun goEditNoteActivity(group: String, date: Calendar, noteID: Int)
 }
 
 actual fun getNavigator(): Navigator = ScheduleApp.getInstance().navigator

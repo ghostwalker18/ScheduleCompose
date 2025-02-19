@@ -25,6 +25,12 @@ import com.ghostwalker18.scheduledesktop2.ScheduleApp
 import java.util.concurrent.Executors
 import java.util.prefs.Preferences
 
+/**
+ * Этот класс используется для предоставления приложению услуг доступа к сети.
+ *
+ * @author Ipatov Nikita
+ * @since 1.0
+ */
 class NetworkService(private val baseUri: String) {
     private val sizeOfCache: Long = 10 * 1024 * 1024
     private val preferences: Preferences = ScheduleApp.preferences

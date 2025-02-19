@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import converters.DateConverters
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -39,12 +40,20 @@ import scheduledesktop2.composeapp.generated.resources.filters
 import scheduledesktop2.composeapp.generated.resources.start_date
 import viewmodels.NotesModel
 
+
+/**
+ * Этот класс служит для отображения панели фильтров заметок.
+ *
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 @Composable
-fun NotesFilterFragment(isFilterEnabled: Boolean){
-    var group by remember { mutableStateOf("") }
-    var startDate by remember { mutableStateOf("") }
-    var endDate by remember { mutableStateOf("") }
-    var model = viewModel { NotesModel() }
+fun NotesFilterFragment(){
+    val model = viewModel { NotesModel() }
+    val group = model.group
+    val startDate by model.startDate.collectAsState()
+    val endDate by model.endDate.collectAsState()
+    val isFilterEnabled by model.isFilterEnabled.collectAsState()
 
     AnimatedVisibility(
         isFilterEnabled,
@@ -69,27 +78,21 @@ fun NotesFilterFragment(isFilterEnabled: Boolean){
                     textAlign = TextAlign.Center,
                     modifier = Modifier.weight(1f)
                 )
-                IconButton({}){
+                IconButton({model.isFilterEnabled.value = false}){
                     Icon(Icons.Filled.Close, null)
                 }
             }
             Text(
-                text = stringResource(Res.string.friday),
+                text = stringResource(Res.string.for_group),
                 modifier = Modifier
                     .padding(5.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 TextField(
-                    value = group,
-                    onValueChange = {
-                        group = it
-                    },
+                    value = group ?: "",
+                    onValueChange = { model.group = it },
                     modifier = Modifier.weight(1f)
                 )
-                IconButton(
-                    {
-                        group = ""
-                    }
-                ){
+                IconButton({ model.group = null }){
                     Icon(Icons.Filled.Close, null)
                 }
             }
@@ -100,10 +103,8 @@ fun NotesFilterFragment(isFilterEnabled: Boolean){
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 TextField(
-                    value = startDate,
-                    onValueChange = {
-                        startDate = it
-                    },
+                    value = DateConverters().toString(startDate) ?: "",
+                    onValueChange = { model.setStartDate(DateConverters().fromString(it)) },
                     modifier = Modifier.weight(1f)
                 )
                 IconButton({}){
@@ -117,10 +118,8 @@ fun NotesFilterFragment(isFilterEnabled: Boolean){
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 TextField(
-                    value = endDate,
-                    onValueChange = {
-                        endDate = it
-                    },
+                    value = DateConverters().toString(endDate) ?: "",
+                    onValueChange = { model.setEndDate(DateConverters().fromString(it)) },
                     modifier = Modifier.weight(1f)
                 )
                 IconButton({}){

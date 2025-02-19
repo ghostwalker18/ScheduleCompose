@@ -14,7 +14,6 @@
 
 package com.ghostwalker18.scheduledesktop2.views
 
-import Navigator
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -37,6 +36,13 @@ import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.app_name
 import scheduledesktop2.composeapp.generated.resources.days_tab
 
+
+/**
+ * Эта функция представляет собой главный экран приложения
+ *
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 @Preview
 @Composable
 fun MainActivity() {

@@ -28,7 +28,7 @@ import java.util.*
  * @author Ипатов Никита
  * @since 1.0
  */
-class DayModel() : ViewModel() {
+class DayModel : ViewModel() {
     private val repository = getScheduleRepository()
     private val _date: MutableStateFlow<Calendar> = MutableStateFlow(Calendar.getInstance())
     private val _lessons: MutableStateFlow<Array<Lesson>> = MutableStateFlow(emptyArray())

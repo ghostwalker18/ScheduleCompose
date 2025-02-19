@@ -15,7 +15,13 @@
 package viewmodels
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import getNotesRepository
+import getScheduleRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import models.Note
 import java.util.*
 
 /**
@@ -24,8 +30,82 @@ import java.util.*
  * @author Ипатов Никита
  * @since 1.0
  */
-class NotesModel() : ViewModel() {
-    val repository = getNotesRepository()
+class NotesModel : ViewModel() {
+    private val repository = getNotesRepository()
+    private val _notes = MutableStateFlow(emptyArray<Note>())
+    private var _notesMediator: Flow<Array<Note>>? = null
+    private val _startDate = MutableStateFlow(Calendar.getInstance())
+    private val _endDate = MutableStateFlow(Calendar.getInstance())
+    val notes = _notes.asStateFlow()
+    val startDate = _startDate.asStateFlow()
+    val endDate = _endDate.asStateFlow()
+    val isFilterEnabled = MutableStateFlow(false)
+    var keyword: String? = ""
+        set(value) {
+            field = value
+            if (keyword != null) _notesMediator = repository.getNotes(group!!, keyword!!) else {
+                if (startDate.value != null && endDate.value != null && group != null) _notesMediator =
+                    repository.getNotes(
+                        group!!,
+                        generateDateSequence(startDate.value!!, endDate.value!!)
+                    )
+            }
+            viewModelScope.launch {
+                _notesMediator?.collect{
+                    _notes.value = it
+                }
+            }
+        }
+    var group: String? = ""
+        set(value) {
+            field = value
+            if (group != null) {
+                if (keyword != null) _notesMediator = repository.getNotes(group!!, keyword!!)
+                if (startDate.value != null && endDate.value != null)
+                    _notesMediator = repository
+                        .getNotes(group!!, generateDateSequence(startDate.value!!, endDate.value!!))
+            }
+            viewModelScope.launch {
+                _notesMediator?.collect{
+                    _notes.value = it
+                }
+            }
+        }
+
+    init {
+        group = getScheduleRepository().savedGroup
+    }
+    /**
+     * Этот метод устанавливает начальную дату временного интервала выдачи заметок.
+     * @param date начальная дата
+     */
+    fun setStartDate(date: Calendar?) {
+        _startDate.value = date
+        if (startDate.value != null && endDate.value != null && group != null)
+            _notesMediator = repository
+                .getNotes(group!!, generateDateSequence(startDate.value!!, endDate.value!!))
+        viewModelScope.launch {
+            _notesMediator?.collect{
+                _notes.value = it
+            }
+        }
+    }
+
+    /**
+     * Этот метод устанавливает конечную дату временного интервала выдачи заметок.
+     * @param date конечная дата
+     */
+    fun setEndDate(date: Calendar?) {
+        _endDate.value = date
+        if (startDate.value != null && endDate.value != null && group != null)
+            _notesMediator = repository
+                .getNotes(group!!, generateDateSequence(startDate.value!!, endDate.value!!))
+        viewModelScope.launch {
+            _notesMediator?.collect{
+                _notes.value = it
+            }
+        }
+    }
 
     /**
      * Этот метод позволяет получить последовательность дат, основываясь на начальной и конечной.

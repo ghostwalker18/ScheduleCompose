@@ -36,7 +36,7 @@ interface NoteDao {
      * @return заметка
      */
     @Query("SELECT * FROM tblNote WHERE id = :id")
-    fun getNote(id: Int): Flow<Note>
+    fun getNote(id: Int): Flow<Note?>
 
     /**
      * Этот метод позволяет получить заметки для заданной группы и дня.

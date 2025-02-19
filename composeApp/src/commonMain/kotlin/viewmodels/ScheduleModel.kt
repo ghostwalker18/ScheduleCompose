@@ -15,8 +15,10 @@
 package viewmodels
 
 import androidx.lifecycle.ViewModel
+import getScheduleRepository
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEach
 import java.util.*
 
 
@@ -27,22 +29,32 @@ import java.util.*
  * @since 1.0
  */
 class ScheduleModel : ViewModel() {
-    val group: MutableStateFlow<String?> = MutableStateFlow(null)
-    val teacher: MutableStateFlow<String?> =MutableStateFlow(null)
-    val calendar: MutableStateFlow<Calendar> = MutableStateFlow(Calendar.getInstance())
+    val group = MutableStateFlow(getScheduleRepository().savedGroup)
+    val teacher: MutableStateFlow<String?> = MutableStateFlow(null)
+    val calendar = MutableStateFlow(Calendar.getInstance())
+
+    init {
+        group.onEach {
+            getScheduleRepository().savedGroup = it
+        }
+    }
 
     /**
      * Этот метод позволяет передвинуть состояние расписания на следующую неделю.
      */
-    fun goNextWeek() {
-        calendar.update { date -> return date.add(Calendar.WEEK_OF_YEAR, 1) }
+    fun goNextWeek(){
+        val currentDate = calendar.value.clone() as Calendar
+        currentDate.add(Calendar.WEEK_OF_YEAR, 1)
+        calendar.value = currentDate
     }
 
     /**
      * Этот метод позволяет передвинуть состояние расписания на предыдущую неделю.
      */
     fun goPreviousWeek() {
-        calendar.update { date -> return date.add(Calendar.WEEK_OF_YEAR, -1) }
+        val currentDate = calendar.value.clone() as Calendar
+        currentDate.add(Calendar.WEEK_OF_YEAR, -1)
+        calendar.value = currentDate
     }
 
     fun getYear(): Int {

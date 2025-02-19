@@ -14,7 +14,6 @@
 
 package com.ghostwalker18.scheduledesktop2.views
 
-import Navigator
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -28,7 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ghostwalker18.scheduledesktop2.ScheduleApp
+import getPreferences
 import getScheduleRepository
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
@@ -39,32 +38,30 @@ import scheduledesktop2.composeapp.generated.resources.forward
 import scheduledesktop2.composeapp.generated.resources.monday
 import viewmodels.ScheduleModel
 
+
+/**
+ * Эта функция представляет собой элемент интерфейса, используемый для
+ * отображения расписания занятий.
+ *
+ * @author  Ипатов Никита
+ * @since 1.0
+ */
 @Preview
 @Composable
 fun DaysFragment(){
-    val repository by remember { mutableStateOf(getScheduleRepository()) }
+    val repository = getScheduleRepository()
     val model: ScheduleModel = viewModel { ScheduleModel() }
-    var group by remember { mutableStateOf(repository.savedGroup) }
-    var teacher by remember { mutableStateOf("") }
+    val group by model.group.collectAsState()
+    val teacher by model.teacher.collectAsState()
     var status by remember { mutableStateOf("") }
     var progress by remember { mutableStateOf(0f) }
-    var groups by remember { mutableStateOf(arrayOf("")) }
-    var teachers by remember { mutableStateOf(arrayOf("")) }
+    val groups by repository.groups.collectAsState(emptyArray())
+    val teachers by repository.teachers.collectAsState(emptyArray())
 
     model.viewModelScope.launch {
         repository.status.collect{
             status = it.status
             progress = it.progress.toFloat()
-        }
-    }
-    model.viewModelScope.launch {
-        repository.groups.collect{
-            groups = it
-        }
-    }
-    model.viewModelScope.launch {
-        repository.teachers.collect{
-            teachers = it
         }
     }
 
@@ -96,35 +93,32 @@ fun DaysFragment(){
                         Text(stringResource(Res.string.group_choice_text))
                         Row {
                             AutocompleteTextView(
-                                value = group,
+                                value = group ?: "",
                                 options = groups,
                                 modifier = Modifier.weight(1f)
                             ){
                                 model.group.value = it
-                                group = it
                             }
                             IconButton({
-                                group = ""
                                 model.group.value = null
                             }){
                                 Icon(Icons.Filled.Close, "")
                             }
                         }
-                        Text(stringResource(Res.string.teacher_choice_text))
-                        Row {
-                            AutocompleteTextView(
-                                value = teacher,
-                                options = teachers,
-                                modifier = Modifier.weight(1f)
-                            ){
-                                model.teacher.value = it
-                                teacher = it
-                            }
-                            IconButton({
-                                teacher = ""
-                                model.teacher.value = null
-                            }){
-                                Icon(Icons.Filled.Close, "")
+                        if(getPreferences().getBoolean("addTeacherSearch", true)){
+                            Text(stringResource(Res.string.teacher_choice_text))
+                            Row {
+                                AutocompleteTextView(
+                                    value = teacher ?: "",
+                                    options = teachers,
+                                    modifier = Modifier.weight(1f)
+                                ){
+                                    model.teacher.value = it
+                                }
+                                IconButton({ model.teacher.value = null })
+                                {
+                                    Icon(Icons.Filled.Close, "")
+                                }
                             }
                         }
                     }

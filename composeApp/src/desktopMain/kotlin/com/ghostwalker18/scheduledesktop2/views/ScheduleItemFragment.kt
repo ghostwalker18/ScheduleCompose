@@ -29,6 +29,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -54,10 +55,10 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
         Res.string.thursday to Calendar.THURSDAY,
         Res.string.friday to Calendar.FRIDAY
     )
-    var isOpened by remember { mutableStateOf(false) }
-    var date by remember { mutableStateOf(Calendar.getInstance()) }
-    var lessons by remember { mutableStateOf(emptyArray<Lesson>()) }
     val model = viewModel(key = stringResource(dayOfWeek)) { DayModel() }
+    val date by model.getDate().collectAsState()
+    val lessons by model.lessons.collectAsState()
+    var isOpened by remember { mutableStateOf(false) }
 
     model.viewModelScope.launch {
         scheduleModel.group.collect{
@@ -81,23 +82,7 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
             )
         }
     }
-    model.viewModelScope.launch {
-        model.lessons.collect{
-            lessons = it
-        }
-    }
 
-    model.viewModelScope.launch {
-        model.getDate().collect{
-            date = it
-        }
-    }
-
-    /*LaunchedEffect(key1 = null){
-        model.getDate().collect{
-            date = it
-        }
-    }*/
     LaunchedEffect(key1 = date){
         isOpened = Utils.isDateToday(date)
     }
@@ -131,7 +116,7 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
             ) {
                 ScheduleTable(lessons)
                 IconButton(
-                    { navigator.goNotesActivity() }
+                    { navigator.goNotesActivity(model.group!!, model.getDate().value) }
                 ){
                     Icon(Icons.AutoMirrored.Filled.Notes, "")
                 }
@@ -164,11 +149,12 @@ fun ScheduleTable(lessons: Array<Lesson>){
 fun RowScope.TableCell(text: String, weight: Float) {
     Text(
         text = text,
-        Modifier
+        modifier = Modifier
             .border(1.dp, Color.Black)
             .weight(weight)
             .padding(8.dp)
-            .height(IntrinsicSize.Max)
+            .height(IntrinsicSize.Max),
+        textAlign = TextAlign.Center
     )
 }
 

@@ -45,6 +45,11 @@ import java.util.prefs.Preferences
 import javax.imageio.ImageIO
 import kotlin.reflect.KFunction1
 
+/**
+ * Этот класс представляет собой репозиторий данных десктопного приложения о расписании.
+ *
+ * @author  Ипатов Никита
+ */
 class ScheduleRepositoryDesktop(
     override val db: AppDatabase,
     private val api: ScheduleNetworkAPI,
@@ -198,8 +203,7 @@ class ScheduleRepositoryDesktop(
                     } catch (ignored: java.lang.Exception) { /*Not required*/ }
                 }
 
-                override fun onFailure(call: Call<ResponseBody?>, t: Throwable) { /*Not required*/
-                }
+                override fun onFailure(call: Call<ResponseBody?>, t: Throwable) { /*Not required*/ }
             })
             api.otherTimes?.enqueue(object : Callback<ResponseBody?> {
                 override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
@@ -213,8 +217,7 @@ class ScheduleRepositoryDesktop(
                     }
                 }
 
-                override fun onFailure(call: Call<ResponseBody?>, t: Throwable) { /*Not required*/
-                }
+                override fun onFailure(call: Call<ResponseBody?>, t: Throwable) { /*Not required*/ }
             })
         } else {
             try {
