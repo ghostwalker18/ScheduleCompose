@@ -35,7 +35,9 @@ object Utils {
      * @return доступность для посещения
      */
     @Synchronized
-    fun isLessonAvailable(lessonDate: Calendar, lessonTimes: String): LessonAvailability? {
+    fun isLessonAvailable(lessonDate: Calendar, lessonTimes: String?): LessonAvailability? {
+        if (lessonTimes == null)
+            return null
         try {
             val currentTime = Calendar.getInstance()
             val startTime = lessonTimes.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0]

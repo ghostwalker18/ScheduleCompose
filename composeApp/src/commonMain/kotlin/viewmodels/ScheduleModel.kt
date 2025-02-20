@@ -17,7 +17,6 @@ package viewmodels
 import androidx.lifecycle.ViewModel
 import getScheduleRepository
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import java.util.*
 

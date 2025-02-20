@@ -25,9 +25,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Notes
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.outlined.AccessTime
+import androidx.compose.material.icons.outlined.EventAvailable
+import androidx.compose.material.icons.outlined.EventBusy
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -128,6 +132,8 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
 @Composable
 fun ScheduleTable(lessons: Array<Lesson>){
     Row {
+        if(lessons.isNotEmpty() && Utils.isDateToday(lessons[0].date))
+            Icon(Icons.Outlined.AccessTime, null, Modifier.alpha(0f))
         TableCell(stringResource(Res.string.number), 0.1f)
         TableCell(stringResource(Res.string.times), 0.2f)
         TableCell(stringResource(Res.string.subject), 0.45f)
@@ -135,7 +141,16 @@ fun ScheduleTable(lessons: Array<Lesson>){
         TableCell(stringResource(Res.string.room), 0.15f)
     }
     for (lesson in lessons){
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            if(Utils.isDateToday(lesson.date))
+                when(Utils.isLessonAvailable(lesson.date, lesson.times)){
+                    Utils.LessonAvailability.ENDED -> Icon(Icons.Outlined.EventBusy, null)
+                    Utils.LessonAvailability.STARTED -> Icon(Icons.Outlined.AccessTime, null)
+                    Utils.LessonAvailability.NOT_STARTED -> Icon(Icons.Outlined.EventAvailable, null)
+                    null -> return
+                }
             TableCell(lesson.lessonNumber, 0.1f)
             TableCell(lesson.times?: "", 0.2f)
             TableCell(lesson.subject, 0.45f)
@@ -146,7 +161,7 @@ fun ScheduleTable(lessons: Array<Lesson>){
 }
 
 @Composable
-fun RowScope.TableCell(text: String, weight: Float) {
+fun RowScope.TableCell(text: String, weight: Float ) {
     Text(
         text = text,
         modifier = Modifier

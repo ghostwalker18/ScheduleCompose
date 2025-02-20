@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -49,7 +50,11 @@ fun NoteView(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 10.dp, vertical = 5.dp)
-                .border(1.dp, color = MaterialTheme.colors.primaryVariant)
+                .border(
+                    width = 1.dp,
+                    color = MaterialTheme.colors.primaryVariant,
+                    shape = RoundedCornerShape(10.dp)
+                )
                 .clickable {
                     isSelected = !isSelected
                     if(isSelected)
@@ -70,7 +75,11 @@ fun NoteView(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 5.dp)
-                    .border(1.dp, MaterialTheme.colors.primaryVariant)
+                    .border(
+                        width = 1.dp,
+                        color = MaterialTheme.colors.primaryVariant,
+                        shape = RoundedCornerShape(10.dp)
+                    )
                     .padding(5.dp)
             )
             Text(
