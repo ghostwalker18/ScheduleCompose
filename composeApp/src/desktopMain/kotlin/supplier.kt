@@ -29,7 +29,7 @@ actual interface Navigator{
     actual fun goBack()
     actual fun goSettingsActivity()
     actual fun goNotesActivity(group: String, date: Calendar)
-    actual fun goEditNoteActivity(group: String, date: Calendar, noteID: Int)
+    actual fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?)
 }
 
 actual fun getNavigator(): Navigator = ScheduleApp.getInstance().navigator

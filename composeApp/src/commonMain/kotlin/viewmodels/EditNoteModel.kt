@@ -92,18 +92,28 @@ class EditNoteModel : ViewModel() {
      */
     fun saveNote() {
         viewModelScope.launch {
-            val noteToSave = note
+            var noteToSave = note
             if (noteToSave != null) {
                 noteToSave.date = date.value!!
                 noteToSave.group = _group.value!!
                 noteToSave.theme = theme.value
                 noteToSave.text = text.value
                 noteToSave.photoIDs = null
-                if (isEdited)
-                    notesRepository.updateNote(noteToSave)
-                else
-                    notesRepository.saveNote(noteToSave)
+
             }
+            else{
+                noteToSave = Note(
+                    date = date.value,
+                    group = _group.value ?: "",
+                    theme = theme.value,
+                    text = text.value,
+                    photoIDs = null
+                )
+            }
+            if (isEdited)
+                notesRepository.updateNote(noteToSave)
+            else
+                notesRepository.saveNote(noteToSave)
         }
     }
 }

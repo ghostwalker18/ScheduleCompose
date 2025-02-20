@@ -31,12 +31,11 @@ class NavigatorDesktop(private val navController: NavController) : Navigator {
 
     override fun goNotesActivity(group: String, date: Calendar) {
         val dateString = DateConverters().toString(date)!!
-        navController.navigate("notes/{$group}/{$dateString}")
+        navController.navigate("notes/$group/$dateString")
     }
 
-    override fun goEditNoteActivity(group: String, date: Calendar, noteID: Int){
+    override fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?){
         val dateString = DateConverters().toString(date)!!
-        val id = noteID
-        navController.navigate("editNote/{$group}/{$dateString}/{$id}")
+        navController.navigate("editNote/$group/$dateString/$noteID")
     }
 }

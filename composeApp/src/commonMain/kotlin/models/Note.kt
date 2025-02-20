@@ -29,7 +29,7 @@ import java.util.*
  */
 @Entity(tableName = "tblNote")
 data class Note(
-    @PrimaryKey(autoGenerate = true) val id : Int,
+    @PrimaryKey(autoGenerate = true) val id : Int = 0,
     @ColumnInfo(name = "noteDate") var date : Calendar,
     @ColumnInfo(name = "noteGroup") var group : String,
     @ColumnInfo(name = "noteTheme") var theme: String?,

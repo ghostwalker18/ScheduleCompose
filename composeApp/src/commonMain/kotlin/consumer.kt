@@ -28,7 +28,7 @@ expect interface Navigator{
     fun goBack()
     fun goSettingsActivity()
     fun goNotesActivity(group: String, date: Calendar)
-    fun goEditNoteActivity(group: String, date: Calendar, noteID: Int)
+    fun goEditNoteActivity(group: String, date: Calendar, noteID: Int? = null)
 }
 
 expect fun getNavigator(): Navigator

@@ -17,6 +17,7 @@ package com.ghostwalker18.scheduledesktop2.views
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -24,10 +25,12 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.NoteAdd
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import getNavigator
 import getScheduleRepository
+import models.Note
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.notes_activity
@@ -44,10 +47,15 @@ import java.util.*
 @Composable
 fun NotesActivity(
     group: String? = getScheduleRepository().savedGroup,
-    date: Calendar = Calendar.getInstance()
+    date: Calendar? = Calendar.getInstance()
 ){
     val navigator = getNavigator()
     val model = viewModel { NotesModel() }
+    model.group = group
+    model.setStartDate(date)
+    model.setEndDate(date)
+    val notes by model.notes.collectAsState()
+    val selectedNotes =  remember { mutableStateListOf<Note>() }
     val isFilterEnabled by model.isFilterEnabled.collectAsState()
     var keyWord by remember { mutableStateOf("") }
     Scaffold(
@@ -62,38 +70,64 @@ fun NotesActivity(
                     }
                 },
                 actions = {
-                    IconButton({}){
-                        Icon(Icons.Filled.EditNote, "")
+                    AnimatedVisibility(selectedNotes.size == 1){
+                        IconButton({
+                            val note = selectedNotes[0]
+                            navigator.goEditNoteActivity(note.group, note.date, note.id)
+                        }){
+                            Icon(Icons.Filled.EditNote, "")
+                        }
                     }
-                    IconButton({}){
-                        Icon(Icons.Filled.Delete, "")
-                    }
-                    IconButton({}){
-                        Icon(Icons.Filled.Share, "")
+                    AnimatedVisibility(selectedNotes.isNotEmpty()){
+                        Row {
+                            IconButton({ model.deleteNotes(selectedNotes) }){
+                                Icon(Icons.Filled.Delete, "")
+                            }
+                            IconButton({}){
+                                Icon(Icons.Filled.Share, "")
+                            }
+                        }
                     }
                 }
             )
         },
         floatingActionButton = {
-            FloatingActionButton({ navigator.goEditNoteActivity(model.group!!, model.startDate.value, 0) }){
+            FloatingActionButton(
+                { navigator.goEditNoteActivity(model.group!!, model.startDate.value, 0 ) },
+                backgroundColor = MaterialTheme.colors.primaryVariant
+            ){
                 Icon(Icons.AutoMirrored.Filled.NoteAdd, null)
             }
         }
     ){
         Column {
-            Row {
-                TextField(
-                    value = keyWord,
-                    leadingIcon = {
-                        Icon(Icons.Filled.Search, null)
-                    },
-                    modifier = Modifier.weight(1f),
-                    onValueChange = {
-                        keyWord = it
+            if(selectedNotes.isEmpty()){
+                Row {
+                    TextField(
+                        value = keyWord,
+                        leadingIcon = {
+                            Icon(Icons.Filled.Search, null)
+                        },
+                        modifier = Modifier.weight(1f),
+                        onValueChange = {
+                            keyWord = it
+                        }
+                    )
+                    IconButton({ model.isFilterEnabled.value = true }){
+                        Icon(Icons.Filled.Tune, null)
                     }
-                )
-                IconButton({ model.isFilterEnabled.value = true }){
-                    Icon(Icons.Filled.Tune, null)
+                }
+            }
+            else{
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    IconButton(
+                        {selectedNotes.clear()}
+                    ){
+                        Icon(Icons.Filled.Close, null)
+                    }
+                    Text(text = selectedNotes.size.toString())
                 }
             }
             AnimatedVisibility(
@@ -103,8 +137,22 @@ fun NotesActivity(
             ){
                 NotesFilterFragment()
             }
-            LazyColumn {
-
+            LazyColumn(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                notes.forEach{ note ->
+                    item {
+                        NoteView(
+                            note = note,
+                            onSelected = {
+                                selectedNotes.add(note)
+                            },
+                            onUnselected = {
+                                selectedNotes.remove(note)
+                            }
+                        )
+                    }
+                }
             }
         }
     }

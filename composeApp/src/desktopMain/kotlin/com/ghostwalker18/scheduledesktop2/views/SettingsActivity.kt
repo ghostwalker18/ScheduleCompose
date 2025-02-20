@@ -51,7 +51,7 @@ import java.util.prefs.Preferences
 @Composable
 fun SettingsActivity() {
     val navigator = getNavigator()
-    val preferences by remember { mutableStateOf(getPreferences()) }
+    val preferences = getPreferences()
     Scaffold(
         topBar = {
             TopAppBar(

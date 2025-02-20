@@ -32,6 +32,7 @@ import com.ghostwalker18.scheduledesktop2.views.EditNoteActivity
 import com.ghostwalker18.scheduledesktop2.views.MainActivity
 import com.ghostwalker18.scheduledesktop2.views.NotesActivity
 import com.ghostwalker18.scheduledesktop2.views.SettingsActivity
+import converters.DateConverters
 import database.AppDatabase
 import kotlinx.coroutines.flow.MutableStateFlow
 import models.NotesRepository
@@ -99,20 +100,31 @@ class ScheduleApp : PreferenceChangeListener{
                 composable(
                     route = "notes/{group}/{date}",
                     arguments = listOf(
-                        navArgument("group"){type = NavType.StringType},
-                        navArgument("date"){type = NavType.StringType})
+                        navArgument("group"){ type = NavType.StringType },
+                        navArgument("date"){ type = NavType.StringType })
                 ){
-                    NotesActivity()
+                    stackEntry ->
+                    val group = stackEntry.arguments?.getString("group")
+                    val date = DateConverters().fromString(
+                        stackEntry.arguments?.getString("date")
+                    )
+                    NotesActivity(group, date)
                 }
                 composable(
                     route = "editNote/{group}/{date}/{noteID}",
                     arguments = listOf(
-                        navArgument("group"){type = NavType.StringType},
-                        navArgument("date"){type = NavType.StringType},
-                        navArgument("noteID"){type = NavType.IntType},
+                        navArgument("group"){ type = NavType.StringType },
+                        navArgument("date"){ type = NavType.StringType },
+                        navArgument("noteID"){ type = NavType.IntType },
                     )
                 ){
-                    EditNoteActivity()
+                    stackEntry ->
+                    val group = stackEntry.arguments?.getString("group")
+                    val date = DateConverters().fromString(
+                        stackEntry.arguments?.getString("date")
+                    )
+                    val noteID = stackEntry.arguments?.getInt("noteID")
+                    EditNoteActivity(noteID, group, date)
                 }
             }
 

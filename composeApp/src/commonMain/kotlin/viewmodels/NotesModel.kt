@@ -107,6 +107,12 @@ class NotesModel : ViewModel() {
         }
     }
 
+    fun deleteNotes(notes: Collection<Note>){
+        viewModelScope.launch {
+            repository.deleteNotes(notes)
+        }
+    }
+
     /**
      * Этот метод позволяет получить последовательность дат, основываясь на начальной и конечной.
      * @param startDate начальная дата (включается в интервал)

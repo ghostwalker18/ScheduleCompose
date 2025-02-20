@@ -14,16 +14,18 @@
 
 package com.ghostwalker18.scheduledesktop2.views
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Save
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import converters.DateConverters
 import getNavigator
@@ -32,7 +34,6 @@ import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.date
-import scheduledesktop2.composeapp.generated.resources.edit_notes_activity
 import scheduledesktop2.composeapp.generated.resources.for_group
 import viewmodels.EditNoteModel
 import java.util.*
@@ -47,20 +48,31 @@ import java.util.*
 fun EditNoteActivity(
     noteID: Int? = null,
     group: String? = getScheduleRepository().savedGroup,
-    date: Calendar = Calendar.getInstance()
+    date: Calendar? = Calendar.getInstance()
 ){
     val navigator = getNavigator()
     val model = viewModel { EditNoteModel() }
     val themes = model.themes.collectAsState()
-    val date  = model.date.collectAsState()
-    val group by model.group.collectAsState()
-    var theme = model.theme.collectAsState()
-    val text = model.text.collectAsState()
+    val noteDate  = model.date.collectAsState()
+    val noteGroup by model.group.collectAsState()
+    val noteTheme = model.theme.collectAsState()
+    val noteText = model.text.collectAsState()
+    if(noteID != 0)
+        noteID?.let { model.setNoteID(it) }
+    else {
+        model.setGroup(group)
+        model.date.value = date
+    }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(Res.string.edit_notes_activity)) },
+                title = {
+                    if(noteID == 0)
+                        Text(stringResource(Res.string.add_note))
+                    else
+                        Text(stringResource(Res.string.edit_note))
+                },
                 navigationIcon = {
                     IconButton(
                         { navigator.goBack()}
@@ -75,16 +87,20 @@ fun EditNoteActivity(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            Row {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ){
                 Text(text = stringResource(Res.string.date))
-                Text(text = DateConverters().toString(date.value)!!)
+                Text(text = DateConverters().toString(noteDate.value)!!)
                 IconButton({}){
                     Icon(Icons.Filled.ArrowDropDown, null)
                 }
             }
-            Row {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 TextField(
-                    value = group ?: "",
+                    value = noteGroup ?: "",
                     modifier = Modifier
                         .weight(1f),
                     onValueChange = {
@@ -101,9 +117,11 @@ fun EditNoteActivity(
                     Icon(Icons.Filled.Close, null)
                 }
             }
-            Row {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 TextField(
-                    value = theme.value ?: "",
+                    value = noteTheme.value ?: "",
                     modifier = Modifier
                         .weight(1f),
                     onValueChange = {
@@ -120,9 +138,11 @@ fun EditNoteActivity(
                     Icon(Icons.Filled.Close, null)
                 }
             }
-            Row {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ){
                 TextField(
-                    value = text.value,
+                    value = noteText.value,
                     modifier = Modifier
                         .weight(1f),
                     onValueChange = {
@@ -137,6 +157,30 @@ fun EditNoteActivity(
                 }
                 ){
                     Icon(Icons.Filled.Close, null)
+                }
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            Row {
+                IconButton(
+                    { navigator.goBack() },
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .background(MaterialTheme.colors.primary)
+                        .weight(0.5f)
+                ){
+                    Icon(Icons.Filled.Close, null)
+                }
+                IconButton(
+                    {
+                        model.saveNote()
+                        navigator.goBack()
+                    },
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .background(MaterialTheme.colors.primary)
+                        .weight(0.5f)
+                ){
+                    Icon(Icons.Filled.Save, null)
                 }
             }
         }
