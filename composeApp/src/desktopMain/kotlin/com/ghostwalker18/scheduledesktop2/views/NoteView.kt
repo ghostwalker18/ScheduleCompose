@@ -34,6 +34,14 @@ import androidx.compose.ui.unit.dp
 import converters.DateConverters
 import models.Note
 
+/**
+ * Эта функция отображает единичную заметку в списке.
+ * @param note заметка для отображения
+ * @param onSelected действие при выборе заметки
+ * @param onUnselected действие при отмене выбора заметки
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 @Composable
 fun NoteView(
     note: Note,
@@ -84,7 +92,9 @@ fun NoteView(
             )
             Text(
                 text = note.text,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp)
             )
         }
     }

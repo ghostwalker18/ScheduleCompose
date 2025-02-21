@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
+    id("org.jetbrains.dokka") version "2.0.0"
 }
 
 kotlin {

@@ -15,9 +15,12 @@
 package viewmodels
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import getScheduleRepository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -33,8 +36,10 @@ class ScheduleModel : ViewModel() {
     val calendar = MutableStateFlow(Calendar.getInstance())
 
     init {
-        group.onEach {
-            getScheduleRepository().savedGroup = it
+        viewModelScope.launch {
+            group.collect{
+                getScheduleRepository().savedGroup = it
+            }
         }
     }
 

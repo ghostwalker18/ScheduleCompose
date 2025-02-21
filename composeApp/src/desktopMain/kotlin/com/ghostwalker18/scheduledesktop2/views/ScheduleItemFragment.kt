@@ -15,12 +15,10 @@
 package com.ghostwalker18.scheduledesktop2.views
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Notes
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -38,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import getNavigator
+import gray500Color
 import kotlinx.coroutines.launch
 import models.Lesson
 import org.jetbrains.compose.resources.StringResource
@@ -48,6 +47,9 @@ import viewmodels.DayModel
 import viewmodels.ScheduleModel
 import java.util.*
 
+/**
+ * Эта функция отображает элемент расписания на день
+ */
 @Composable
 fun ScheduleItemFragment(dayOfWeek: StringResource) {
     val navigator = getNavigator()
@@ -129,9 +131,19 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
     }
 }
 
+/**
+ * Эта функция отображает таблицу с расписанием
+ * @param lessons занятия на день для отображения
+ *
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 @Composable
 fun ScheduleTable(lessons: Array<Lesson>){
-    Row {
+    Row(
+        modifier = Modifier
+            .height(intrinsicSize = IntrinsicSize.Max)
+    ) {
         if(lessons.isNotEmpty() && Utils.isDateToday(lessons[0].date))
             Icon(Icons.Outlined.AccessTime, null, Modifier.alpha(0f))
         TableCell(stringResource(Res.string.number), 0.1f)
@@ -140,9 +152,13 @@ fun ScheduleTable(lessons: Array<Lesson>){
         TableCell(stringResource(Res.string.teacher), 0.2f)
         TableCell(stringResource(Res.string.room), 0.15f)
     }
-    for (lesson in lessons){
+    lessons.forEachIndexed{
+        index, lesson ->
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .height(intrinsicSize = IntrinsicSize.Max)
+                .background(color = if (index % 2 == 0) gray500Color else MaterialTheme.colors.background)
         ) {
             if(Utils.isDateToday(lesson.date))
                 when(Utils.isLessonAvailable(lesson.date, lesson.times)){
@@ -160,17 +176,27 @@ fun ScheduleTable(lessons: Array<Lesson>){
     }
 }
 
+/**
+ * Эта функция отображает клетку в расписании
+ * @param text содержимое клетки
+ * @param weight ширина клетки в процентах от таблицы
+ * @author Ipatov Nikita
+ */
 @Composable
 fun RowScope.TableCell(text: String, weight: Float ) {
-    Text(
-        text = text,
+    Column(
         modifier = Modifier
-            .border(1.dp, Color.Black)
-            .weight(weight)
-            .padding(8.dp)
-            .height(IntrinsicSize.Max),
-        textAlign = TextAlign.Center
-    )
+        .weight(weight)
+        .padding(8.dp)
+        .fillMaxHeight(),
+        verticalArrangement = Arrangement.Center
+    ){
+        Text(
+            text = text,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 }
 
 /**
