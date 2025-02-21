@@ -28,10 +28,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ghostwalker18.scheduledesktop2.models.ScheduleRepositoryDesktop
 import com.ghostwalker18.scheduledesktop2.network.NetworkService
-import com.ghostwalker18.scheduledesktop2.views.EditNoteActivity
-import com.ghostwalker18.scheduledesktop2.views.MainActivity
-import com.ghostwalker18.scheduledesktop2.views.NotesActivity
-import com.ghostwalker18.scheduledesktop2.views.SettingsActivity
+import com.ghostwalker18.scheduledesktop2.views.*
 import converters.DateConverters
 import database.AppDatabase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -96,6 +93,9 @@ class ScheduleApp : PreferenceChangeListener{
                 }
                 composable(route = "settings"){
                     SettingsActivity()
+                }
+                composable(route = "shareApp") {
+                    ShareAppActivity()
                 }
                 composable(
                     route = "notes/{group}/{date}",

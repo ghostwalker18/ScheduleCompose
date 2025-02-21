@@ -34,7 +34,7 @@ import kotlin.reflect.KFunction1
 
 /**
  * Этот класс представляет собой репозиторий данных приложения о расписании.
- * @property db база даннх приложения
+ * @property db база данных приложения
  * @property api сетевое API приложения
  * @property preferences сохраненные настройки приложения
  * @author  Ипатов Никита

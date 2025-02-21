@@ -72,6 +72,10 @@
     <string name="network_settings">Network</string>
     <string name="option_enable_caching">Enable caching</string>
     <string name="option_download_for">Download schedule for</string>
+    <string name="share_app">Share app</string>
+    <string name="scan_qr_code">Scan QR code</string>
+    <string name="or">Or</string>
+    <string name="share_link">Share link</string>
     <string name="data_transfer">Data transfer</string>
     <string name="import_activity">Import/export data</string>
     <string name="operation_type">Select the type of operation</string>

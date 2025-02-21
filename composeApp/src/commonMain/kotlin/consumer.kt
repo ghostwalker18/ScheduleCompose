@@ -27,6 +27,7 @@ expect fun getPreferences(): Preferences
 expect interface Navigator{
     fun goBack()
     fun goSettingsActivity()
+    fun goShareAppActivity()
     fun goNotesActivity(group: String, date: Calendar)
     fun goEditNoteActivity(group: String, date: Calendar, noteID: Int? = null)
 }

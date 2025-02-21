@@ -72,6 +72,10 @@
     <string name="network_settings">Сеть</string>
     <string name="option_enable_caching">Включить кэширование</string>
     <string name="option_download_for">Скачивать расписание для</string>
+    <string name="share_app">Поделиться приложением</string>
+    <string name="scan_qr_code">Отсканируйте QR код</string>
+    <string name="or">Или</string>
+    <string name="share_link">Поделитесь ссылкой</string>
     <string name="data_transfer">Перенос данных</string>
     <string name="import_activity">Импорт/экспорт данных</string>
     <string name="operation_type">Выберите тип операции</string>

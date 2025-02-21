@@ -52,11 +52,11 @@ fun EditNoteActivity(
 ){
     val navigator = getNavigator()
     val model = viewModel { EditNoteModel() }
-    val themes = model.themes.collectAsState()
-    val noteDate  = model.date.collectAsState()
+    val themes by model.themes.collectAsState()
+    val noteDate  by model.date.collectAsState()
     val noteGroup by model.group.collectAsState()
-    val noteTheme = model.theme.collectAsState()
-    val noteText = model.text.collectAsState()
+    val noteTheme by model.theme.collectAsState()
+    val noteText by model.text.collectAsState()
     if(noteID != 0)
         noteID?.let { model.setNoteID(it) }
     else {
@@ -91,7 +91,7 @@ fun EditNoteActivity(
                 verticalAlignment = Alignment.CenterVertically
             ){
                 Text(text = stringResource(Res.string.date))
-                Text(text = DateConverters().toString(noteDate.value)!!)
+                Text(text = DateConverters().toString(noteDate)!!)
                 IconButton({}){
                     Icon(Icons.Filled.ArrowDropDown, null)
                 }
@@ -120,17 +120,14 @@ fun EditNoteActivity(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextField(
-                    value = noteTheme.value ?: "",
-                    modifier = Modifier
-                        .weight(1f),
-                    onValueChange = {
-                        model.theme.value = it
-                    },
-                    placeholder = {
-                        Text(text = stringResource(Res.string.theme))
-                    }
-                )
+                AutocompleteTextView(
+                    placeholder = stringResource(Res.string.theme),
+                    value = noteTheme ?: "",
+                    options = themes,
+                    modifier = Modifier.weight(1f)
+                ){
+                    model.theme.value = it
+                }
                 IconButton({
                     model.theme.value = null
                 }
@@ -142,7 +139,7 @@ fun EditNoteActivity(
                 verticalAlignment = Alignment.CenterVertically
             ){
                 TextField(
-                    value = noteText.value,
+                    value = noteText,
                     modifier = Modifier
                         .weight(1f),
                     onValueChange = {

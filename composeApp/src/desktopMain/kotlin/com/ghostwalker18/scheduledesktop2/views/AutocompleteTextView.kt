@@ -14,6 +14,7 @@
 
 package com.ghostwalker18.scheduledesktop2.views
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -28,6 +29,7 @@ fun AutocompleteTextView(
     value: String = "",
     onDismissRequest: () -> Unit = {},
     competitionThreshold: Int = 0,
+    placeholder: String = "",
     options: Array<String>,
     modifier: Modifier = Modifier,
     onValueSet: (String) -> Unit = {}
@@ -43,6 +45,7 @@ fun AutocompleteTextView(
                         onDismissRequest()
                 },
             value = selectedOption,
+            placeholder = { Text(placeholder) },
             onValueChange = {
                 selectedOption = it
                 exp = if (selectedOption.length > competitionThreshold) true else false
@@ -59,7 +62,9 @@ fun AutocompleteTextView(
                     dismissOnClickOutside = true
                 ),
                 onDismissRequest = onDismissRequest,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colors.background)
             ) {
                 filterOpts.forEach { option ->
                     DropdownMenuItem(onClick = {

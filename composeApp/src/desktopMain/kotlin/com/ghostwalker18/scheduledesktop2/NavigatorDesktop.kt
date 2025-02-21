@@ -29,6 +29,10 @@ class NavigatorDesktop(private val navController: NavController) : Navigator {
         navController.navigate("settings")
     }
 
+    override fun goShareAppActivity(){
+        navController.navigate("shareApp")
+    }
+
     override fun goNotesActivity(group: String, date: Calendar) {
         val dateString = DateConverters().toString(date)!!
         navController.navigate("notes/$group/$dateString")

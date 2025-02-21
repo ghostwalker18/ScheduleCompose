@@ -15,6 +15,7 @@
 package com.ghostwalker18.scheduledesktop2.views
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -139,8 +140,10 @@ fun SettingsActivity() {
                     Text(stringResource(Res.string.data_transfer))
                 }
             }
-            Button({}, modifier = Modifier.fillMaxWidth()){
-                Text(stringResource(Res.string.share))
+            Button({ navigator.goShareAppActivity() },
+                modifier = Modifier.fillMaxWidth()
+            ){
+                Text(stringResource(Res.string.share_app))
             }
             Text(
                 text = "2024© Ипатов Никита",
@@ -203,7 +206,9 @@ fun ListPreference(title: StringResource,
                 dismissOnClickOutside = true
             ),
             onDismissRequest = { },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colors.background)
         ){
             val optionEntries = stringArrayResource(entries)
             val optionValues = stringArrayResource(entryValues)
