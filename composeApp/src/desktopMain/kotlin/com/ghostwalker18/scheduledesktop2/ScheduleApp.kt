@@ -97,6 +97,9 @@ class ScheduleApp : PreferenceChangeListener{
                 composable(route = "shareApp") {
                     ShareAppActivity()
                 }
+                composable(route = "import") {
+                    ImportActivity()
+                }
                 composable(
                     route = "notes/{group}/{date}",
                     arguments = listOf(

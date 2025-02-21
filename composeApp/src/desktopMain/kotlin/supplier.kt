@@ -29,6 +29,7 @@ actual interface Navigator{
     actual fun goBack()
     actual fun goSettingsActivity()
     actual fun goShareAppActivity()
+    actual fun goImportActivity()
     actual fun goNotesActivity(group: String, date: Calendar)
     actual fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?)
 }

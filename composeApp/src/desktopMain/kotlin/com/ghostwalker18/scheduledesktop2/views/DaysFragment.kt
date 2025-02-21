@@ -142,6 +142,7 @@ fun DaysFragment(){
             Text(status)
             LinearProgressIndicator(
                 progress = progress / 100,
+                color = MaterialTheme.colors.primaryVariant,
                 modifier = Modifier.fillMaxWidth()
             )
             IconButton({repository.update()}){ Icon(Icons.Filled.Refresh, "") }

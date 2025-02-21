@@ -19,6 +19,12 @@ import androidx.navigation.NavController
 import converters.DateConverters
 import java.util.*
 
+/**
+ * Этот класс осуществляет навигацию по десктопному приложению
+ * @property navController навигационный контроллер
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 class NavigatorDesktop(private val navController: NavController) : Navigator {
 
     override fun goBack() {
@@ -31,6 +37,10 @@ class NavigatorDesktop(private val navController: NavController) : Navigator {
 
     override fun goShareAppActivity(){
         navController.navigate("shareApp")
+    }
+
+    override fun goImportActivity(){
+        navController.navigate("import")
     }
 
     override fun goNotesActivity(group: String, date: Calendar) {

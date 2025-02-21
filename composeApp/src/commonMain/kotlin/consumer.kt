@@ -28,6 +28,7 @@ expect interface Navigator{
     fun goBack()
     fun goSettingsActivity()
     fun goShareAppActivity()
+    fun goImportActivity()
     fun goNotesActivity(group: String, date: Calendar)
     fun goEditNoteActivity(group: String, date: Calendar, noteID: Int? = null)
 }
