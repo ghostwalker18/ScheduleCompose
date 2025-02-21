@@ -19,7 +19,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import getNavigator
@@ -48,6 +48,9 @@ fun ImportActivity(){
             )
         }
     ) {
+        var operationType by remember { mutableStateOf("export") }
+        var dataType by remember { mutableStateOf("schedule") }
+        var importMode by remember { mutableStateOf("replace") }
         Column(
             modifier = Modifier
                 .padding(10.dp)
@@ -59,6 +62,13 @@ fun ImportActivity(){
                     modifier = Modifier
                         .weight(0.5f)
                 )
+                ListView(
+                    entries = Res.array.operation_type_entries,
+                    entryValues = Res.array.operation_type_values,
+                    modifier = Modifier.weight(0.5f)
+                ){
+                    operationType = it
+                }
             }
             Row {
                 Text(
@@ -66,15 +76,28 @@ fun ImportActivity(){
                     modifier = Modifier
                         .weight(0.5f)
                 )
+                ListView(
+                    entries = Res.array.data_types_entries,
+                    entryValues = Res.array.data_types_values,
+                    modifier = Modifier.weight(0.5f)
+                ){
+                    dataType = it
+                }
             }
-            AnimatedVisibility(true){
+            AnimatedVisibility(operationType == "import"){
                 Row {
                     Text(
                         text = stringResource(Res.string.import_policy_type),
                         modifier = Modifier
                             .weight(0.5f)
                     )
-
+                    ListView(
+                        entries = Res.array.import_mode_entries,
+                        entryValues = Res.array.import_mode_values,
+                        modifier = Modifier.weight(0.5f)
+                    ){
+                        importMode = it
+                    }
                 }
             }
             Spacer(Modifier.weight(0.5f))
@@ -83,7 +106,12 @@ fun ImportActivity(){
                 modifier = Modifier
                     .fillMaxWidth()
             ){
-                Text(text = "")
+                Text(
+                    text = if (operationType == "import")
+                        stringResource(Res.string.import_data)
+                    else
+                        stringResource(Res.string.export_data)
+                )
             }
         }
     }

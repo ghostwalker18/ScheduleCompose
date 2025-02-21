@@ -116,7 +116,7 @@ fun ListPreference(title: StringResource,
                 dismissOnBackPress = true,
                 dismissOnClickOutside = true
             ),
-            onDismissRequest = { },
+            onDismissRequest = { exp = false},
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = MaterialTheme.colors.background)

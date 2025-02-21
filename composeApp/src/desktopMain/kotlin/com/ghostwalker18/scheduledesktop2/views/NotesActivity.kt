@@ -18,6 +18,7 @@ import androidx.compose.animation.*
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -27,6 +28,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import getNavigator
 import getScheduleRepository
@@ -101,8 +103,15 @@ fun NotesActivity(
         }
     ){
         Column {
-            if(selectedNotes.isEmpty()){
-                Row {
+            AnimatedVisibility(
+                visible = selectedNotes.isEmpty(),
+                enter = fadeIn(),
+                exit = fadeOut()
+            ){
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(horizontal = 10.dp)
+                ) {
                     TextField(
                         value = keyWord,
                         leadingIcon = {

@@ -90,7 +90,10 @@ fun DaysFragment(){
             ){
                 item {
                     Column {
-                        Text(stringResource(Res.string.group_choice_text))
+                        Text(
+                            text = stringResource(Res.string.group_choice_text),
+                            color = MaterialTheme.colors.primaryVariant
+                        )
                         Row {
                             AutocompleteTextView(
                                 value = group ?: "",
@@ -106,7 +109,10 @@ fun DaysFragment(){
                             }
                         }
                         if(getPreferences().getBoolean("addTeacherSearch", true)){
-                            Text(stringResource(Res.string.teacher_choice_text))
+                            Text(
+                                text = stringResource(Res.string.teacher_choice_text),
+                                color = MaterialTheme.colors.primaryVariant
+                            )
                             Row {
                                 AutocompleteTextView(
                                     value = teacher ?: "",
