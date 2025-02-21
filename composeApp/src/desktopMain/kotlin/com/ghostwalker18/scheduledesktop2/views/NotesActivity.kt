@@ -118,7 +118,7 @@ fun NotesActivity(
                     }
                 }
             }
-            else{
+            AnimatedVisibility(selectedNotes.isNotEmpty()){
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ){
@@ -127,7 +127,24 @@ fun NotesActivity(
                     ){
                         Icon(Icons.Filled.Close, null)
                     }
-                    Text(text = selectedNotes.size.toString())
+                    AnimatedContent(
+                        targetState = selectedNotes.size,
+                        transitionSpec = {
+                            if(targetState > initialState){
+                                slideInVertically { height -> -height } + fadeIn() togetherWith
+                                        slideOutVertically { height -> height } + fadeOut()
+                            }
+                            else {
+                                slideInVertically { height -> height } + fadeIn() togetherWith
+                                        slideOutVertically { height -> -height } + fadeOut()
+                            }.using(
+                                SizeTransform(clip = false)
+                            )
+                        }
+                    ){
+                        targetState ->
+                        Text(text = "$targetState")
+                    }
                 }
             }
             AnimatedVisibility(
