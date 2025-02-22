@@ -12,8 +12,10 @@
  * limitations under the License.
  */
 
+import androidx.compose.runtime.Composable
 import models.NotesRepository
 import models.ScheduleRepository
+import org.jetbrains.compose.resources.StringResource
 import java.util.*
 import java.util.prefs.Preferences
 
@@ -33,4 +35,11 @@ expect interface Navigator{
     fun goEditNoteActivity(group: String, date: Calendar, noteID: Int? = null)
 }
 
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+expect interface MainActivityWorker{
+    fun shareSchedule(): Pair<Boolean, StringResource>
+    fun shareTimes(): Pair<Boolean, StringResource>
+}
+
 expect fun getNavigator(): Navigator
+expect fun getMainActivityWorker(): MainActivityWorker

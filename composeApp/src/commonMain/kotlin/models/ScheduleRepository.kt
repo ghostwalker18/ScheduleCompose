@@ -44,8 +44,6 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
                                   private val api: ScheduleNetworkAPI,
                                   private val preferences: Preferences) {
     private val mainSelector = "h2:contains(Расписание занятий и объявления:) + div > table > tbody"
-    protected val mondayTimesPath = "mondayTimes.jpg"
-    protected val otherTimesPath = "otherTimes.jpg"
     private var updateFutures: MutableList<CompletableFuture<UpdateResult>> = mutableListOf()
     private val updateExecutorService: ExecutorService = Executors.newFixedThreadPool(4)
     private val converter: IConverter = XMLStoLessonsConverter()
@@ -210,4 +208,9 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
     ): UpdateResult
 
     protected abstract fun updateTimes(): UpdateResult
+
+    companion object{
+        val mondayTimesPath = "mondayTimes.jpg"
+        val otherTimesPath = "otherTimes.jpg"
+    }
 }

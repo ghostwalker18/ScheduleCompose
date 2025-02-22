@@ -28,8 +28,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import getMainActivityWorker
 import getNavigator
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -47,35 +49,65 @@ import scheduledesktop2.composeapp.generated.resources.days_tab
 @Composable
 fun MainActivity() {
     val navigator = getNavigator()
-    Scaffold(topBar = {
-        TopAppBar(
-            title = { Text(stringResource(Res.string.app_name)) },
-            actions = {
-                IconButton(
-                    {}
-                ){
-                    Icon(Icons.Filled.Share, "")
+    val worker = getMainActivityWorker()
+    val scope = rememberCoroutineScope()
+    val scaffoldState = rememberScaffoldState()
+    val pagerState = rememberPagerState{ 2 }
+    Scaffold(
+        scaffoldState = scaffoldState,
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(Res.string.app_name)) },
+                actions = {
+                    IconButton(
+                        {
+                            when(pagerState.currentPage){
+                                0 -> {
+                                    val (showTextRequired, text) = worker.shareTimes()
+                                    if (showTextRequired)
+                                        scope.launch {
+                                            scaffoldState.snackbarHostState.showSnackbar(getString(text))
+                                        }
+                                }
+                                1 -> {
+                                    val (showTextRequired, text) = worker.shareTimes()
+                                    if (showTextRequired)
+                                        scope.launch {
+                                            scaffoldState.snackbarHostState.showSnackbar(getString(text))
+                                        }
+                                }
+                            }
+                        }
+                    ){
+                        Icon(Icons.Filled.Share, "")
+                    }
+                    IconButton(
+                        {}
+                    ){
+                        Icon(Icons.Filled.Download, "")
+                    }
+                    IconButton(
+                        { navigator.goSettingsActivity() }
+                    ) {
+                        Icon(Icons.Filled.Settings, "")
+                    }
                 }
-                IconButton(
-                    {}
-                ){
-                    Icon(Icons.Filled.Download, "")
-                }
-                IconButton(
-                    { navigator.goSettingsActivity() }
-                ) {
-                    Icon(Icons.Filled.Settings, "")
-                }
+            )
+        },
+        snackbarHost = {
+            SnackbarHost(it) { data ->
+                Snackbar(
+                    backgroundColor = MaterialTheme.colors.background,
+                    contentColor = MaterialTheme.colors.primaryVariant,
+                    snackbarData = data
+                )
             }
-        )
-    }
+        },
     ){ innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)
         ){
-            val scope = rememberCoroutineScope()
-            val pagerState = rememberPagerState{ 2 }
             TabRow(
                 selectedTabIndex = 0
             ){

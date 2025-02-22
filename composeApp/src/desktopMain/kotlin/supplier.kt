@@ -12,9 +12,11 @@
  * limitations under the License.
  */
 
+import androidx.compose.runtime.Composable
 import com.ghostwalker18.scheduledesktop2.ScheduleApp
 import models.NotesRepository
 import models.ScheduleRepository
+import org.jetbrains.compose.resources.StringResource
 import java.util.*
 import java.util.prefs.Preferences
 
@@ -34,4 +36,11 @@ actual interface Navigator{
     actual fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?)
 }
 
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+actual interface MainActivityWorker{
+    actual fun shareSchedule(): Pair<Boolean, StringResource>
+    actual fun shareTimes(): Pair<Boolean, StringResource>
+}
+
 actual fun getNavigator(): Navigator = ScheduleApp.getInstance().navigator
+actual fun getMainActivityWorker(): MainActivityWorker = ScheduleApp.getInstance().mainActivityWorker

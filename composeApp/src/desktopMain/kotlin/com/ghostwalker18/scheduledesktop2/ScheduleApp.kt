@@ -51,6 +51,7 @@ import java.util.prefs.Preferences
 class ScheduleApp : PreferenceChangeListener{
     val scheduleRepository: ScheduleRepository
     val notesRepository: NotesRepository
+    val mainActivityWorker: MainActivityWorkerDesktop
     val preferences: Preferences = Preferences.userNodeForPackage(ScheduleApp::class.java)
     private val db: AppDatabase
     private val themeState: MutableStateFlow<String> = MutableStateFlow(preferences["theme", "system"])
@@ -66,6 +67,7 @@ class ScheduleApp : PreferenceChangeListener{
             preferences
         )
         notesRepository = NotesRepository(db)
+        mainActivityWorker = MainActivityWorkerDesktop()
         scheduleRepository.update()
         setupLocale()
     }
