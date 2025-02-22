@@ -60,6 +60,60 @@ fun NotesActivity(
     val selectedNotes =  remember { mutableStateListOf<Note>() }
     val isFilterEnabled by model.isFilterEnabled.collectAsState()
     var keyWord by remember { mutableStateOf("") }
+
+    @Composable
+    fun SearchNoteBar(){
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(horizontal = 10.dp)
+        ) {
+            TextField(
+                value = keyWord,
+                leadingIcon = {
+                    Icon(Icons.Filled.Search, null)
+                },
+                modifier = Modifier.weight(1f),
+                onValueChange = {
+                    keyWord = it
+                }
+            )
+            IconButton({ model.isFilterEnabled.value = true }){
+                Icon(Icons.Filled.Tune, null)
+            }
+        }
+    }
+
+    @Composable
+    fun SelectedNotesCounter(){
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ){
+            IconButton(
+                {selectedNotes.clear()}
+            ){
+                Icon(Icons.Filled.Close, null)
+            }
+            AnimatedContent(
+                targetState = selectedNotes.size,
+                transitionSpec = {
+                    if(targetState > initialState){
+                        slideInVertically { height -> -height } + fadeIn() togetherWith
+                                slideOutVertically { height -> height } + fadeOut()
+                    }
+                    else {
+                        slideInVertically { height -> height } + fadeIn() togetherWith
+                                slideOutVertically { height -> -height } + fadeOut()
+                    }.using(
+                        SizeTransform(clip = false)
+                    )
+                }
+            ){
+                    targetState ->
+                Text(text = "$targetState")
+            }
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -103,57 +157,13 @@ fun NotesActivity(
         }
     ){
         Column {
-            AnimatedVisibility(
-                visible = selectedNotes.isEmpty(),
-                enter = fadeIn(),
-                exit = fadeOut()
+            AnimatedContent(
+                targetState = selectedNotes.isEmpty()
             ){
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(horizontal = 10.dp)
-                ) {
-                    TextField(
-                        value = keyWord,
-                        leadingIcon = {
-                            Icon(Icons.Filled.Search, null)
-                        },
-                        modifier = Modifier.weight(1f),
-                        onValueChange = {
-                            keyWord = it
-                        }
-                    )
-                    IconButton({ model.isFilterEnabled.value = true }){
-                        Icon(Icons.Filled.Tune, null)
-                    }
-                }
-            }
-            AnimatedVisibility(selectedNotes.isNotEmpty()){
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ){
-                    IconButton(
-                        {selectedNotes.clear()}
-                    ){
-                        Icon(Icons.Filled.Close, null)
-                    }
-                    AnimatedContent(
-                        targetState = selectedNotes.size,
-                        transitionSpec = {
-                            if(targetState > initialState){
-                                slideInVertically { height -> -height } + fadeIn() togetherWith
-                                        slideOutVertically { height -> height } + fadeOut()
-                            }
-                            else {
-                                slideInVertically { height -> height } + fadeIn() togetherWith
-                                        slideOutVertically { height -> -height } + fadeOut()
-                            }.using(
-                                SizeTransform(clip = false)
-                            )
-                        }
-                    ){
-                        targetState ->
-                        Text(text = "$targetState")
-                    }
+                targetState ->
+                when(targetState){
+                    true -> SearchNoteBar()
+                    else -> SelectedNotesCounter()
                 }
             }
             AnimatedVisibility(
