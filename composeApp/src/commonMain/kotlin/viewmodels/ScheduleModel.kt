@@ -15,10 +15,8 @@
 package viewmodels
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import getScheduleRepository
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -32,14 +30,6 @@ class ScheduleModel : ViewModel() {
     val group = MutableStateFlow(getScheduleRepository().savedGroup)
     val teacher: MutableStateFlow<String?> = MutableStateFlow(null)
     val calendar = MutableStateFlow(Calendar.getInstance())
-
-    init {
-        viewModelScope.launch {
-            group.collect{
-                getScheduleRepository().savedGroup = it
-            }
-        }
-    }
 
     /**
      * Этот метод позволяет передвинуть состояние расписания на следующую неделю.
@@ -65,5 +55,10 @@ class ScheduleModel : ViewModel() {
 
     fun getWeek(): Int {
         return calendar.value[Calendar.WEEK_OF_YEAR]
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        getScheduleRepository().savedGroup = group.value
     }
 }
