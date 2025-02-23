@@ -16,6 +16,13 @@ package models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import kotlinx.coroutines.runBlocking
+import org.jetbrains.compose.resources.getString
+import scheduledesktop2.composeapp.generated.resources.*
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.number
+import scheduledesktop2.composeapp.generated.resources.subject
+import scheduledesktop2.composeapp.generated.resources.teacher
 import java.util.*
 
 /**
@@ -37,4 +44,15 @@ data class Lesson(
     @ColumnInfo(name = "groupName") var groupName : String,
     @ColumnInfo(name = "subjectName") val subject : String,
     @ColumnInfo(name = "teacherName") var teacher: String?
-)
+){
+     override fun toString(): String {
+         return runBlocking {
+             var res = ""
+             res = res + getString(Res.string.number) + ": " + lessonNumber + "\n"
+             res = res + getString(Res.string.subject) + ": " + subject + "\n"
+             if (teacher != "") res = res + getString(Res.string.teacher) + ": " + teacher + "\n"
+             if (roomNumber != "") res = res + getString(Res.string.room) + ": " + roomNumber + "\n"
+             return@runBlocking res
+         }
+    }
+}

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import androidx.compose.runtime.Composable
+import models.Note
 import models.NotesRepository
 import models.ScheduleRepository
 import org.jetbrains.compose.resources.StringResource
@@ -41,5 +41,11 @@ expect interface MainActivityWorker{
     fun shareTimes(): Pair<Boolean, StringResource>
 }
 
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+expect interface NotesActivityWorker{
+    fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource>
+}
+
 expect fun getNavigator(): Navigator
 expect fun getMainActivityWorker(): MainActivityWorker
+expect fun getNotesActivityWorker(): NotesActivityWorker

@@ -31,7 +31,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import getNavigator
+import getNotesActivityWorker
 import getScheduleRepository
+import kotlinx.coroutines.launch
 import models.Note
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -52,6 +54,8 @@ fun NotesActivity(
     date: Calendar? = Calendar.getInstance()
 ){
     val navigator = getNavigator()
+    val worker = getNotesActivityWorker()
+    val scope = rememberCoroutineScope()
     val model = viewModel { NotesModel() }
     model.group = group
     model.setStartDate(date)
@@ -114,7 +118,9 @@ fun NotesActivity(
         }
     }
 
+    val scaffoldState = rememberScaffoldState()
     Scaffold(
+        scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(Res.string.notes_activity)) },
@@ -139,13 +145,32 @@ fun NotesActivity(
                             IconButton({ model.deleteNotes(selectedNotes) }){
                                 Icon(Icons.Filled.Delete, "")
                             }
-                            IconButton({}){
+                            IconButton({
+                                val (showTextRequired, text) = worker.shareNotes(selectedNotes)
+                                if (showTextRequired)
+                                    scope.launch {
+                                        scaffoldState.snackbarHostState.showSnackbar(
+                                            org.jetbrains.compose.resources.getString(
+                                                text
+                                            )
+                                        )
+                                    }
+                            }){
                                 Icon(Icons.Filled.Share, "")
                             }
                         }
                     }
                 }
             )
+        },
+        snackbarHost = {
+            SnackbarHost(it) { data ->
+                Snackbar(
+                    backgroundColor = MaterialTheme.colors.background,
+                    contentColor = MaterialTheme.colors.primaryVariant,
+                    snackbarData = data
+                )
+            }
         },
         floatingActionButton = {
             FloatingActionButton(

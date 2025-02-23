@@ -12,8 +12,8 @@
  * limitations under the License.
  */
 
-import androidx.compose.runtime.Composable
 import com.ghostwalker18.scheduledesktop2.ScheduleApp
+import models.Note
 import models.NotesRepository
 import models.ScheduleRepository
 import org.jetbrains.compose.resources.StringResource
@@ -42,5 +42,11 @@ actual interface MainActivityWorker{
     actual fun shareTimes(): Pair<Boolean, StringResource>
 }
 
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+actual interface NotesActivityWorker {
+    actual fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource>
+}
+
 actual fun getNavigator(): Navigator = ScheduleApp.getInstance().navigator
 actual fun getMainActivityWorker(): MainActivityWorker = ScheduleApp.getInstance().mainActivityWorker
+actual fun getNotesActivityWorker(): NotesActivityWorker = ScheduleApp.getInstance().notesActivityWorker

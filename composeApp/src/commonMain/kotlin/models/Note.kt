@@ -17,6 +17,15 @@ package models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import converters.DateConverters
+import kotlinx.coroutines.runBlocking
+import org.jetbrains.compose.resources.getString
+import scheduledesktop2.composeapp.generated.resources.*
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.number
+import scheduledesktop2.composeapp.generated.resources.room
+import scheduledesktop2.composeapp.generated.resources.subject
+import scheduledesktop2.composeapp.generated.resources.teacher
 import java.util.*
 
 /**
@@ -35,4 +44,15 @@ data class Note(
     @ColumnInfo(name = "noteTheme") var theme: String?,
     @ColumnInfo(name = "noteText") var text: String,
     @ColumnInfo(name = "notePhotoID") var photoIDs: String?
-)
+){
+    override fun toString(): String {
+        return runBlocking {
+            var res = ""
+            res = res + getString(Res.string.date) + ": " + DateConverters().toString(date) + "\n"
+            res = res + getString(Res.string.group) + ": " + group + "\n"
+            if (theme != null) res = res + getString(Res.string.theme) + ": " + theme + "\n"
+            if (text != "") res = res + getString(Res.string.text) + ": " + text + "\n"
+            return@runBlocking res
+        }
+    }
+}

@@ -102,7 +102,7 @@ fun MainActivity() {
                     snackbarData = data
                 )
             }
-        },
+        }
     ){ innerPadding ->
         Column(
             modifier = Modifier
