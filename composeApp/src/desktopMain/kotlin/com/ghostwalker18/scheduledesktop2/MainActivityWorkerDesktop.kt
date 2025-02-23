@@ -15,13 +15,9 @@
 package com.ghostwalker18.scheduledesktop2
 
 import MainActivityWorker
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.window.Popup
 import com.ghostwalker18.scheduledesktop2.platform.FileTransferable
 import models.ScheduleRepository
 import org.jetbrains.compose.resources.StringResource
-import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.share_completed
 import scheduledesktop2.composeapp.generated.resources.share_times_completed
@@ -29,6 +25,11 @@ import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
 import java.io.File
 
+/**
+ * Этот класс исполняет операции для MainActivity на десктопе.
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 class MainActivityWorkerDesktop : MainActivityWorker {
 
     /**

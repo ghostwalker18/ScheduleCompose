@@ -17,6 +17,8 @@ package com.ghostwalker18.scheduledesktop2.views
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -84,66 +86,53 @@ fun DaysFragment(){
                 .absolutePadding(left = 5.dp, right = 5.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            LazyColumn(
+            Column(
                 modifier = Modifier
                     .weight(1f)
+                    .verticalScroll(rememberScrollState())
             ){
-                item {
-                    Column {
-                        Text(
-                            text = stringResource(Res.string.group_choice_text),
-                            color = MaterialTheme.colors.primaryVariant
-                        )
-                        Row {
-                            AutocompleteTextView(
-                                value = group ?: "",
-                                options = groups,
-                                modifier = Modifier.weight(1f)
-                            ){
-                                model.group.value = it
-                            }
-                            IconButton({
-                                model.group.value = null
-                            }){
-                                Icon(Icons.Filled.Close, "")
-                            }
+                Text(
+                    text = stringResource(Res.string.group_choice_text),
+                    color = MaterialTheme.colors.primaryVariant
+                )
+                Row {
+                    AutocompleteTextView(
+                        value = group ?: "",
+                        options = groups,
+                        modifier = Modifier.weight(1f)
+                    ){
+                        model.group.value = it
+                    }
+                    IconButton({
+                        model.group.value = null
+                    }){
+                        Icon(Icons.Filled.Close, "")
+                    }
+                }
+                if(getPreferences().getBoolean("addTeacherSearch", true)){
+                    Text(
+                        text = stringResource(Res.string.teacher_choice_text),
+                        color = MaterialTheme.colors.primaryVariant
+                    )
+                    Row {
+                        AutocompleteTextView(
+                            value = teacher ?: "",
+                            options = teachers,
+                            modifier = Modifier.weight(1f)
+                        ){
+                            model.teacher.value = it
                         }
-                        if(getPreferences().getBoolean("addTeacherSearch", true)){
-                            Text(
-                                text = stringResource(Res.string.teacher_choice_text),
-                                color = MaterialTheme.colors.primaryVariant
-                            )
-                            Row {
-                                AutocompleteTextView(
-                                    value = teacher ?: "",
-                                    options = teachers,
-                                    modifier = Modifier.weight(1f)
-                                ){
-                                    model.teacher.value = it
-                                }
-                                IconButton({ model.teacher.value = null })
-                                {
-                                    Icon(Icons.Filled.Close, "")
-                                }
-                            }
+                        IconButton({ model.teacher.value = null })
+                        {
+                            Icon(Icons.Filled.Close, "")
                         }
                     }
                 }
-                item{
-                    ScheduleItemFragment(Res.string.monday)
-                }
-                item{
-                    ScheduleItemFragment(Res.string.tuesday)
-                }
-                item{
-                    ScheduleItemFragment(Res.string.wednesday)
-                }
-                item{
-                    ScheduleItemFragment(Res.string.thursday)
-                }
-                item{
-                    ScheduleItemFragment(Res.string.friday)
-                }
+                ScheduleItemFragment(Res.string.monday)
+                ScheduleItemFragment(Res.string.tuesday)
+                ScheduleItemFragment(Res.string.wednesday)
+                ScheduleItemFragment(Res.string.thursday)
+                ScheduleItemFragment(Res.string.friday)
             }
             Text(status)
             LinearProgressIndicator(

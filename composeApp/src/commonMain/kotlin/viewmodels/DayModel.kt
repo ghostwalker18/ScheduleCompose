@@ -30,8 +30,9 @@ import java.util.*
  */
 class DayModel : ViewModel() {
     private val repository = getScheduleRepository()
-    private val _date: MutableStateFlow<Calendar> = MutableStateFlow(Calendar.getInstance())
-    private val _lessons: MutableStateFlow<Array<Lesson>> = MutableStateFlow(emptyArray())
+    var isOpened  = MutableStateFlow(false)
+    private val _date = MutableStateFlow(Calendar.getInstance())
+    private val _lessons = MutableStateFlow(emptyArray<Lesson>())
     private var _lessonsMediator: Flow<Array<Lesson>>? = null
     val lessons = _lessons.asStateFlow()
     var group: String? = null

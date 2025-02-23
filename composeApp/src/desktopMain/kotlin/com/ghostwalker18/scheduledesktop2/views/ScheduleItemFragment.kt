@@ -64,7 +64,7 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
     val model = viewModel(key = stringResource(dayOfWeek)) { DayModel() }
     val date by model.getDate().collectAsState()
     val lessons by model.lessons.collectAsState()
-    var isOpened by remember { mutableStateOf(false) }
+    val isOpened by model.isOpened.collectAsState()
 
     model.viewModelScope.launch {
         scheduleModel.group.collect{
@@ -90,7 +90,7 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
     }
 
     LaunchedEffect(key1 = date){
-        isOpened = Utils.isDateToday(date)
+        model.isOpened.value = Utils.isDateToday(date)
     }
 
     Column(
@@ -100,7 +100,7 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
         Button(
             modifier = Modifier
                 .fillMaxWidth(),
-            onClick = { isOpened = !isOpened }
+            onClick = { model.isOpened.value = !isOpened }
         ){
             Box(
                 modifier = Modifier
