@@ -16,4 +16,5 @@
     <string name="share_completed">Розклад було скопійовано в буфер обміну</string>
     <string name="share_times_completed">Файли розкладу дзвінків були скопійовані в буфер обміну</string>
     <string name="notes_share_completed">Вибрані нотатки були скопійовані в буфер обміну</string>
+    <string name="share_link_completed">Посилання було скопійовано в буфер обміну</string>
 </resources>

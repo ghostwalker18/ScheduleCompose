@@ -38,7 +38,7 @@ actual interface Navigator{
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual interface MainActivityWorker{
+actual interface MainActivityWorker {
     actual fun shareSchedule(lessons: Collection<Lesson>): Pair<Boolean, StringResource>
     actual fun shareTimes(): Pair<Boolean, StringResource>
 }
@@ -48,6 +48,12 @@ actual interface NotesActivityWorker {
     actual fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource>
 }
 
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+actual interface ShareActivityWorker {
+    actual fun shareLink(): Pair<Boolean, StringResource>
+}
+
 actual fun getNavigator(): Navigator = ScheduleApp.getInstance().navigator
 actual fun getMainActivityWorker(): MainActivityWorker = ScheduleApp.getInstance().mainActivityWorker
 actual fun getNotesActivityWorker(): NotesActivityWorker = ScheduleApp.getInstance().notesActivityWorker
+actual fun getShareActivityWorker(): ShareActivityWorker = ScheduleApp.getInstance().shareActivityWorker

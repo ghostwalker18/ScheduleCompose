@@ -21,11 +21,15 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import getNavigator
+import getShareActivityWorker
+import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
@@ -42,7 +46,11 @@ import scheduledesktop2.composeapp.generated.resources.share_app
 @Composable
 fun ShareAppActivity() {
     val navigator = getNavigator()
+    val worker = getShareActivityWorker()
+    val scaffoldState = rememberScaffoldState()
+    val scope = rememberCoroutineScope()
     Scaffold(
+        scaffoldState =  scaffoldState,
         topBar = {
             TopAppBar(
                 title = { Text(text = stringResource(Res.string.share_app)) },
@@ -54,6 +62,15 @@ fun ShareAppActivity() {
                     }
                 },
             )
+        },
+        snackbarHost = {
+            SnackbarHost(it) { data ->
+                Snackbar(
+                    backgroundColor = MaterialTheme.colors.background,
+                    contentColor = MaterialTheme.colors.primaryVariant,
+                    snackbarData = data
+                )
+            }
         }
     ) {
         Row(
@@ -79,7 +96,13 @@ fun ShareAppActivity() {
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(10.dp)
             )
-            Button({},
+            Button({
+                val(showMessageRequired, text) = worker.shareLink()
+                if(showMessageRequired)
+                    scope.launch {
+                        scaffoldState.snackbarHostState.showSnackbar(getString(text))
+                    }
+            },
                 modifier = Modifier
                     .weight(0.5f)
             ){

@@ -47,6 +47,12 @@ expect interface NotesActivityWorker{
     fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource>
 }
 
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+expect interface ShareActivityWorker {
+    fun shareLink(): Pair<Boolean, StringResource>
+}
+
 expect fun getNavigator(): Navigator
 expect fun getMainActivityWorker(): MainActivityWorker
 expect fun getNotesActivityWorker(): NotesActivityWorker
+expect fun getShareActivityWorker(): ShareActivityWorker

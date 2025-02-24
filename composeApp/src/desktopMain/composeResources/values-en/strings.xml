@@ -16,4 +16,5 @@
     <string name="share_completed">The schedule has been copied to the clipboard</string>
     <string name="share_times_completed">The times schedule files have been copied to the clipboard</string>
     <string name="notes_share_completed">The selected notes have been copied to the clipboard</string>
+    <string name="share_link_completed">The link was copied to the clipboard</string>
 </resources>
