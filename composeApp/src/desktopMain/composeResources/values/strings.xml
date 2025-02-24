@@ -18,6 +18,17 @@
     <string name="notes_share_completed">Выбранные заметки были скопированы в буфер обмена</string>
     <string name="share_link_completed">Ссылка была скопирована в буфер обмена</string>
     <string name="share_email_completed">Email был скопирован в буфер обмена</string>
+    <string name="download_file_dialog">Сохранить расписание в</string>
+    <string name="lookInLabelText">Поиск в</string>
+    <string name="filesOfTypeLabelText">Расширение</string>
+    <string name="upFolderToolTipText">Наверх</string>
+    <string name="homeFolderToolTipText">Домой</string>
+    <string name="newFolderToolTipText">Новая папка</string>
+    <string name="listViewButtonToolTipText">Список</string>
+    <string name="detailsViewButtonToolTipText">Детали</string>
+    <string name="folderNameLabelText">Папка</string>
+    <string name="saveButtonText">Сохранить</string>
+    <string name="cancelButtonText">Отмена</string>
     <string name="email_subject" translatable="false">Расписание%20ПАСТ%20(десктоп)</string>
     <string name="github_link" translatable="false">https://github.com/ghostwalker18/ScheduleCompose/releases/latest</string>
 </resources>

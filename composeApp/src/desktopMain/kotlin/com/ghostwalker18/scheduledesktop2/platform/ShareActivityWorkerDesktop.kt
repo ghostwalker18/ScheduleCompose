@@ -12,32 +12,32 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.scheduledesktop2
+package com.ghostwalker18.scheduledesktop2.platform
 
-import NotesActivityWorker
-import models.Note
+import ShareActivityWorker
+import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.Res
-import scheduledesktop2.composeapp.generated.resources.notes_share_completed
+import scheduledesktop2.composeapp.generated.resources.github_link
+import scheduledesktop2.composeapp.generated.resources.share_link_completed
 import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
 
 /**
- * Этот класс исполняет операции для NotesActivity на десктопе.
+ * Этот класс выполняет операции для ShareActivity на десктопе
  * @author Ипатов Никита
  * @since 1.0
  */
-class NotesActivityWorkerDesktop : NotesActivityWorker {
+class ShareActivityWorkerDesktop : ShareActivityWorker{
 
-    override fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource> {
-        val builder = StringBuilder()
-        for(note in notes){
-            builder.append(note.toString())
-            builder.append("\n")
+    override fun shareLink(): Pair<Boolean, StringResource> {
+        val link = runBlocking {
+            return@runBlocking getString(Res.string.github_link)
         }
         Toolkit.getDefaultToolkit()
             .systemClipboard
-            .setContents(StringSelection(builder.toString()), null)
-        return Pair(true, Res.string.notes_share_completed)
+            .setContents(StringSelection(link), null)
+        return Pair(true, Res.string.share_link_completed)
     }
 }

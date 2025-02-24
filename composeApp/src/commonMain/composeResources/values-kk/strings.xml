@@ -86,4 +86,8 @@
     <string name="import_file_dialog">Импортталатын файлды таңдаңыз</string>
     <string name="import_db_success">Деректер сәтті импортталды</string>
     <string name="import_db_error">Деректерді импорттау мүмкін болмады. Деректер пішімін тексеріңіз</string>
+    <string name="download_approvement">Жүктеуді растау</string>
+    <string name="download_notice">Жүктеуге арналған кесте файлдарының саны: %1$d. оларды жүктеп алғыңыз келе ме?</string>
+    <string name="download_ok">Жүктеу</string>
+    <string name="download_cancel">Бас тарту</string>
 </resources>

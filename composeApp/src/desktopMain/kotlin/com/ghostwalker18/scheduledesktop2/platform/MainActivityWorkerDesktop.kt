@@ -12,10 +12,9 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.scheduledesktop2
+package com.ghostwalker18.scheduledesktop2.platform
 
 import MainActivityWorker
-import com.ghostwalker18.scheduledesktop2.platform.FileTransferable
 import models.Lesson
 import models.ScheduleRepository
 import org.jetbrains.compose.resources.StringResource

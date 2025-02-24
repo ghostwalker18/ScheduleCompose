@@ -86,4 +86,8 @@
     <string name="import_file_dialog">Select the file to import</string>
     <string name="import_db_success">The data has been successfully imported</string>
     <string name="import_db_error">The data could not be imported. Check the data format</string>
+    <string name="download_approvement">Download confirmation</string>
+    <string name="download_notice">Number of schedule files to download: %1$d. Do you want to download them?</string>
+    <string name="download_ok">Download</string>
+    <string name="download_cancel">Cancel</string>
 </resources>

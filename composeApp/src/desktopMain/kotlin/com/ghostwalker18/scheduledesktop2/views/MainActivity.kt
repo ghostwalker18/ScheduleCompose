@@ -29,6 +29,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ghostwalker18.scheduledesktop2.platform.DownloadDialog
 import getMainActivityWorker
 import getNavigator
 import kotlinx.coroutines.launch
@@ -119,6 +120,7 @@ fun MainActivity() {
             }
         }
     ){ innerPadding ->
+        DownloadDialog( "", emptyArray<String>(), "dicke")
         Column(
             modifier = Modifier
                 .padding(innerPadding)

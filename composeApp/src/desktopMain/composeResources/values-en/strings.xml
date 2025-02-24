@@ -18,4 +18,15 @@
     <string name="notes_share_completed">The selected notes have been copied to the clipboard</string>
     <string name="share_link_completed">The link was copied to the clipboard</string>
     <string name="share_email_completed">The email was copied to the clipboard</string>
+    <string name="download_file_dialog">Save the schedule in</string>
+    <string name="lookInLabelText">Search in</string>
+    <string name="filesOfTypeLabelText">Extension</string>
+    <string name="upFolderToolTipText">Up</string>
+    <string name="homeFolderToolTipText">Home</string>
+    <string name="newFolderToolTipText">New folder</string>
+    <string name="listViewButtonToolTipText">List</string>
+    <string name="detailsViewButtonToolTipText">Details</string>
+    <string name="folderNameLabelText">Folder</string>
+    <string name="saveButtonText">Save</string>
+    <string name="cancelButtonText">Cancel</string>
 </resources>

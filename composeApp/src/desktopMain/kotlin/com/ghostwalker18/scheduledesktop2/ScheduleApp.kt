@@ -28,16 +28,21 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ghostwalker18.scheduledesktop2.models.ScheduleRepositoryDesktop
 import com.ghostwalker18.scheduledesktop2.network.NetworkService
+import com.ghostwalker18.scheduledesktop2.platform.*
 import com.ghostwalker18.scheduledesktop2.views.*
 import converters.DateConverters
 import database.AppDatabase
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.runBlocking
 import models.NotesRepository
 import models.ScheduleRepository
+import org.jetbrains.compose.resources.getString
+import scheduledesktop2.composeapp.generated.resources.*
 import java.util.*
 import java.util.prefs.PreferenceChangeEvent
 import java.util.prefs.PreferenceChangeListener
 import java.util.prefs.Preferences
+import javax.swing.UIManager
 
 /**
  * <h1>Schedule Desktop</h1>
@@ -76,6 +81,8 @@ class ScheduleApp : PreferenceChangeListener{
         settingsActivityWorker = SettingsActivityWorkerDesktop()
         scheduleRepository.update()
         setupLocale()
+        //localization of file chooser
+        setupFileChooser()
     }
 
     @Composable
@@ -142,11 +149,6 @@ class ScheduleApp : PreferenceChangeListener{
         }
     }
 
-    private fun setupLocale(){
-        val locale = Locale(ScheduleApp.preferences["language", "ru"])
-        Locale.setDefault(locale)
-    }
-
     companion object{
         private lateinit var instance: ScheduleApp
         val preferences: Preferences = Preferences.userNodeForPackage(ScheduleApp::class.java)
@@ -161,5 +163,53 @@ class ScheduleApp : PreferenceChangeListener{
             "language" -> setupLocale()
             "theme" -> themeState.value = preferences["theme", "system"]
         }
+    }
+
+    private fun setupLocale(){
+        val locale = Locale(ScheduleApp.preferences["language", "ru"])
+        Locale.setDefault(locale)
+    }
+
+    private fun setupFileChooser(){
+        UIManager.put(
+            "FileChooser.lookInLabelText",
+            runBlocking { getString(Res.string.lookInLabelText) }
+        )
+        UIManager.put(
+            "FileChooser.filesOfTypeLabelText",
+            runBlocking { getString(Res.string.filesOfTypeLabelText) }
+        )
+        UIManager.put(
+            "FileChooser.folderNameLabelText",
+            runBlocking { getString(Res.string.folderNameLabelText) }
+        )
+        UIManager.put(
+            "FileChooser.upFolderToolTipText",
+            runBlocking { getString(Res.string.upFolderToolTipText) }
+        )
+        UIManager.put(
+            "FileChooser.homeFolderToolTipText",
+            runBlocking { getString(Res.string.homeFolderToolTipText) }
+        )
+        UIManager.put(
+            "FileChooser.newFolderToolTipText",
+            runBlocking { getString(Res.string.newFolderToolTipText) }
+        )
+        UIManager.put(
+            "FileChooser.listViewButtonToolTipText",
+            runBlocking { getString(Res.string.listViewButtonToolTipText) }
+        )
+        UIManager.put(
+            "FileChooser.detailsViewButtonToolTipText",
+            runBlocking { getString(Res.string.detailsViewButtonToolTipText) }
+        )
+        UIManager.put(
+            "FileChooser.saveButtonText",
+            runBlocking {  getString(Res.string.saveButtonText) }
+        )
+        UIManager.put(
+            "FileChooser.cancelButtonText",
+            runBlocking { getString(Res.string.cancelButtonText) }
+        )
     }
 }

@@ -86,4 +86,8 @@
     <string name="import_file_dialog">Виберіть файл для імпорту</string>
     <string name="import_db_success">Дані успішно імпортовані</string>
     <string name="import_db_error">Не вдалося імпортувати дані. Перевірте формат даних</string>
+    <string name="download_approvement">Підтвердження скачування</string>
+    <string name="download_notice">Кількість файлів розкладу для завантаження: %1$d. ви хочете завантажити їх?</string>
+    <string name="download_ok">Завантажити</string>
+    <string name="download_cancel">Скасування</string>
 </resources>

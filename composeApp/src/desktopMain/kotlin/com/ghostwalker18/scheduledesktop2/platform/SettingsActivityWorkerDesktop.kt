@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.scheduledesktop2
+package com.ghostwalker18.scheduledesktop2.platform
 
 import SettingsActivityWorker
 import kotlinx.coroutines.runBlocking

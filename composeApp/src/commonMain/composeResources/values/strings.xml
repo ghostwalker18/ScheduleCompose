@@ -86,5 +86,9 @@
     <string name="import_file_dialog">Выберите файл для импорта</string>
     <string name="import_db_success">Расписание успешно импортировано</string>
     <string name="import_db_error">Не удалось импортировать данные. Проверьте формат данных</string>
+    <string name="download_approvement">Подтверждение скачивания</string>
+    <string name="download_notice">Количество файлов расписания для скачивания: %1$d. Вы хотите скачать их?</string>
+    <string name="download_ok">Скачать</string>
+    <string name="download_cancel">Отмена</string>
     <string name="developer_email" translatable="false">ghostwalker18@mail.ru</string>
 </resources>

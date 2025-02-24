@@ -18,4 +18,15 @@
     <string name="share_times_completed">Файлы раскладу званкоў былі скапіяваныя ў буфер абмену</string>
     <string name="share_link_completed">Спасылка была скапіяваная ў буфер абмену</string>
     <string name="share_email_completed">Email быў скапіяваны ў буфер абмену</string>
+    <string name="download_file_dialog">Захаваць расклад у</string>
+    <string name="lookInLabelText">Пошук у</string>
+    <string name="filesOfTypeLabelText">Пашырэнне</string>
+    <string name="upFolderToolTipText">Наверх</string>
+    <string name="homeFolderToolTipText">Дадому</string>
+    <string name="newFolderToolTipText">Новая тэчка</string>
+    <string name="listViewButtonToolTipText">Спіс</string>
+    <string name="detailsViewButtonToolTipText">Дэталі</string>
+    <string name="folderNameLabelText">Тэчка</string>
+    <string name="saveButtonText">Захаваць</string>
+    <string name="cancelButtonText">Адмена</string>
 </resources>

@@ -18,4 +18,15 @@
     <string name="notes_share_completed">Вибрані нотатки були скопійовані в буфер обміну</string>
     <string name="share_link_completed">Посилання було скопійовано в буфер обміну</string>
     <string name="share_email_completed">Email був скопійований в буфер обміну</string>
+    <string name="download_file_dialog">Зберегти розклад в</string>
+    <string name="lookInLabelText">Пошук в</string>
+    <string name="filesOfTypeLabelText">Розширення</string>
+    <string name="upFolderToolTipText">Наверх</string>
+    <string name="homeFolderToolTipText">Додому</string>
+    <string name="newFolderToolTipText">Нова папка</string>
+    <string name="listViewButtonToolTipText">Список</string>
+    <string name="detailsViewButtonToolTipText">Деталі</string>
+    <string name="folderNameLabelText">Папка</string>
+    <string name="saveButtonText">Зберігши</string>
+    <string name="cancelButtonText">Скасування</string>
 </resources>

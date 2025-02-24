@@ -18,4 +18,15 @@
     <string name="notes_share_completed">Таңдалған жазбалар алмасу буферіне көшірілді</string>
     <string name="share_link_completed">Сілтеме алмасу буферіне көшірілді</string>
     <string name="share_email_completed">Email алмасу буферіне көшірілді</string>
+    <string name="download_file_dialog">Кестені сақтаңыз</string>
+    <string name="lookInLabelText">Іздеу</string>
+    <string name="filesOfTypeLabelText">Кеңейту</string>
+    <string name="upFolderToolTipText">Жоғары</string>
+    <string name="homeFolderToolTipText">Үй</string>
+    <string name="newFolderToolTipText">Жаңа қалта</string>
+    <string name="listViewButtonToolTipText">Тізім</string>
+    <string name="detailsViewButtonToolTipText">Толығырақ</string>
+    <string name="folderNameLabelText">Қалта</string>
+    <string name="saveButtonText">Сақтау</string>
+    <string name="cancelButtonText">Бас тарту</string>
 </resources>
