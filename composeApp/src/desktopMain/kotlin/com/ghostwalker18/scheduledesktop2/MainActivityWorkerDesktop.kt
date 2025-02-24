@@ -16,8 +16,10 @@ package com.ghostwalker18.scheduledesktop2
 
 import MainActivityWorker
 import com.ghostwalker18.scheduledesktop2.platform.FileTransferable
+import models.Lesson
 import models.ScheduleRepository
 import org.jetbrains.compose.resources.StringResource
+import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.share_completed
 import scheduledesktop2.composeapp.generated.resources.share_times_completed
@@ -36,11 +38,20 @@ class MainActivityWorkerDesktop : MainActivityWorker {
      * Этот метод используется для добавления форматированной строки расписания в системный
      * буфер обмена и уведомления об этом.
      */
-    override fun shareSchedule(): Pair<Boolean, StringResource> {
-        Toolkit.getDefaultToolkit()
-            .systemClipboard
-            .setContents(StringSelection("getSchedule()"), null)
-        return Pair(true, Res.string.share_completed)
+    override fun shareSchedule(lessons: Collection<Lesson>): Pair<Boolean, StringResource> {
+        if(lessons.isEmpty()){
+            return Pair(true, Res.string.nothing_to_share)
+        }
+        else {
+            val builder = StringBuilder()
+            for(lesson in lessons){
+                builder.append(lesson.toString(), "\n")
+            }
+            Toolkit.getDefaultToolkit()
+                .systemClipboard
+                .setContents(StringSelection(builder.toString()), null)
+            return Pair(true, Res.string.share_completed)
+        }
     }
 
     /**

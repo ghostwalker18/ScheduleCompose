@@ -59,7 +59,7 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
         Res.string.thursday to Calendar.THURSDAY,
         Res.string.friday to Calendar.FRIDAY
     )
-    val model = viewModel(key = stringResource(dayOfWeek)) { DayModel() }
+    val model = viewModel(key =dayOfWeek.key) { DayModel() }
     val date by model.getDate().collectAsState()
     val lessons by model.lessons.collectAsState()
     val isOpened by model.isOpened.collectAsState()
@@ -165,11 +165,11 @@ fun ScheduleTable(lessons: Array<Lesson>){
                     Utils.LessonAvailability.NOT_STARTED -> Icon(Icons.Outlined.EventAvailable, null)
                     null -> return
                 }
-            TableCell(lesson.lessonNumber, 0.1f)
+            TableCell(lesson.number, 0.1f)
             TableCell(lesson.times?: "", 0.2f)
             TableCell(lesson.subject, 0.45f)
             TableCell(lesson.teacher?: "", 0.2f)
-            TableCell(lesson.roomNumber?: "", 0.15f)
+            TableCell(lesson.room?: "", 0.15f)
         }
     }
 }

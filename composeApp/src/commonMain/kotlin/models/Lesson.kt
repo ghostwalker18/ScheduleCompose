@@ -16,6 +16,7 @@ package models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import converters.DateConverters
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.*
@@ -38,20 +39,21 @@ import java.util.*
     primaryKeys = ["lessonDate", "lessonNumber", "groupName", "subjectName"])
 data class Lesson(
     @ColumnInfo(name = "lessonDate") val date : Calendar,
-    @ColumnInfo(name = "lessonNumber") var lessonNumber : String,
-    @ColumnInfo(name="roomNumber") val roomNumber : String?,
+    @ColumnInfo(name = "lessonNumber") var number : String,
+    @ColumnInfo(name="roomNumber") val room : String?,
     @ColumnInfo(name = "lessonTimes") val times : String?,
-    @ColumnInfo(name = "groupName") var groupName : String,
+    @ColumnInfo(name = "groupName") var group : String,
     @ColumnInfo(name = "subjectName") val subject : String,
     @ColumnInfo(name = "teacherName") var teacher: String?
 ){
      override fun toString(): String {
          return runBlocking {
              var res = ""
-             res = res + getString(Res.string.number) + ": " + lessonNumber + "\n"
+             res = res + getString(Res.string.date) + ": " + DateConverters().toString(date) + "\n"
+             res = res + getString(Res.string.number) + ": " + number + "\n"
              res = res + getString(Res.string.subject) + ": " + subject + "\n"
              if (teacher != "") res = res + getString(Res.string.teacher) + ": " + teacher + "\n"
-             if (roomNumber != "") res = res + getString(Res.string.room) + ": " + roomNumber + "\n"
+             if (room != "") res = res + getString(Res.string.room) + ": " + room + "\n"
              return@runBlocking res
          }
     }

@@ -28,16 +28,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import getMainActivityWorker
 import getNavigator
 import kotlinx.coroutines.launch
+import models.Lesson
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.app_name
 import scheduledesktop2.composeapp.generated.resources.days_tab
-
+import viewmodels.DayModel
 
 /**
  * Эта функция представляет собой главный экран приложения
@@ -53,6 +55,12 @@ fun MainActivity() {
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
     val pagerState = rememberPagerState{ 2 }
+    val dayModels = mutableListOf<DayModel>()
+    for (id in arrayOf(Res.string.monday, Res.string.tuesday,
+        Res.string.wednesday, Res.string.thursday, Res.string.friday)
+    ){
+        dayModels.add(viewModel(key = id.key){ DayModel() })
+    }
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
@@ -63,7 +71,14 @@ fun MainActivity() {
                         {
                             when(pagerState.currentPage){
                                 0 -> {
-                                    val (showTextRequired, text) = worker.shareTimes()
+                                    val lessons = mutableListOf<Lesson>()
+                                    for(model in dayModels){
+                                        if(model.isOpened.value)
+                                            for (lesson in model.lessons.value){
+                                                lessons += lesson
+                                            }
+                                    }
+                                    val (showTextRequired, text) = worker.shareSchedule(lessons)
                                     if (showTextRequired)
                                         scope.launch {
                                             scaffoldState.snackbarHostState.showSnackbar(getString(text))

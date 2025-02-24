@@ -12,6 +12,7 @@
  * limitations under the License.
  */
 
+import models.Lesson
 import models.Note
 import models.NotesRepository
 import models.ScheduleRepository
@@ -37,7 +38,7 @@ expect interface Navigator{
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 expect interface MainActivityWorker{
-    fun shareSchedule(): Pair<Boolean, StringResource>
+    fun shareSchedule(lessons: Collection<Lesson>): Pair<Boolean, StringResource>
     fun shareTimes(): Pair<Boolean, StringResource>
 }
 

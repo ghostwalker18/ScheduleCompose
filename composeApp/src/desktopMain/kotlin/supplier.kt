@@ -13,6 +13,7 @@
  */
 
 import com.ghostwalker18.scheduledesktop2.ScheduleApp
+import models.Lesson
 import models.Note
 import models.NotesRepository
 import models.ScheduleRepository
@@ -38,7 +39,7 @@ actual interface Navigator{
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual interface MainActivityWorker{
-    actual fun shareSchedule(): Pair<Boolean, StringResource>
+    actual fun shareSchedule(lessons: Collection<Lesson>): Pair<Boolean, StringResource>
     actual fun shareTimes(): Pair<Boolean, StringResource>
 }
 
