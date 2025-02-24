@@ -53,7 +53,13 @@ actual interface ShareActivityWorker {
     actual fun shareLink(): Pair<Boolean, StringResource>
 }
 
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+actual interface SettingsActivityWorker {
+    actual fun connectToDeveloper(): Pair<Boolean, StringResource>
+}
+
 actual fun getNavigator(): Navigator = ScheduleApp.getInstance().navigator
 actual fun getMainActivityWorker(): MainActivityWorker = ScheduleApp.getInstance().mainActivityWorker
 actual fun getNotesActivityWorker(): NotesActivityWorker = ScheduleApp.getInstance().notesActivityWorker
 actual fun getShareActivityWorker(): ShareActivityWorker = ScheduleApp.getInstance().shareActivityWorker
+actual fun getSettingsActivityWorker(): SettingsActivityWorker = ScheduleApp.getInstance().settingsActivityWorker

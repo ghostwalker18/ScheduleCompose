@@ -17,5 +17,7 @@
     <string name="share_times_completed">Файлы расписания звонков были скопированы в буфер обмена</string>
     <string name="notes_share_completed">Выбранные заметки были скопированы в буфер обмена</string>
     <string name="share_link_completed">Ссылка была скопирована в буфер обмена</string>
+    <string name="share_email_completed">Email был скопирован в буфер обмена</string>
+    <string name="email_subject" translatable="false">Расписание%20ПАСТ%20(десктоп)</string>
     <string name="github_link" translatable="false">https://github.com/ghostwalker18/ScheduleCompose/releases/latest</string>
 </resources>

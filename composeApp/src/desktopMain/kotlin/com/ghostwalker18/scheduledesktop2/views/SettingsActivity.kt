@@ -15,6 +15,7 @@
 package com.ghostwalker18.scheduledesktop2.views
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
@@ -26,6 +27,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import getNavigator
 import getPreferences
+import getSettingsActivityWorker
+import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -43,6 +47,9 @@ import scheduledesktop2.composeapp.generated.resources.schedule_style_entries
 fun SettingsActivity() {
     val navigator = getNavigator()
     val preferences = getPreferences()
+    val scaffoldState = rememberScaffoldState()
+    val scope = rememberCoroutineScope()
+    val worker = getSettingsActivityWorker()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -55,6 +62,15 @@ fun SettingsActivity() {
                     }
                 }
             )
+        },
+        snackbarHost = {
+            SnackbarHost(it) { data ->
+                Snackbar(
+                    backgroundColor = MaterialTheme.colors.background,
+                    contentColor = MaterialTheme.colors.primaryVariant,
+                    snackbarData = data
+                )
+            }
         }
     ) {
         Column(
@@ -148,6 +164,13 @@ fun SettingsActivity() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp)
+                    .clickable {
+                        val (showMessageRequired, text) = worker.connectToDeveloper()
+                        if(showMessageRequired)
+                            scope.launch {
+                                scaffoldState.snackbarHostState.showSnackbar(getString(text))
+                            }
+                    }
             )
         }
     }

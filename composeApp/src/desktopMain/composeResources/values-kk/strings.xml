@@ -17,4 +17,5 @@
     <string name="share_times_completed">Қоңырау кестесінің файлдары алмасу буферіне көшірілді</string>
     <string name="notes_share_completed">Таңдалған жазбалар алмасу буферіне көшірілді</string>
     <string name="share_link_completed">Сілтеме алмасу буферіне көшірілді</string>
+    <string name="share_email_completed">Email алмасу буферіне көшірілді</string>
 </resources>

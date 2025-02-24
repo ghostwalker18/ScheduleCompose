@@ -54,6 +54,7 @@ class ScheduleApp : PreferenceChangeListener{
     val mainActivityWorker: MainActivityWorkerDesktop
     val notesActivityWorker: NotesActivityWorkerDesktop
     val shareActivityWorker: ShareActivityWorkerDesktop
+    val settingsActivityWorker: SettingsActivityWorkerDesktop
     val preferences: Preferences = Preferences.userNodeForPackage(ScheduleApp::class.java)
     private val db: AppDatabase
     private val themeState: MutableStateFlow<String> = MutableStateFlow(preferences["theme", "system"])
@@ -72,6 +73,7 @@ class ScheduleApp : PreferenceChangeListener{
         mainActivityWorker = MainActivityWorkerDesktop()
         notesActivityWorker = NotesActivityWorkerDesktop()
         shareActivityWorker = ShareActivityWorkerDesktop()
+        settingsActivityWorker = SettingsActivityWorkerDesktop()
         scheduleRepository.update()
         setupLocale()
     }

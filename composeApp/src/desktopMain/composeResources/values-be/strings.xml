@@ -17,4 +17,5 @@
     <string name="notes_share_completed">Выбраныя нататкі былі скапіяваныя ў буфер абмену</string>
     <string name="share_times_completed">Файлы раскладу званкоў былі скапіяваныя ў буфер абмену</string>
     <string name="share_link_completed">Спасылка была скапіяваная ў буфер абмену</string>
+    <string name="share_email_completed">Email быў скапіяваны ў буфер абмену</string>
 </resources>
