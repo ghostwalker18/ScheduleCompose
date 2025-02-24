@@ -67,6 +67,13 @@ interface NoteDao {
             "ORDER BY noteDate DESC")
     fun getNotesByKeyword(keyword: String?, group: String): Flow<Array<Note>>
 
+
+    /**
+     * Этот метод позволяет получить число заметок для выбранных группы и дня.
+     */
+    @Query("SELECT COUNT(*) FROM tblNote WHERE noteGroup = :group AND noteDate = :date")
+    fun getNotesCountForDay(group: String, date: Calendar): Flow<Int>
+
     /**
      * Этот метод позволяет внести заметку в БД.
      * @param note заметка

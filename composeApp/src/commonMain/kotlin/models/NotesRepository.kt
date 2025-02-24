@@ -82,6 +82,13 @@ class NotesRepository(private val db: AppDatabase) {
     }
 
     /**
+     * Этот метод позволяет получить число заметок для выбранных группы и дня.
+     */
+    fun getNotesCount(group: String, date: Calendar): Flow<Int> {
+        return db.noteDao().getNotesCountForDay(group, date)
+    }
+
+    /**
      * Этот метод позволяет удалить выбранные заметки из БД.
      *
      * @param notes заметки для удаления

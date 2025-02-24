@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import getNavigator
+import getNotesRepository
 import gray500Color
 import kotlinx.coroutines.launch
 import models.Lesson
@@ -52,6 +53,7 @@ import java.util.*
 fun ScheduleItemFragment(dayOfWeek: StringResource) {
     val navigator = getNavigator()
     val scheduleModel = viewModel{ScheduleModel()}
+    val notesRepository = getNotesRepository()
     val weekDayNumbers = hashMapOf(
         Res.string.monday to Calendar.MONDAY,
         Res.string.tuesday to Calendar.TUESDAY,
@@ -63,6 +65,7 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
     val date by model.getDate().collectAsState()
     val lessons by model.lessons.collectAsState()
     val isOpened by model.isOpened.collectAsState()
+    val notesCount by notesRepository.getNotesCount(model.group?: "", date).collectAsState(0)
 
     model.viewModelScope.launch {
         scheduleModel.group.collect{
@@ -122,7 +125,13 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
                 IconButton(
                     { navigator.goNotesActivity(model.group!!, model.getDate().value) }
                 ){
-                    Icon(Icons.AutoMirrored.Filled.Notes, "")
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ){
+                        Icon(Icons.AutoMirrored.Filled.Notes, "")
+                        if(notesCount > 0)
+                            Text(text = notesCount.toString())
+                    }
                 }
             }
         }
