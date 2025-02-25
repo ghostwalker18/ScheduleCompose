@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import converters.IConverter
 import converters.XMLStoLessonsConverter
 import database.AppDatabase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import network.ScheduleNetworkAPI
 import org.apache.poi.ss.usermodel.Workbook
@@ -57,10 +58,10 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
     val status = _status.asStateFlow()
 
     val teachers: Flow<Array<String>>
-        get() = db.lessonDao().getTeachers()
+        get() = db.lessonDao().getTeachers().flowOn(Dispatchers.IO)
 
     val groups: Flow<Array<String>>
-        get() = db.lessonDao().getGroups()
+        get() = db.lessonDao().getGroups().flowOn(Dispatchers.IO)
 
     var savedGroup: String?
         get() = preferences.get("savedGroup", null)
@@ -133,10 +134,11 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
     }
 
     fun getLessons(date: Calendar, teacher: String?, group: String?): Flow<Array<Lesson>> {
-        return if (teacher != null && group != null) db.lessonDao().getLessonsForGroupWithTeacher(date, group, teacher)
-        else if (teacher != null) db.lessonDao().getLessonsForTeacher(date, teacher)
-        else if (group != null) db.lessonDao().getLessonsForGroup(date, group)
-        else flowOf(emptyArray<Lesson>())
+        return if (teacher != null && group != null)
+            db.lessonDao().getLessonsForGroupWithTeacher(date, group, teacher).flowOn(Dispatchers.IO)
+        else if (teacher != null) db.lessonDao().getLessonsForTeacher(date, teacher).flowOn(Dispatchers.IO)
+        else if (group != null) db.lessonDao().getLessonsForGroup(date, group).flowOn(Dispatchers.IO)
+        else flowOf(emptyArray<Lesson>()).flowOn(Dispatchers.IO)
     }
 
     suspend fun getLastKnownLessonDate(group: String?): Calendar? {

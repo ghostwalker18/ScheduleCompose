@@ -59,6 +59,7 @@ abstract class AppDatabase : RoomDatabase(){
                 name = dbFile.absolutePath,
             )
                 .addCallback(callback)
+                .setQueryCoroutineContext(Dispatchers.Main)
                 .setJournalMode(JournalMode.TRUNCATE)
                 .setDriver(BundledSQLiteDriver())
                 .setQueryCoroutineContext(Dispatchers.IO)
