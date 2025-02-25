@@ -62,7 +62,6 @@ abstract class AppDatabase : RoomDatabase(){
                 .setQueryCoroutineContext(Dispatchers.Main)
                 .setJournalMode(JournalMode.TRUNCATE)
                 .setDriver(BundledSQLiteDriver())
-                .setQueryCoroutineContext(Dispatchers.IO)
             for(migration in migrations)
                 builder.addMigrations(migration)
             return builder.build()

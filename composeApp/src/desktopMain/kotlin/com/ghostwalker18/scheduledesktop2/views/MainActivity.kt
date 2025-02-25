@@ -14,6 +14,8 @@
 
 package com.ghostwalker18.scheduledesktop2.views
 
+import URLs
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -24,14 +26,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.scheduledesktop2.platform.DownloadDialog
 import getMainActivityWorker
 import getNavigator
+import getScheduleRepository
 import kotlinx.coroutines.launch
 import models.Lesson
 import org.jetbrains.compose.resources.getString
@@ -62,6 +64,7 @@ fun MainActivity() {
     ){
         dayModels.add(viewModel(key = id.key){ DayModel() })
     }
+    val isDownloadDialogEnabled = remember { mutableStateOf(false) }
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
@@ -98,7 +101,7 @@ fun MainActivity() {
                         Icon(Icons.Filled.Share, "")
                     }
                     IconButton(
-                        {}
+                        {isDownloadDialogEnabled.value = true}
                     ){
                         Icon(Icons.Filled.Download, "")
                     }
@@ -120,7 +123,23 @@ fun MainActivity() {
             }
         }
     ){ innerPadding ->
-        DownloadDialog( "", emptyArray<String>(), "dicke")
+        AnimatedVisibility(isDownloadDialogEnabled.value){
+            val links = mutableListOf<String>()
+            lateinit var mimeType:String
+            if(pagerState.currentPage == 0){
+                links += getScheduleRepository().linksForFirstCorpusSchedule
+                links += getScheduleRepository().linksForSecondCorpusSchedule
+                mimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            } else {
+                links += listOf(URLs.MONDAY_TIMES_URL, URLs.OTHER_TIMES_URL)
+                mimeType = "image/jpg"
+            }
+            DownloadDialog(
+                isDownloadDialogEnabled,
+                "placeholder",
+                links.toTypedArray(),
+                mimeType)
+        }
         Column(
             modifier = Modifier
                 .padding(innerPadding)

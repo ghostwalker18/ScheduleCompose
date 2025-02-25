@@ -106,6 +106,10 @@ object Utils {
         return parts[parts.size - 1]
     }
 
+    fun escapeIllegalCharacters(link: String): String{
+        return link.replace(Regex(":"), "~")
+    }
+
     /**
      * Этот метод создает ZIP-архив из указанных файлов.
      * @param sourceFiles файлы для архивации

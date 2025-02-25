@@ -12,6 +12,7 @@
  * limitations under the License.
  */
 
+import androidx.compose.runtime.Composable
 import models.Lesson
 import models.Note
 import models.NotesRepository

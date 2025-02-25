@@ -130,7 +130,7 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
     data class Status(val status: String, val progress: Int)
 
     fun getSubjects(group: String?): Flow<Array<String>> {
-        return db.lessonDao().getSubjectsForGroup(group)
+        return db.lessonDao().getSubjectsForGroup(group).flowOn(Dispatchers.IO)
     }
 
     fun getLessons(date: Calendar, teacher: String?, group: String?): Flow<Array<Lesson>> {
