@@ -34,9 +34,9 @@ import org.jetbrains.compose.resources.stringArrayResource
 import org.jetbrains.compose.resources.stringResource
 import java.util.prefs.Preferences
 
-
 /**
  * Эта функция служит для группировки элементов настроек
+ *
  * @author Ипатов Никита
  * @since 1.0
  */

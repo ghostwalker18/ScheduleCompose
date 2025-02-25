@@ -39,6 +39,7 @@ import models.Note
  * @param note заметка для отображения
  * @param onSelected действие при выборе заметки
  * @param onUnselected действие при отмене выбора заметки
+ *
  * @author Ипатов Никита
  * @since 1.0
  */

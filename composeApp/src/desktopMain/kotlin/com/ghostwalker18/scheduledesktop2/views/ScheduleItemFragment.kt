@@ -48,6 +48,9 @@ import java.util.*
 
 /**
  * Эта функция отображает элемент расписания на день
+ *
+ * @author Ипатов Никита
+ * @since 1.0
  */
 @Composable
 fun ScheduleItemFragment(dayOfWeek: StringResource) {
@@ -146,7 +149,7 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
  * @since 1.0
  */
 @Composable
-fun ScheduleTable(lessons: Array<Lesson>){
+private fun ScheduleTable(lessons: Array<Lesson>){
     Row(
         modifier = Modifier
             .height(intrinsicSize = IntrinsicSize.Max)
@@ -187,10 +190,12 @@ fun ScheduleTable(lessons: Array<Lesson>){
  * Эта функция отображает клетку в расписании
  * @param text содержимое клетки
  * @param weight ширина клетки в процентах от таблицы
+ *
  * @author Ipatov Nikita
+ * @since 1.0
  */
 @Composable
-fun RowScope.TableCell(text: String, weight: Float ) {
+private fun RowScope.TableCell(text: String, weight: Float ) {
     Column(
         modifier = Modifier
         .weight(weight)
@@ -211,9 +216,12 @@ fun RowScope.TableCell(text: String, weight: Float ) {
  * @param date дата расписания
  * @param dayOfWeekId id строкового ресурса соответствующего дня недели
  * @return заголовок
+ *
+ * @author Ипатов Никита
+ * @since 1.0
  */
 @Composable
-fun Title(date: Calendar, dayOfWeekId: StringResource, modifier: Modifier = Modifier){
+private fun Title(date: Calendar, dayOfWeekId: StringResource, modifier: Modifier = Modifier){
     val dayOfWeek: String = stringResource(dayOfWeekId)
     var label = dayOfWeek + " (" + Utils.generateDateForTitle(date) + ")"
     if (Utils.isDateToday(date)) {

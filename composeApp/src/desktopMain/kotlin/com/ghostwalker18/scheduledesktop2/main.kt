@@ -22,6 +22,9 @@ import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.app_name
 import scheduledesktop2.composeapp.generated.resources.favicon
 
+/**
+ * Точка входа в десктопное приложение.
+ */
 fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,

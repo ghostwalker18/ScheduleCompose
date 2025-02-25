@@ -28,6 +28,7 @@ import java.io.File
 
 /**
  * Этот класс исполняет операции для MainActivity на десктопе.
+ *
  * @author Ипатов Никита
  * @since 1.0
  */

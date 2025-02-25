@@ -49,6 +49,7 @@ import kotlin.reflect.KFunction1
  * Этот класс представляет собой репозиторий данных десктопного приложения о расписании.
  *
  * @author  Ипатов Никита
+ * @since 1.0
  */
 class ScheduleRepositoryDesktop(
     override val db: AppDatabase,

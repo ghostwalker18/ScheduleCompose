@@ -19,7 +19,6 @@ import getScheduleRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.util.*
 
-
 /**
  * Этот класс используется для отслеживания изменения состояния расписания.
  *

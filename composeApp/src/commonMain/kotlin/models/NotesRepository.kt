@@ -19,7 +19,6 @@ import database.NoteDao
 import kotlinx.coroutines.flow.Flow
 import java.util.*
 
-
 /**
  * Этот класс представляет репозиторий данных приложения о заметках.
  * @property db база данных приложения

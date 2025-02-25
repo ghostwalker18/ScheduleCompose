@@ -12,6 +12,11 @@
  * limitations under the License.
  */
 
+/**
+ * Этот объект содержит в себе базовые URL сайта ПАСТ, используемые по всему приложению
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 object URLs {
     const val BASE_URI = "https://ptgh.onego.ru/9006/"
     const val MONDAY_TIMES_URL =

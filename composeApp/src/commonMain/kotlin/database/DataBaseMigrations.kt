@@ -19,12 +19,11 @@ import androidx.sqlite.SQLiteConnection
 import androidx.sqlite.execSQL
 import java.util.*
 
-
 /**
  * Этот класс используется для проведения миграций между версиями БД приложения.
  *
  * @author Ипатов Никита
- * @since 4.0
+ * @since 1.0
  */
 object DataBaseMigrations {
     private val MIGRATION_1_2: Migration = object : Migration(1, 2) {

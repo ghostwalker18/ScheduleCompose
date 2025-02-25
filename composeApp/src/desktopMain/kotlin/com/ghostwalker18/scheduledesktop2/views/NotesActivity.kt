@@ -41,7 +41,6 @@ import scheduledesktop2.composeapp.generated.resources.notes_activity
 import viewmodels.NotesModel
 import java.util.*
 
-
 /**
  * Эта функция представляет собой экран заметок приложения
  *

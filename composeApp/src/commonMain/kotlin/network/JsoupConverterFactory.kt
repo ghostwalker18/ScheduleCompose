@@ -23,7 +23,6 @@ import retrofit2.Retrofit
 import java.io.IOException
 import java.lang.reflect.Type
 
-
 /**
  * Этот класс используется для преобразования тела ответа Retrofit в Document библиотеки Jsoup.
  *

@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.Flow
 import models.Lesson
 import java.util.*
 
-
 /**
  * Интерфейс DAO для работы с таблицой БД, содержащей сведения о занятиях.
  * Используется Room для генерации.
@@ -31,6 +30,7 @@ import java.util.*
 @Dao
 @TypeConverters(DateConverters::class)
 interface LessonDao {
+
     /**
      * Этот метод позволяет получить список учителей из БД.
      * @return списко учителей

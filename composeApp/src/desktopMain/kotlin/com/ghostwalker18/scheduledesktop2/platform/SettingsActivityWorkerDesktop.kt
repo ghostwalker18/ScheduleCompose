@@ -29,6 +29,7 @@ import java.net.URI
 
 /**
  * Этот класс выполняет операции для SettingsActivity на десктопе.
+ *
  * @author Ипатов Никита
  * @since 1.0
  */

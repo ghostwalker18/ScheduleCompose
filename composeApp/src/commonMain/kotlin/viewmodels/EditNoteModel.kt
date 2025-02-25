@@ -47,11 +47,11 @@ class EditNoteModel : ViewModel() {
     val text = MutableStateFlow("")
 
     init {
-            viewModelScope.launch {
-                scheduleRepository.getSubjects(scheduleRepository.savedGroup).collect{
-                    _themes.value = it
-                }
+        viewModelScope.launch {
+            scheduleRepository.getSubjects(scheduleRepository.savedGroup).collect{
+                _themes.value = it
             }
+        }
     }
 
     /**

@@ -26,6 +26,7 @@ import java.awt.datatransfer.StringSelection
 
 /**
  * Этот класс выполняет операции для ShareActivity на десктопе
+ *
  * @author Ипатов Никита
  * @since 1.0
  */

@@ -24,6 +24,12 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.PopupProperties
 
+/**
+ * Эта функция используется для ввода с автоподбором
+ *
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 @Composable
 fun AutocompleteTextView(
     value: String = "",

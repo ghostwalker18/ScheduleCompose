@@ -18,7 +18,6 @@ import org.apache.poi.ss.usermodel.Row
 import org.apache.poi.ss.usermodel.Sheet
 import org.jetbrains.annotations.Contract
 
-
 /**
  * Этот класс служит для реализации буферизированного псевдорандомного доступа
  * к строкам эксель-файла при использовании потокового чтения
@@ -27,7 +26,7 @@ import org.jetbrains.annotations.Contract
  *
  * @author Ипатов Никита
  * @since 1.0
- ** */
+ */
 class RowCache private constructor(sheet: Sheet, private val size: Int) {
     private val iterator: Iterator<Row>
     private var lowBoundary = 0

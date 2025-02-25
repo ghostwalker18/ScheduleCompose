@@ -24,6 +24,7 @@ import java.awt.datatransfer.StringSelection
 
 /**
  * Этот класс исполняет операции для NotesActivity на десктопе.
+ *
  * @author Ипатов Никита
  * @since 1.0
  */

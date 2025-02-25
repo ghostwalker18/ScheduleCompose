@@ -32,6 +32,9 @@ import scheduledesktop2.composeapp.generated.resources.operation_type
 
 /**
  * Эта функция представляет собой экран импорта и экспорта данных приложения
+ *
+ * @author Ипатов Никита
+ * @since 1.0
  */
 @Composable
 fun ImportActivity(){

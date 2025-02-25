@@ -28,7 +28,6 @@ import models.Note
 import kotlinx.coroutines.Dispatchers
 import java.io.File
 
-
 /**
  * Этот класс используется Room для генерации класса для ORM операций с БД приложения.
  *
@@ -43,9 +42,12 @@ abstract class AppDatabase : RoomDatabase(){
     abstract fun lessonDao() : LessonDao
     abstract fun noteDao() : NoteDao
 
-
     companion object{
 
+        /**
+         * Этот метод позволяет получить сконфигурированную базу данных приложения по умолчанию.
+         * @return база данных Room
+         */
         fun getInstance() : AppDatabase {
             val dbFile = File(System.getProperty("java.io.tmpdir"), APP_DATABASE_NAME)
             val callback = object : Callback(){

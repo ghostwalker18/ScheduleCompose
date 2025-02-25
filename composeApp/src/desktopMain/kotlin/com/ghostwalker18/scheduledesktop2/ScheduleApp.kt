@@ -81,10 +81,12 @@ class ScheduleApp : PreferenceChangeListener{
         settingsActivityWorker = SettingsActivityWorkerDesktop()
         scheduleRepository.update()
         setupLocale()
-        //localization of file chooser
         setupFileChooser()
     }
 
+    /**
+     * Этот метод отображает UI приложения
+     */
     @Composable
     @Preview
     fun App() {
@@ -153,6 +155,9 @@ class ScheduleApp : PreferenceChangeListener{
         private lateinit var instance: ScheduleApp
         val preferences: Preferences = Preferences.userNodeForPackage(ScheduleApp::class.java)
 
+        /**
+         * Этот метод позволяет получить доступ к экземпляру приложения.
+         */
         fun getInstance(): ScheduleApp{
             return instance
         }
@@ -165,11 +170,17 @@ class ScheduleApp : PreferenceChangeListener{
         }
     }
 
+    /**
+     * Этот метод настраивает локаль приложения.
+     */
     private fun setupLocale(){
         val locale = Locale(ScheduleApp.preferences["language", "ru"])
         Locale.setDefault(locale)
     }
 
+    /**
+     * Этот метод задает визуальное представление и локализацию системного элемента для выбора файлов.
+     */
     private fun setupFileChooser(){
         UIManager.put(
             "FileChooser.lookInLabelText",

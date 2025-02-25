@@ -1,4 +1,4 @@
-package utils/*
+/*
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,6 +12,8 @@ package utils/*
  * limitations under the License.
  */
 
+package utils
+
 import java.io.*
 import java.nio.file.Files
 import java.util.*
@@ -19,7 +21,13 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
 import java.util.zip.ZipOutputStream
 
+/**
+ * Вспомогательный объект содержащий утилитарные методы, используемые по всему приложени.
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 object Utils {
+
     /**
      * Это перечисление показывает доступность занятия для посещения - прошло, идет, не началось
      */
@@ -106,6 +114,9 @@ object Utils {
         return parts[parts.size - 1]
     }
 
+    /**
+     * Этот метод выполняет замену недопустимых символов в имени файла на ~.
+     */
     fun escapeIllegalCharacters(link: String): String{
         return link.replace(Regex(":"), "~")
     }

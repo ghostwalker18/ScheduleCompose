@@ -38,6 +38,9 @@ val DarkColors = darkColors(
     background = Color(0xff303030)
 )
 
+/**
+ * Эта функция предоставляет тему приложению.
+ */
 @Composable
 fun ScheduleTheme(
     darkTheme: Boolean = false,

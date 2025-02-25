@@ -28,9 +28,6 @@ import retrofit2.http.Url
  * @author  Ипатов Никита
  * @since 1.0
  */
-
-
-
 interface ScheduleNetworkAPI {
     @get:GET(URLs.MONDAY_TIMES_URL)
     val mondayTimes: Call<ResponseBody?>?

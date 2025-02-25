@@ -30,6 +30,7 @@ import java.util.*
 @Dao
 @TypeConverters(DateConverters::class)
 interface NoteDao {
+
     /**
      * Этот метод позволяет получить заметку из базы данных по ее ID.
      * @param id идентификатор заметки
