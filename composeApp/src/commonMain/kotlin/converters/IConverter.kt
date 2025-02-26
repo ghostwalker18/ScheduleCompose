@@ -17,7 +17,6 @@ package converters
 import models.Lesson
 import org.apache.poi.ss.usermodel.Workbook
 
-
 /**
  * Этот интерфейс описывет методы для преобразования эксель-файлов расписания ПТГХ
  * в коллекции элементов Lesson.

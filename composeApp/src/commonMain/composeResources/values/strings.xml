@@ -60,6 +60,9 @@
     <string name="for_group">Для группы</string>
     <string name="start_date">Начальная дата:</string>
     <string name="end_date">Конечная дата:</string>
+    <string name="cancel">Отмена</string>
+    <string name="chose_date">Выбрать дату</string>
+    <string name="go_to_date">Перейти к дате</string>
     <string name="text">Текст</string>
     <string name="photo_error">Не удалось загрузить фотографию</string>
     <string name="gallery_access_denied">Нет разрешения на доступ к фото</string>

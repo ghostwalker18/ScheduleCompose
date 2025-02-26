@@ -60,6 +60,9 @@
     <string name="for_group">Топ үшін:</string>
     <string name="start_date">Бастапқы күн:</string>
     <string name="end_date">Соңғы күн:</string>
+    <string name="cancel">Бас тарту</string>
+    <string name="chose_date">Күнді таңдаңыз</string>
+    <string name="go_to_date">Күнге өту</string>
     <string name="text">Мәтін</string>
     <string name="photo_error">Фотосуретті жүктеу мүмкін болмады</string>
     <string name="group">Топ</string>

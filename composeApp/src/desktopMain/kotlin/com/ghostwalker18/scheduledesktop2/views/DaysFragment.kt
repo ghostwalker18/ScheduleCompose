@@ -15,6 +15,8 @@
 package com.ghostwalker18.scheduledesktop2.views
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -47,6 +49,7 @@ import viewmodels.ScheduleModel
  * @author  Ипатов Никита
  * @since 1.0
  */
+@OptIn(ExperimentalFoundationApi::class)
 @Preview
 @Composable
 fun DaysFragment(){
@@ -71,14 +74,24 @@ fun DaysFragment(){
             .fillMaxSize()
             .padding(15.dp)
     ){
-        Button(
+        var showDatePicker by remember { mutableStateOf(false) }
+        CustomButton(
             onClick = { model.goPreviousWeek() },
+            onLongClick = { showDatePicker = true },
             modifier = Modifier
                 .weight(0.125f)
                 .align(Alignment.CenterVertically)
+
         ){
             Text(stringResource(Res.string.back))
         }
+        if(showDatePicker)
+            DatePickerModal(
+                confirmButtonText = Res.string.go_to_date,
+                dismissButtonText = Res.string.cancelButtonText,
+                onDismiss = { showDatePicker = false },
+                onDateSelected = { model.calendar.value = it }
+            )
         Column(
             modifier = Modifier
                 .weight(0.75f)
@@ -141,8 +154,23 @@ fun DaysFragment(){
             )
             IconButton({repository.update()}){ Icon(Icons.Filled.Refresh, "") }
         }
-        Button(
+        /*Button(
+            onClick = { },
+            modifier = Modifier
+                .weight(0.125f)
+                .align(Alignment.CenterVertically)
+                .pointerInput(Unit) {
+                    detectTapGestures(
+                        onLongPress = { showDatePicker = true },
+                        onTap = { model.goNextWeek() }
+                    )
+                }
+        ){
+            Text(stringResource(Res.string.forward))
+        }*/
+        CustomButton(
             onClick = { model.goNextWeek() },
+            onLongClick = { showDatePicker = true },
             modifier = Modifier
                 .weight(0.125f)
                 .align(Alignment.CenterVertically)

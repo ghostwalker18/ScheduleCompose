@@ -107,9 +107,17 @@ fun NotesFilterFragment(){
                     onValueChange = { model.setStartDate(DateConverters().fromString(it)) },
                     modifier = Modifier.weight(1f)
                 )
-                IconButton({}){
+                var showDatePicker by remember { mutableStateOf(false) }
+                IconButton({ showDatePicker = true }){
                     Icon(Icons.Filled.ArrowDropDown, null)
                 }
+                if (showDatePicker)
+                    DatePickerModal(
+                        confirmButtonText = Res.string.chose_date,
+                        dismissButtonText = Res.string.cancelButtonText,
+                        onDismiss = { showDatePicker = false },
+                        onDateSelected = { model.setStartDate(it) }
+                    )
             }
             Text(
                 text = stringResource(Res.string.end_date),
@@ -122,9 +130,17 @@ fun NotesFilterFragment(){
                     onValueChange = { model.setEndDate(DateConverters().fromString(it)) },
                     modifier = Modifier.weight(1f)
                 )
-                IconButton({}){
+                var showDatePicker by remember { mutableStateOf(false) }
+                IconButton({ showDatePicker = true}){
                     Icon(Icons.Filled.ArrowDropDown, null)
                 }
+                if (showDatePicker)
+                    DatePickerModal(
+                        confirmButtonText = Res.string.chose_date,
+                        dismissButtonText = Res.string.cancelButtonText,
+                        onDismiss = { showDatePicker = false },
+                        onDateSelected = { model.setEndDate(it) }
+                    )
             }
         }
     }

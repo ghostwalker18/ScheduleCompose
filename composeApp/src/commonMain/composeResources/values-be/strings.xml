@@ -60,6 +60,9 @@
     <string name="for_group">Для групы</string>
     <string name="start_date">Пачатковая дата:</string>
     <string name="end_date">Канчатковая дата:</string>
+    <string name="cancel">Адмена</string>
+    <string name="chose_date">Выбраць дату</string>
+    <string name="go_to_date">Перайсці да даты</string>
     <string name="text">Тэкст</string>
     <string name="photo_error">Не атрымалася загрузіць фатаграфію</string>
     <string name="group">Група</string>

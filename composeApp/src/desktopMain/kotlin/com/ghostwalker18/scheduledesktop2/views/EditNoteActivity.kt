@@ -90,11 +90,25 @@ fun EditNoteActivity(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ){
-                Text(text = stringResource(Res.string.date))
+                Text(
+                    text = stringResource(Res.string.date),
+                    modifier = Modifier.padding(10.dp, 0.dp)
+                )
                 Text(text = DateConverters().toString(noteDate)!!)
-                IconButton({}){
+                var showDatePicker by remember { mutableStateOf(false) }
+                IconButton({ showDatePicker = true }){
                     Icon(Icons.Filled.ArrowDropDown, null)
                 }
+                if (showDatePicker)
+                    DatePickerModal(
+                        confirmButtonText = Res.string.chose_date,
+                        dismissButtonText = Res.string.cancelButtonText,
+                        onDismiss = { showDatePicker = false },
+                        onDateSelected = {
+                            date ->
+                            model.date.value = date
+                        }
+                    )
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically

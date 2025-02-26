@@ -28,6 +28,7 @@ kotlin {
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
             implementation(libs.sqlite)
+            implementation(compose.material3)
             implementation("com.github.pjfanning:excel-streaming-reader:5.0.2")
             implementation("org.apache.xmlbeans:xmlbeans:3.1.0")
             implementation("javax.xml.stream:stax-api:1.0")
