@@ -15,8 +15,6 @@
 package com.ghostwalker18.scheduledesktop2.views
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -41,7 +39,6 @@ import scheduledesktop2.composeapp.generated.resources.forward
 import scheduledesktop2.composeapp.generated.resources.monday
 import viewmodels.ScheduleModel
 
-
 /**
  * Эта функция представляет собой элемент интерфейса, используемый для
  * отображения расписания занятий.
@@ -49,7 +46,6 @@ import viewmodels.ScheduleModel
  * @author  Ипатов Никита
  * @since 1.0
  */
-@OptIn(ExperimentalFoundationApi::class)
 @Preview
 @Composable
 fun DaysFragment(){
@@ -154,20 +150,6 @@ fun DaysFragment(){
             )
             IconButton({repository.update()}){ Icon(Icons.Filled.Refresh, "") }
         }
-        /*Button(
-            onClick = { },
-            modifier = Modifier
-                .weight(0.125f)
-                .align(Alignment.CenterVertically)
-                .pointerInput(Unit) {
-                    detectTapGestures(
-                        onLongPress = { showDatePicker = true },
-                        onTap = { model.goNextWeek() }
-                    )
-                }
-        ){
-            Text(stringResource(Res.string.forward))
-        }*/
         CustomButton(
             onClick = { model.goNextWeek() },
             onLongClick = { showDatePicker = true },

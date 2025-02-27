@@ -36,31 +36,17 @@ class NotesModel : ViewModel() {
     private var _notesMediator: Flow<Array<Note>>? = null
     private val _startDate = MutableStateFlow(Calendar.getInstance())
     private val _endDate = MutableStateFlow(Calendar.getInstance())
+    private val _keyword: MutableStateFlow<String?> = MutableStateFlow(null)
     val notes = _notes.asStateFlow()
     val startDate = _startDate.asStateFlow()
     val endDate = _endDate.asStateFlow()
+    val keyword = _keyword.asStateFlow()
     val isFilterEnabled = MutableStateFlow(false)
-    var keyword: String? = ""
-        set(value) {
-            field = value
-            if (keyword != null) _notesMediator = repository.getNotes(group!!, keyword!!) else {
-                if (startDate.value != null && endDate.value != null && group != null) _notesMediator =
-                    repository.getNotes(
-                        group!!,
-                        generateDateSequence(startDate.value!!, endDate.value!!)
-                    )
-            }
-            viewModelScope.launch {
-                _notesMediator?.collect{
-                    _notes.value = it
-                }
-            }
-        }
     var group: String? = ""
         set(value) {
             field = value
             if (group != null) {
-                if (keyword != null) _notesMediator = repository.getNotes(group!!, keyword!!)
+                if (_keyword.value != null) _notesMediator = repository.getNotes(group!!, _keyword.value!!)
                 if (startDate.value != null && endDate.value != null)
                     _notesMediator = repository
                         .getNotes(group!!, generateDateSequence(startDate.value!!, endDate.value!!))
@@ -75,6 +61,29 @@ class NotesModel : ViewModel() {
     init {
         group = getScheduleRepository().savedGroup
     }
+
+    /**
+     * Этот метод устанавливает ключевое слово для поиска заметок.
+     * @param keyword ключевое слово
+     */
+    fun setKeyword(keyword: String?){
+        _keyword.value = keyword
+        if (keyword != null)
+            _notesMediator = repository.getNotes(group!!, keyword)
+        else {
+            if (startDate.value != null && endDate.value != null && group != null) _notesMediator =
+                repository.getNotes(
+                    group!!,
+                    generateDateSequence(startDate.value!!, endDate.value!!)
+                )
+        }
+        viewModelScope.launch {
+            _notesMediator?.collect{
+                _notes.value = it
+            }
+        }
+    }
+
     /**
      * Этот метод устанавливает начальную дату временного интервала выдачи заметок.
      * @param date начальная дата

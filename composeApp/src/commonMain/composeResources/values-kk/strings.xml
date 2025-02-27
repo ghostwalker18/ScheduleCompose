@@ -53,6 +53,7 @@
     <string name="schedule_download_status">Кестені жүктеу</string>
     <string name="schedule">Кесте</string>
     <string name="notes_activity">Ескертпелер</string>
+    <string name="no_notes_now">Әзірге жазбалар жоқ</string>
     <string name="edit_notes_activity">Жазбаны қосу / өңдеу</string>
     <string name="note_theme">Ескерту тақырыбы</string>
     <string name="choose_date">Күнді таңдаңыз</string>

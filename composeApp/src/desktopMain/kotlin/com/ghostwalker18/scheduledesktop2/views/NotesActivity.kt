@@ -15,6 +15,7 @@
 package com.ghostwalker18.scheduledesktop2.views
 
 import androidx.compose.animation.*
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,6 +29,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import getNavigator
@@ -37,6 +39,7 @@ import kotlinx.coroutines.launch
 import models.Note
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.no_notes_now
 import scheduledesktop2.composeapp.generated.resources.notes_activity
 import viewmodels.NotesModel
 import java.util.*
@@ -62,7 +65,7 @@ fun NotesActivity(
     val notes by model.notes.collectAsState()
     val selectedNotes =  remember { mutableStateListOf<Note>() }
     val isFilterEnabled by model.isFilterEnabled.collectAsState()
-    var keyWord by remember { mutableStateOf("") }
+    val keyWord by model.keyword.collectAsState()
 
     @Composable
     fun SearchNoteBar(){
@@ -71,14 +74,12 @@ fun NotesActivity(
             modifier = Modifier.padding(horizontal = 10.dp)
         ) {
             TextField(
-                value = keyWord,
-                leadingIcon = {
-                    Icon(Icons.Filled.Search, null)
-                },
-                modifier = Modifier.weight(1f),
-                onValueChange = {
-                    keyWord = it
-                }
+                value = keyWord ?: "",
+                leadingIcon = { Icon(Icons.Filled.Search, null) },
+                modifier = Modifier
+                    .background(MaterialTheme.colors.background)
+                    .weight(1f),
+                onValueChange = { model.setKeyword(if (it == "") null else it) }
             )
             IconButton({ model.isFilterEnabled.value = true }){
                 Icon(Icons.Filled.Tune, null)
@@ -91,9 +92,8 @@ fun NotesActivity(
         Row(
             verticalAlignment = Alignment.CenterVertically
         ){
-            IconButton(
-                {selectedNotes.clear()}
-            ){
+            IconButton({ selectedNotes.clear() })
+            {
                 Icon(Icons.Filled.Close, null)
             }
             AnimatedContent(
@@ -111,7 +111,7 @@ fun NotesActivity(
                     )
                 }
             ){
-                    targetState ->
+                targetState ->
                 Text(text = "$targetState")
             }
         }
@@ -197,20 +197,30 @@ fun NotesActivity(
             ){
                 NotesFilterFragment()
             }
-            LazyColumn(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                notes.forEach{ note ->
-                    item {
-                        NoteView(
-                            note = note,
-                            onSelected = {
-                                selectedNotes.add(note)
-                            },
-                            onUnselected = {
-                                selectedNotes.remove(note)
-                            }
-                        )
+            if(notes.isEmpty()){
+                Text(
+                    text = stringResource(Res.string.no_notes_now),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
+            }
+            else {
+                LazyColumn(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    notes.forEach{ note ->
+                        item {
+                            NoteView(
+                                note = note,
+                                onSelected = {
+                                    selectedNotes.add(note)
+                                },
+                                onUnselected = {
+                                    selectedNotes.remove(note)
+                                }
+                            )
+                        }
                     }
                 }
             }

@@ -33,6 +33,10 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 
+/**
+ * Эта функция отображает кнопку с поддержкой длинного клика
+ * @since 1.0
+ */
 @Composable
 fun CustomButton(
     onClick: () -> Unit,

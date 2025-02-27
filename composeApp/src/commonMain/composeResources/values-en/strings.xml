@@ -53,6 +53,7 @@
     <string name="schedule_download_status">Schedule downloading</string>
     <string name="schedule">Schedule</string>
     <string name="notes_activity">Notes</string>
+    <string name="no_notes_now">There are no notes yet</string>
     <string name="edit_notes_activity">Add / edit note</string>
     <string name="note_theme">Note\'s theme</string>
     <string name="choose_date">Select a date</string>
