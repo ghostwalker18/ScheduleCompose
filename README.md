@@ -1,4 +1,5 @@
 [![Github All Releases](https://img.shields.io/github/downloads/ghostwalker18/ScheduleCompose/total.svg)]()
+<br>
 This is a Kotlin Multiplatform project targeting Desktop.
 
 * `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
