@@ -31,7 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.scheduledesktop2.platform.DownloadDialog
-import getMainActivityWorker
+import getMainScreenController
 import getNavigator
 import getScheduleRepository
 import kotlinx.coroutines.launch
@@ -54,7 +54,7 @@ import viewmodels.DayModel
 @Composable
 fun MainActivity() {
     val navigator = getNavigator()
-    val worker = getMainActivityWorker()
+    val worker = getMainScreenController()
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
     val pagerState = rememberPagerState{ 2 }

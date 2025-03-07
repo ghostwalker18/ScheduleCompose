@@ -14,7 +14,7 @@
 
 package com.ghostwalker18.scheduledesktop2.platform
 
-import MainActivityWorker
+import MainScreenController
 import models.Lesson
 import models.ScheduleRepository
 import org.jetbrains.compose.resources.StringResource
@@ -32,7 +32,7 @@ import java.io.File
  * @author Ипатов Никита
  * @since 1.0
  */
-class MainActivityWorkerDesktop : MainActivityWorker {
+class MainScreenControllerDesktop : MainScreenController {
 
     /**
      * Этот метод используется для добавления форматированной строки расписания в системный

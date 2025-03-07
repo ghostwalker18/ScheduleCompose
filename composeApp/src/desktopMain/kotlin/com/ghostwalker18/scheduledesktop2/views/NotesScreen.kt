@@ -33,7 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import getNavigator
-import getNotesActivityWorker
+import getNotesScreenController
 import getScheduleRepository
 import kotlinx.coroutines.launch
 import models.Note
@@ -56,7 +56,7 @@ fun NotesActivity(
     date: Calendar? = Calendar.getInstance()
 ){
     val navigator = getNavigator()
-    val worker = getNotesActivityWorker()
+    val worker = getNotesScreenController()
     val scope = rememberCoroutineScope()
     val model = viewModel { NotesModel() }
     model.group = group

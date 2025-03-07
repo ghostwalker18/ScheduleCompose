@@ -56,10 +56,10 @@ import javax.swing.UIManager
 class ScheduleApp : PreferenceChangeListener{
     val scheduleRepository: ScheduleRepository
     val notesRepository: NotesRepository
-    val mainActivityWorker: MainActivityWorkerDesktop
-    val notesActivityWorker: NotesActivityWorkerDesktop
-    val shareActivityWorker: ShareActivityWorkerDesktop
-    val settingsActivityWorker: SettingsActivityWorkerDesktop
+    val mainActivityController: MainScreenControllerDesktop
+    val notesActivityController: NotesScreenControllerDesktop
+    val shareActivityController: ShareScreenConrollerDesktop
+    val settingsActivityController: SettingsScreenControllerDesktop
     val preferences: Preferences = Preferences.userNodeForPackage(ScheduleApp::class.java)
     private val db: AppDatabase
     private val themeState: MutableStateFlow<String> = MutableStateFlow(preferences["theme", "system"])
@@ -75,10 +75,10 @@ class ScheduleApp : PreferenceChangeListener{
             preferences
         )
         notesRepository = NotesRepository(db)
-        mainActivityWorker = MainActivityWorkerDesktop()
-        notesActivityWorker = NotesActivityWorkerDesktop()
-        shareActivityWorker = ShareActivityWorkerDesktop()
-        settingsActivityWorker = SettingsActivityWorkerDesktop()
+        mainActivityController = MainScreenControllerDesktop()
+        notesActivityController = NotesScreenControllerDesktop()
+        shareActivityController = ShareScreenConrollerDesktop()
+        settingsActivityController = SettingsScreenControllerDesktop()
         scheduleRepository.update()
         setupLocale()
         setupFileChooser()

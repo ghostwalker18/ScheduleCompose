@@ -27,6 +27,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ghostwalker18.scheduledesktop2.widgets.AutocompleteTextView
+import com.ghostwalker18.scheduledesktop2.widgets.DatePickerModal
 import converters.DateConverters
 import getNavigator
 import getScheduleRepository

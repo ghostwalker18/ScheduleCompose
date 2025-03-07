@@ -14,7 +14,7 @@
 
 package com.ghostwalker18.scheduledesktop2.platform
 
-import NotesActivityWorker
+import NotesScreenController
 import models.Note
 import org.jetbrains.compose.resources.StringResource
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -28,7 +28,7 @@ import java.awt.datatransfer.StringSelection
  * @author Ипатов Никита
  * @since 1.0
  */
-class NotesActivityWorkerDesktop : NotesActivityWorker {
+class NotesScreenControllerDesktop : NotesScreenController {
 
     override fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource> {
         val builder = StringBuilder()

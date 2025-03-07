@@ -27,7 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import getNavigator
-import getShareActivityWorker
+import getShareScreenController
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.painterResource
@@ -47,7 +47,7 @@ import scheduledesktop2.composeapp.generated.resources.share_app
 @Composable
 fun ShareAppActivity() {
     val navigator = getNavigator()
-    val worker = getShareActivityWorker()
+    val worker = getShareScreenController()
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     Scaffold(

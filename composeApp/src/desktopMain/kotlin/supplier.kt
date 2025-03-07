@@ -38,28 +38,28 @@ actual interface Navigator{
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual interface MainActivityWorker {
+actual interface MainScreenController {
     actual fun shareSchedule(lessons: Collection<Lesson>): Pair<Boolean, StringResource>
     actual fun shareTimes(): Pair<Boolean, StringResource>
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual interface NotesActivityWorker {
+actual interface NotesScreenController {
     actual fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource>
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual interface ShareActivityWorker {
+actual interface ShareScreenController {
     actual fun shareLink(): Pair<Boolean, StringResource>
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual interface SettingsActivityWorker {
+actual interface SettingsActivityController {
     actual fun connectToDeveloper(): Pair<Boolean, StringResource>
 }
 
 actual fun getNavigator(): Navigator = ScheduleApp.getInstance().navigator
-actual fun getMainActivityWorker(): MainActivityWorker = ScheduleApp.getInstance().mainActivityWorker
-actual fun getNotesActivityWorker(): NotesActivityWorker = ScheduleApp.getInstance().notesActivityWorker
-actual fun getShareActivityWorker(): ShareActivityWorker = ScheduleApp.getInstance().shareActivityWorker
-actual fun getSettingsActivityWorker(): SettingsActivityWorker = ScheduleApp.getInstance().settingsActivityWorker
+actual fun getMainScreenController(): MainScreenController = ScheduleApp.getInstance().mainActivityController
+actual fun getNotesScreenController(): NotesScreenController = ScheduleApp.getInstance().notesActivityController
+actual fun getShareScreenController(): ShareScreenController = ScheduleApp.getInstance().shareActivityController
+actual fun getSettingsScreenController(): SettingsActivityController = ScheduleApp.getInstance().settingsActivityController

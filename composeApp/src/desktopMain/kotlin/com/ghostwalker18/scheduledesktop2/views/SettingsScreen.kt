@@ -25,9 +25,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.ghostwalker18.scheduledesktop2.widgets.ListPreference
+import com.ghostwalker18.scheduledesktop2.widgets.PreferenceCategory
+import com.ghostwalker18.scheduledesktop2.widgets.SwitchPreference
 import getNavigator
 import getPreferences
-import getSettingsActivityWorker
+import getSettingsScreenController
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
@@ -49,7 +52,7 @@ fun SettingsActivity() {
     val preferences = getPreferences()
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
-    val worker = getSettingsActivityWorker()
+    val worker = getSettingsScreenController()
     Scaffold(
         topBar = {
             TopAppBar(

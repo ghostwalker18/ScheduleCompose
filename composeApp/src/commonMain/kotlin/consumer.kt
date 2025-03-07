@@ -76,7 +76,7 @@ expect interface Navigator {
  * Этот интерфейс определяет платформно-зависимые операции для MainActivity
  */
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect interface MainActivityWorker {
+expect interface MainScreenController {
 
     /**
      * Этот метод позволяет поделиться расписанием занятий.
@@ -93,7 +93,7 @@ expect interface MainActivityWorker {
  * Этот интерфейс определяет платформно-зависимые операции для NotesActivity
  */
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect interface NotesActivityWorker{
+expect interface NotesScreenController{
 
     /**
      * Этот метод позволяет поделиться заметками.
@@ -105,7 +105,7 @@ expect interface NotesActivityWorker{
  * Этот интерфейс определяет платформно-зависимые операции для ShareActivity
  */
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect interface ShareActivityWorker {
+expect interface ShareScreenController {
 
     /**
      * Этот метод позволяет поделиться ссылкой на приложение
@@ -117,7 +117,7 @@ expect interface ShareActivityWorker {
  * Этот интерфейс определяет платформно-зависимые операции для SettingsActivity
  */
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect interface SettingsActivityWorker {
+expect interface SettingsActivityController {
 
     /**
      * Этот метод позволяет связаться с разработчиком.
@@ -130,7 +130,7 @@ expect interface SettingsActivityWorker {
  */
 expect fun getNavigator(): Navigator
 
-expect fun getMainActivityWorker(): MainActivityWorker
-expect fun getNotesActivityWorker(): NotesActivityWorker
-expect fun getShareActivityWorker(): ShareActivityWorker
-expect fun getSettingsActivityWorker(): SettingsActivityWorker
+expect fun getMainScreenController(): MainScreenController
+expect fun getNotesScreenController(): NotesScreenController
+expect fun getShareScreenController(): ShareScreenController
+expect fun getSettingsScreenController(): SettingsActivityController

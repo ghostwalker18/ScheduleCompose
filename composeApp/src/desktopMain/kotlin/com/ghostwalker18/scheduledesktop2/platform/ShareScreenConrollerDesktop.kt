@@ -14,7 +14,7 @@
 
 package com.ghostwalker18.scheduledesktop2.platform
 
-import ShareActivityWorker
+import ShareScreenController
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.getString
@@ -30,7 +30,7 @@ import java.awt.datatransfer.StringSelection
  * @author Ипатов Никита
  * @since 1.0
  */
-class ShareActivityWorkerDesktop : ShareActivityWorker{
+class ShareScreenConrollerDesktop : ShareScreenController{
 
     override fun shareLink(): Pair<Boolean, StringResource> {
         val link = runBlocking {
