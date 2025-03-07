@@ -28,5 +28,4 @@
     <string name="detailsViewButtonToolTipText">Details</string>
     <string name="folderNameLabelText">Folder</string>
     <string name="saveButtonText">Save</string>
-    <string name="cancelButtonText">Cancel</string>
 </resources>

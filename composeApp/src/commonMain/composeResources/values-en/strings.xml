@@ -94,4 +94,5 @@
     <string name="download_notice">Number of schedule files to download: %1$d. Do you want to download them?</string>
     <string name="download_ok">Download</string>
     <string name="download_cancel">Cancel</string>
+    <string name="cancelButtonText">Cancel</string>
 </resources>

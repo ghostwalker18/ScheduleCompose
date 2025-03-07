@@ -12,12 +12,18 @@
  * limitations under the License.
  */
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import com.ghostwalker18.scheduledesktop2.ScheduleApp
+import com.ghostwalker18.scheduledesktop2.platform.DownloadDialog
 import models.Lesson
 import models.Note
 import models.NotesRepository
 import models.ScheduleRepository
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.qr_code
 import java.util.*
 import java.util.prefs.Preferences
 
@@ -63,3 +69,15 @@ actual fun getMainScreenController(): MainScreenController = ScheduleApp.getInst
 actual fun getNotesScreenController(): NotesScreenController = ScheduleApp.getInstance().notesActivityController
 actual fun getShareScreenController(): ShareScreenController = ScheduleApp.getInstance().shareActivityController
 actual fun getSettingsScreenController(): SettingsActivityController = ScheduleApp.getInstance().settingsActivityController
+
+actual fun getAppQR(): DrawableResource = Res.drawable.qr_code
+
+@Composable
+actual fun getDownloadDialog(
+    isEnabled: MutableState<Boolean>,
+    title: String,
+    links: Array<String>,
+    mimeType: String
+){
+    DownloadDialog(isEnabled, links)
+}

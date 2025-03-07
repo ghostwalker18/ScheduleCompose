@@ -29,7 +29,6 @@ import androidx.navigation.navArgument
 import com.ghostwalker18.scheduledesktop2.models.ScheduleRepositoryDesktop
 import com.ghostwalker18.scheduledesktop2.network.NetworkService
 import com.ghostwalker18.scheduledesktop2.platform.*
-import com.ghostwalker18.scheduledesktop2.views.*
 import converters.DateConverters
 import database.AppDatabase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,6 +37,7 @@ import models.NotesRepository
 import models.ScheduleRepository
 import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.*
+import views.*
 import java.util.*
 import java.util.prefs.PreferenceChangeEvent
 import java.util.prefs.PreferenceChangeListener

@@ -32,6 +32,7 @@ import org.jetbrains.compose.resources.StringArrayResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringArrayResource
 import org.jetbrains.compose.resources.stringResource
+import widgets.bottomBorder
 import java.util.prefs.Preferences
 
 /**

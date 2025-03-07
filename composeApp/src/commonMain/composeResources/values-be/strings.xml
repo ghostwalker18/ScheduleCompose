@@ -94,4 +94,5 @@
     <string name="download_notice">Колькасць файлаў раскладу для запампоўкі: %1$d. вы хочаце спампаваць іх?</string>
     <string name="download_ok">Скачаць</string>
     <string name="download_cancel">Адмена</string>
+    <string name="cancelButtonText">Адмена</string>
 </resources>

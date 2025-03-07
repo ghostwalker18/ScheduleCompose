@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.scheduledesktop2.views
+package views
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.Image
@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import getAppQR
 import getNavigator
 import getShareScreenController
 import kotlinx.coroutines.launch
@@ -90,7 +91,7 @@ fun ShareAppActivity() {
                         .padding(5.dp)
                         .fillMaxWidth()
                 )
-                Image(painterResource(Res.drawable.qr_code), null)
+                Image(painterResource(getAppQR()), null)
             }
             Text(
                 text = stringResource(Res.string.or),

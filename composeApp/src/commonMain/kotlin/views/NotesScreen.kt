@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.scheduledesktop2.views
+package views
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.background

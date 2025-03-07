@@ -94,5 +94,6 @@
     <string name="download_notice">Количество файлов расписания для скачивания: %1$d. Вы хотите скачать их?</string>
     <string name="download_ok">Скачать</string>
     <string name="download_cancel">Отмена</string>
+    <string name="cancelButtonText">Отмена</string>
     <string name="developer_email" translatable="false">ghostwalker18@mail.ru</string>
 </resources>

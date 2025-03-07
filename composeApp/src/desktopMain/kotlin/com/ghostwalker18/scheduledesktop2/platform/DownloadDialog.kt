@@ -48,9 +48,7 @@ import javax.swing.JFileChooser
 @Composable
 fun DownloadDialog(
     isEnabled: MutableState<Boolean>,
-    title: String,
     links: Array<String>,
-    mimeType: String
 ){
     var visibility by isEnabled
     if(visibility)

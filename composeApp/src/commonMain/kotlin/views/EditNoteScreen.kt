@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.scheduledesktop2.views
+package views
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -27,8 +27,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ghostwalker18.scheduledesktop2.widgets.AutocompleteTextView
-import com.ghostwalker18.scheduledesktop2.widgets.DatePickerModal
+import widgets.AutocompleteTextView
+import widgets.DatePickerModal
 import converters.DateConverters
 import getNavigator
 import getScheduleRepository

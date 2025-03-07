@@ -12,10 +12,13 @@
  * limitations under the License.
  */
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import models.Lesson
 import models.Note
 import models.NotesRepository
 import models.ScheduleRepository
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import java.util.*
 import java.util.prefs.Preferences
@@ -134,3 +137,13 @@ expect fun getMainScreenController(): MainScreenController
 expect fun getNotesScreenController(): NotesScreenController
 expect fun getShareScreenController(): ShareScreenController
 expect fun getSettingsScreenController(): SettingsActivityController
+
+expect fun getAppQR(): DrawableResource
+
+@Composable
+expect fun getDownloadDialog(
+    isEnabled: MutableState<Boolean>,
+    title: String,
+    links: Array<String>,
+    mimeType: String
+)

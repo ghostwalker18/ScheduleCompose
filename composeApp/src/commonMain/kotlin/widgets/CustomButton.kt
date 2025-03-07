@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.scheduledesktop2.widgets
+package widgets
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.LocalIndication
