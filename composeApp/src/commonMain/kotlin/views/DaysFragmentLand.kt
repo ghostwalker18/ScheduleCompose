@@ -14,7 +14,6 @@
 
 package views
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -49,7 +48,6 @@ import viewmodels.ScheduleModel
  * @author  Ипатов Никита
  * @since 1.0
  */
-@Preview
 @Composable
 fun DaysFragment(){
     val repository = getScheduleRepository()

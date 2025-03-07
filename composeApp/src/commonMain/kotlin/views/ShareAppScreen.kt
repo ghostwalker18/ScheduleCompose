@@ -14,7 +14,6 @@
 
 package views
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -44,7 +43,6 @@ import scheduledesktop2.composeapp.generated.resources.share_app
  * @author Ипатов Никита
  * @since 1.0
  */
-@Preview
 @Composable
 fun ShareAppActivity() {
     val navigator = getNavigator()

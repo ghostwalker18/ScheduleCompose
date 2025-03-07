@@ -1,4 +1,22 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
+import java.io.FileInputStream
+import java.util.*
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -6,12 +24,37 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.android.application)
+    id("io.appmetrica.analytics")
+    id("com.google.gms.google-services")
     id("org.jetbrains.dokka") version "2.0.0"
+}
+
+val keystorePropertiesFile = rootProject.file("/signing.properties")
+val keystoreProperties = Properties()
+if (keystorePropertiesFile.exists())
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+
+val appMetricaPropertiesFile = rootProject.file("/appMetrica.properties")
+val appMetricaProperties = Properties()
+if (appMetricaPropertiesFile.exists()){
+    appMetricaProperties.load(FileInputStream(appMetricaPropertiesFile))
+
+    appmetrica {
+        setPostApiKey(appMetricaProperties["apiKey"].toString())
+        enableAnalytics = true
+    }
 }
 
 kotlin {
     jvm("desktop")
-    
+
+    androidTarget {
+        //https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-test.html
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
+    }
+
     sourceSets {
         val commonMain by getting
         
@@ -29,6 +72,7 @@ kotlin {
             implementation(libs.sqlite.bundled)
             implementation(libs.sqlite)
             implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
             implementation("com.github.pjfanning:excel-streaming-reader:5.0.2")
             implementation("org.apache.xmlbeans:xmlbeans:3.1.0")
             implementation("javax.xml.stream:stax-api:1.0")
@@ -46,8 +90,12 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(compose.components.resources)
             implementation(libs.kotlinx.coroutines.swing)
-            implementation(compose.materialIconsExtended)
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
+        }
+
+        androidMain.dependencies {
+            implementation(compose.uiTooling)
+            implementation(libs.androidx.activityCompose)
         }
     }
 }
@@ -58,8 +106,64 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.ghostwalker18.scheduledesktop2"
+            packageName = "Schedule PCCE"
             packageVersion = "1.0.0"
+
+            linux {
+                iconFile.set(project.file("desktopAppIcons/LinuxIcon.png"))
+            }
+            /*windows {
+                iconFile.set(project.file("desktopAppIcons/WindowsIcon.ico"))
+            }*/
+        }
+    }
+}
+
+android {
+    namespace = "com.ghostwalker18.schedule"
+    compileSdk = 35
+
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file(keystoreProperties["keystore"].toString())
+            storePassword = keystoreProperties["keystorePassword"].toString()
+            keyAlias = keystoreProperties["keyAlias"].toString()
+            keyPassword = keystoreProperties["keyPassword"].toString()
+        }
+    }
+
+    defaultConfig {
+        minSdk = 26
+        targetSdk = 35
+
+        applicationId = "com.ghostwalker18.schedule"
+        versionCode = 14
+        versionName = "5.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = true
+            isDebuggable = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig = signingConfigs.getByName("release")
+        }
+
+        debug {
+            isMinifyEnabled = false
+            isDebuggable = true
+            enableUnitTestCoverage = true
         }
     }
 }

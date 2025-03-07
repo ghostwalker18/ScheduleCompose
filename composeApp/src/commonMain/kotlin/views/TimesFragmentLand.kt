@@ -14,14 +14,12 @@
 
 package views
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import getScheduleRepository
-
 
 /**
  * Эта функция представляет собой элемент интерфейса для отображения
@@ -30,7 +28,6 @@ import getScheduleRepository
  * @author  Ипатов Никита
  * @since 1.0
  */
-@Preview
 @Composable
 fun TimesFragment(){
     val repository = getScheduleRepository()

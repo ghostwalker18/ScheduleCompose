@@ -41,7 +41,6 @@ import scheduledesktop2.composeapp.generated.resources.filters
 import scheduledesktop2.composeapp.generated.resources.start_date
 import viewmodels.NotesModel
 
-
 /**
  * Этот класс служит для отображения панели фильтров заметок.
  *

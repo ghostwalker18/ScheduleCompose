@@ -16,7 +16,6 @@ package views
 
 import URLs
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
@@ -50,7 +49,6 @@ import viewmodels.DayModel
  * @author Ипатов Никита
  * @since 1.0
  */
-@Preview
 @Composable
 fun MainActivity() {
     val navigator = getNavigator()
