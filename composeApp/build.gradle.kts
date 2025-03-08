@@ -173,5 +173,8 @@ room {
 }
 
 dependencies{
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.firebase.common.ktx)
     add("kspDesktop", libs.androidx.room.compiler)
 }

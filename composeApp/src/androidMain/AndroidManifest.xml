@@ -45,7 +45,7 @@
             android:minSdkVersion="26">
 
         <activity
-                android:name=".MainActivity"
+                android:name=".activities.MainActivity"
                 android:exported="true"
                 android:label="@string/schedule"
                 android:launchMode="singleTop"
@@ -62,29 +62,29 @@
         </activity>
 
         <activity
-                android:name=".SettingsActivity"
+                android:name=".activities.SettingsActivity"
                 android:exported="false"
                 android:label="@string/settings"
-                android:parentActivityName=".MainActivity">
+                android:parentActivityName=".activities.MainActivity">
 
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".MainActivity"/>
+                    android:value=".activities.MainActivity"/>
         </activity>
 
         <activity
-                android:name=".ShareAppActivity"
+                android:name=".activities.ShareAppActivity"
                 android:exported="false"
                 android:label="@string/share_app"
-                android:parentActivityName=".SettingsActivity">
+                android:parentActivityName=".activities.SettingsActivity">
 
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".SettingsActivity"/>
+                    android:value=".activities.SettingsActivity"/>
         </activity>
 
         <activity
-                android:name=".WidgetSettingsActivity"
+                android:name=".activities.WidgetSettingsActivity"
                 android:exported="true">
 
             <intent-filter>
@@ -93,42 +93,42 @@
         </activity>
 
         <activity
-                android:name=".ScheduleItemActivity"
+                android:name=".activities.ScheduleItemActivity"
                 android:exported="false"
                 android:label="@string/day_table"
-                android:parentActivityName=".MainActivity">
+                android:parentActivityName=".activities.MainActivity">
 
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".MainActivity" />
+                    android:value=".activities.MainActivity" />
         </activity>
 
         <activity
-                android:name=".NotesActivity"
+                android:name=".activities.NotesActivity"
                 android:exported="false"
                 android:label="@string/notes_activity"
                 android:launchMode="singleTop"
-                android:parentActivityName=".MainActivity">
+                android:parentActivityName=".activities.MainActivity">
 
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".MainActivity"/>
+                    android:value=".activities.MainActivity"/>
         </activity>
 
         <activity
-                android:name=".EditNoteActivity"
+                android:name=".activities.EditNoteActivity"
                 android:exported="false"
                 android:label="@string/add_note"
                 android:screenOrientation="portrait"
-                android:parentActivityName=".NotesActivity">
+                android:parentActivityName=".activities.NotesActivity">
 
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".NotesActivity"/>
+                    android:value=".activities.NotesActivity"/>
         </activity>
 
         <activity
-                android:name=".PhotoViewActivity"
+                android:name=".activities.PhotoViewActivity"
                 android:exported="false"/>
 
         <provider
