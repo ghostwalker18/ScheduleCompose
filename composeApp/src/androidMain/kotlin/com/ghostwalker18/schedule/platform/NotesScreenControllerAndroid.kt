@@ -16,12 +16,30 @@ package com.ghostwalker18.schedule.platform
 
 import NotesScreenController
 import android.content.Context
+import android.content.Intent
+import com.ghostwalker18.schedule.ScheduleApp
+import io.appmetrica.analytics.AppMetrica
 import models.Note
 import org.jetbrains.compose.resources.StringResource
+import androidx.core.content.ContextCompat.startActivity
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.nothing_to_share
 
 class NotesScreenControllerAndroid(private val context: Context) : NotesScreenController {
 
     override fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource> {
-        TODO("Not yet implemented")
+        if (ScheduleApp.getInstance().isAppMetricaActivated)
+            AppMetrica.reportEvent("Поделились заметками")
+
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.setType("text/plain")
+        val notesToShare = StringBuilder()
+        for (note in notes) {
+            notesToShare.append(note.toString()).append("\n")
+        }
+        intent.putExtra(Intent.EXTRA_TEXT, notesToShare.toString())
+        val shareIntent = Intent.createChooser(intent, null)
+        startActivity(context, shareIntent, null)
+        return Pair(false, Res.string.nothing_to_share)
     }
 }

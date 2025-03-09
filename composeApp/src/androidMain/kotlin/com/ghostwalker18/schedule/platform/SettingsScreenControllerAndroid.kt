@@ -15,12 +15,37 @@
 package com.ghostwalker18.schedule.platform
 
 import SettingsActivityController
+import android.R
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+import com.ghostwalker18.schedule.ScheduleApp
+import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.getString
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.developer_email
+import scheduledesktop2.composeapp.generated.resources.nothing_to_share
+
 
 class SettingsScreenControllerAndroid(private val context: Context) : SettingsActivityController {
 
     override fun connectToDeveloper(): Pair<Boolean, StringResource> {
-        TODO("Not yet implemented")
+        try {
+            val intent = Intent(Intent.ACTION_SENDTO)
+            intent.setData(Uri.parse("mailto:")) // only email apps should handle this
+            intent.putExtra(Intent.EXTRA_EMAIL,
+                arrayOf(runBlocking { getString(Res.string.developer_email) }))
+            intent.putExtra(Intent.EXTRA_SUBJECT, runBlocking { getString(R.string.email_subject) } )
+            startActivity(context,
+                Intent.createChooser(intent, runBlocking { getString(R.string.connect_to_developer) }),
+            null)
+        } catch (e: ActivityNotFoundException) {
+            return Pair(true, Res.string.no_email_client_found)
+        } catch (ignored: Exception) { /*Not required*/ }
+        return Pair(false, Res.string.nothing_to_share)
     }
 }

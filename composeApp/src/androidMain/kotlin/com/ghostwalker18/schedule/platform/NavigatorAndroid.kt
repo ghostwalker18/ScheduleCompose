@@ -16,30 +16,54 @@ package com.ghostwalker18.schedule.platform
 
 import Navigator
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import androidx.core.content.ContextCompat.startActivity
+import com.ghostwalker18.schedule.activities.EditNoteActivity
+import com.ghostwalker18.schedule.activities.NotesActivity
+import com.ghostwalker18.schedule.activities.SettingsActivity
+import com.ghostwalker18.schedule.activities.ShareAppActivity
+import converters.DateConverters
+import views.ImportActivity
 import java.util.*
 
 class NavigatorAndroid(private val context: Context) : Navigator{
 
     override fun goBack() {
-        TODO("Not yet implemented")
+        finishActivity()
     }
 
     override fun goSettingsActivity() {
+        val intent = Intent(context, SettingsActivity::class.java)
+        startActivity(context, intent, null)
     }
 
     override fun goShareAppActivity() {
-        TODO("Not yet implemented")
+        val intent = Intent(context, ShareAppActivity::class.java)
+        startActivity(context, intent, null)
     }
 
     override fun goImportActivity() {
-        TODO("Not yet implemented")
+        val intent = Intent(context, ImportActivity()::class.java)
+        startActivity(context, intent, null)
     }
 
     override fun goNotesActivity(group: String, date: Calendar) {
-        TODO("Not yet implemented")
+        val bundle = Bundle()
+        val intent = Intent(context, NotesActivity::class.java)
+        bundle.putString("group", group)
+        bundle.putString("date", DateConverters().toString(date))
+        intent.putExtras(bundle)
+        startActivity(context, intent, null)
     }
 
     override fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?) {
-        TODO("Not yet implemented")
+        val intent: Intent = Intent(context, EditNoteActivity::class.java)
+        val bundle = Bundle()
+        bundle.putString("group", group)
+        bundle.putString("date", DateConverters().toString(date))
+        bundle.putInt("noteID", noteID ?: 0)
+        intent.putExtras(bundle)
+        startActivity(context, intent, null)
     }
 }

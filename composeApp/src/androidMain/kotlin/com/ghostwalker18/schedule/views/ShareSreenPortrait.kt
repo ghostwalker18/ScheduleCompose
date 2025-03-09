@@ -12,9 +12,11 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.schedule
+package com.ghostwalker18.schedule.views
 
-import android.appwidget.AppWidgetProvider
+import androidx.compose.runtime.Composable
 
-class ScheduleWidget : AppWidgetProvider() {
+@Composable
+fun ShareScreenPortrait(){
+
 }

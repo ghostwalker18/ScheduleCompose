@@ -110,6 +110,15 @@ kotlin {
     }
 }
 
+compose.resources {
+    customDirectory(
+        sourceSetName = "desktopMain",
+        directoryProvider = provider { layout.projectDirectory.dir(
+            "src/desktopMain/desktopResources"
+        ) }
+    )
+}
+
 compose.desktop {
     application {
         mainClass = "com.ghostwalker18.scheduledesktop2.MainKt"

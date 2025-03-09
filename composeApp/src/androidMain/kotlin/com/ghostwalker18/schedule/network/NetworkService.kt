@@ -45,7 +45,7 @@ class NetworkService(
 
         val isCachingEnabled = preferences.getBoolean("isCachingEnabled", true)
         if (isCachingEnabled) {
-            val cache: Cache = Cache(File(context.cacheDir, "http"), sizeOfCache)
+            val cache = Cache(File(context.cacheDir, "http"), sizeOfCache)
             val client = OkHttpClient().newBuilder()
                 .cache(cache)
                 .addInterceptor(CacheInterceptor())

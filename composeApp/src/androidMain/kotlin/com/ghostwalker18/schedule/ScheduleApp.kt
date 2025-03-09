@@ -14,6 +14,11 @@
 
 package com.ghostwalker18.schedule
 
+import MainScreenController
+import NotesScreenController
+import SettingsActivityController
+import ShareScreenController
+import URLs
 import android.R
 import android.app.Application
 import android.content.SharedPreferences
@@ -34,7 +39,6 @@ import database.AppDatabase
 import io.appmetrica.analytics.AppMetrica
 import io.appmetrica.analytics.AppMetricaConfig
 import models.NotesRepository
-import models.ScheduleRepository
 import ru.rustore.sdk.pushclient.RuStorePushClient
 import ru.rustore.sdk.pushclient.common.logger.DefaultLogger
 import ru.rustore.sdk.universalpush.RuStoreUniversalPushClient
@@ -52,15 +56,15 @@ import java.util.*
  * @version  5.0
  */
 class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeListener {
-    lateinit var mainActivityController: MainScreenControllerAndroid
-    lateinit var notesActivityController: NotesScreenControllerAndroid
-    lateinit var shareActivityController: ShareScreenControllerAndroid
-    lateinit var settingsActivityController: SettingsScreenControllerAndroid
+    lateinit var mainActivityController: MainScreenController
+    lateinit var notesActivityController: NotesScreenController
+    lateinit var shareActivityController: ShareScreenController
+    lateinit var settingsActivityController: SettingsActivityController
     lateinit var preferences: SharedPreferences
     lateinit var database: AppDatabase
     private lateinit var notesRepository: NotesRepository
     private lateinit var scheduleRepository: ScheduleRepositoryAndroid
-    private var isAppMetricaActivated = false
+    internal var isAppMetricaActivated = false
 
 
     override fun onCreate() {
@@ -71,7 +75,7 @@ class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeLis
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
         scheduleRepository = ScheduleRepositoryAndroid(
             database,
-            NetworkService(this, ScheduleRepository.BASE_URI, preferences).getScheduleAPI(),
+            NetworkService(this, URLs.BASE_URI, preferences).getScheduleAPI(),
 
         )
         scheduleRepository.update()
@@ -79,7 +83,10 @@ class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeLis
         val theme = preferences.getString("theme", "")
         //setTheme(theme)
         preferences.registerOnSharedPreferenceChangeListener(this)
-
+        mainActivityController = MainScreenControllerAndroid(this)
+        notesActivityController = NotesScreenControllerAndroid(this)
+        shareActivityController = ShareScreenControllerAndroid(this)
+        settingsActivityController = SettingsScreenControllerAndroid(this)
 
         //Initializing of third-party analytics and push services.
         try {

@@ -14,16 +14,25 @@
 
 package com.ghostwalker18.schedule.activities
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.views.ShareScreenPortrait
+import io.appmetrica.analytics.AppMetrica
 
 class ShareAppActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ShareAppActivity()
+            if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+                ShareAppActivity()
+            else
+                ShareScreenPortrait()
         }
+        if(ScheduleApp.getInstance().isAppMetricaActivated)
+            AppMetrica.reportEvent("Поделились приложением");
     }
 }
