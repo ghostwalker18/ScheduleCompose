@@ -49,7 +49,8 @@ abstract class AppDatabase : RoomDatabase(){
          * @return база данных Room
          */
         fun getInstance() : AppDatabase {
-            val dbFile = File(System.getProperty("java.io.tmpdir"), APP_DATABASE_NAME)
+            val dbFile = File(System.getProperty("user.dir"), APP_DATABASE_NAME)
+            val propertyes = System.getProperties().toList()
             val callback = object : Callback(){
                 override fun onCreate(connection: SQLiteConnection) {
                     super.onCreate(connection)

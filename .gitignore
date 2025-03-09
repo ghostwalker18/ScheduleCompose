@@ -18,3 +18,9 @@ captures
 **/xcshareddata/WorkspaceSettings.xcsettings
 /composeApp/mondayTimes.jpg
 /composeApp/otherTimes.jpg
+/composeApp/src/androidMain/res/values/non_public_strings.xml
+/composeApp/src/androidMain/google-services.json
+/composeApp/google-services.json
+/composeApp/database.db
+/composeApp/database.db.lck
+/composeApp/database.db-journal
