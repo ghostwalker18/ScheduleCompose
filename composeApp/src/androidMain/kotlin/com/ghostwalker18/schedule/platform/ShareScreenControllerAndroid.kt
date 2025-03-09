@@ -14,5 +14,13 @@
 
 package com.ghostwalker18.schedule.platform
 
-class ShareScreenControllerAndroid {
+import ShareScreenController
+import android.content.Context
+import org.jetbrains.compose.resources.StringResource
+
+class ShareScreenControllerAndroid(private val context: Context) : ShareScreenController {
+
+    override fun shareLink(): Pair<Boolean, StringResource> {
+        TODO("Not yet implemented")
+    }
 }

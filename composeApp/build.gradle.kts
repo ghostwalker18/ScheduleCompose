@@ -94,8 +94,18 @@ kotlin {
         }
 
         androidMain.dependencies {
+            implementation(libs.androidx.appcompat)
+            implementation(libs.firebase.common.ktx)
+            implementation(libs.androidx.work.runtime.ktx)
             implementation(compose.uiTooling)
             implementation(libs.androidx.activityCompose)
+            implementation("com.google.guava:guava:33.4.0-android")
+            implementation("io.appmetrica.analytics:analytics:7.5.0")
+            implementation("ru.rustore.sdk:universalpush:6.5.0")
+            implementation("ru.rustore.sdk:universalrustore:6.5.0")
+            implementation("ru.rustore.sdk:universalfcm:6.5.0")
+            implementation("com.google.firebase:firebase-messaging:22.0.0")
+            implementation("com.google.android.gms:play-services-base:17.5.0")
         }
     }
 }
@@ -173,8 +183,6 @@ room {
 }
 
 dependencies{
-    implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.firebase.common.ktx)
     add("kspDesktop", libs.androidx.room.compiler)
 }

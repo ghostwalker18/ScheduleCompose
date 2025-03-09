@@ -21,6 +21,9 @@ import android.preference.PreferenceManager
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
+import com.ghostwalker18.schedule.models.ScheduleRepositoryAndroid
+import com.ghostwalker18.schedule.network.NetworkService
+import com.ghostwalker18.schedule.notifications.NotificationManagerWrapper
 import com.ghostwalker18.schedule.platform.MainScreenControllerAndroid
 import com.ghostwalker18.schedule.platform.NotesScreenControllerAndroid
 import com.ghostwalker18.schedule.platform.SettingsScreenControllerAndroid
@@ -32,6 +35,7 @@ import io.appmetrica.analytics.AppMetrica
 import io.appmetrica.analytics.AppMetricaConfig
 import models.NotesRepository
 import models.ScheduleRepository
+import ru.rustore.sdk.pushclient.RuStorePushClient
 import ru.rustore.sdk.pushclient.common.logger.DefaultLogger
 import ru.rustore.sdk.universalpush.RuStoreUniversalPushClient
 import ru.rustore.sdk.universalpush.firebase.provides.FirebasePushProvider
@@ -52,9 +56,10 @@ class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeLis
     lateinit var notesActivityController: NotesScreenControllerAndroid
     lateinit var shareActivityController: ShareScreenControllerAndroid
     lateinit var settingsActivityController: SettingsScreenControllerAndroid
+    lateinit var preferences: SharedPreferences
     lateinit var database: AppDatabase
-    private val notesRepository: NotesRepository? = null
-    private val pushClient: RuStoreUniversalPushClient = RuStoreUniversalPushClient.INSTANCE
+    private lateinit var notesRepository: NotesRepository
+    private lateinit var scheduleRepository: ScheduleRepositoryAndroid
     private var isAppMetricaActivated = false
 
 
@@ -64,14 +69,15 @@ class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeLis
         instance = this
         database = AppDatabase.getInstance(this)
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
-        scheduleRepository = ScheduleRepository(
-            this, database,
-            NetworkService(this, ScheduleRepository.BASE_URI, preferences)
+        scheduleRepository = ScheduleRepositoryAndroid(
+            database,
+            NetworkService(this, ScheduleRepository.BASE_URI, preferences).getScheduleAPI(),
+
         )
         scheduleRepository.update()
         notesRepository = NotesRepository(database)
-        val theme: String = preferences.getString("theme", "")
-        setTheme(theme)
+        val theme = preferences.getString("theme", "")
+        //setTheme(theme)
         preferences.registerOnSharedPreferenceChangeListener(this)
 
 
@@ -93,16 +99,17 @@ class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeLis
      * Этот метод используется для инициализации доставки Push-уведомлений RuStore и Firebase.
      */
     private fun initPushes() {
-        pushClient.init(
+        RuStoreUniversalPushClient.init(
             this,
             RuStorePushProvider(
-                this, getString(R.string.rustore_api_key),  //from non-public strings
+                this,
+                getString(R.string.rustore_api_key),  //from non-public strings
                 DefaultLogger()
             ),
             FirebasePushProvider(this),
             null
         )
-        pushClient.getTokens()
+        RuStoreUniversalPushClient.getTokens()
             .addOnSuccessListener { result ->
                 Log.w(
                     "AppPushes", "getToken onSuccess = $result"
@@ -125,12 +132,12 @@ class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeLis
             getString(R.string.notifications_notification_schedule_update_channel_name),
             getString(R.string.notifications_notification_schedule_update_channel_descr)
         )
-        if (preferences.getBoolean("update_notifications", false)) pushClient.subscribeToTopic("update_notificatons")
+        if (preferences.getBoolean("update_notifications", false)) RuStorePushClient.subscribeToTopic("update_notificatons")
         if (preferences.getBoolean(
                 "schedule_notifications",
                 false
             )
-        ) pushClient.subscribeToTopic("schedule_notifications")
+        ) RuStorePushClient.subscribeToTopic("schedule_notifications")
     }
 
     override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
@@ -149,6 +156,6 @@ class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeLis
 
     companion object{
         private lateinit var instance: ScheduleApp
-
+        fun getInstance() = instance
     }
 }

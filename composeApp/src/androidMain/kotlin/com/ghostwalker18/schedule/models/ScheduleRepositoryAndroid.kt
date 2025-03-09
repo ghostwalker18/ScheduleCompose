@@ -14,5 +14,27 @@
 
 package com.ghostwalker18.schedule.models
 
-class ScheduleRepositoryAndroid {
+import database.AppDatabase
+import models.Lesson
+import models.ScheduleRepository
+import network.ScheduleNetworkAPI
+import org.apache.poi.ss.usermodel.Workbook
+import java.util.concurrent.Callable
+import java.util.prefs.Preferences
+import kotlin.reflect.KFunction1
+
+class ScheduleRepositoryAndroid(override val db: AppDatabase,
+                                private val api: ScheduleNetworkAPI,
+                                private val preferences: Preferences
+) : ScheduleRepository(db = db, api = api, preferences = preferences){
+    override fun updateSchedule(
+        linksGetter: Callable<List<String>>,
+        parser: KFunction1<Workbook, List<Lesson>>
+    ): UpdateResult {
+        TODO("Not yet implemented")
+    }
+
+    override fun updateTimes(): UpdateResult {
+        TODO("Not yet implemented")
+    }
 }

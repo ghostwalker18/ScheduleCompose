@@ -12,19 +12,18 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.schedule.platform
+package com.ghostwalker18.schedule.notifications
 
-import MainScreenController
-import android.content.Context
-import models.Lesson
-import org.jetbrains.compose.resources.StringResource
-
-class MainScreenControllerAndroid(private val context: Context) : MainScreenController {
-    override fun shareSchedule(lessons: Collection<Lesson>): Pair<Boolean, StringResource> {
-        TODO("Not yet implemented")
-    }
-
-    override fun shareTimes(): Pair<Boolean, StringResource> {
-        TODO("Not yet implemented")
-    }
-}
+/**
+ * Этот класс представляет собой модель Push-сообщения
+ *
+ * @author Ипатов Никита
+ * @since 4.1
+ */
+data class AppNotification(
+    val id: Int,
+    val title: String,
+    val message: String,
+    val channelId: String,
+    val channelName: String
+)
