@@ -15,6 +15,7 @@
 package com.ghostwalker18.schedule
 
 import MainScreenController
+import Navigator
 import NotesScreenController
 import SettingsActivityController
 import ShareScreenController
@@ -29,10 +30,7 @@ import androidx.core.os.LocaleListCompat
 import com.ghostwalker18.schedule.models.ScheduleRepositoryAndroid
 import com.ghostwalker18.schedule.network.NetworkService
 import com.ghostwalker18.schedule.notifications.NotificationManagerWrapper
-import com.ghostwalker18.schedule.platform.MainScreenControllerAndroid
-import com.ghostwalker18.schedule.platform.NotesScreenControllerAndroid
-import com.ghostwalker18.schedule.platform.SettingsScreenControllerAndroid
-import com.ghostwalker18.schedule.platform.ShareScreenControllerAndroid
+import com.ghostwalker18.schedule.platform.*
 import com.google.android.material.color.DynamicColors
 import com.google.firebase.FirebaseApp
 import database.AppDatabase
@@ -56,6 +54,7 @@ import java.util.*
  * @version  5.0
  */
 class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeListener {
+    lateinit var navigator: Navigator
     lateinit var mainActivityController: MainScreenController
     lateinit var notesActivityController: NotesScreenController
     lateinit var shareActivityController: ShareScreenController
@@ -83,6 +82,7 @@ class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeLis
         val theme = preferences.getString("theme", "")
         //setTheme(theme)
         preferences.registerOnSharedPreferenceChangeListener(this)
+        navigator = NavigatorAndroid(this)
         mainActivityController = MainScreenControllerAndroid(this)
         notesActivityController = NotesScreenControllerAndroid(this)
         shareActivityController = ShareScreenControllerAndroid(this)

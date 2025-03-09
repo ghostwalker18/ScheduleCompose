@@ -12,6 +12,10 @@
  * limitations under the License.
  */
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.platform.DownloadDialog
 import models.Lesson
 import models.Note
 import org.jetbrains.compose.resources.StringResource
@@ -46,4 +50,20 @@ actual interface ShareScreenController {
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual interface SettingsActivityController {
     actual fun connectToDeveloper(): Pair<Boolean, StringResource>
+}
+
+actual fun getNavigator(): Navigator = ScheduleApp.getInstance().navigator
+actual fun getMainScreenController(): MainScreenController = ScheduleApp.getInstance().mainActivityController
+actual fun getNotesScreenController(): NotesScreenController = ScheduleApp.getInstance().notesActivityController
+actual fun getShareScreenController(): ShareScreenController = ScheduleApp.getInstance().shareActivityController
+actual fun getSettingsScreenController(): SettingsActivityController = ScheduleApp.getInstance().settingsActivityController
+
+@Composable
+actual fun getDownloadDialog(
+    isEnabled: MutableState<Boolean>,
+    title: String,
+    links: Array<String>,
+    mimeType: String
+){
+    DownloadDialog(isEnabled, title, links, mimeType)
 }
