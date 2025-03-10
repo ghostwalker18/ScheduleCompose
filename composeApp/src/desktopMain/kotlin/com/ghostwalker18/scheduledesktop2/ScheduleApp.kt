@@ -29,6 +29,10 @@ import androidx.navigation.navArgument
 import com.ghostwalker18.scheduledesktop2.models.ScheduleRepositoryDesktop
 import com.ghostwalker18.scheduledesktop2.network.NetworkService
 import com.ghostwalker18.scheduledesktop2.platform.*
+import com.russhwolf.settings.ObservableSettings
+import com.russhwolf.settings.PreferencesSettings
+import com.russhwolf.settings.Settings
+import com.russhwolf.settings.get
 import converters.DateConverters
 import database.AppDatabase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -53,22 +57,29 @@ import javax.swing.UIManager
  * @author  Ипатов Никита
  * @version  1.0
  */
-class ScheduleApp : PreferenceChangeListener{
+class ScheduleApp {
     val scheduleRepository: ScheduleRepository
     val notesRepository: NotesRepository
     val mainActivityController: MainScreenControllerDesktop
     val notesActivityController: NotesScreenControllerDesktop
     val shareActivityController: ShareScreenConrollerDesktop
     val settingsActivityController: SettingsScreenControllerDesktop
-    val preferences: Preferences = Preferences.userNodeForPackage(ScheduleApp::class.java)
+    val preferences: ObservableSettings = PreferencesSettings(Preferences.userNodeForPackage(ScheduleApp::class.java))
     private val db: AppDatabase
     private val themeState: MutableStateFlow<String> = MutableStateFlow(preferences["theme", "system"])
     lateinit var navigator: NavigatorDesktop
 
+    val themeChangedListener = preferences.addStringListener("theme", "system"){
+        themeState.value = it
+    }
+
+    val localeChangedListener = preferences.addStringListener("language", "ru"){
+        setupLocale(it)
+    }
+
     init {
         instance = this
         db = AppDatabase.getInstance()
-        preferences.addPreferenceChangeListener(this)
         scheduleRepository = ScheduleRepositoryDesktop(
             db,
             NetworkService(URLs.BASE_URI).getScheduleAPI(),
@@ -80,7 +91,7 @@ class ScheduleApp : PreferenceChangeListener{
         shareActivityController = ShareScreenConrollerDesktop()
         settingsActivityController = SettingsScreenControllerDesktop()
         scheduleRepository.update()
-        setupLocale()
+        setupLocale(preferences["language", "ru"])
         setupFileChooser()
     }
 
@@ -163,17 +174,11 @@ class ScheduleApp : PreferenceChangeListener{
         }
     }
 
-    override fun preferenceChange(evt: PreferenceChangeEvent?) {
-        when(evt?.key){
-            "language" -> setupLocale()
-            "theme" -> themeState.value = preferences["theme", "system"]
-        }
-    }
 
     /**
      * Этот метод настраивает локаль приложения.
      */
-    private fun setupLocale(){
+    private fun setupLocale(locale: String){
         val locale = Locale(ScheduleApp.preferences["language", "ru"])
         Locale.setDefault(locale)
     }

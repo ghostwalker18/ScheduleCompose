@@ -15,7 +15,6 @@
 package com.ghostwalker18.schedule.notifications
 
 import android.Manifest
-import android.R
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
@@ -25,6 +24,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.ghostwalker18.schedule.R
 
 
 class NotificationManagerWrapper private constructor(private val notificationManager: NotificationManagerCompat) {

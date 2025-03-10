@@ -15,23 +15,20 @@
 package com.ghostwalker18.schedule.platform
 
 import ShareScreenController
-import android.R
 import android.content.Context
 import android.content.Intent
 import androidx.core.content.ContextCompat.startActivity
-import kotlinx.coroutines.runBlocking
+import com.ghostwalker18.schedule.R
 import org.jetbrains.compose.resources.StringResource
-import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.nothing_to_share
-
 
 class ShareScreenControllerAndroid(private val context: Context) : ShareScreenController {
 
     override fun shareLink(): Pair<Boolean, StringResource> {
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.setType("text/plain")
-        shareIntent.putExtra(Intent.EXTRA_TEXT, runBlocking { getString(R.string.rustore_link) })
+        shareIntent.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.rustore_link) )
         startActivity(context, shareIntent, null)
         return Pair(false, Res.string.nothing_to_share)
     }

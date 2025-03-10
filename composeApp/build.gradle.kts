@@ -73,6 +73,7 @@ kotlin {
             implementation(libs.sqlite)
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
+            implementation("com.russhwolf:multiplatform-settings:1.3.0")
             implementation("com.github.pjfanning:excel-streaming-reader:5.0.2")
             implementation("org.apache.xmlbeans:xmlbeans:3.1.0")
             implementation("javax.xml.stream:stax-api:1.0")
@@ -99,6 +100,7 @@ kotlin {
             implementation(libs.androidx.work.runtime.ktx)
             implementation(compose.uiTooling)
             implementation(libs.androidx.activityCompose)
+            implementation("androidx.preference:preference:1.2.1")
             implementation("com.google.guava:guava:33.4.0-android")
             implementation("io.appmetrica.analytics:analytics:7.5.0")
             implementation("ru.rustore.sdk:universalpush:6.5.0")
@@ -141,6 +143,11 @@ compose.desktop {
 android {
     namespace = "com.ghostwalker18.schedule"
     compileSdk = 35
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
 
     bundle {
         language {

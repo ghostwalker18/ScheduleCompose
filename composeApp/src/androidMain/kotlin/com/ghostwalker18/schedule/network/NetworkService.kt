@@ -16,6 +16,7 @@ package com.ghostwalker18.schedule.network
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.russhwolf.settings.Settings
 import network.CacheInterceptor
 import network.JsoupConverterFactory
 import network.ScheduleNetworkAPI
@@ -28,7 +29,7 @@ import java.util.concurrent.Executors
 class NetworkService(
     private val context: Context,
     private val baseUri: String,
-    private val preferences: SharedPreferences
+    private val preferences: Settings
 ) {
 
     private val sizeOfCache: Long = (10 * 1024 * 1024 // 10 MiB

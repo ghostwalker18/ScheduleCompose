@@ -14,6 +14,9 @@
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.room.RoomDatabase
+import com.russhwolf.settings.Settings
+import database.AppDatabase
 import models.Lesson
 import models.Note
 import models.NotesRepository
@@ -22,6 +25,8 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import java.util.*
 import java.util.prefs.Preferences
+
+expect fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>
 
 /**
  * Эта функция позволяет получить доступ к репозиторию расписания приложения.
@@ -36,7 +41,7 @@ expect fun getNotesRepository(): NotesRepository
 /**
  * Эта функция позволяет получить доступ к настройкам приложения.
  */
-expect fun getPreferences(): Preferences
+expect fun getPreferences(): Settings
 
 /**
  * Этот интерфейс описывает навигацию по приложению.

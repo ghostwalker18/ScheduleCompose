@@ -14,7 +14,6 @@
 
 package com.ghostwalker18.schedule.notifications
 
-import android.R
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -46,8 +45,8 @@ class ScheduleUpdateNotificationWorker(context: Context, workerParameters: Worke
         val service: ListeningExecutorService = MoreExecutors
             .listeningDecorator(Executors.newSingleThreadExecutor())
         return service.submit<Result> {
-            val repository: ScheduleRepository =
-                ScheduleApp.getInstance().getScheduleRepository()
+            /*val repository: ScheduleRepository =
+                ScheduleApp.getInstance().scheduleRepository
             val lastUpdateResult: ScheduleRepository.UpdateResult? = repository.updateResult
             val lastAvailableDate: Calendar? = runBlocking { repository.getLastKnownLessonDate(repository.savedGroup) }
             repository.update()
@@ -109,7 +108,7 @@ class ScheduleUpdateNotificationWorker(context: Context, workerParameters: Worke
                             )
                         )
                 }
-            }
+            }*/
             Result.success()
         }
     }

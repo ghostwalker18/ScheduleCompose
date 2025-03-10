@@ -24,9 +24,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.ghostwalker18.scheduledesktop2.widgets.ListPreference
-import com.ghostwalker18.scheduledesktop2.widgets.PreferenceCategory
-import com.ghostwalker18.scheduledesktop2.widgets.SwitchPreference
+import widgets.ListPreference
+import widgets.PreferenceCategory
+import widgets.SwitchPreference
 import getNavigator
 import getPreferences
 import getSettingsScreenController

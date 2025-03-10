@@ -23,6 +23,7 @@ import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import androidx.sqlite.execSQL
 import converters.DateConverters
 import database.DataBaseMigrations.migrations
+import getDatabaseBuilder
 import models.Lesson
 import models.Note
 import kotlinx.coroutines.Dispatchers
@@ -34,7 +35,7 @@ import java.io.File
  * @author  Ипатов Никита
  * @since 1.0
  */
-private const val APP_DATABASE_NAME: String = "database.db"
+const val APP_DATABASE_NAME: String = "database.db"
 
 @Database(entities = [Lesson::class, Note:: class], version = 5)
 @TypeConverters(DateConverters::class)
@@ -49,7 +50,6 @@ abstract class AppDatabase : RoomDatabase(){
          * @return база данных Room
          */
         fun getInstance() : AppDatabase {
-            val dbFile = File(System.getProperty("user.dir"), APP_DATABASE_NAME)
             val propertyes = System.getProperties().toList()
             val callback = object : Callback(){
                 override fun onCreate(connection: SQLiteConnection) {
@@ -58,9 +58,7 @@ abstract class AppDatabase : RoomDatabase(){
                     connection.execSQL(UPDATE_DAY_TRIGGER_2)
                 }
             }
-            val builder = Room.databaseBuilder<AppDatabase>(
-                name = dbFile.absolutePath,
-            )
+            val builder = getDatabaseBuilder()
                 .addCallback(callback)
                 .setQueryCoroutineContext(Dispatchers.Main)
                 .setJournalMode(JournalMode.TRUNCATE)

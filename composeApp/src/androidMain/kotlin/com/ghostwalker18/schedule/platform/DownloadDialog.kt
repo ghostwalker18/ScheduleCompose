@@ -49,6 +49,9 @@ fun DownloadDialog(
     mimeType: String
 ){
     var visibility by isEnabled
+    val downloadManager: DownloadManager = LocalContext
+        .current
+        .getSystemService(DownloadManager::class.java)
     if(visibility){
         AlertDialog(
             title = {
@@ -86,9 +89,6 @@ fun DownloadDialog(
                             .padding(10.dp)
                             .clickable {
                                 Thread {
-                                    val downloadManager: DownloadManager = LocalContext
-                                        .current
-                                        .getSystemService(DownloadManager::class.java)
                                     for (link in links) {
                                         val request = DownloadManager.Request(Uri.parse(link))
                                             .setMimeType(mimeType)

@@ -15,6 +15,8 @@
 package models
 
 import androidx.compose.ui.graphics.painter.Painter
+import com.russhwolf.settings.Settings
+import com.russhwolf.settings.get
 import converters.IConverter
 import converters.XMLStoLessonsConverter
 import database.AppDatabase
@@ -30,7 +32,6 @@ import java.util.concurrent.Callable
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import java.util.prefs.Preferences
 import kotlin.reflect.KFunction1
 
 /**
@@ -43,7 +44,7 @@ import kotlin.reflect.KFunction1
  */
 abstract class ScheduleRepository(protected open val db: AppDatabase,
                                   private val api: ScheduleNetworkAPI,
-                                  private val preferences: Preferences) {
+                                  private val preferences: Settings) {
     private val mainSelector = "h2:contains(Расписание занятий и объявления:) + div > table > tbody"
     private var updateFutures: MutableList<CompletableFuture<UpdateResult>> = mutableListOf()
     private val updateExecutorService: ExecutorService = Executors.newFixedThreadPool(4)
@@ -64,8 +65,8 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
         get() = db.lessonDao().getGroups().flowOn(Dispatchers.IO)
 
     var savedGroup: String?
-        get() = preferences.get("savedGroup", null)
-        set (value) = preferences.put("savedGroup", value)
+        get() = preferences["savedGroup"]
+        set (value) = preferences.putString("savedGroup", value ?: "")
 
     val mondayTimes: StateFlow<Painter?>
         get() = _mondayTimes.asStateFlow()
@@ -167,7 +168,7 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
                     allJobsDone = true
                     for (future in updateFutures) {
                         if (future.getNow(UpdateResult.FAIL) == UpdateResult.FAIL) {
-                            preferences.put(
+                            preferences.putString(
                                 "previous_update_result",
                                 UpdateResult.toInt(UpdateResult.FAIL).toString()
                             )

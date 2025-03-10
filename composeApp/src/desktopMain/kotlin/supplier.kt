@@ -14,8 +14,13 @@
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.ghostwalker18.scheduledesktop2.ScheduleApp
 import com.ghostwalker18.scheduledesktop2.platform.DownloadDialog
+import com.russhwolf.settings.Settings
+import database.APP_DATABASE_NAME
+import database.AppDatabase
 import models.Lesson
 import models.Note
 import models.NotesRepository
@@ -24,14 +29,21 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.qr_code
+import java.io.File
 import java.util.*
-import java.util.prefs.Preferences
+
+actual fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase> {
+    val dbFile = File(System.getProperty("user.dir"), APP_DATABASE_NAME)
+    return Room.databaseBuilder<AppDatabase>(
+        name = dbFile.absolutePath,
+    )
+}
 
 actual fun getScheduleRepository(): ScheduleRepository = ScheduleApp.getInstance().scheduleRepository
 
 actual fun getNotesRepository(): NotesRepository = ScheduleApp.getInstance().notesRepository
 
-actual fun getPreferences(): Preferences = ScheduleApp.getInstance().preferences
+actual fun getPreferences(): Settings = ScheduleApp.getInstance().preferences
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual interface Navigator{

@@ -12,14 +12,40 @@
  * limitations under the License.
  */
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.platform.DownloadDialog
+import com.russhwolf.settings.Settings
+import database.APP_DATABASE_NAME
+import database.AppDatabase
 import models.Lesson
 import models.Note
+import models.NotesRepository
+import models.ScheduleRepository
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.favicon
 import java.util.*
+
+actual fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>{
+    val context = ScheduleApp.getInstance() as Context
+    val dbFile = context.getDatabasePath(APP_DATABASE_NAME)
+    return Room.databaseBuilder<AppDatabase>(
+        context = context,
+        name = dbFile.absolutePath
+    )
+}
+
+actual fun getScheduleRepository(): ScheduleRepository = ScheduleApp.getInstance().scheduleRepository
+
+actual fun getNotesRepository(): NotesRepository = ScheduleApp.getInstance().notesRepository
+
+actual fun getPreferences(): Settings = ScheduleApp.getInstance().preferences
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual interface Navigator{
@@ -57,6 +83,8 @@ actual fun getMainScreenController(): MainScreenController = ScheduleApp.getInst
 actual fun getNotesScreenController(): NotesScreenController = ScheduleApp.getInstance().notesActivityController
 actual fun getShareScreenController(): ShareScreenController = ScheduleApp.getInstance().shareActivityController
 actual fun getSettingsScreenController(): SettingsActivityController = ScheduleApp.getInstance().settingsActivityController
+
+actual fun getAppQR(): DrawableResource = Res.drawable.favicon
 
 @Composable
 actual fun getDownloadDialog(

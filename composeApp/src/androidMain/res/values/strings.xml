@@ -21,4 +21,10 @@
     <string name="import_activity">Импорт/экспорт данных</string>
     <string name="notes_activity">Заметки</string>
     <string name="add_note">Новая заметка</string>
+    <string name="today">Сегодня</string>
+    <string name="date">Дата</string>
+    <string name="number">Пара</string>
+    <string name="room">Каб</string>
+    <string name="subject">Предмет</string>
+    <string name="teacher">Препод.</string>
 </resources>

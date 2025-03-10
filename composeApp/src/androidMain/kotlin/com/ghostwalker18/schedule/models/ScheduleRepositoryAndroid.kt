@@ -14,18 +14,18 @@
 
 package com.ghostwalker18.schedule.models
 
+import com.russhwolf.settings.Settings
 import database.AppDatabase
 import models.Lesson
 import models.ScheduleRepository
 import network.ScheduleNetworkAPI
 import org.apache.poi.ss.usermodel.Workbook
 import java.util.concurrent.Callable
-import java.util.prefs.Preferences
 import kotlin.reflect.KFunction1
 
 class ScheduleRepositoryAndroid(override val db: AppDatabase,
                                 private val api: ScheduleNetworkAPI,
-                                private val preferences: Preferences
+                                private val preferences: Settings
 ) : ScheduleRepository(db = db, api = api, preferences = preferences){
     override fun updateSchedule(
         linksGetter: Callable<List<String>>,

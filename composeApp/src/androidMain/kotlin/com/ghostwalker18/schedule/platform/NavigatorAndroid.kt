@@ -23,14 +23,13 @@ import com.ghostwalker18.schedule.activities.EditNoteActivity
 import com.ghostwalker18.schedule.activities.NotesActivity
 import com.ghostwalker18.schedule.activities.SettingsActivity
 import com.ghostwalker18.schedule.activities.ShareAppActivity
+import com.ghostwalker18.schedule.activities.ImportActivity
 import converters.DateConverters
-import views.ImportActivity
 import java.util.*
 
 class NavigatorAndroid(private val context: Context) : Navigator{
 
     override fun goBack() {
-        finishActivity()
     }
 
     override fun goSettingsActivity() {
@@ -44,7 +43,7 @@ class NavigatorAndroid(private val context: Context) : Navigator{
     }
 
     override fun goImportActivity() {
-        val intent = Intent(context, ImportActivity()::class.java)
+        val intent = Intent(context, ImportActivity::class.java)
         startActivity(context, intent, null)
     }
 
@@ -58,7 +57,7 @@ class NavigatorAndroid(private val context: Context) : Navigator{
     }
 
     override fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?) {
-        val intent: Intent = Intent(context, EditNoteActivity::class.java)
+        val intent = Intent(context, EditNoteActivity::class.java)
         val bundle = Bundle()
         bundle.putString("group", group)
         bundle.putString("date", DateConverters().toString(date))

@@ -20,10 +20,8 @@ import NotesScreenController
 import SettingsActivityController
 import ShareScreenController
 import URLs
-import android.R
 import android.app.Application
-import android.content.SharedPreferences
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
@@ -33,6 +31,10 @@ import com.ghostwalker18.schedule.notifications.NotificationManagerWrapper
 import com.ghostwalker18.schedule.platform.*
 import com.google.android.material.color.DynamicColors
 import com.google.firebase.FirebaseApp
+import com.russhwolf.settings.ObservableSettings
+import com.russhwolf.settings.SettingsListener
+import com.russhwolf.settings.SharedPreferencesSettings
+import com.russhwolf.settings.get
 import database.AppDatabase
 import io.appmetrica.analytics.AppMetrica
 import io.appmetrica.analytics.AppMetricaConfig
@@ -44,6 +46,7 @@ import ru.rustore.sdk.universalpush.firebase.provides.FirebasePushProvider
 import ru.rustore.sdk.universalpush.rustore.providers.RuStorePushProvider
 import java.util.*
 
+
 /**
  * <h1>Schedule</h1>
  * <p>
@@ -53,16 +56,18 @@ import java.util.*
  * @author  Ипатов Никита
  * @version  5.0
  */
-class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeListener {
+class ScheduleApp : Application() {
     lateinit var navigator: Navigator
     lateinit var mainActivityController: MainScreenController
     lateinit var notesActivityController: NotesScreenController
     lateinit var shareActivityController: ShareScreenController
     lateinit var settingsActivityController: SettingsActivityController
-    lateinit var preferences: SharedPreferences
+    lateinit var preferences: ObservableSettings
+    private lateinit var localeChangedListener: SettingsListener
+    private lateinit var themeChangedListener: SettingsListener
     lateinit var database: AppDatabase
-    private lateinit var notesRepository: NotesRepository
-    private lateinit var scheduleRepository: ScheduleRepositoryAndroid
+    lateinit var notesRepository: NotesRepository
+    lateinit var scheduleRepository: ScheduleRepositoryAndroid
     internal var isAppMetricaActivated = false
 
 
@@ -70,18 +75,25 @@ class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeLis
         super.onCreate()
         DynamicColors.applyToActivitiesIfAvailable(this)
         instance = this
-        database = AppDatabase.getInstance(this)
-        preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        database = AppDatabase.getInstance()
+        preferences = SharedPreferencesSettings(
+            PreferenceManager.getDefaultSharedPreferences(this)
+        )
+        localeChangedListener = preferences.addStringListener("language", "ru"){
+            setLocale(it)
+        }
+        themeChangedListener = preferences.addStringListener("theme", "system"){
+            setTheme(it)
+        }
         scheduleRepository = ScheduleRepositoryAndroid(
             database,
             NetworkService(this, URLs.BASE_URI, preferences).getScheduleAPI(),
-
+            preferences
         )
         scheduleRepository.update()
         notesRepository = NotesRepository(database)
-        val theme = preferences.getString("theme", "")
-        //setTheme(theme)
-        preferences.registerOnSharedPreferenceChangeListener(this)
+        val theme = preferences["theme", "system"]
+        setTheme(theme)
         navigator = NavigatorAndroid(this)
         mainActivityController = MainScreenControllerAndroid(this)
         notesActivityController = NotesScreenControllerAndroid(this)
@@ -147,10 +159,6 @@ class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeLis
         ) RuStorePushClient.subscribeToTopic("schedule_notifications")
     }
 
-    override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
-        TODO("Not yet implemented")
-    }
-
     /**
      * Этот метод позволяет установить язык приложения
      * @param localeCode код языка
@@ -159,6 +167,18 @@ class ScheduleApp : Application(), SharedPreferences.OnSharedPreferenceChangeLis
         val localeListCompat = if (localeCode == "system") LocaleListCompat.getEmptyLocaleList()
         else LocaleListCompat.create(Locale(localeCode))
         AppCompatDelegate.setApplicationLocales(localeListCompat)
+    }
+
+    /**
+     * Этот метод позволяет установить тему приложения
+     * @param theme код темы (system, day, night)
+     */
+    private fun setTheme(theme: String) {
+        when (theme) {
+            "system" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            "night" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            "day" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     companion object{

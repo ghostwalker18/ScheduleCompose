@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.scheduledesktop2.widgets
+package widgets
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,13 +27,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
+import com.russhwolf.settings.Settings
 import gray500Color
 import org.jetbrains.compose.resources.StringArrayResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringArrayResource
 import org.jetbrains.compose.resources.stringResource
-import widgets.bottomBorder
-import java.util.prefs.Preferences
 
 /**
  * Эта функция служит для группировки элементов настроек
@@ -65,7 +64,7 @@ fun PreferenceCategory(title: String, content: @Composable () -> Unit){
 fun SwitchPreference(title: StringResource,
                      key: String,
                      defaultValue: Boolean = false,
-                     preferences: Preferences
+                     preferences: Settings
 ){
     var checked by remember { mutableStateOf(preferences.getBoolean(key, defaultValue)) }
     Row(
@@ -97,7 +96,7 @@ fun ListPreference(title: StringResource,
                    key: String,
                    entryValues: StringArrayResource,
                    entries: StringArrayResource,
-                   preferences: Preferences
+                   preferences: Settings
 ){
     Column(modifier = Modifier.fillMaxWidth()) {
         var exp by remember { mutableStateOf(false) }
@@ -126,7 +125,7 @@ fun ListPreference(title: StringResource,
             val optionValues = stringArrayResource(entryValues)
             optionEntries.forEachIndexed{ index, entry ->
                 DropdownMenuItem({
-                    preferences.put(key, optionValues[index])
+                    preferences.putString(key, optionValues[index])
                     exp = false
                 }) {
                     Text(

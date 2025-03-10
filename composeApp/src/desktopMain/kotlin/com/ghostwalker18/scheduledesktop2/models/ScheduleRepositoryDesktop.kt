@@ -19,6 +19,7 @@ import com.github.pjfanning.xlsx.StreamingReader
 import com.github.pjfanning.xlsx.exceptions.OpenException
 import com.github.pjfanning.xlsx.exceptions.ParseException
 import com.github.pjfanning.xlsx.exceptions.ReadException
+import com.russhwolf.settings.Settings
 import database.AppDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -41,7 +42,6 @@ import java.nio.file.StandardCopyOption
 import java.util.ArrayList
 import java.util.concurrent.Callable
 import java.util.concurrent.CountDownLatch
-import java.util.prefs.Preferences
 import javax.imageio.ImageIO
 import kotlin.reflect.KFunction1
 
@@ -54,7 +54,7 @@ import kotlin.reflect.KFunction1
 class ScheduleRepositoryDesktop(
     override val db: AppDatabase,
     private val api: ScheduleNetworkAPI,
-    private val preferences: Preferences
+    private val preferences: Settings
 ): ScheduleRepository(db = db, api = api, preferences = preferences) {
     private val _scheduleFiles = mutableListOf<Pair<String, File>>()
     private val scope = CoroutineScope(Dispatchers.IO)
