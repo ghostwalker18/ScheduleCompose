@@ -14,12 +14,6 @@
 
 package com.ghostwalker18.schedule
 
-import MainScreenController
-import Navigator
-import NotesScreenController
-import SettingsActivityController
-import ShareScreenController
-import URLs
 import android.app.Application
 import androidx.preference.PreferenceManager
 import android.util.Log
@@ -35,10 +29,10 @@ import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.SettingsListener
 import com.russhwolf.settings.SharedPreferencesSettings
 import com.russhwolf.settings.get
-import database.AppDatabase
+import com.ghostwalker18.schedule.database.AppDatabase
 import io.appmetrica.analytics.AppMetrica
 import io.appmetrica.analytics.AppMetricaConfig
-import models.NotesRepository
+import com.ghostwalker18.schedule.models.NotesRepository
 import ru.rustore.sdk.pushclient.RuStorePushClient
 import ru.rustore.sdk.pushclient.common.logger.DefaultLogger
 import ru.rustore.sdk.universalpush.RuStoreUniversalPushClient

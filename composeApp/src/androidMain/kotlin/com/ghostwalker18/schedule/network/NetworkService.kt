@@ -15,11 +15,7 @@
 package com.ghostwalker18.schedule.network
 
 import android.content.Context
-import android.content.SharedPreferences
 import com.russhwolf.settings.Settings
-import network.CacheInterceptor
-import network.JsoupConverterFactory
-import network.ScheduleNetworkAPI
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

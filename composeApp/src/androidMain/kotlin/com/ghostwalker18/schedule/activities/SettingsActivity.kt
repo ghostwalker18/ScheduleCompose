@@ -17,6 +17,7 @@ package com.ghostwalker18.schedule.activities
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import com.ghostwalker18.schedule.views.SettingsActivity
 
 class SettingsActivity : AppCompatActivity() {
 

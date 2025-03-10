@@ -26,7 +26,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.ghostwalker18.schedule.R
 
-
 class NotificationManagerWrapper private constructor(private val notificationManager: NotificationManagerCompat) {
 
     /**

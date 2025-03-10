@@ -56,7 +56,15 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val desktopMain by getting
+
+        desktopMain.dependencies {
+            implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(compose.desktop.currentOs)
+            implementation(compose.components.resources)
+            implementation(libs.kotlinx.coroutines.swing)
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
+        }
         
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -82,16 +90,6 @@ kotlin {
             implementation("com.squareup.retrofit2:retrofit:2.9.0")
             implementation("org.jsoup:jsoup:1.12.2")
             implementation("com.google.code.gson:gson:2.11.0")
-        }
-
-        val desktopMain by getting
-
-        desktopMain.dependencies {
-            implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation(compose.desktop.currentOs)
-            implementation(compose.components.resources)
-            implementation(libs.kotlinx.coroutines.swing)
-            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
         }
 
         androidMain.dependencies {
@@ -123,7 +121,7 @@ compose.resources {
 
 compose.desktop {
     application {
-        mainClass = "com.ghostwalker18.scheduledesktop2.MainKt"
+        mainClass = "com.ghostwalker18.schedule.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
@@ -133,6 +131,7 @@ compose.desktop {
             linux {
                 iconFile.set(project.file("desktopAppIcons/LinuxIcon.png"))
             }
+
             /*windows {
                 iconFile.set(project.file("desktopAppIcons/WindowsIcon.ico"))
             }*/
@@ -201,4 +200,5 @@ room {
 dependencies{
     implementation(libs.material)
     add("kspDesktop", libs.androidx.room.compiler)
+    add("kspAndroid", libs.androidx.room.compiler)
 }

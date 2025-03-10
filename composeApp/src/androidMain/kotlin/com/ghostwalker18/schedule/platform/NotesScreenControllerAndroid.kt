@@ -14,12 +14,12 @@
 
 package com.ghostwalker18.schedule.platform
 
-import NotesScreenController
+import com.ghostwalker18.schedule.NotesScreenController
 import android.content.Context
 import android.content.Intent
 import com.ghostwalker18.schedule.ScheduleApp
 import io.appmetrica.analytics.AppMetrica
-import models.Note
+import com.ghostwalker18.schedule.models.Note
 import org.jetbrains.compose.resources.StringResource
 import androidx.core.content.ContextCompat.startActivity
 import scheduledesktop2.composeapp.generated.resources.Res

@@ -14,8 +14,7 @@
 
 package com.ghostwalker18.schedule.platform
 
-import SettingsActivityController
-import android.R
+import com.ghostwalker18.schedule.SettingsActivityController
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent

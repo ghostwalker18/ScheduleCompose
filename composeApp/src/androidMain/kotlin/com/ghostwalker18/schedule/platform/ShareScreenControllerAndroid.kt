@@ -14,7 +14,7 @@
 
 package com.ghostwalker18.schedule.platform
 
-import ShareScreenController
+import com.ghostwalker18.schedule.ShareScreenController
 import android.content.Context
 import android.content.Intent
 import androidx.core.content.ContextCompat.startActivity

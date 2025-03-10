@@ -14,7 +14,7 @@
 
 package com.ghostwalker18.schedule.platform
 
-import Navigator
+import com.ghostwalker18.schedule.Navigator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -24,7 +24,7 @@ import com.ghostwalker18.schedule.activities.NotesActivity
 import com.ghostwalker18.schedule.activities.SettingsActivity
 import com.ghostwalker18.schedule.activities.ShareAppActivity
 import com.ghostwalker18.schedule.activities.ImportActivity
-import converters.DateConverters
+import com.ghostwalker18.schedule.converters.DateConverters
 import java.util.*
 
 class NavigatorAndroid(private val context: Context) : Navigator{

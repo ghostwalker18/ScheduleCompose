@@ -19,6 +19,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.views.ShareAppActivity
 import com.ghostwalker18.schedule.views.ShareScreenPortrait
 import io.appmetrica.analytics.AppMetrica
 

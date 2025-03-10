@@ -14,22 +14,13 @@
 
 package com.ghostwalker18.schedule.notifications
 
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import androidx.work.ListenableWorker
 import androidx.work.WorkerParameters
-import com.ghostwalker18.schedule.ScheduleApp
-import com.ghostwalker18.schedule.activities.MainActivity
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.ListeningExecutorService
 import com.google.common.util.concurrent.MoreExecutors
-import converters.DateConverters
-import kotlinx.coroutines.runBlocking
-import models.ScheduleRepository
-import java.util.*
 import java.util.concurrent.Executors
-
 
 /**
  * Этот класс представляет собой работу

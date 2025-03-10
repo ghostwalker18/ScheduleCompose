@@ -1,0 +1,85 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.ghostwalker18.schedule.database
+
+import androidx.room.Database
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import androidx.sqlite.SQLiteConnection
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import androidx.sqlite.execSQL
+import com.ghostwalker18.schedule.converters.DateConverters
+import com.ghostwalker18.schedule.database.DataBaseMigrations.migrations
+import com.ghostwalker18.schedule.getDatabaseBuilder
+import com.ghostwalker18.schedule.models.Lesson
+import com.ghostwalker18.schedule.models.Note
+import kotlinx.coroutines.Dispatchers
+
+/**
+ * Этот класс используется Room для генерации класса для ORM операций с БД приложения.
+ *
+ * @author  Ипатов Никита
+ * @since 1.0
+ */
+const val APP_DATABASE_NAME: String = "database.db"
+
+@Database(entities = [Lesson::class, Note:: class], version = 5)
+@TypeConverters(DateConverters::class)
+abstract class AppDatabase : RoomDatabase(){
+    abstract fun lessonDao() : LessonDao
+    abstract fun noteDao() : NoteDao
+
+    companion object{
+
+        /**
+         * Этот метод позволяет получить сконфигурированную базу данных приложения по умолчанию.
+         * @return база данных Room
+         */
+        fun getInstance() : AppDatabase {
+            val propertyes = System.getProperties().toList()
+            val callback = object : Callback(){
+                override fun onCreate(connection: SQLiteConnection) {
+                    super.onCreate(connection)
+                    connection.execSQL(UPDATE_DAY_TRIGGER_1)
+                    connection.execSQL(UPDATE_DAY_TRIGGER_2)
+                }
+            }
+            val builder = getDatabaseBuilder()
+                .addCallback(callback)
+                .setQueryCoroutineContext(Dispatchers.Main)
+                .setJournalMode(JournalMode.TRUNCATE)
+                .setDriver(BundledSQLiteDriver())
+            for(migration in migrations)
+                builder.addMigrations(migration)
+            return builder.build()
+        }
+
+        const val UPDATE_DAY_TRIGGER_1 =
+            "CREATE TRIGGER IF NOT EXISTS update_day_stage1 " +
+                    "BEFORE INSERT ON tblSchedule " +
+                    "BEGIN " +
+                    "DELETE FROM tblSchedule WHERE groupName = NEW.groupName AND " +
+                    "                lessonDate = NEW.lessonDate AND " +
+                    "                lessonNumber = NEW.lessonNumber;" +
+                    "END;"
+
+        const val UPDATE_DAY_TRIGGER_2 =
+            "CREATE TRIGGER IF NOT EXISTS update_day_stage2 " +
+                    "AFTER INSERT ON tblSchedule " +
+                    "BEGIN " +
+                    "DELETE FROM tblSchedule WHERE subjectName = '';"+
+                    "END;"
+    }
+}

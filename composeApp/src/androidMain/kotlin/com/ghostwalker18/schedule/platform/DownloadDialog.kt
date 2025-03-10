@@ -39,7 +39,7 @@ import com.ghostwalker18.schedule.ScheduleApp
 import io.appmetrica.analytics.AppMetrica
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
-import utils.Utils
+import com.ghostwalker18.schedule.utils.Utils
 
 @Composable
 fun DownloadDialog(

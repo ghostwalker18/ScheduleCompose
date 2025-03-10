@@ -14,7 +14,7 @@
 
 package com.ghostwalker18.schedule.platform
 
-import MainScreenController
+import com.ghostwalker18.schedule.MainScreenController
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -22,7 +22,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.FileProvider
 import com.ghostwalker18.schedule.ScheduleApp
 import io.appmetrica.analytics.AppMetrica
-import models.Lesson
+import com.ghostwalker18.schedule.models.Lesson
 import org.jetbrains.compose.resources.StringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.nothing_to_share

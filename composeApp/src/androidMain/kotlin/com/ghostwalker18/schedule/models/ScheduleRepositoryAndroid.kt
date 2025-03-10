@@ -15,10 +15,8 @@
 package com.ghostwalker18.schedule.models
 
 import com.russhwolf.settings.Settings
-import database.AppDatabase
-import models.Lesson
-import models.ScheduleRepository
-import network.ScheduleNetworkAPI
+import com.ghostwalker18.schedule.database.AppDatabase
+import com.ghostwalker18.schedule.network.ScheduleNetworkAPI
 import org.apache.poi.ss.usermodel.Workbook
 import java.util.concurrent.Callable
 import kotlin.reflect.KFunction1
