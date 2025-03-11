@@ -14,7 +14,22 @@
 
 package com.ghostwalker18.schedule.activities
 
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 
-class ScheduleItemActivity : AppCompatActivity() {
+/**
+ * Этот класс представляет собой экран приложения для отображения расписания на день.
+ *
+ * @author  Ипатов Никита
+ * @since 1.0
+ */
+class ScheduleItemActivity : ComponentActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent{
+
+        }
+    }
 }

@@ -24,3 +24,4 @@ captures
 /composeApp/database.db
 /composeApp/database.db.lck
 /composeApp/database.db-journal
+/.fleet/receipt.json

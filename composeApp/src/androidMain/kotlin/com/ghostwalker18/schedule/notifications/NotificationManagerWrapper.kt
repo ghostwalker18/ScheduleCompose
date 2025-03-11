@@ -26,7 +26,16 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.ghostwalker18.schedule.R
 
-class NotificationManagerWrapper private constructor(private val notificationManager: NotificationManagerCompat) {
+/**
+ * Этот класс представляет собой надстройку над NotificationManagerCompat для удобства использования.
+ *
+ * @author Ипатов Никита
+ * @author RuStore
+ * @since 4.1
+ */
+class NotificationManagerWrapper private constructor(
+    private val notificationManager: NotificationManagerCompat
+) {
 
     /**
      * Этот метод позволяет создать канал для отправки и получения push-уведомлений.

@@ -16,20 +16,26 @@ package com.ghostwalker18.schedule.activities
 
 import android.content.res.Configuration
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
 import com.ghostwalker18.schedule.ScheduleApp
-import com.ghostwalker18.schedule.views.ShareAppActivity
+import com.ghostwalker18.schedule.views.ShareAppScreen
 import com.ghostwalker18.schedule.views.ShareScreenPortrait
 import io.appmetrica.analytics.AppMetrica
 
-class ShareAppActivity : AppCompatActivity() {
+/**
+ * Этот класс представляет собой экран, где пользователь может поделиться ссылкой на приложение.
+ *
+ * @author Ипатов Никита
+ * @since 3.0
+ */
+class ShareAppActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
-                ShareAppActivity()
+                ShareAppScreen()
             else
                 ShareScreenPortrait()
         }

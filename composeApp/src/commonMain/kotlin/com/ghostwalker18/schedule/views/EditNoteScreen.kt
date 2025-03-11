@@ -47,7 +47,7 @@ import java.util.*
  * @since 1.0
  */
 @Composable
-fun EditNoteActivity(
+fun EditNoteScreen(
     noteID: Int? = null,
     group: String? = getScheduleRepository().savedGroup,
     date: Calendar? = Calendar.getInstance()

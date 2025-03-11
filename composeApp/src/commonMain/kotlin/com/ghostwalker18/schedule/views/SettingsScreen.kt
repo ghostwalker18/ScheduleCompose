@@ -45,7 +45,7 @@ import scheduledesktop2.composeapp.generated.resources.schedule_style_entries
  * @since 1.0
  */
 @Composable
-fun SettingsActivity() {
+fun SettingsScreen() {
     val navigator = getNavigator()
     val preferences = getPreferences()
     val scaffoldState = rememberScaffoldState()

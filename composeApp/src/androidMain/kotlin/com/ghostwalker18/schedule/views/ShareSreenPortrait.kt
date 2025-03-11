@@ -16,6 +16,12 @@ package com.ghostwalker18.schedule.views
 
 import androidx.compose.runtime.Composable
 
+/**
+ * Эта функция представляет собой экран приложения для возможности поделиться им.
+ *
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 @Composable
 fun ShareScreenPortrait(){
 

@@ -22,6 +22,13 @@ import retrofit2.Retrofit
 import java.io.File
 import java.util.concurrent.Executors
 
+/**
+ * Этот класс используется для предоставления приложению услуг доступа к сети.
+ *
+ * @author Ipatov Nikita
+ * @since 3.1
+ * @see CacheInterceptor
+ */
 class NetworkService(
     private val context: Context,
     private val baseUri: String,

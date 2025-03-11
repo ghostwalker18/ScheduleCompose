@@ -15,16 +15,22 @@
 package com.ghostwalker18.schedule.activities
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
-import com.ghostwalker18.schedule.views.MainActivity
+import com.ghostwalker18.schedule.views.MainScreen
 
-class MainActivity : AppCompatActivity() {
+/**
+ * Этот класс представляет собой основной экран приложения.
+ *
+ * @author  Ипатов Никита
+ * @since 1.0
+ */
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainActivity()
+            MainScreen()
         }
     }
 }

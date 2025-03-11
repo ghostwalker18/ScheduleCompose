@@ -15,16 +15,22 @@
 package com.ghostwalker18.schedule.activities
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
-import com.ghostwalker18.schedule.views.EditNoteActivity
+import com.ghostwalker18.schedule.views.EditNoteScreen
 
-class EditNoteActivity: AppCompatActivity() {
+/**
+ * Этот класс представляет собой экран редактирования или добавления новой заметки
+ *
+ * @author Ипатов Никита
+ * @since 3.0
+ */
+class EditNoteActivity: ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            EditNoteActivity()
+            EditNoteScreen()
         }
     }
 }

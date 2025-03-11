@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.room) apply(false)
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.android.application).apply(false)
+    alias(libs.plugins.android.ibrary) apply false
     id("io.appmetrica.analytics") version "1.0.1" apply false
     id("org.jetbrains.dokka") version "2.0.0" apply false
 }

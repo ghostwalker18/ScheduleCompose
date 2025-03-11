@@ -112,16 +112,16 @@ class ScheduleApp {
                 startDestination = "main"
             ){
                 composable(route = "main"){
-                    MainActivity()
+                    MainScreen()
                 }
                 composable(route = "settings"){
-                    SettingsActivity()
+                    SettingsScreen()
                 }
                 composable(route = "shareApp") {
-                    ShareAppActivity()
+                    ShareAppScreen()
                 }
                 composable(route = "import") {
-                    ImportActivity()
+                    ImportScreen()
                 }
                 composable(
                     route = "notes/{group}/{date}",
@@ -134,7 +134,7 @@ class ScheduleApp {
                     val date = DateConverters().fromString(
                         stackEntry.arguments?.getString("date")
                     )
-                    NotesActivity(group, date)
+                    NotesSreen(group, date)
                 }
                 composable(
                     route = "editNote/{group}/{date}/{noteID}",
@@ -150,7 +150,7 @@ class ScheduleApp {
                         stackEntry.arguments?.getString("date")
                     )
                     val noteID = stackEntry.arguments?.getInt("noteID")
-                    EditNoteActivity(noteID, group, date)
+                    EditNoteScreen(noteID, group, date)
                 }
             }
 

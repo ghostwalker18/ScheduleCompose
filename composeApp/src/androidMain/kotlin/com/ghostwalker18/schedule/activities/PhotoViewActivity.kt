@@ -14,7 +14,22 @@
 
 package com.ghostwalker18.schedule.activities
 
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 
-class PhotoViewActivity : AppCompatActivity() {
+/**
+ * Этот класс используется для просмотра фото заметки в отдельном экране.
+ *
+ * @author Ипатов Никита
+ * @since 4.0
+ */
+class PhotoViewActivity : ComponentActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent{
+
+        }
+    }
 }

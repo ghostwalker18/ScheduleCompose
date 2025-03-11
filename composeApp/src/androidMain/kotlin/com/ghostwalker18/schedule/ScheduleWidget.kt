@@ -16,5 +16,11 @@ package com.ghostwalker18.schedule
 
 import android.appwidget.AppWidgetProvider
 
+/**
+ * Этот класс реализует функциональность виджета приложения по показу расписания на заданный день.
+ *
+ * @author Ипатов Никита
+ * @since 2.2
+ */
 class ScheduleWidget : AppWidgetProvider() {
 }

@@ -16,6 +16,13 @@ package com.ghostwalker18.schedule.views
 
 import androidx.compose.runtime.Composable
 
+/**
+ * Эта функция представляет собой элемент интерфейса для отображения
+ * расписания звонков.
+ *
+ * @author  Ипатов Никита
+ * @since 1.0
+ */
 @Composable
 fun TimesFragmentPortrait(){
 

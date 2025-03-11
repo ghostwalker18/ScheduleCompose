@@ -41,6 +41,12 @@ import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
 import com.ghostwalker18.schedule.utils.Utils
 
+/**
+ * Эта функция позволяет открыть диалог для скачивания файлов расписания.
+ *
+ * @author Ипатов Никита
+ * @since 1.0
+ */
 @Composable
 fun DownloadDialog(
     isEnabled: MutableState<Boolean>,

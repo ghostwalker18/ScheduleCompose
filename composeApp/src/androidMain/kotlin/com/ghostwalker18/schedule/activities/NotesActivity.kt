@@ -15,16 +15,22 @@
 package com.ghostwalker18.schedule.activities
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
-import com.ghostwalker18.schedule.views.NotesActivity
+import com.ghostwalker18.schedule.views.NotesSreen
 
-class NotesActivity : AppCompatActivity(){
+/**
+ * Этот класс представляет собой экран приложения, на котором отображаются заметки к занятиям.
+ *
+ * @author Ипатов Никита
+ * @since 3.0
+ */
+class NotesActivity : ComponentActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NotesActivity()
+            NotesSreen()
         }
     }
 }

@@ -51,7 +51,7 @@ import java.util.*
  * @since 1.0
  */
 @Composable
-fun NotesActivity(
+fun NotesSreen(
     group: String? = getScheduleRepository().savedGroup,
     date: Calendar? = Calendar.getInstance()
 ){

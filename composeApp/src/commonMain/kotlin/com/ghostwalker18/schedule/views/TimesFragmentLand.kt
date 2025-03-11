@@ -29,7 +29,7 @@ import com.ghostwalker18.schedule.getScheduleRepository
  * @since 1.0
  */
 @Composable
-fun TimesFragment(){
+fun TimesFragmentLand(){
     val repository = getScheduleRepository()
     val mondayPainter by repository.mondayTimes.collectAsState()
     val otherPainter by repository.otherTimes.collectAsState()

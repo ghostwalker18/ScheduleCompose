@@ -50,7 +50,7 @@ import com.ghostwalker18.schedule.viewmodels.DayModel
  * @since 1.0
  */
 @Composable
-fun MainActivity() {
+fun MainScreen() {
     val navigator = getNavigator()
     val worker = getMainScreenController()
     val scope = rememberCoroutineScope()
@@ -173,7 +173,7 @@ fun MainActivity() {
             HorizontalPager(pagerState){
                 when(it){
                     0 -> DaysFragment()
-                    1 -> TimesFragment()
+                    1 -> TimesFragmentLand()
                 }
             }
         }

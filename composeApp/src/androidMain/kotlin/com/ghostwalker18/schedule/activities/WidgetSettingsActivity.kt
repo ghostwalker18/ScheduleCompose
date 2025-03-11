@@ -14,7 +14,21 @@
 
 package com.ghostwalker18.schedule.activities
 
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 
-class WidgetSettingsActivity : AppCompatActivity() {
+/**
+ * Этот класс представляет собой экран настроек виджета приложения
+ *
+ * @author  Ипатов Никита
+ * @since 2.3
+ */
+class WidgetSettingsActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent{
+
+        }
+    }
 }

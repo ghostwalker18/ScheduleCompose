@@ -38,7 +38,7 @@ import scheduledesktop2.composeapp.generated.resources.operation_type
  * @since 1.0
  */
 @Composable
-fun ImportActivity(){
+fun ImportScreen(){
     val navigator = getNavigator()
     Scaffold(
         topBar = {
