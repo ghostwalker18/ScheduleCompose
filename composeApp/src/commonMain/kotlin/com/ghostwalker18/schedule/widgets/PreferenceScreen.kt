@@ -27,7 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
-import com.ghostwalker18.schedule.gray500Color
+import com.ghostwalker18.schedule.ui.theme.gray500Color
 import com.russhwolf.settings.Settings
 import org.jetbrains.compose.resources.StringArrayResource
 import org.jetbrains.compose.resources.StringResource

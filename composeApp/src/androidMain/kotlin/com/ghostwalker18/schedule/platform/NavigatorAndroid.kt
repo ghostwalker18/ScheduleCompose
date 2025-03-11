@@ -15,54 +15,35 @@
 package com.ghostwalker18.schedule.platform
 
 import com.ghostwalker18.schedule.Navigator
-import android.content.Context
-import android.content.Intent
-import android.os.Bundle
-import androidx.core.content.ContextCompat.startActivity
-import com.ghostwalker18.schedule.activities.EditNoteActivity
-import com.ghostwalker18.schedule.activities.NotesActivity
-import com.ghostwalker18.schedule.activities.SettingsActivity
-import com.ghostwalker18.schedule.activities.ShareAppActivity
-import com.ghostwalker18.schedule.activities.ImportActivity
+import androidx.navigation.NavController
 import com.ghostwalker18.schedule.converters.DateConverters
 import java.util.*
 
-class NavigatorAndroid(private val context: Context) : Navigator{
+class NavigatorAndroid(private val navController: NavController) : Navigator {
 
     override fun goBack() {
+        navController.navigateUp()
     }
 
-    override fun goSettingsActivity() {
-        val intent = Intent(context, SettingsActivity::class.java)
-        startActivity(context, intent, null)
+    override fun goSettingsActivity(){
+        navController.navigate("settings")
     }
 
-    override fun goShareAppActivity() {
-        val intent = Intent(context, ShareAppActivity::class.java)
-        startActivity(context, intent, null)
+    override fun goShareAppActivity(){
+        navController.navigate("shareApp")
     }
 
-    override fun goImportActivity() {
-        val intent = Intent(context, ImportActivity::class.java)
-        startActivity(context, intent, null)
+    override fun goImportActivity(){
+        navController.navigate("import")
     }
 
     override fun goNotesActivity(group: String, date: Calendar) {
-        val bundle = Bundle()
-        val intent = Intent(context, NotesActivity::class.java)
-        bundle.putString("group", group)
-        bundle.putString("date", DateConverters().toString(date))
-        intent.putExtras(bundle)
-        startActivity(context, intent, null)
+        val dateString = DateConverters().toString(date)!!
+        navController.navigate("notes/$group/$dateString")
     }
 
-    override fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?) {
-        val intent = Intent(context, EditNoteActivity::class.java)
-        val bundle = Bundle()
-        bundle.putString("group", group)
-        bundle.putString("date", DateConverters().toString(date))
-        bundle.putInt("noteID", noteID ?: 0)
-        intent.putExtras(bundle)
-        startActivity(context, intent, null)
+    override fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?){
+        val dateString = DateConverters().toString(date)!!
+        navController.navigate("editNote/$group/$dateString/$noteID")
     }
 }

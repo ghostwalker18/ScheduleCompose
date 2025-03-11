@@ -18,7 +18,7 @@ import android.content.res.Configuration
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import com.ghostwalker18.schedule.ScheduleTheme
+import com.ghostwalker18.schedule.ui.theme.ScheduleTheme
 
 /**
  * Эта функция устанавливает содержимое экрана
@@ -27,17 +27,15 @@ import com.ghostwalker18.schedule.ScheduleTheme
  * @author Ипатов Никита
  * @since 5.0
  */
-@Composable
 fun ComponentActivity.setContentWithTheme(content: @Composable () -> Unit){
     val currentNightMode = (resources.configuration.uiMode
             and Configuration.UI_MODE_NIGHT_MASK)
+    val isInDarkMode = when(currentNightMode){
+        Configuration.UI_MODE_NIGHT_YES -> true
+        else -> false
+    }
     setContent {
-        ScheduleTheme(
-            when(currentNightMode){
-                Configuration.UI_MODE_NIGHT_YES -> true
-                else -> false
-            }
-        ){
+        ScheduleTheme(isInDarkMode){
             content()
         }
     }

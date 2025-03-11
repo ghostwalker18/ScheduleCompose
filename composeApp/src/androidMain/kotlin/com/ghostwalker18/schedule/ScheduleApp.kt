@@ -33,13 +33,13 @@ import com.ghostwalker18.schedule.database.AppDatabase
 import io.appmetrica.analytics.AppMetrica
 import io.appmetrica.analytics.AppMetricaConfig
 import com.ghostwalker18.schedule.models.NotesRepository
+import com.ghostwalker18.schedule.utils.AndroidUtils
 import ru.rustore.sdk.pushclient.RuStorePushClient
 import ru.rustore.sdk.pushclient.common.logger.DefaultLogger
 import ru.rustore.sdk.universalpush.RuStoreUniversalPushClient
 import ru.rustore.sdk.universalpush.firebase.provides.FirebasePushProvider
 import ru.rustore.sdk.universalpush.rustore.providers.RuStorePushProvider
 import java.util.*
-
 
 /**
  * <h1>Schedule</h1>
@@ -89,7 +89,6 @@ class ScheduleApp : Application() {
         notesRepository = NotesRepository(database)
         val theme = preferences["theme", "system"]
         setTheme(theme)
-        navigator = NavigatorAndroid(this)
         mainActivityController = MainScreenControllerAndroid(this)
         notesActivityController = NotesScreenControllerAndroid(this)
         shareActivityController = ShareScreenControllerAndroid(this)
@@ -105,8 +104,8 @@ class ScheduleApp : Application() {
             FirebaseApp.initializeApp(this)
             // Initializing the RuStore Push SDK.
             initPushes()
-        } catch (e: Exception) { /*Not required*/
-        }
+        } catch (e: Exception) { /*Not required*/ }
+        AndroidUtils.clearPOICache(this)
     }
 
     /**

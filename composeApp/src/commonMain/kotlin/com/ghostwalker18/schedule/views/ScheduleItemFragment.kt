@@ -35,7 +35,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.schedule.getNavigator
 import com.ghostwalker18.schedule.getNotesRepository
-import com.ghostwalker18.schedule.gray500Color
+import com.ghostwalker18.schedule.ui.theme.gray500Color
 import kotlinx.coroutines.launch
 import com.ghostwalker18.schedule.models.Lesson
 import org.jetbrains.compose.resources.StringResource

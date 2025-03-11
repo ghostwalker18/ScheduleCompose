@@ -12,24 +12,15 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.schedule.activities
+package com.ghostwalker18.schedule.ui.theme
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import com.ghostwalker18.schedule.utils.setContentWithTheme
+import androidx.compose.runtime.Composable
 
 /**
- * Этот класс используется для просмотра фото заметки в отдельном экране.
- *
- * @author Ипатов Никита
- * @since 4.0
+ * Эта функция предоставляет тему приложению.
  */
-class PhotoViewActivity : ComponentActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentWithTheme {
-
-        }
-    }
-}
+@Composable
+expect fun ScheduleTheme(
+    darkTheme: Boolean = false,
+    content: @Composable () -> Unit
+)

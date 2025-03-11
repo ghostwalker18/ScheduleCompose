@@ -37,6 +37,7 @@ import kotlinx.coroutines.runBlocking
 import com.ghostwalker18.schedule.models.NotesRepository
 import com.ghostwalker18.schedule.views.*
 import com.ghostwalker18.schedule.models.ScheduleRepository
+import com.ghostwalker18.schedule.ui.theme.ScheduleTheme
 import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.*
 import java.util.*
