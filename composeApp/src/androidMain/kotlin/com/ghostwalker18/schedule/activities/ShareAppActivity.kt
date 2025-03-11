@@ -19,6 +19,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.utils.setContentWithTheme
 import com.ghostwalker18.schedule.views.ShareAppScreen
 import com.ghostwalker18.schedule.views.ShareScreenPortrait
 import io.appmetrica.analytics.AppMetrica
@@ -33,7 +34,7 @@ class ShareAppActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
+        setContentWithTheme {
             if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
                 ShareAppScreen()
             else

@@ -16,7 +16,7 @@ package com.ghostwalker18.schedule.activities
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import com.ghostwalker18.schedule.utils.setContentWithTheme
 import com.ghostwalker18.schedule.views.ImportScreen
 
 /**
@@ -29,7 +29,7 @@ class ImportActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent{
+        setContentWithTheme {
             ImportScreen()
         }
     }

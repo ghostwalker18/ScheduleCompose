@@ -12,30 +12,33 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.schedule.activities
+package com.ghostwalker18.schedule.utils
 
 import android.content.res.Configuration
-import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.Composable
 import com.ghostwalker18.schedule.ScheduleTheme
-import com.ghostwalker18.schedule.utils.setContentWithTheme
-import com.ghostwalker18.schedule.views.EditNoteScreen
-import com.ghostwalker18.schedule.views.ImportScreen
-import com.ghostwalker18.schedule.views.MainScreen
 
 /**
- * Этот класс представляет собой экран редактирования или добавления новой заметки
+ * Эта функция устанавливает содержимое экрана
+ * в соответствии с темой приложения и текущим ночным режимом.
  *
  * @author Ипатов Никита
- * @since 3.0
+ * @since 5.0
  */
-class EditNoteActivity: ComponentActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentWithTheme {
-            EditNoteScreen()
+@Composable
+fun ComponentActivity.setContentWithTheme(content: @Composable () -> Unit){
+    val currentNightMode = (resources.configuration.uiMode
+            and Configuration.UI_MODE_NIGHT_MASK)
+    setContent {
+        ScheduleTheme(
+            when(currentNightMode){
+                Configuration.UI_MODE_NIGHT_YES -> true
+                else -> false
+            }
+        ){
+            content()
         }
     }
 }
