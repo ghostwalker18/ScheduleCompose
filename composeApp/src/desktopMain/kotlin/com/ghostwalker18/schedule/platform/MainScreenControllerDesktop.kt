@@ -63,8 +63,8 @@ class MainScreenControllerDesktop : MainScreenController {
             .systemClipboard
             .setContents(
                 FileTransferable()
-                    .add(File(ScheduleRepository.mondayTimesPath))
-                    .add(File(ScheduleRepository.otherTimesPath)),
+                    .add(File(ScheduleRepository.MONDAY_TIMES_PATH))
+                    .add(File(ScheduleRepository.OTHER_TIMES_PATH)),
                 null
             )
         return Pair(true, Res.string.share_times_completed)

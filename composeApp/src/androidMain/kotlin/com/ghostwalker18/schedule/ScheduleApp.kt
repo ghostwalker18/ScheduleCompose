@@ -80,6 +80,7 @@ class ScheduleApp : Application() {
             setTheme(it)
         }
         scheduleRepository = ScheduleRepositoryAndroid(
+            this,
             database,
             NetworkService(this, URLs.BASE_URI, preferences).getScheduleAPI(),
             preferences

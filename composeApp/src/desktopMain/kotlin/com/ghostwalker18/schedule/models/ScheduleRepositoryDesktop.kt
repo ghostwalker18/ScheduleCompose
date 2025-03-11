@@ -21,8 +21,6 @@ import com.github.pjfanning.xlsx.exceptions.ParseException
 import com.github.pjfanning.xlsx.exceptions.ReadException
 import com.russhwolf.settings.Settings
 import com.ghostwalker18.schedule.database.AppDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import com.ghostwalker18.schedule.network.ScheduleNetworkAPI
 import okhttp3.ResponseBody
@@ -55,7 +53,6 @@ class ScheduleRepositoryDesktop(
     private val preferences: Settings
 ): ScheduleRepository(db = db, api = api, preferences = preferences) {
     private val _scheduleFiles = mutableListOf<Pair<String, File>>()
-    private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun updateSchedule(
         linksGetter: Callable<List<String>>,
@@ -184,8 +181,8 @@ class ScheduleRepositoryDesktop(
     }
 
     override fun updateTimes(): UpdateResult {
-        val mondayTimesFile = File(mondayTimesPath)
-        val otherTimesFile = File(otherTimesPath)
+        val mondayTimesFile = File(MONDAY_TIMES_PATH)
+        val otherTimesFile = File(OTHER_TIMES_PATH)
         if (!preferences.getBoolean(
                 "doNotUpdateTimes",
                 true

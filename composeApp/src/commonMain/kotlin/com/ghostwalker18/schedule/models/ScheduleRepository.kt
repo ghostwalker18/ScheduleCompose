@@ -23,6 +23,7 @@ import com.ghostwalker18.schedule.database.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import com.ghostwalker18.schedule.network.ScheduleNetworkAPI
+import kotlinx.coroutines.CoroutineScope
 import org.apache.poi.ss.usermodel.Workbook
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
@@ -53,6 +54,7 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
     protected val _mondayTimes = MutableStateFlow<Painter?>(null)
     protected val _otherTimes = MutableStateFlow<Painter?>(null)
     protected  val _status = MutableStateFlow(Status("", 0))
+    protected val scope = CoroutineScope(Dispatchers.IO)
 
     var updateResult: CompletableFuture<UpdateResult>? = null
 
@@ -213,7 +215,7 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
     protected abstract fun updateTimes(): UpdateResult
 
     companion object{
-        val mondayTimesPath = "mondayTimes.jpg"
-        val otherTimesPath = "otherTimes.jpg"
+        const val MONDAY_TIMES_PATH = "mondayTimes.jpg"
+        const val OTHER_TIMES_PATH = "otherTimes.jpg"
     }
 }
