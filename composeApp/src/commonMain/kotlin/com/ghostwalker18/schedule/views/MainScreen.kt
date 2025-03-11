@@ -16,6 +16,7 @@ package com.ghostwalker18.schedule.views
 
 import com.ghostwalker18.schedule.URLs
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
@@ -143,11 +144,16 @@ fun MainScreen() {
                 .padding(innerPadding)
         ){
             TabRow(
-                selectedTabIndex = 0
+                selectedTabIndex = pagerState.currentPage,
             ){
                 Tab(
                     modifier = Modifier
-                        .padding(15.dp),
+                        .background(
+                            if(pagerState.currentPage == 0)
+                                MaterialTheme.colors.secondary
+                            else
+                                MaterialTheme.colors.primary
+                        ),
                     selected = pagerState.currentPage == 0,
                     onClick = {
                         scope.launch {
@@ -155,11 +161,20 @@ fun MainScreen() {
                         }
                     }
                 ){
-                    Text(stringResource(Res.string.days_tab))
+                    Text(
+                        modifier = Modifier
+                            .padding(15.dp),
+                        text = stringResource(Res.string.days_tab)
+                    )
                 }
                 Tab(
                     modifier = Modifier
-                        .padding(15.dp),
+                        .background(
+                            if(pagerState.currentPage == 1)
+                                MaterialTheme.colors.secondary
+                            else
+                                MaterialTheme.colors.primary
+                        ),
                     selected = pagerState.currentPage == 1,
                     onClick = {
                         scope.launch {
@@ -167,7 +182,11 @@ fun MainScreen() {
                         }
                     }
                 ){
-                    Text(stringResource(Res.string.times_tab))
+                    Text(
+                        modifier = Modifier
+                            .padding(15.dp),
+                        text = stringResource(Res.string.times_tab)
+                    )
                 }
             }
             HorizontalPager(pagerState){
