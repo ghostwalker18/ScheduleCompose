@@ -33,6 +33,8 @@ import scheduledesktop2.composeapp.generated.resources.qr_code
 import java.io.File
 import java.util.*
 
+actual fun getScreenOrientation(): Orientation = Orientation.LandScape
+
 actual fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase> {
     val dbFile = File(System.getProperty("user.dir"), APP_DATABASE_NAME)
     return Room.databaseBuilder<AppDatabase>(

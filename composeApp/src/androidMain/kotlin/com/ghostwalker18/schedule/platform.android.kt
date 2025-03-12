@@ -15,6 +15,7 @@
 package com.ghostwalker18.schedule
 
 import android.content.Context
+import android.content.res.Configuration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.room.Room
@@ -32,6 +33,13 @@ import org.jetbrains.compose.resources.StringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.favicon
 import java.util.*
+
+actual fun getScreenOrientation(): Orientation {
+    return when (ScheduleApp.getInstance().resources.configuration.orientation){
+        Configuration.ORIENTATION_PORTRAIT -> Orientation.Portrait
+        else -> Orientation.LandScape
+    }
+}
 
 actual fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>{
     val context = ScheduleApp.getInstance() as Context

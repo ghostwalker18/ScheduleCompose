@@ -16,6 +16,8 @@ package com.ghostwalker18.schedule.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -37,8 +39,10 @@ fun TimesFragmentLand(){
     Row(
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
     ) {
         mondayPainter?.let {
+            val aspectRatio = it.intrinsicSize.width / it.intrinsicSize.height
             Image(
                 painter = it,
                 contentDescription = null,
@@ -46,9 +50,11 @@ fun TimesFragmentLand(){
                     .fillMaxHeight()
                     .weight(0.5f)
                     .padding(15.dp)
+                    .aspectRatio(aspectRatio)
             )
         }
         otherPainter?.let {
+            val aspectRatio = it.intrinsicSize.width / it.intrinsicSize.height
             Image(
                 painter = it,
                 contentDescription = null,
@@ -56,6 +62,7 @@ fun TimesFragmentLand(){
                     .fillMaxHeight()
                     .weight(0.5f)
                     .padding(15.dp)
+                    .aspectRatio(aspectRatio)
             )
         }
     }

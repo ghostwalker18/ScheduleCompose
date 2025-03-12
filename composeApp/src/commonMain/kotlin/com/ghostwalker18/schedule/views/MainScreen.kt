@@ -14,7 +14,6 @@
 
 package com.ghostwalker18.schedule.views
 
-import com.ghostwalker18.schedule.URLs
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -30,10 +29,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ghostwalker18.schedule.getDownloadDialog
-import com.ghostwalker18.schedule.getMainScreenController
-import com.ghostwalker18.schedule.getNavigator
-import com.ghostwalker18.schedule.getScheduleRepository
+import com.ghostwalker18.schedule.*
 import kotlinx.coroutines.launch
 import com.ghostwalker18.schedule.models.Lesson
 import org.jetbrains.compose.resources.getString
@@ -191,8 +187,14 @@ fun MainScreen() {
             }
             HorizontalPager(pagerState){
                 when(it){
-                    0 -> DaysFragment()
-                    1 -> TimesFragmentLand()
+                    0 -> when(getScreenOrientation()){
+                        Orientation.Portrait -> DaysFragmentPortrait()
+                        else -> DaysFragmentLand()
+                    }
+                    1 -> when(getScreenOrientation()){
+                        Orientation.Portrait -> TimesFragmentPortrait()
+                        else -> TimesFragmentLand()
+                    }
                 }
             }
         }

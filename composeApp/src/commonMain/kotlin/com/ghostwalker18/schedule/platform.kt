@@ -27,6 +27,12 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import java.util.*
 
+enum class Orientation{
+    Portrait, LandScape
+}
+
+expect fun getScreenOrientation(): Orientation
+
 expect fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>
 
 /**

@@ -49,7 +49,7 @@ import com.ghostwalker18.schedule.viewmodels.ScheduleModel
  * @since 1.0
  */
 @Composable
-fun DaysFragment(){
+fun DaysFragmentLand(){
     val repository = getScheduleRepository()
     val model: ScheduleModel = viewModel { ScheduleModel() }
     val group by model.group.collectAsState()
@@ -72,6 +72,13 @@ fun DaysFragment(){
             .padding(15.dp)
     ){
         var showDatePicker by remember { mutableStateOf(false) }
+        if(showDatePicker)
+            DatePickerModal(
+                confirmButtonText = Res.string.go_to_date,
+                dismissButtonText = Res.string.cancelButtonText,
+                onDismiss = { showDatePicker = false },
+                onDateSelected = { model.calendar.value = it }
+            )
         CustomButton(
             onClick = { model.goPreviousWeek() },
             onLongClick = { showDatePicker = true },
@@ -82,13 +89,6 @@ fun DaysFragment(){
         ){
             Text(stringResource(Res.string.back))
         }
-        if(showDatePicker)
-            DatePickerModal(
-                confirmButtonText = Res.string.go_to_date,
-                dismissButtonText = Res.string.cancelButtonText,
-                onDismiss = { showDatePicker = false },
-                onDateSelected = { model.calendar.value = it }
-            )
         Column(
             modifier = Modifier
                 .weight(0.75f)
