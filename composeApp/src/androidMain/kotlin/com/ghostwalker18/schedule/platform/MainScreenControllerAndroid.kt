@@ -14,6 +14,7 @@
 
 package com.ghostwalker18.schedule.platform
 
+import android.app.Activity
 import com.ghostwalker18.schedule.MainScreenController
 import android.content.Context
 import android.content.Intent
@@ -39,16 +40,18 @@ class MainScreenControllerAndroid(private val context: Context) : MainScreenCont
             for (lesson in lessons) {
                 schedule.append(lesson.toString(), "\n")
             }
+
             val intent = Intent(Intent.ACTION_SEND)
             intent.setType("text/plain")
-
             intent.putExtra(Intent.EXTRA_TEXT, schedule.toString())
-            val shareIntent = Intent.createChooser(intent, null)
 
+            val shareIntent = Intent.createChooser(intent, null)
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            context.startActivity(shareIntent, null)
             if (ScheduleApp.getInstance().isAppMetricaActivated)
                 AppMetrica.reportEvent("Поделились расписанием занятий")
 
-            startActivity(context, shareIntent, null)
             return Pair(false, Res.string.nothing_to_share)
         }
     }
@@ -72,11 +75,14 @@ class MainScreenControllerAndroid(private val context: Context) : MainScreenCont
             )
             imageUris.add(otherTimesURI)
 
-            val shareIntent = Intent(Intent.ACTION_SEND_MULTIPLE)
-            shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris)
-            shareIntent.setType("image/*")
-            startActivity(context, Intent.createChooser(shareIntent, null), null)
+            val intent = Intent(Intent.ACTION_SEND_MULTIPLE)
+            intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris)
+            intent.setType("image/*")
 
+            val shareIntent = Intent.createChooser(intent, null)
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            context.startActivity(shareIntent, null)
             if (ScheduleApp.getInstance().isAppMetricaActivated)
                 AppMetrica.reportEvent("Поделились расписанием звонков")
 

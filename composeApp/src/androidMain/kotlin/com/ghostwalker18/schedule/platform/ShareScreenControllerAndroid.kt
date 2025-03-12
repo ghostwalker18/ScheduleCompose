@@ -26,10 +26,14 @@ import scheduledesktop2.composeapp.generated.resources.nothing_to_share
 class ShareScreenControllerAndroid(private val context: Context) : ShareScreenController {
 
     override fun shareLink(): Pair<Boolean, StringResource> {
-        val shareIntent = Intent(Intent.ACTION_SEND)
-        shareIntent.setType("text/plain")
-        shareIntent.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.rustore_link) )
-        startActivity(context, shareIntent, null)
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.setType("text/plain")
+        intent.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.rustore_link) )
+
+        val shareIntent = Intent.createChooser(intent, null)
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+        startActivity(context, intent, null)
         return Pair(false, Res.string.nothing_to_share)
     }
 }

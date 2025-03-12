@@ -95,7 +95,7 @@ class ScheduleApp : Application() {
         settingsActivityController = SettingsScreenControllerAndroid(this)
 
         //Initializing of third-party analytics and push services.
-        try {
+        /*try {
             val appMetricaApiKey = getString(R.string.app_metrica_api_key) //from non-public strings
             val config: AppMetricaConfig = AppMetricaConfig.newConfigBuilder(appMetricaApiKey).build()
             // Initializing the AppMetrica SDK.
@@ -104,7 +104,7 @@ class ScheduleApp : Application() {
             FirebaseApp.initializeApp(this)
             // Initializing the RuStore Push SDK.
             initPushes()
-        } catch (e: Exception) { /*Not required*/ }
+        } catch (e: Exception) { /*Not required*/ }*/
         AndroidUtils.clearPOICache(this)
     }
 

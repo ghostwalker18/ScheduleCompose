@@ -37,9 +37,14 @@ class SettingsScreenControllerAndroid(private val context: Context) : SettingsAc
             intent.putExtra(Intent.EXTRA_EMAIL,
                 arrayOf(runBlocking { getString(Res.string.developer_email) }))
             intent.putExtra(Intent.EXTRA_SUBJECT, runBlocking { getString(Res.string.developer_email) } )
-            startActivity(context,
-                Intent.createChooser(intent, runBlocking { getString(Res.string.developer_email) }),
-            null)
+
+            val shareIntent = Intent.createChooser(
+                intent,
+                runBlocking { getString(Res.string.developer_email) }
+            )
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            context.startActivity(shareIntent, null)
         } catch (e: ActivityNotFoundException) {
             return Pair(true, Res.string.developer_email)
         } catch (ignored: Exception) { /*Not required*/ }

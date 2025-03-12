@@ -28,18 +28,22 @@ import scheduledesktop2.composeapp.generated.resources.nothing_to_share
 class NotesScreenControllerAndroid(private val context: Context) : NotesScreenController {
 
     override fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource> {
-        if (ScheduleApp.getInstance().isAppMetricaActivated)
-            AppMetrica.reportEvent("Поделились заметками")
-
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.setType("text/plain")
         val notesToShare = StringBuilder()
         for (note in notes) {
             notesToShare.append(note.toString()).append("\n")
         }
+
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.setType("text/plain")
         intent.putExtra(Intent.EXTRA_TEXT, notesToShare.toString())
+
         val shareIntent = Intent.createChooser(intent, null)
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
         startActivity(context, shareIntent, null)
+        if (ScheduleApp.getInstance().isAppMetricaActivated)
+            AppMetrica.reportEvent("Поделились заметками")
+
         return Pair(false, Res.string.nothing_to_share)
     }
 }
