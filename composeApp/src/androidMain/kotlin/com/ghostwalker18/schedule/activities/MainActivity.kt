@@ -21,8 +21,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.ghostwalker18.schedule.Orientation
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.converters.DateConverters
+import com.ghostwalker18.schedule.getScreenOrientation
 import com.ghostwalker18.schedule.platform.NavigatorAndroid
 import com.ghostwalker18.schedule.utils.setContentWithTheme
 import com.ghostwalker18.schedule.views.*
@@ -51,7 +53,10 @@ class MainActivity : ComponentActivity() {
                     SettingsScreen()
                 }
                 composable(route = "shareApp") {
-                    ShareAppScreen()
+                    when(getScreenOrientation()){
+                        Orientation.Portrait -> ShareAppScreenPortrait()
+                        else -> ShareAppScreenLand()
+                    }
                 }
                 composable(route = "import") {
                     ImportScreen()

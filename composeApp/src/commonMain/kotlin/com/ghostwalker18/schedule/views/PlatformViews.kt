@@ -23,4 +23,4 @@ expect fun DaysFragmentPortrait()
 expect fun TimesFragmentPortrait()
 
 @Composable
-expect fun ShareScreenPortrait()
+expect fun ShareAppScreenPortrait()

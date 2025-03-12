@@ -117,6 +117,13 @@ compose.resources {
             "src/desktopMain/desktopResources"
         ) }
     )
+
+    customDirectory(
+        sourceSetName = "androidMain",
+        directoryProvider = provider { layout.projectDirectory.dir(
+            "src/androidMain/androidResources"
+        ) }
+    )
 }
 
 compose.desktop {

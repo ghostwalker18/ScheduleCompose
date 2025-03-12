@@ -44,7 +44,7 @@ import scheduledesktop2.composeapp.generated.resources.share_app
  * @since 1.0
  */
 @Composable
-fun ShareAppScreen() {
+fun ShareAppScreenLand() {
     val navigator = getNavigator()
     val worker = getShareScreenController()
     val scaffoldState = rememberScaffoldState()

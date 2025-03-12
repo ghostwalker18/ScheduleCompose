@@ -23,4 +23,4 @@ actual fun DaysFragmentPortrait() {}
 actual fun TimesFragmentPortrait(){}
 
 @Composable
-actual fun ShareScreenPortrait(){}
+actual fun ShareAppScreenPortrait(){}

@@ -119,7 +119,7 @@ class ScheduleApp {
                     SettingsScreen()
                 }
                 composable(route = "shareApp") {
-                    ShareAppScreen()
+                    ShareAppScreenLand()
                 }
                 composable(route = "import") {
                     ImportScreen()

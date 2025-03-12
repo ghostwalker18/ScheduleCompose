@@ -32,6 +32,7 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.favicon
+import scheduledesktop2.composeapp.generated.resources.qr_code
 import java.util.*
 
 actual fun getScreenOrientation(): Orientation {
@@ -93,7 +94,7 @@ actual fun getNotesScreenController(): NotesScreenController = ScheduleApp.getIn
 actual fun getShareScreenController(): ShareScreenController = ScheduleApp.getInstance().shareActivityController
 actual fun getSettingsScreenController(): SettingsActivityController = ScheduleApp.getInstance().settingsActivityController
 
-actual fun getAppQR(): DrawableResource = Res.drawable.favicon
+actual fun getAppQR(): DrawableResource = Res.drawable.qr_code
 
 @Composable
 actual fun getDownloadDialog(
