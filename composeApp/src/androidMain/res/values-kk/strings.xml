@@ -13,5 +13,11 @@
   ~ limitations under the License.
   -->
 <resources>
-
+    <string name="app_name">Кесте ПСҚК</string>
+    <string name="today">Бүгін</string>
+    <string name="date">Күні</string>
+    <string name="number">Нөмірі</string>
+    <string name="room">Каб</string>
+    <string name="subject">Тақырып</string>
+    <string name="teacher">Мұғалім</string>
 </resources>

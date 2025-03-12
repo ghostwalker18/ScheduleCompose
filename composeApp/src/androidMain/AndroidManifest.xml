@@ -77,21 +77,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-                android:name=".activities.ScheduleItemActivity"
-                android:exported="false"
-                android:label="@string/day_table"
-                android:parentActivityName=".activities.MainActivity">
-
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.MainActivity" />
-        </activity>
-
-        <activity
-                android:name=".activities.PhotoViewActivity"
-                android:exported="false"/>
-
         <provider
                 android:name="androidx.core.content.FileProvider"
                 android:authorities="com.ghostwalker18.schedule.timefilesprovider"

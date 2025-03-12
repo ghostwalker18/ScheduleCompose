@@ -13,5 +13,11 @@
   ~ limitations under the License.
   -->
 <resources>
-
+    <string name="app_name">Розклад ПАБТ</string>
+    <string name="today">Сьогодні</string>
+    <string name="date">Дата</string>
+    <string name="number">Пара</string>
+    <string name="room">Каб</string>
+    <string name="subject">Предмет</string>
+    <string name="teacher">Викладач.</string>
 </resources>

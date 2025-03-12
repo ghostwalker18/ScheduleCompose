@@ -14,11 +14,10 @@
   -->
 <resources>
     <string name="app_name">Расклад ПАБТ</string>
-    <string name="schedule">Расклад</string>
-    <string name="day_table">Расклад на</string>
-    <string name="settings">Настройкі</string>
-    <string name="share_app">Падзяліцца дадаткам</string>
-    <string name="import_activity">Імпарт/экспарт даных</string>
-    <string name="notes_activity">Нататкі</string>
-    <string name="add_note">Новая нататка</string>
+    <string name="today">Сегодня</string>
+    <string name="date">Дата</string>
+    <string name="number">Пара</string>
+    <string name="room">Каб</string>
+    <string name="subject">Прадмет</string>
+    <string name="teacher">Выклад.</string>
 </resources>

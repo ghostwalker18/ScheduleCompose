@@ -14,13 +14,6 @@
   -->
 <resources>
     <string name="app_name">Расписание ПАСТ</string>
-    <string name="schedule">Расписание</string>
-    <string name="day_table">Расписание на</string>
-    <string name="settings">Настройки</string>
-    <string name="share_app">Поделиться приложением</string>
-    <string name="import_activity">Импорт/экспорт данных</string>
-    <string name="notes_activity">Заметки</string>
-    <string name="add_note">Новая заметка</string>
     <string name="today">Сегодня</string>
     <string name="date">Дата</string>
     <string name="number">Пара</string>
