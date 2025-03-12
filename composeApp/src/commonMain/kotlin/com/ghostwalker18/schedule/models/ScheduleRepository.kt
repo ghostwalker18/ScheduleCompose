@@ -56,6 +56,9 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
     protected  val _status = MutableStateFlow(Status("", 0))
     protected val scope = CoroutineScope(Dispatchers.IO)
 
+    val lastUpdateResult: UpdateResult = UpdateResult
+        .fromInt(preferences["previous_update_result", UpdateResult.SUCCESS.toInt()])
+
     var updateResult: CompletableFuture<UpdateResult>? = null
 
     val status = _status.asStateFlow()
@@ -123,10 +126,10 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
     enum class UpdateResult {
         SUCCESS, FAIL;
 
+        fun toInt(): Int = if (this == SUCCESS) 0 else 1
+
         companion object{
             fun fromInt(i: Int): UpdateResult = if (i == 0) SUCCESS else FAIL
-
-            fun toInt(result: UpdateResult): Int = if (result == SUCCESS) 0 else 1
         }
     }
 
@@ -170,9 +173,9 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
                     allJobsDone = true
                     for (future in updateFutures) {
                         if (future.getNow(UpdateResult.FAIL) == UpdateResult.FAIL) {
-                            preferences.putString(
+                            preferences.putInt(
                                 "previous_update_result",
-                                UpdateResult.toInt(UpdateResult.FAIL).toString()
+                                UpdateResult.FAIL.toInt()
                             )
                             return@thenApplyAsync UpdateResult.FAIL
                         }

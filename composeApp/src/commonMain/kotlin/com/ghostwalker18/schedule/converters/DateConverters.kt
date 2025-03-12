@@ -19,6 +19,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 /**
  * Этот класс используется для ORM.
  * Содержит методы для преобразования Calendar в String для БД и наоборот
@@ -28,6 +29,10 @@ import java.util.*
  */
 class DateConverters {
     companion object {
+        val dateFormatNotification: SimpleDateFormat = SimpleDateFormat(
+            "dd.MM",
+            Locale("ru")
+        )
         val dateFormatPhoto = SimpleDateFormat("dd_MM_yyyy",
             Locale("ru"))
         private val dateFormatDb = SimpleDateFormat("dd.MM.yyyy",
@@ -101,9 +106,11 @@ class DateConverters {
     }
 
     /**
-     * Этот метод преобразует String из расписания третьего корпуса на Ленинградской ул. в Calendar сущности
+     * Этот метод преобразует Calendar в дату для уведомления
+     * @param date дата
+     * @return дата в формате XX.XX
      */
-    fun convertThirdCorpus(date: String?): Calendar? {
-        return stringToCal(date, dateFormatThirdCorpus)
+    fun convertForNotification(date: Calendar?): String {
+        return if (date == null) "" else dateFormatNotification.format(date.time)
     }
 }

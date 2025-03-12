@@ -14,12 +14,20 @@
 
 package com.ghostwalker18.schedule.notifications
 
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import androidx.work.ListenableWorker
 import androidx.work.WorkerParameters
+import com.ghostwalker18.schedule.R
+import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.activities.MainActivity
+import com.ghostwalker18.schedule.converters.DateConverters
+import com.ghostwalker18.schedule.models.ScheduleRepository
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.ListeningExecutorService
 import com.google.common.util.concurrent.MoreExecutors
+import kotlinx.coroutines.runBlocking
 import java.util.concurrent.Executors
 
 /**
@@ -36,12 +44,11 @@ class ScheduleUpdateNotificationWorker(context: Context, workerParameters: Worke
         val service: ListeningExecutorService = MoreExecutors
             .listeningDecorator(Executors.newSingleThreadExecutor())
         return service.submit<Result> {
-            /*val repository: ScheduleRepository =
-                ScheduleApp.getInstance().scheduleRepository
-            val lastUpdateResult: ScheduleRepository.UpdateResult? = repository.updateResult
-            val lastAvailableDate: Calendar? = runBlocking { repository.getLastKnownLessonDate(repository.savedGroup) }
+            val repository = ScheduleApp.getInstance().scheduleRepository
+            val lastUpdateResult = repository.lastUpdateResult
+            val lastAvailableDate = runBlocking { repository.getLastKnownLessonDate(repository.savedGroup) }
             repository.update()
-            repository.onUpdateCompleted().whenComplete { updateResult, e ->
+            repository.updateResult?.whenComplete { updateResult, _ ->
                 if (lastUpdateResult != ScheduleRepository.UpdateResult.FAIL
                     && updateResult === ScheduleRepository.UpdateResult.FAIL
                 ) {
@@ -64,15 +71,17 @@ class ScheduleUpdateNotificationWorker(context: Context, workerParameters: Worke
                             )
                         )
                 }
-                val currentAvailableDate: Calendar? = repository.getLastKnownLessonDate(
-                    repository.savedGroup
-                )
-                if (currentAvailableDate.after(lastAvailableDate)) {
+                val currentAvailableDate = runBlocking {
+                    repository.getLastKnownLessonDate(
+                        repository.savedGroup
+                    )
+                }
+                if (currentAvailableDate?.after(lastAvailableDate) == true) {
                     val openScheduleIntent =
                         Intent(applicationContext, MainActivity::class.java)
                     openScheduleIntent.putExtra(
                         "date",
-                        toString(currentAvailableDate)
+                        DateConverters().toString(currentAvailableDate)
                     )
                     NotificationManagerWrapper.getInstance(applicationContext)
                         .showNotification(
@@ -84,7 +93,7 @@ class ScheduleUpdateNotificationWorker(context: Context, workerParameters: Worke
                                 (applicationContext.getString(
                                     R.string.notifications_new_schedule_available
                                 )
-                                        + " " + DateConverters
+                                        + " " + DateConverters()
                                     .convertForNotification(currentAvailableDate)),
                                 applicationContext.getString(
                                     R.string.notifications_notification_schedule_update_channel_id
@@ -99,7 +108,7 @@ class ScheduleUpdateNotificationWorker(context: Context, workerParameters: Worke
                             )
                         )
                 }
-            }*/
+            }
             Result.success()
         }
     }
