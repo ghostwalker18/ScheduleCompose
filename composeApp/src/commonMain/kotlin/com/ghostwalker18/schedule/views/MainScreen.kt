@@ -39,6 +39,10 @@ import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.app_name
 import scheduledesktop2.composeapp.generated.resources.days_tab
 import com.ghostwalker18.schedule.viewmodels.DayModel
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberTopAppBarState
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 
 /**
  * Эта функция представляет собой главный экран приложения
@@ -46,6 +50,7 @@ import com.ghostwalker18.schedule.viewmodels.DayModel
  * @author Ипатов Никита
  * @since 1.0
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
     val navigator = getNavigator()
@@ -60,10 +65,11 @@ fun MainScreen() {
         dayModels.add(viewModel(key = id.key){ DayModel() })
     }
     val isDownloadDialogEnabled = remember { mutableStateOf(false) }
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
-            TopAppBar(
+            androidx.compose.material3.TopAppBar(
                 title = { Text(stringResource(Res.string.app_name)) },
                 actions = {
                     IconButton(
@@ -105,7 +111,11 @@ fun MainScreen() {
                     ) {
                         Icon(Icons.Filled.Settings, "")
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colors.primary
+                ),
+                scrollBehavior = scrollBehavior
             )
         },
         snackbarHost = {
@@ -116,8 +126,9 @@ fun MainScreen() {
                     snackbarData = data
                 )
             }
-        }
-    ){ innerPadding ->
+        },
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
+        ){ innerPadding ->
         AnimatedVisibility(isDownloadDialogEnabled.value){
             val links = mutableListOf<String>()
             lateinit var mimeType:String

@@ -60,6 +60,7 @@ class ScheduleApp {
     val notesActivityController: NotesScreenControllerDesktop
     val shareActivityController: ShareScreenConrollerDesktop
     val settingsActivityController: SettingsScreenControllerDesktop
+    val importScreenController: ImportScreenControllerDesktop
     val preferences: ObservableSettings = PreferencesSettings(Preferences.userNodeForPackage(ScheduleApp::class.java))
     private val db: AppDatabase
     private val themeState: MutableStateFlow<String> = MutableStateFlow(preferences["theme", "system"])
@@ -86,6 +87,7 @@ class ScheduleApp {
         notesActivityController = NotesScreenControllerDesktop()
         shareActivityController = ShareScreenConrollerDesktop()
         settingsActivityController = SettingsScreenControllerDesktop()
+        importScreenController = ImportScreenControllerDesktop()
         scheduleRepository.update()
         setupLocale(preferences["language", "ru"])
         setupFileChooser()
