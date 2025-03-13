@@ -51,7 +51,7 @@ import java.util.*
  * @since 1.0
  */
 @Composable
-fun NotesSreen(
+fun NotesScreen(
     group: String? = getScheduleRepository().savedGroup,
     date: Calendar? = Calendar.getInstance()
 ){
@@ -213,6 +213,7 @@ fun NotesSreen(
                         item {
                             NoteView(
                                 note = note,
+                                selectedNotes,
                                 onSelected = {
                                     selectedNotes.add(note)
                                 },

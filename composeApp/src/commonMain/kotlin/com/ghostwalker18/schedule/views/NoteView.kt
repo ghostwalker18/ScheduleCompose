@@ -27,6 +27,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -46,10 +47,11 @@ import com.ghostwalker18.schedule.models.Note
 @Composable
 fun NoteView(
     note: Note,
+    selectedNotes: SnapshotStateList<Note>,
     onSelected: () -> Unit = {},
     onUnselected: () -> Unit = {}
 ) {
-    var isSelected by remember{ mutableStateOf(false) }
+    var isSelected = selectedNotes.contains(note)
     Row(
         verticalAlignment = Alignment.Bottom
     ){
