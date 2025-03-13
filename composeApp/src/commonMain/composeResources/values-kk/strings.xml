@@ -95,4 +95,7 @@
     <string name="download_ok">Жүктеу</string>
     <string name="download_cancel">Бас тарту</string>
     <string name="cancelButtonText">Бас тарту</string>
+    <string name="notifications">Хабарландырулар</string>
+    <string name="notifications_notification_app_update_channel_name">Қолданба жаңартулары</string>
+    <string name="notifications_notification_schedule_update_channel_name">Кесте</string>
 </resources>

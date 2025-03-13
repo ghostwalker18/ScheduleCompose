@@ -95,5 +95,8 @@
     <string name="download_ok">Скачать</string>
     <string name="download_cancel">Отмена</string>
     <string name="cancelButtonText">Отмена</string>
+    <string name="notifications">Уведомления</string>
+    <string name="notifications_notification_app_update_channel_name">Обновления приложений</string>
+    <string name="notifications_notification_schedule_update_channel_name">Расписание</string>
     <string name="developer_email" translatable="false">ghostwalker18@mail.ru</string>
 </resources>

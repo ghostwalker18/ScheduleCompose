@@ -33,6 +33,12 @@ enum class Orientation{
 
 expect fun getScreenOrientation(): Orientation
 
+enum class Platform{
+    Mobile, Desktop
+}
+
+expect fun getPlatform(): Platform
+
 expect fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>
 
 /**

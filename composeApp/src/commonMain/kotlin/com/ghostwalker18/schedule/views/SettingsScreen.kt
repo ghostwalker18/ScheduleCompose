@@ -24,12 +24,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.ghostwalker18.schedule.*
 import com.ghostwalker18.schedule.widgets.ListPreference
 import com.ghostwalker18.schedule.widgets.PreferenceCategory
 import com.ghostwalker18.schedule.widgets.SwitchPreference
-import com.ghostwalker18.schedule.getNavigator
-import com.ghostwalker18.schedule.getPreferences
-import com.ghostwalker18.schedule.getSettingsScreenController
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
@@ -142,6 +140,24 @@ fun SettingsScreen() {
                             entries = Res.array.language_entries,
                             preferences = preferences
                         )
+                    }
+                }
+                if(getPlatform() == Platform.Mobile){
+                    item {
+                        PreferenceCategory(
+                            title = stringResource(Res.string.notifications)
+                        ){
+                            SwitchPreference(
+                                title = Res.string.notifications_notification_app_update_channel_name,
+                                key = "update_notifications",
+                                preferences = preferences
+                            )
+                            SwitchPreference(
+                                title = Res.string.notifications_notification_schedule_update_channel_name,
+                                key = "schedule_notifications",
+                                preferences = preferences
+                            )
+                        }
                     }
                 }
             }

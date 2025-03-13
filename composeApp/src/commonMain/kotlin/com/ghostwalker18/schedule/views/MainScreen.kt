@@ -113,6 +113,7 @@ fun MainScreen() {
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
+                    scrolledContainerColor = MaterialTheme.colors.primary,
                     containerColor = MaterialTheme.colors.primary
                 ),
                 scrollBehavior = scrollBehavior

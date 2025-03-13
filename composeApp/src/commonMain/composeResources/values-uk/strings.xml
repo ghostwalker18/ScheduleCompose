@@ -94,4 +94,7 @@
     <string name="download_notice">Кількість файлів розкладу для завантаження: %1$d. ви хочете завантажити їх?</string>
     <string name="download_ok">Завантажити</string>
     <string name="download_cancel">Скасування</string>
+    <string name="notifications">Повідомлення</string>
+    <string name="notifications_notification_app_update_channel_name">Оновлення додатків</string>
+    <string name="notifications_notification_schedule_update_channel_name">Розклад</string>
 </resources>

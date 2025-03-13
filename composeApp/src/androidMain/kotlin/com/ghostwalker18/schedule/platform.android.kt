@@ -31,7 +31,6 @@ import com.ghostwalker18.schedule.models.ScheduleRepository
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import scheduledesktop2.composeapp.generated.resources.Res
-import scheduledesktop2.composeapp.generated.resources.favicon
 import scheduledesktop2.composeapp.generated.resources.qr_code
 import java.util.*
 
@@ -41,6 +40,8 @@ actual fun getScreenOrientation(): Orientation {
         else -> Orientation.LandScape
     }
 }
+
+actual fun getPlatform(): Platform = Platform.Mobile
 
 actual fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>{
     val context = ScheduleApp.getInstance() as Context

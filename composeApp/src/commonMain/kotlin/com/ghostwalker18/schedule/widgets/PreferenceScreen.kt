@@ -24,6 +24,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
@@ -81,7 +82,11 @@ fun SwitchPreference(title: StringResource,
             onCheckedChange = {
                 preferences.putBoolean(key, it)
                 checked = it
-            }
+            },
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = MaterialTheme.colors.primaryVariant,
+                uncheckedThumbColor = Color.LightGray
+            )
         )
     }
 }

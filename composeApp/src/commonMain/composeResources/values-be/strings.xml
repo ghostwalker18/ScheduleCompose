@@ -95,4 +95,7 @@
     <string name="download_ok">Скачаць</string>
     <string name="download_cancel">Адмена</string>
     <string name="cancelButtonText">Адмена</string>
+    <string name="notifications">Апавяшчэнні</string>
+    <string name="notifications_notification_app_update_channel_name">Абнаўлення прыкладанняў</string>
+    <string name="notifications_notification_schedule_update_channel_name">Расклад</string>
 </resources>
