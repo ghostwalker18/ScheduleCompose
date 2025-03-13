@@ -14,7 +14,7 @@
 
 package com.ghostwalker18.schedule.platform
 
-import com.ghostwalker18.schedule.SettingsActivityController
+import com.ghostwalker18.schedule.SettingsScreenController
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.getString
@@ -33,7 +33,7 @@ import java.net.URI
  * @author Ипатов Никита
  * @since 1.0
  */
-class SettingsScreenControllerDesktop : SettingsActivityController {
+class SettingsScreenControllerDesktop : SettingsScreenController {
 
     override fun connectToDeveloper(): Pair<Boolean, StringResource> {
         try {

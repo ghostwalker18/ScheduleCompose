@@ -14,12 +14,11 @@
 
 package com.ghostwalker18.schedule.platform
 
-import com.ghostwalker18.schedule.SettingsActivityController
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.core.content.ContextCompat.startActivity
+import com.ghostwalker18.schedule.SettingsScreenController
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.getString
@@ -28,7 +27,7 @@ import scheduledesktop2.composeapp.generated.resources.developer_email
 import scheduledesktop2.composeapp.generated.resources.nothing_to_share
 
 
-class SettingsScreenControllerAndroid(private val context: Context) : SettingsActivityController {
+class SettingsScreenControllerAndroid(private val context: Context) : SettingsScreenController {
 
     override fun connectToDeveloper(): Pair<Boolean, StringResource> {
         try {

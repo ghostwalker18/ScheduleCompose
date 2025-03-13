@@ -84,15 +84,22 @@ actual interface ShareScreenController {
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual interface SettingsActivityController {
+actual interface SettingsScreenController {
     actual fun connectToDeveloper(): Pair<Boolean, StringResource>
+}
+
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+actual interface ImportScreenController{
+    actual fun importDB()
+    actual fun exportDB()
 }
 
 actual fun getNavigator(): Navigator = ScheduleApp.getInstance().navigator
 actual fun getMainScreenController(): MainScreenController = ScheduleApp.getInstance().mainActivityController
 actual fun getNotesScreenController(): NotesScreenController = ScheduleApp.getInstance().notesActivityController
 actual fun getShareScreenController(): ShareScreenController = ScheduleApp.getInstance().shareActivityController
-actual fun getSettingsScreenController(): SettingsActivityController = ScheduleApp.getInstance().settingsActivityController
+actual fun getSettingsScreenController(): SettingsScreenController = ScheduleApp.getInstance().settingsActivityController
+actual fun getImportScreenController(): ImportScreenController = ScheduleApp.getInstance().importScreenController
 
 actual fun getAppQR(): DrawableResource = Res.drawable.qr_code
 

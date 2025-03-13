@@ -132,12 +132,29 @@ expect interface ShareScreenController {
  * Этот интерфейс определяет платформно-зависимые операции для SettingsActivity
  */
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect interface SettingsActivityController {
+expect interface SettingsScreenController {
 
     /**
      * Этот метод позволяет связаться с разработчиком.
      */
     fun connectToDeveloper(): Pair<Boolean, StringResource>
+}
+
+/**
+ * Этот интерфейс определяет платформно-зависимые операции для ImportScreen
+ */
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+expect interface ImportScreenController {
+
+    /**
+     * Этот метод позволяет импортировать БД приложения
+     */
+    fun importDB()
+
+    /**
+     * Этот метод позволяет экспортировать БД приложения
+     */
+    fun exportDB()
 }
 
 /**
@@ -148,7 +165,8 @@ expect fun getNavigator(): Navigator
 expect fun getMainScreenController(): MainScreenController
 expect fun getNotesScreenController(): NotesScreenController
 expect fun getShareScreenController(): ShareScreenController
-expect fun getSettingsScreenController(): SettingsActivityController
+expect fun getSettingsScreenController(): SettingsScreenController
+expect fun getImportScreenController(): ImportScreenController
 
 expect fun getAppQR(): DrawableResource
 

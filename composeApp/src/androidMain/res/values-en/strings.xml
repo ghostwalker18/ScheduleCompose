@@ -14,6 +14,8 @@
   -->
 <resources>
     <string name="app_name">Расписание ПАСТ</string>
+    <string name="notes">Notes</string>
+    <string name="add_note">New note</string>
     <string name="today">Today</string>
     <string name="date">Date</string>
     <string name="number">Num.</string>

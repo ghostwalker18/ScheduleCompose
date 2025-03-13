@@ -14,6 +14,8 @@
   -->
 <resources>
     <string name="app_name">Розклад ПАБТ</string>
+    <string name="notes">Нотатки</string>
+    <string name="add_note">Нова замітка</string>
     <string name="today">Сьогодні</string>
     <string name="date">Дата</string>
     <string name="number">Пара</string>

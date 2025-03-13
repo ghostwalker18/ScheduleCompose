@@ -63,7 +63,7 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(compose.components.resources)
             implementation(libs.kotlinx.coroutines.swing)
-            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha11")
         }
         
         commonMain.dependencies {

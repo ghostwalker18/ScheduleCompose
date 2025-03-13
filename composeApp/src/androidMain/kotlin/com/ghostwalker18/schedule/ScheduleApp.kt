@@ -55,7 +55,8 @@ class ScheduleApp : Application() {
     lateinit var mainActivityController: MainScreenController
     lateinit var notesActivityController: NotesScreenController
     lateinit var shareActivityController: ShareScreenController
-    lateinit var settingsActivityController: SettingsActivityController
+    lateinit var settingsActivityController: SettingsScreenController
+    lateinit var importScreenController: ImportScreenController
     lateinit var preferences: ObservableSettings
     private lateinit var localeChangedListener: SettingsListener
     private lateinit var themeChangedListener: SettingsListener
