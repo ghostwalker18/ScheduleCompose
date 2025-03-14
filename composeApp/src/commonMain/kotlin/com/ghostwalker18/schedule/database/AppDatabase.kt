@@ -21,6 +21,7 @@ import androidx.sqlite.SQLiteConnection
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import androidx.sqlite.execSQL
 import com.ghostwalker18.schedule.converters.DateConverters
+import com.ghostwalker18.schedule.converters.PhotoURIArrayConverter
 import com.ghostwalker18.schedule.database.DataBaseMigrations.migrations
 import com.ghostwalker18.schedule.getDatabaseBuilder
 import com.ghostwalker18.schedule.models.Lesson
@@ -35,21 +36,23 @@ import kotlinx.coroutines.Dispatchers
  */
 const val APP_DATABASE_NAME: String = "database.db"
 
-@Database(entities = [Lesson::class, Note:: class], version = 5)
-@TypeConverters(DateConverters::class)
-abstract class AppDatabase : RoomDatabase(){
-    abstract fun lessonDao() : LessonDao
-    abstract fun noteDao() : NoteDao
+@Database(entities = [Lesson::class, Note:: class], version = 6)
+@TypeConverters(DateConverters::class, PhotoURIArrayConverter::class)
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun lessonDao(): LessonDao
+    abstract fun noteDao(): NoteDao
 
-    companion object{
+    companion object {
+        private const val APP_DATABASE_NAME = "database"
+        private const val EXPORT_DATABASE_NAME = "export_database.db"
+        private const val IMPORT_DATABASE_NAME = "import_database.db"
 
         /**
          * Этот метод позволяет получить сконфигурированную базу данных приложения по умолчанию.
          * @return база данных Room
          */
-        fun getInstance() : AppDatabase {
-            val propertyes = System.getProperties().toList()
-            val callback = object : Callback(){
+        fun getInstance(): AppDatabase {
+            val callback = object : Callback() {
                 override fun onCreate(connection: SQLiteConnection) {
                     super.onCreate(connection)
                     connection.execSQL(UPDATE_DAY_TRIGGER_1)
@@ -61,7 +64,7 @@ abstract class AppDatabase : RoomDatabase(){
                 .setQueryCoroutineContext(Dispatchers.Main)
                 .setJournalMode(JournalMode.TRUNCATE)
                 .setDriver(BundledSQLiteDriver())
-            for(migration in migrations)
+            for (migration in migrations)
                 builder.addMigrations(migration)
             return builder.build()
         }

@@ -17,10 +17,20 @@ package com.ghostwalker18.schedule.views
 import androidx.compose.runtime.Composable
 
 @Composable
-actual fun DaysFragmentPortrait() {}
+actual fun DaysFragmentPortrait() {/*Not required*/}
 
 @Composable
-actual fun TimesFragmentPortrait(){}
+actual fun TimesFragmentPortrait() {/*Not required*/}
 
 @Composable
-actual fun ShareAppScreenPortrait(){}
+actual fun ShareAppScreenPortrait() {/*Not required*/}
+
+@Composable
+actual fun AttachNotePhotoView(){/*Not required*/}
+
+@Composable
+actual fun PhotoView(
+    photoIDs: MutableList<String>,
+    isEditable: Boolean,
+    onDeleteListener: (id: String) -> Unit
+) {/*Not required*/}

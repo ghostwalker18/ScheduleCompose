@@ -99,6 +99,7 @@ fun NoteView(
                     .fillMaxWidth()
                     .padding(10.dp)
             )
+            PhotoView(note.photoIDs as MutableList)
         }
     }
 }

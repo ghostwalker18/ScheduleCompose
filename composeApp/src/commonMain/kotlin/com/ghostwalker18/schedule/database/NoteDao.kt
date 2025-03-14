@@ -16,6 +16,7 @@ package com.ghostwalker18.schedule.database
 
 import androidx.room.*
 import com.ghostwalker18.schedule.converters.DateConverters
+import com.ghostwalker18.schedule.converters.PhotoURIArrayConverter
 import com.ghostwalker18.schedule.models.Note
 import kotlinx.coroutines.flow.Flow
 import java.util.*
@@ -28,7 +29,7 @@ import java.util.*
  * @since 1.0
  */
 @Dao
-@TypeConverters(DateConverters::class)
+//@TypeConverters(DateConverters::class)
 interface NoteDao {
 
     /**

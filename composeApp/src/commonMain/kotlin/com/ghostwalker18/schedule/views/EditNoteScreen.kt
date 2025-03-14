@@ -173,6 +173,7 @@ fun EditNoteScreen(
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
+            AttachNotePhotoView()
             Row {
                 IconButton(
                     { navigator.goBack() },

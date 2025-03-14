@@ -24,3 +24,13 @@ expect fun TimesFragmentPortrait()
 
 @Composable
 expect fun ShareAppScreenPortrait()
+
+@Composable
+expect fun AttachNotePhotoView()
+
+@Composable
+expect fun PhotoView(
+    photoIDs: MutableList<String> = mutableListOf(),
+    isEditable: Boolean = false,
+    onDeleteListener: (id: String) -> Unit = {}
+)

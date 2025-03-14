@@ -18,11 +18,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ghostwalker18.schedule.getNotesRepository
 import com.ghostwalker18.schedule.getScheduleRepository
+import com.ghostwalker18.schedule.models.Note
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import com.ghostwalker18.schedule.models.Note
 import java.util.*
 
 /**
@@ -37,7 +37,7 @@ class EditNoteModel : ViewModel() {
     private var note: Note? = null
     private var noteThemesMediator: Flow<Array<String>>? = null
     private val _themes = MutableStateFlow(emptyArray<String>())
-    private val _photoIDs = MutableStateFlow(emptyList<String>())
+    private val _photoIDs = MutableStateFlow(mutableListOf<String>())
     private val _group = MutableStateFlow(scheduleRepository.savedGroup)
     private var isEdited = false
     val themes = _themes.asStateFlow()
@@ -88,6 +88,26 @@ class EditNoteModel : ViewModel() {
     }
 
     /**
+     * Этот метод добавляет фотографию к заметке.
+     * @param id идентификатор фотографии
+     */
+    fun addPhotoID(id: String) {
+        val currentUris: MutableList<String> = _photoIDs.value
+        currentUris += id
+        _photoIDs.value = currentUris
+    }
+
+    /**
+     * Этот метод убирает фотографию из заметки.
+     * @param id идентификатор фотографии
+     */
+    fun removePhotoID(id: String) {
+        val currentUris = _photoIDs.value
+        currentUris -= id
+        _photoIDs.value = currentUris
+    }
+
+    /**
      * Этот метод позволяет сохранить заметку.
      */
     fun saveNote() {
@@ -98,7 +118,7 @@ class EditNoteModel : ViewModel() {
                 noteToSave.group = _group.value!!
                 noteToSave.theme = theme.value
                 noteToSave.text = text.value
-                noteToSave.photoIDs = null
+                noteToSave.photoIDs = emptyList()
 
             }
             else{
@@ -107,7 +127,7 @@ class EditNoteModel : ViewModel() {
                     group = _group.value ?: "",
                     theme = theme.value,
                     text = text.value,
-                    photoIDs = null
+                    photoIDs = emptyList()
                 )
             }
             if (isEdited)

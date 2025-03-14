@@ -19,6 +19,7 @@ import java.io.FileInputStream
 import java.util.*
 
 plugins {
+    kotlin("plugin.serialization") version "2.1.10"
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
@@ -81,6 +82,7 @@ kotlin {
             implementation(libs.sqlite)
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
             implementation("com.russhwolf:multiplatform-settings:1.3.0")
             implementation("com.github.pjfanning:excel-streaming-reader:5.0.2")
             implementation("org.apache.xmlbeans:xmlbeans:3.1.0")

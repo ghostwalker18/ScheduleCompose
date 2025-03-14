@@ -72,7 +72,7 @@ class MainActivity : ComponentActivity() {
                     val date = DateConverters().fromString(
                         stackEntry.arguments?.getString("date")
                     )
-                    NotesSreen(group, date)
+                    NotesScreen(group, date)
                 }
                 composable(
                     route = "editNote/{group}/{date}/{noteID}",

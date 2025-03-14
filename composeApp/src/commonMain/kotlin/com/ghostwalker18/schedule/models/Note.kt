@@ -21,8 +21,8 @@ import com.ghostwalker18.schedule.converters.DateConverters
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.*
-import scheduledesktop2.composeapp.generated.resources.Res
 import java.util.*
+
 
 /**
  * Этот класс используется для описания единичной сущности заметок.
@@ -39,7 +39,7 @@ data class Note(
     @ColumnInfo(name = "noteGroup") var group : String,
     @ColumnInfo(name = "noteTheme") var theme: String?,
     @ColumnInfo(name = "noteText") var text: String,
-    @ColumnInfo(name = "notePhotoID") var photoIDs: String?
+    @ColumnInfo(name = "notePhotoID") var photoIDs: List<String> = emptyList()
 ){
     override fun toString(): String {
         return runBlocking {
@@ -49,6 +49,24 @@ data class Note(
             if (theme != null) res = res + getString(Res.string.theme) + ": " + theme + "\n"
             if (text != "") res = res + getString(Res.string.text) + ": " + text + "\n"
             return@runBlocking res
+        }
+    }
+
+    companion object{
+
+        /**
+         * Этот метод возвращает копию заметки со своим ID и без приложенных фотографий.
+         * @param note заметка
+         * @return копия
+         */
+        fun copy(note: Note): Note {
+            val copiedNote = Note(
+                date = note.date,
+                group = note.group,
+                theme = note.theme,
+                text = note.text
+                )
+            return copiedNote
         }
     }
 }
