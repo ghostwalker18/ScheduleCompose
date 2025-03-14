@@ -16,10 +16,7 @@ package com.ghostwalker18.schedule.views
 
 import android.graphics.BitmapFactory
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.Icon
@@ -36,6 +33,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import kotlinx.coroutines.launch
 import java.util.*
@@ -49,10 +47,13 @@ actual fun PhotoView(
     val pagerState = rememberPagerState { photoIDs.size }
     val scope = rememberCoroutineScope()
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Text(
                 text = String.format(
                     Locale("ru"),
@@ -80,32 +81,48 @@ actual fun PhotoView(
             }
         }
         Row{
-            IconButton({
-                scope.launch {
-                    pagerState.animateScrollToPage(0)
-                }
-            }){
+            IconButton(
+                onClick = {
+                    scope.launch {
+                        pagerState.animateScrollToPage(0)
+                    }
+                },
+                modifier = Modifier
+                    .padding(horizontal = 10.dp)
+            ){
                 Icon(Icons.Filled.FirstPage, null)
             }
-            IconButton({
-                scope.launch {
-                    pagerState.animateScrollToPage(pagerState.currentPage + 1)
-                }
-            }){
+            IconButton(
+                onClick = {
+                    scope.launch {
+                        pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                    }
+                },
+                modifier = Modifier
+                    .padding(horizontal = 10.dp)
+            ){
                 Icon(Icons.AutoMirrored.Filled.ArrowLeft, null)
             }
-            IconButton({
-                scope.launch {
-                    pagerState.animateScrollToPage(pagerState.currentPage - 1)
-                }
-            }){
+            IconButton(
+                onClick = {
+                    scope.launch {
+                        pagerState.animateScrollToPage(pagerState.currentPage - 1)
+                    }
+                },
+                modifier = Modifier
+                    .padding(horizontal = 10.dp)
+            ){
                 Icon(Icons.AutoMirrored.Filled.ArrowRight,null)
             }
-            IconButton({
-                scope.launch {
-                    pagerState.animateScrollToPage(pagerState.pageCount)
-                }
-            }){
+            IconButton(
+                onClick = {
+                    scope.launch {
+                        pagerState.animateScrollToPage(pagerState.pageCount)
+                    }
+                },
+                modifier = Modifier
+                    .padding(horizontal = 10.dp)
+            ){
                 Icon(Icons.AutoMirrored.Filled.LastPage,null)
             }
         }

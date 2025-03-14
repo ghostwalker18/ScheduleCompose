@@ -19,14 +19,20 @@ import android.net.Uri
 import android.os.Environment
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddAPhoto
 import androidx.compose.material.icons.filled.PhotoLibrary
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.schedule.ScheduleApp
@@ -78,16 +84,33 @@ actual fun AttachNotePhotoView(){
         }
     }
 
-    Column{
-        Row{
-            IconButton({
-                galleryPickLauncher.launch("image/*")
-            }){
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 10.dp)
+    ){
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ){
+            IconButton(
+                onClick = {
+                    galleryPickLauncher.launch("image/*")
+                },
+                modifier = Modifier
+                    .padding(end = 10.dp)
+                    .background(MaterialTheme.colors.primary)
+                    .weight(0.5f)
+            ){
                 Icon(Icons.Filled.PhotoLibrary, null)
             }
-            IconButton({
-                cameraPermissionLauncher.launch("")
-            }){
+            IconButton(
+                onClick = {
+                    cameraPermissionLauncher.launch("")
+                },
+                modifier = Modifier
+                    .padding(start = 10.dp)
+                    .background(MaterialTheme.colors.primary)
+                    .weight(0.5f)
+            ){
                 Icon(Icons.Filled.AddAPhoto, null)
             }
         }

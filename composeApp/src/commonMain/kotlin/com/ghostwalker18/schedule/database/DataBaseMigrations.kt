@@ -68,15 +68,6 @@ object DataBaseMigrations {
         }
     }
 
-    private val MIGRATION_5_6 = object : Migration(5, 6) {
-        override fun migrate(connection: SQLiteConnection) {
-            connection.execSQL(
-                "ALTER TABLE tblNote " +
-                "ALTER COLUMN notePhotoID TEXT NULL"
-            )
-        }
-    }
-
     val migrations: Collection<Migration>
         /**
          * Этот метод возвращает список всех миграций БД приложения
@@ -86,7 +77,6 @@ object DataBaseMigrations {
             MIGRATION_1_2,
             MIGRATION_2_3,
             MIGRATION_3_4,
-            MIGRATION_4_5,
-            MIGRATION_5_6
+            MIGRATION_4_5
         )
 }

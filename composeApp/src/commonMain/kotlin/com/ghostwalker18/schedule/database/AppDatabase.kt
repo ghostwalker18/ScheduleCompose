@@ -36,7 +36,7 @@ import kotlinx.coroutines.Dispatchers
  */
 const val APP_DATABASE_NAME: String = "database.db"
 
-@Database(entities = [Lesson::class, Note:: class], version = 6)
+@Database(entities = [Lesson::class, Note:: class], version = 5, exportSchema = true)
 @TypeConverters(DateConverters::class, PhotoURIArrayConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun lessonDao(): LessonDao
