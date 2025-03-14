@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.PopupProperties
+import com.ghostwalker18.schedule.hideKeyboard
 
 /**
  * Эта функция используется для ввода с автоподбором
@@ -42,6 +43,11 @@ fun AutocompleteTextView(
 ) {
     var selectedOption by remember { mutableStateOf(value) }
     var exp by remember { mutableStateOf(false) }
+    var shouldHideInput by remember { mutableStateOf(false) }
+    if(shouldHideInput){
+        hideKeyboard()
+        shouldHideInput = false
+    }
     Column(modifier) {
         TextField(
             modifier = Modifier
@@ -54,7 +60,7 @@ fun AutocompleteTextView(
             placeholder = { Text(placeholder) },
             onValueChange = {
                 selectedOption = it
-                exp = if (selectedOption.length > competitionThreshold) true else false
+                exp = selectedOption.length > competitionThreshold
                 onValueSet(selectedOption) },
             colors = TextFieldDefaults.outlinedTextFieldColors()
         )
@@ -73,11 +79,14 @@ fun AutocompleteTextView(
                     .background(MaterialTheme.colors.background)
             ) {
                 filterOpts.forEach { option ->
-                    DropdownMenuItem(onClick = {
-                        exp = false
-                        selectedOption = option
-                        onValueSet(option)
-                    }) {
+                    DropdownMenuItem(
+                        onClick = {
+                            exp = false
+                            selectedOption = option
+                            onValueSet(option)
+                            shouldHideInput = true
+                        }
+                    ) {
                         Text(text = option, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
                     }
                 }

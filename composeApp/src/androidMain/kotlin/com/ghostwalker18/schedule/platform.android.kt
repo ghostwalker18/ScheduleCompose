@@ -16,23 +16,27 @@ package com.ghostwalker18.schedule
 
 import android.content.Context
 import android.content.res.Configuration
+import android.view.inputmethod.InputMethodManager
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.ghostwalker18.schedule.platform.DownloadDialog
-import com.russhwolf.settings.Settings
 import com.ghostwalker18.schedule.database.APP_DATABASE_NAME
 import com.ghostwalker18.schedule.database.AppDatabase
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
 import com.ghostwalker18.schedule.models.NotesRepository
 import com.ghostwalker18.schedule.models.ScheduleRepository
+import com.ghostwalker18.schedule.platform.DownloadDialog
+import com.russhwolf.settings.Settings
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.qr_code
 import java.util.*
+
 
 actual fun getScreenOrientation(): Orientation {
     return when (ScheduleApp.getInstance().resources.configuration.orientation){
@@ -42,6 +46,11 @@ actual fun getScreenOrientation(): Orientation {
 }
 
 actual fun getPlatform(): Platform = Platform.Mobile
+
+@Composable
+actual fun hideKeyboard(){
+    LocalSoftwareKeyboardController.current?.hide()
+}
 
 actual fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>{
     val context = ScheduleApp.getInstance() as Context

@@ -27,18 +27,39 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import java.util.*
 
+/**
+ * Это перечисление описывает возможные ориентации экрана для приложения.
+ */
 enum class Orientation{
     Portrait, LandScape
 }
 
+/**
+ * Эта функция позволяет получить текущую ориентацию экрана приложения.
+ */
 expect fun getScreenOrientation(): Orientation
 
+/**
+ * Это перечисление описывает платформы, под какими может быть запущено приложение.
+ */
 enum class Platform{
     Mobile, Desktop
 }
 
+/**
+ * Эта функция позволяет получить текущую платформу, под которой запущено приложение.
+ */
 expect fun getPlatform(): Platform
 
+/**
+ * Эта функция скрывает экранную клавиатуру, если такая доступна для платформы.
+ */
+@Composable
+expect fun hideKeyboard()
+
+/**
+ * Эта функция предоставляет доступ к построителю БД для текущей платформы.
+ */
 expect fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>
 
 /**
@@ -174,8 +195,14 @@ expect fun getShareScreenController(): ShareScreenController
 expect fun getSettingsScreenController(): SettingsScreenController
 expect fun getImportScreenController(): ImportScreenController
 
+/**
+ * Эта функция позволяет получить QR код, ведущий к скачиванию этой версии приложения.
+ */
 expect fun getAppQR(): DrawableResource
 
+/**
+ * Эта функция возвращает диалог скачивания файлов для текущей платформы.
+ */
 @Composable
 expect fun getDownloadDialog(
     isEnabled: MutableState<Boolean>,

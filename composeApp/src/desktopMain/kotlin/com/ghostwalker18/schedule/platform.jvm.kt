@@ -37,6 +37,9 @@ actual fun getScreenOrientation(): Orientation = Orientation.LandScape
 
 actual fun getPlatform(): Platform = Platform.Desktop
 
+@Composable
+actual fun hideKeyboard(){/*Not required*/}
+
 actual fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase> {
     val dbFile = File(System.getProperty("user.dir"), APP_DATABASE_NAME)
     return Room.databaseBuilder<AppDatabase>(
