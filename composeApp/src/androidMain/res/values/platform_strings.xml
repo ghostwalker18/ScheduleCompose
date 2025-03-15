@@ -18,12 +18,17 @@
         https://www.rustore.ru/catalog/app/com.ghostwalker18.schedule
     </string>
     <string name="app_widget_description">Расписание ПАСТ на день для группы</string>
+    <string name="day">День</string>
+    <string name="appearance">Внешний вид</string>
+    <string name="option_theme">Тема</string>
+    <string name="dynamic_colors">Использовать динамические цвета</string>
     <string name="tomorrow">Завтра</string>
     <string name="for_group">Для группы:</string>
     <string name="last_chosen">Последняя выбранная</string>
     <string name="not_mentioned">Не указано</string>
     <string name="updated">Обновлено:</string>
     <string name="schedule_missing">Список занятий отсутствует</string>
+    <string name="add_widget">Добавить виджет</string>
     <string name="update_descr">Обновить расписание</string>
     <string name="notifications_notification_app_update_channel_name">Обновления приложений</string>
     <string name="notifications_notification_app_update_channel_descr">

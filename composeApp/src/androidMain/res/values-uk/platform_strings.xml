@@ -14,12 +14,17 @@
   -->
 <resources>
     <string name="app_widget_description">Розклад ПАБТ на день для групи</string>
+    <string name="day">День</string>
+    <string name="appearance">Зовнішній вигляд</string>
+    <string name="option_theme">Тема</string>
+    <string name="dynamic_colors">Використовувати динамічні кольори</string>
     <string name="tomorrow">Завтра</string>
     <string name="for_group">Для групи:</string>
     <string name="last_chosen">Остання обрана</string>
     <string name="not_mentioned">Не вказано</string>
     <string name="updated">Оновлений:</string>
     <string name="schedule_missing">Список занять відсутній</string>
+    <string name="add_widget">Додати віджет</string>
     <string name="notifications_notification_app_update_channel_name">Оновлення додатків</string>
     <string name="notifications_notification_app_update_channel_descr">
         Отримайте сповіщення про нові оновлення для мобільної та настільної версії програми

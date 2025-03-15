@@ -14,12 +14,17 @@
   -->
 <resources>
     <string name="app_widget_description">PCACE schedule for group on day</string>
+    <string name="day">Day</string>
+    <string name="appearance">Appearance</string>
+    <string name="option_theme">Theme</string>
+    <string name="dynamic_colors">Use dynamic colors</string>
     <string name="tomorrow">Tomorrow</string>
     <string name="for_group">For group:</string>
     <string name="last_chosen">Last chosen</string>
     <string name="not_mentioned">Not mentioned</string>
     <string name="updated">Updated:</string>
     <string name="schedule_missing">There is no list of classes</string>
+    <string name="add_widget">Add widget</string>
     <string name="update_descr">Update the schedule</string>
     <string name="notifications_notification_app_update_channel_name">Application Updates</string>
     <string name="notifications_notification_app_update_channel_descr">

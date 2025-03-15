@@ -14,12 +14,17 @@
   -->
 <resources>
     <string name="app_widget_description">Топқа арналған ПСҚК кестесі</string>
+    <string name="day">Күн</string>
+    <string name="appearance">Сыртқы түрі</string>
+    <string name="option_theme">Тақырып</string>
+    <string name="dynamic_colors">Динамикалық түстерді қолданыңыз</string>
     <string name="tomorrow">Ертең</string>
     <string name="for_group">Топ үшін:</string>
     <string name="last_chosen">Соңғы таңдалған</string>
     <string name="not_mentioned">Көрсетілмеген</string>
     <string name="updated">Жаңартылды:</string>
     <string name="schedule_missing">Сабақтар тізімі жоқ</string>
+    <string name="add_widget">Виджет қосу</string>
     <string name="notifications_notification_app_update_channel_name">Қолданба жаңартулары</string>
     <string name="notifications_notification_app_update_channel_descr">
         Қолданбаның мобильді және жұмыс үстелі нұсқасы үшін жаңа жаңартулар туралы хабарландырулар алыңыз
