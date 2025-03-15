@@ -42,6 +42,7 @@ class EditNoteModel : ViewModel() {
     private var isEdited = false
     val themes = _themes.asStateFlow()
     val group = _group.asStateFlow()
+    val photoIds = _photoIDs.asStateFlow()
     val date = MutableStateFlow(Calendar.getInstance())
     val theme:MutableStateFlow<String?> = MutableStateFlow("")
     val text = MutableStateFlow("")

@@ -14,10 +14,12 @@
   -->
 <resources>
     <string name="app_widget_description">Расклад ПАБТ на дзень для групы</string>
+    <string name="tomorrow">Заўтра</string>
     <string name="for_group">Для групы:</string>
     <string name="last_chosen">Апошняя абраная</string>
     <string name="not_mentioned">Не пазначана</string>
     <string name="updated">Абноўлены:</string>
+    <string name="schedule_missing">Спіс заняткаў адсутнічае</string>
     <string name="notifications_notification_app_update_channel_name">Абнаўлення прыкладанняў</string>
     <string name="notifications_notification_app_update_channel_descr">
         Атрымлівайце апавяшчэння аб новых абнаўлення для мабільнай і дэсктопнай версіі прыкладання

@@ -33,6 +33,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddAPhoto
 import androidx.compose.material.icons.filled.PhotoLibrary
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -52,6 +54,7 @@ import kotlin.random.Random
 actual fun AttachNotePhotoView(){
     val context = LocalContext.current
     val model = viewModel { EditNoteModel() }
+    val photoIds by model.photoIds.collectAsState()
     var photoUri: String? = null
 
     val galleryPickLauncher = rememberLauncherForActivityResult(
@@ -130,7 +133,7 @@ actual fun AttachNotePhotoView(){
                 Icon(Icons.Filled.AddAPhoto, null)
             }
         }
-        PhotoView(isEditable = true)
+        PhotoView(photoIDs = photoIds, isEditable = true)
     }
 }
 
