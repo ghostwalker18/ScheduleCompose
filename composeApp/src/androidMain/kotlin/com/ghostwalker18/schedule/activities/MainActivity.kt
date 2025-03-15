@@ -24,10 +24,12 @@ import androidx.navigation.navArgument
 import com.ghostwalker18.schedule.Orientation
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.converters.DateConverters
+import com.ghostwalker18.schedule.getNavigator
 import com.ghostwalker18.schedule.getScreenOrientation
 import com.ghostwalker18.schedule.platform.NavigatorAndroid
 import com.ghostwalker18.schedule.utils.setContentWithTheme
 import com.ghostwalker18.schedule.views.*
+import java.util.*
 
 /**
  * Этот класс представляет собой основной экран приложения.
@@ -90,6 +92,10 @@ class MainActivity : ComponentActivity() {
                     val noteID = stackEntry.arguments?.getInt("noteID")
                     EditNoteScreen(noteID, group, date)
                 }
+            }
+            when(intent.extras?.getString("shortcut_id")){
+                "notes" -> getNavigator().goNotesActivity("ИС-22", Calendar.getInstance())
+                "add_note" -> getNavigator().goEditNoteActivity("ИС-22", Calendar.getInstance(), 0)
             }
         }
     }

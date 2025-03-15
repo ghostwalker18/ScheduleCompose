@@ -25,7 +25,12 @@
         <intent
                 android:action="android.intent.action.VIEW"
                 android:targetClass="com.ghostwalker18.schedule.activities.MainActivity"
-                android:targetPackage="com.ghostwalker18.schedule"/>
+                android:targetPackage="com.ghostwalker18.schedule">
+
+                <extra
+                        android:name="shortcut_id"
+                        android:value="notes"/>
+        </intent>
     </shortcut>
 
     <shortcut
@@ -38,7 +43,12 @@
         <intent
                 android:action="android.intent.action.VIEW"
                 android:targetClass="com.ghostwalker18.schedule.activities.MainActivity"
-                android:targetPackage="com.ghostwalker18.schedule"/>
+                android:targetPackage="com.ghostwalker18.schedule">
+
+                <extra
+                        android:name="shortcut_id"
+                        android:value="add_note"/>
+        </intent>
     </shortcut>
     <!-- Integrate with Google Assistant App Actions for launching your app with various voice commands. -->
     <!-- Learn more at: https://developers.google.com/assistant/app/overview -->
