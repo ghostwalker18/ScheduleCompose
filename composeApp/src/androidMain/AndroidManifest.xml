@@ -70,6 +70,7 @@
 
         <activity
                 android:name=".activities.WidgetSettingsActivity"
+                android:theme="@style/AppTheme"
                 android:exported="true">
 
             <intent-filter>
