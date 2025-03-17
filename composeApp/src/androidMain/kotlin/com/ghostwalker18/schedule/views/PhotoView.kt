@@ -15,6 +15,7 @@
 package com.ghostwalker18.schedule.views
 
 import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
@@ -28,10 +29,10 @@ import androidx.compose.material.icons.automirrored.filled.ArrowRight
 import androidx.compose.material.icons.automirrored.filled.LastPage
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.FirstPage
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
@@ -40,11 +41,19 @@ import java.util.*
 
 @Composable
 actual fun PhotoView(
-    photoIDs: MutableList<String>,
+    photoIDs: List<String>,
     isEditable: Boolean,
     onDeleteListener: (id: String) -> Unit
 ){
     val pagerState = rememberPagerState { photoIDs.size }
+    val bitmaps = remember { mutableStateMapOf<String, ImageBitmap>() }
+    photoIDs.forEach{
+        if(!bitmaps.containsKey(it))
+            bitmaps[it] = BitmapFactory.decodeFile(
+                it.toUri().encodedPath
+            ).asImageBitmap()
+    }
+    Log.i( "PhotoView", photoIDs.toString())
     val scope = rememberCoroutineScope()
     Column(
         modifier = Modifier
@@ -58,14 +67,14 @@ actual fun PhotoView(
                 text = String.format(
                     Locale("ru"),
                     "%d/%d",
-                    pagerState.currentPage, pagerState.pageCount
+                    pagerState.currentPage + 1, pagerState.pageCount
                 )
             )
             Spacer(modifier = Modifier.weight(1f))
             if(isEditable){
                 IconButton({
                     if(photoIDs.isNotEmpty()) {
-                        photoIDs.removeAt(pagerState.currentPage)
+                        onDeleteListener(photoIDs[pagerState.currentPage])
                     }
                 }){
                     Icon(Icons.Filled.Delete, null)
@@ -74,11 +83,7 @@ actual fun PhotoView(
         }
         HorizontalPager(pagerState){
             page ->
-            val uri = photoIDs[page].toUri()
-            uri.encodedPath?.let {
-                val bitmap = BitmapFactory.decodeFile(it).asImageBitmap()
-                Image(bitmap, null)
-            }
+            bitmaps[photoIDs[page]]?.let { Image(it, null) }
         }
         Row{
             IconButton(
@@ -95,7 +100,7 @@ actual fun PhotoView(
             IconButton(
                 onClick = {
                     scope.launch {
-                        pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                        pagerState.animateScrollToPage(pagerState.currentPage - 1)
                     }
                 },
                 modifier = Modifier
@@ -106,7 +111,7 @@ actual fun PhotoView(
             IconButton(
                 onClick = {
                     scope.launch {
-                        pagerState.animateScrollToPage(pagerState.currentPage - 1)
+                        pagerState.animateScrollToPage(pagerState.currentPage + 1)
                     }
                 },
                 modifier = Modifier

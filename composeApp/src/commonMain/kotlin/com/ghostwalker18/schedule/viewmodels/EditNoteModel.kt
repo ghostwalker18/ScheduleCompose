@@ -37,7 +37,7 @@ class EditNoteModel : ViewModel() {
     private var note: Note? = null
     private var noteThemesMediator: Flow<Array<String>>? = null
     private val _themes = MutableStateFlow(emptyArray<String>())
-    private val _photoIDs = MutableStateFlow(mutableListOf<String>())
+    private val _photoIDs = MutableStateFlow(listOf<String>())
     private val _group = MutableStateFlow(scheduleRepository.savedGroup)
     private var isEdited = false
     val themes = _themes.asStateFlow()
@@ -93,7 +93,7 @@ class EditNoteModel : ViewModel() {
      * @param id идентификатор фотографии
      */
     fun addPhotoID(id: String) {
-        val currentUris: MutableList<String> = _photoIDs.value
+        val currentUris = _photoIDs.value.toMutableList()
         currentUris += id
         _photoIDs.value = currentUris
     }
@@ -103,7 +103,7 @@ class EditNoteModel : ViewModel() {
      * @param id идентификатор фотографии
      */
     fun removePhotoID(id: String) {
-        val currentUris = _photoIDs.value
+        val currentUris = _photoIDs.value.toMutableList()
         currentUris -= id
         _photoIDs.value = currentUris
     }

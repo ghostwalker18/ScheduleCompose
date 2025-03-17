@@ -30,7 +30,7 @@ expect fun AttachNotePhotoView()
 
 @Composable
 expect fun PhotoView(
-    photoIDs: MutableList<String> = mutableListOf(),
+    photoIDs: List<String> = listOf(),
     isEditable: Boolean = false,
     onDeleteListener: (id: String) -> Unit = {}
 )

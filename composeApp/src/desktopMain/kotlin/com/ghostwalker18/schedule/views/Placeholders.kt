@@ -30,7 +30,7 @@ actual fun AttachNotePhotoView(){/*Not required*/}
 
 @Composable
 actual fun PhotoView(
-    photoIDs: MutableList<String>,
+    photoIDs: List<String>,
     isEditable: Boolean,
     onDeleteListener: (id: String) -> Unit
 ) {/*Not required*/}

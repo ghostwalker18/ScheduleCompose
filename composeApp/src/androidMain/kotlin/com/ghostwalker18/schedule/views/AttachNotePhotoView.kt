@@ -133,7 +133,12 @@ actual fun AttachNotePhotoView(){
                 Icon(Icons.Filled.AddAPhoto, null)
             }
         }
-        PhotoView(photoIDs = photoIds, isEditable = true)
+        PhotoView(
+            photoIDs = photoIds,
+            isEditable = true
+        ){
+            model.removePhotoID(it)
+        }
     }
 }
 
