@@ -14,10 +14,11 @@
 
 package com.ghostwalker18.schedule.utils
 
-import android.content.res.Configuration
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.runtime.*
+import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.ui.theme.ScheduleTheme
 
 /**
@@ -28,13 +29,13 @@ import com.ghostwalker18.schedule.ui.theme.ScheduleTheme
  * @since 5.0
  */
 fun ComponentActivity.setContentWithTheme(content: @Composable () -> Unit){
-    val currentNightMode = (resources.configuration.uiMode
-            and Configuration.UI_MODE_NIGHT_MASK)
-    val isInDarkMode = when(currentNightMode){
-        Configuration.UI_MODE_NIGHT_YES -> true
-        else -> false
-    }
     setContent {
+        val theme by ScheduleApp.getInstance().themeState.collectAsState()
+        val isInDarkMode = when(theme){
+            "night" -> true
+            "day" -> false
+            else -> isSystemInDarkTheme()
+        }
         ScheduleTheme(isInDarkMode){
             content()
         }

@@ -24,16 +24,15 @@ import com.ghostwalker18.schedule.network.NetworkService
 import com.ghostwalker18.schedule.notifications.NotificationManagerWrapper
 import com.ghostwalker18.schedule.platform.*
 import com.google.android.material.color.DynamicColors
-import com.google.firebase.FirebaseApp
 import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.SettingsListener
 import com.russhwolf.settings.SharedPreferencesSettings
 import com.russhwolf.settings.get
 import com.ghostwalker18.schedule.database.AppDatabase
-import io.appmetrica.analytics.AppMetrica
-import io.appmetrica.analytics.AppMetricaConfig
 import com.ghostwalker18.schedule.models.NotesRepository
 import com.ghostwalker18.schedule.utils.AndroidUtils
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import ru.rustore.sdk.pushclient.RuStorePushClient
 import ru.rustore.sdk.pushclient.common.logger.DefaultLogger
 import ru.rustore.sdk.universalpush.RuStoreUniversalPushClient
@@ -53,16 +52,28 @@ import java.util.*
 class ScheduleApp : Application() {
     lateinit var navigator: Navigator
     lateinit var mainActivityController: MainScreenController
+        private set
     lateinit var notesActivityController: NotesScreenController
+        private set
     lateinit var shareActivityController: ShareScreenController
+        private set
     lateinit var settingsActivityController: SettingsScreenController
+        private set
     lateinit var importScreenController: ImportScreenController
+        private set
     lateinit var preferences: ObservableSettings
+        private set
     private lateinit var localeChangedListener: SettingsListener
     private lateinit var themeChangedListener: SettingsListener
     lateinit var database: AppDatabase
+        private set
     lateinit var notesRepository: NotesRepository
+        private set
     lateinit var scheduleRepository: ScheduleRepositoryAndroid
+        private set
+    private lateinit var _themeState: MutableStateFlow<String>
+    lateinit var themeState: StateFlow<String>
+        private set
     internal var isAppMetricaActivated = false
 
 
@@ -74,11 +85,13 @@ class ScheduleApp : Application() {
         preferences = SharedPreferencesSettings(
             PreferenceManager.getDefaultSharedPreferences(this)
         )
+        _themeState = MutableStateFlow(preferences["theme", "system"])
+        themeState = _themeState
+        themeChangedListener = preferences.addStringListener("theme", "system"){
+            _themeState.value = it
+        }
         localeChangedListener = preferences.addStringListener("language", "ru"){
             setLocale(it)
-        }
-        themeChangedListener = preferences.addStringListener("theme", "system"){
-            setTheme(it)
         }
         scheduleRepository = ScheduleRepositoryAndroid(
             this,
@@ -88,8 +101,6 @@ class ScheduleApp : Application() {
         )
         scheduleRepository.update()
         notesRepository = NotesRepository(database)
-        val theme = preferences["theme", "system"]
-        setTheme(theme)
         mainActivityController = MainScreenControllerAndroid(this)
         notesActivityController = NotesScreenControllerAndroid(this)
         shareActivityController = ShareScreenControllerAndroid(this)
@@ -162,18 +173,6 @@ class ScheduleApp : Application() {
         val localeListCompat = if (localeCode == "system") LocaleListCompat.getEmptyLocaleList()
         else LocaleListCompat.create(Locale(localeCode))
         AppCompatDelegate.setApplicationLocales(localeListCompat)
-    }
-
-    /**
-     * Этот метод позволяет установить тему приложения
-     * @param theme код темы (system, day, night)
-     */
-    private fun setTheme(theme: String) {
-        when (theme) {
-            "system" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-            "night" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            "day" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
     }
 
     companion object{

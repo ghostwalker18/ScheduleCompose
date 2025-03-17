@@ -63,7 +63,7 @@ class ScheduleApp {
     val importScreenController: ImportScreenControllerDesktop
     val preferences: ObservableSettings = PreferencesSettings(Preferences.userNodeForPackage(ScheduleApp::class.java))
     private val db: AppDatabase
-    private val themeState: MutableStateFlow<String> = MutableStateFlow(preferences["theme", "system"])
+    private val themeState = MutableStateFlow(preferences["theme", "system"])
     lateinit var navigator: NavigatorDesktop
 
     val themeChangedListener = preferences.addStringListener("theme", "system"){
