@@ -62,7 +62,7 @@ actual fun AttachNotePhotoView(){
 
     val galleryPickLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.GetContent()
-    ) { uri -> uri?.encodedPath?.let { model.addPhotoID(it) } }
+    ) { uri -> uri?.toString()?.let { model.addPhotoID(it) } }
 
     val takePhotoLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.TakePicture()
@@ -87,8 +87,8 @@ actual fun AttachNotePhotoView(){
             var newFile = File(directory, makeNotePhotoName(model.date.value))
             while (newFile.exists())
                 newFile = File(directory, makeNotePhotoName(model.date.value))
-            photoUri = Uri.fromFile(newFile).encodedPath
-            val contentUri: Uri = FileProvider.getUriForFile(
+            photoUri = Uri.fromFile(newFile).toString()
+            val contentUri = FileProvider.getUriForFile(
                 ScheduleApp.getInstance(),
                 "com.ghostwalker18.schedule.timefilesprovider", newFile
             )

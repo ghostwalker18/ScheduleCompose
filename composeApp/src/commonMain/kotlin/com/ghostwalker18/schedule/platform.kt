@@ -15,7 +15,6 @@
 package com.ghostwalker18.schedule
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.room.RoomDatabase
 import com.russhwolf.settings.Settings
 import com.ghostwalker18.schedule.database.AppDatabase
@@ -199,14 +198,3 @@ expect fun getImportScreenController(): ImportScreenController
  * Эта функция позволяет получить QR код, ведущий к скачиванию этой версии приложения.
  */
 expect fun getAppQR(): DrawableResource
-
-/**
- * Эта функция возвращает диалог скачивания файлов для текущей платформы.
- */
-@Composable
-expect fun getDownloadDialog(
-    isEnabled: MutableState<Boolean>,
-    title: String,
-    links: Array<String>,
-    mimeType: String
-)

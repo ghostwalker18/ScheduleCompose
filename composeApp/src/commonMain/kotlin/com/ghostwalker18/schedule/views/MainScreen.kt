@@ -141,7 +141,7 @@ fun MainScreen() {
                 links += listOf(URLs.MONDAY_TIMES_URL, URLs.OTHER_TIMES_URL)
                 mimeType = "image/jpg"
             }
-            getDownloadDialog(
+            DownloadDialog(
                 isDownloadDialogEnabled,
                 "placeholder",
                 links.toTypedArray(),

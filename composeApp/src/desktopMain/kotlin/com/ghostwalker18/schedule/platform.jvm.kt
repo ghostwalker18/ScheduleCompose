@@ -15,10 +15,8 @@
 package com.ghostwalker18.schedule
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.ghostwalker18.schedule.platform.DownloadDialog
 import com.russhwolf.settings.Settings
 import com.ghostwalker18.schedule.database.APP_DATABASE_NAME
 import com.ghostwalker18.schedule.database.AppDatabase
@@ -99,13 +97,3 @@ actual fun getSettingsScreenController(): SettingsScreenController = ScheduleApp
 actual fun getImportScreenController(): ImportScreenController = ScheduleApp.getInstance().importScreenController
 
 actual fun getAppQR(): DrawableResource = Res.drawable.qr_code
-
-@Composable
-actual fun getDownloadDialog(
-    isEnabled: MutableState<Boolean>,
-    title: String,
-    links: Array<String>,
-    mimeType: String
-){
-    DownloadDialog(isEnabled, links)
-}

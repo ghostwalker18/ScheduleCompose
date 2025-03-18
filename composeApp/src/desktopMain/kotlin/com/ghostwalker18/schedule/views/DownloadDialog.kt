@@ -12,53 +12,44 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.schedule.platform
+package com.ghostwalker18.schedule.views
 
-import android.app.DownloadManager
-import android.net.Uri
-import android.os.Environment
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Download
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.ghostwalker18.schedule.ScheduleApp
-import io.appmetrica.analytics.AppMetrica
+import com.ghostwalker18.schedule.URLs
+import com.ghostwalker18.schedule.network.NetworkService
+import kotlinx.coroutines.runBlocking
+import okhttp3.ResponseBody
+import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import scheduledesktop2.composeapp.generated.resources.*
 import com.ghostwalker18.schedule.utils.Utils
+import java.io.File
+import java.nio.file.Files
+import javax.swing.JFileChooser
 
-/**
- * Эта функция позволяет открыть диалог для скачивания файлов расписания.
- *
- * @author Ипатов Никита
- * @since 1.0
- */
 @Composable
-fun DownloadDialog(
+actual fun DownloadDialog(
     isEnabled: MutableState<Boolean>,
     title: String,
     links: Array<String>,
     mimeType: String
 ){
     var visibility by isEnabled
-    val downloadManager: DownloadManager = LocalContext
-        .current
-        .getSystemService(DownloadManager::class.java)
-    if(visibility){
+    if(visibility)
+    {
         AlertDialog(
             title = {
                 Row {
@@ -94,23 +85,42 @@ fun DownloadDialog(
                             .weight(0.5f)
                             .padding(10.dp)
                             .clickable {
-                                Thread {
-                                    for (link in links) {
-                                        val request = DownloadManager.Request(Uri.parse(link))
-                                            .setMimeType(mimeType)
-                                            .setNotificationVisibility(
-                                                DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED
+                                val fileChooser = JFileChooser()
+                                fileChooser.fileSelectionMode = JFileChooser.DIRECTORIES_ONLY
+                                fileChooser.dialogTitle = runBlocking { getString(Res.string.download_file_dialog) }
+                                val result = fileChooser.showDialog(null,
+                                    runBlocking { getString(Res.string.saveButtonText) })
+                                val api = NetworkService(URLs.BASE_URI).getScheduleAPI()
+                                if (result == JFileChooser.APPROVE_OPTION) {
+                                    Thread {
+                                        //Chosen directory is also a file, heh
+                                        val directory = fileChooser.selectedFile.absolutePath
+                                        for (link in links) {
+                                            val outputFile = File(directory
+                                                    + File.separator + Utils.escapeIllegalCharacters(
+                                                            Utils.getNameFromLink(link)
+                                                    )
                                             )
-                                            .setTitle(title)
-                                            .setDestinationInExternalPublicDir(
-                                                Environment.DIRECTORY_DOWNLOADS,
-                                                Utils.getNameFromLink(link)
+                                            api.getScheduleFile(link)?.enqueue(
+                                                object : Callback<ResponseBody?> {
+                                                    override fun onResponse(
+                                                        call: Call<ResponseBody?>,
+                                                        response: Response<ResponseBody?>
+                                                    ) {
+                                                        response.body()?.byteStream()?.let {
+                                                            Files.copy(it, outputFile.toPath())
+                                                        }
+                                                    }
+
+                                                    override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {/*Not required*/}
+                                                }
                                             )
-                                        downloadManager.enqueue(request)
-                                    }
-                                    if (ScheduleApp.getInstance().isAppMetricaActivated)
-                                        AppMetrica.reportEvent("Скачали файлы расписания")
-                                }.start()
+                                        }
+                                        visibility = false
+                                    }.start()
+                                } else {
+                                    visibility = false
+                                }
                             }
                     )
                 }

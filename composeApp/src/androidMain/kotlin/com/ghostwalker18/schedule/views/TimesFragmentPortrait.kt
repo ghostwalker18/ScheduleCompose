@@ -25,13 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ghostwalker18.schedule.getScheduleRepository
 
-/**
- * Эта функция представляет собой элемент интерфейса для отображения
- * расписания звонков.
- *
- * @author  Ипатов Никита
- * @since 1.0
- */
 @Composable
 actual fun TimesFragmentPortrait(){
     val repository = getScheduleRepository()

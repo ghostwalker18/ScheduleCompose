@@ -42,13 +42,6 @@ import scheduledesktop2.composeapp.generated.resources.monday
 import com.ghostwalker18.schedule.viewmodels.ScheduleModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-/**
- * Эта функция представляет собой элемент интерфейса, используемый для
- * отображения расписания занятий.
- *
- * @author  Ипатов Никита
- * @since 1.0
- */
 @Preview
 @Composable
 actual fun DaysFragmentPortrait(){

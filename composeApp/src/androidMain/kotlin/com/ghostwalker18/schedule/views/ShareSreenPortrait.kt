@@ -38,12 +38,6 @@ import scheduledesktop2.composeapp.generated.resources.scan_qr_code
 import scheduledesktop2.composeapp.generated.resources.share_app
 import scheduledesktop2.composeapp.generated.resources.share_link
 
-/**
- * Эта функция представляет собой экран приложения для возможности поделиться им.
- *
- * @author Ипатов Никита
- * @since 1.0
- */
 @Composable
 actual fun ShareAppScreenPortrait(){
     val navigator = getNavigator()

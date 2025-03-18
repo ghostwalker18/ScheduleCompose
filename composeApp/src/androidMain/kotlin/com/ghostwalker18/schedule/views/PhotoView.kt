@@ -14,8 +14,9 @@
 
 package com.ghostwalker18.schedule.views
 
-import android.graphics.BitmapFactory
-import android.util.Log
+import android.graphics.ImageDecoder
+import android.os.Build
+import android.provider.MediaStore
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
@@ -34,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import kotlinx.coroutines.launch
@@ -49,10 +51,18 @@ actual fun PhotoView(
     val pagerState = rememberPagerState { photoIDs.size }
     val bitmaps = remember { mutableStateMapOf<String, ImageBitmap>() }
     photoIDs.forEach{
-        if(!bitmaps.containsKey(it))
-            bitmaps[it] = BitmapFactory.decodeFile(
-                it.toUri().encodedPath
-            ).asImageBitmap()
+        if(!bitmaps.containsKey(it)){
+            if (Build.VERSION.SDK_INT < 28) {
+                bitmaps[it] = MediaStore.Images.Media.getBitmap(
+                    LocalContext.current.contentResolver, it.toUri()
+                ).asImageBitmap()
+            } else {
+                val source = ImageDecoder.createSource(
+                    LocalContext.current.contentResolver, it.toUri()
+                )
+                bitmaps[it] = ImageDecoder.decodeBitmap(source).asImageBitmap()
+            }
+        }
     }
     val scope = rememberCoroutineScope()
     Column(
