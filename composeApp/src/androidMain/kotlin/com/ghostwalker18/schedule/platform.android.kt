@@ -15,9 +15,11 @@
 package com.ghostwalker18.schedule
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.core.net.toUri
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.ghostwalker18.schedule.database.APP_DATABASE_NAME
@@ -46,6 +48,16 @@ actual fun getPlatform(): Platform = Platform.Mobile
 @Composable
 actual fun hideKeyboard(){
     LocalSoftwareKeyboardController.current?.hide()
+}
+
+actual fun grantURIPermission(photoIDs: List<String>) {
+    for (photoID in photoIDs){
+        ScheduleApp.getInstance().contentResolver
+            .takePersistableUriPermission(
+                photoID.toUri(),
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
+    }
 }
 
 actual fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>{

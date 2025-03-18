@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ghostwalker18.schedule.getNotesRepository
 import com.ghostwalker18.schedule.getScheduleRepository
+import com.ghostwalker18.schedule.grantURIPermission
 import com.ghostwalker18.schedule.models.Note
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -120,7 +121,6 @@ class EditNoteModel : ViewModel() {
                 noteToSave.theme = theme.value
                 noteToSave.text = text.value
                 noteToSave.photoIDs = photoIDs.value
-
             }
             else{
                 noteToSave = Note(
@@ -131,6 +131,7 @@ class EditNoteModel : ViewModel() {
                     photoIDs = photoIDs.value
                 )
             }
+            grantURIPermission(photoIDs.value)
             if (isEdited)
                 notesRepository.updateNote(noteToSave)
             else

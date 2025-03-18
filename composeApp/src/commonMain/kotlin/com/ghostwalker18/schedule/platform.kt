@@ -57,6 +57,11 @@ expect fun getPlatform(): Platform
 expect fun hideKeyboard()
 
 /**
+ * Эта функция выдает приложению разрешения на доступ к фото заметок, если того требует платформа
+ */
+expect fun grantURIPermission(photoIDs: List<String>)
+
+/**
  * Эта функция предоставляет доступ к построителю БД для текущей платформы.
  */
 expect fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>
