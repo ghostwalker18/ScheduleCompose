@@ -42,7 +42,7 @@ class EditNoteModel : ViewModel() {
     private var isEdited = false
     val themes = _themes.asStateFlow()
     val group = _group.asStateFlow()
-    val photoIds = _photoIDs.asStateFlow()
+    val photoIDs = _photoIDs.asStateFlow()
     val date = MutableStateFlow(Calendar.getInstance())
     val theme:MutableStateFlow<String?> = MutableStateFlow("")
     val text = MutableStateFlow("")
@@ -119,7 +119,7 @@ class EditNoteModel : ViewModel() {
                 noteToSave.group = _group.value!!
                 noteToSave.theme = theme.value
                 noteToSave.text = text.value
-                noteToSave.photoIDs = emptyList()
+                noteToSave.photoIDs = photoIDs.value
 
             }
             else{
@@ -128,7 +128,7 @@ class EditNoteModel : ViewModel() {
                     group = _group.value ?: "",
                     theme = theme.value,
                     text = text.value,
-                    photoIDs = emptyList()
+                    photoIDs = photoIDs.value
                 )
             }
             if (isEdited)

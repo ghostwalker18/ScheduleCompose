@@ -41,6 +41,7 @@ import java.util.*
 
 @Composable
 actual fun PhotoView(
+    modifier: Modifier,
     photoIDs: List<String>,
     isEditable: Boolean,
     onDeleteListener: (id: String) -> Unit
@@ -53,10 +54,9 @@ actual fun PhotoView(
                 it.toUri().encodedPath
             ).asImageBitmap()
     }
-    Log.i( "PhotoView", photoIDs.toString())
     val scope = rememberCoroutineScope()
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

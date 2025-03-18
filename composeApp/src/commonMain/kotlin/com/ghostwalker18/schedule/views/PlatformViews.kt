@@ -15,6 +15,7 @@
 package com.ghostwalker18.schedule.views
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 @Composable
 expect fun DaysFragmentPortrait()
@@ -30,6 +31,7 @@ expect fun AttachNotePhotoView()
 
 @Composable
 expect fun PhotoView(
+    modifier: Modifier = Modifier,
     photoIDs: List<String> = listOf(),
     isEditable: Boolean = false,
     onDeleteListener: (id: String) -> Unit = {}

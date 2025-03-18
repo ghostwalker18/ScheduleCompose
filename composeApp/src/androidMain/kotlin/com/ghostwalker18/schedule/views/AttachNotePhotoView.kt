@@ -23,9 +23,12 @@ import android.os.Environment
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -54,7 +57,7 @@ import kotlin.random.Random
 actual fun AttachNotePhotoView(){
     val context = LocalContext.current
     val model = viewModel { EditNoteModel() }
-    val photoIds by model.photoIds.collectAsState()
+    val photoIds by model.photoIDs.collectAsState()
     var photoUri: String? = null
 
     val galleryPickLauncher = rememberLauncherForActivityResult(
@@ -93,9 +96,16 @@ actual fun AttachNotePhotoView(){
         }
     }
 
+    val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier
             .padding(horizontal = 10.dp)
+            .scrollable(
+                state = scrollState,
+                orientation = Orientation.Vertical,
+                enabled = true
+            )
     ){
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -153,4 +163,3 @@ private fun makeNotePhotoName(noteDate: Calendar): String {
     res += ".jpg"
     return res
 }
-
