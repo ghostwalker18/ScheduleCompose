@@ -14,6 +14,9 @@
 
 package com.ghostwalker18.schedule.views
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -44,10 +47,13 @@ import com.ghostwalker18.schedule.models.Note
  * @author Ипатов Никита
  * @since 1.0
  */
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun NoteView(
     note: Note,
     selectedNotes: SnapshotStateList<Note>,
+    sharedTransitionScope: SharedTransitionScope? = null,
+    animatedVisibilityScope: AnimatedVisibilityScope? = null,
     onSelected: () -> Unit = {},
     onUnselected: () -> Unit = {}
 ) {

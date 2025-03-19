@@ -14,6 +14,9 @@
 
 package com.ghostwalker18.schedule.views
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -46,11 +49,14 @@ import java.util.*
  * @author Ипатов Никита
  * @since 1.0
  */
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun EditNoteScreen(
     noteID: Int? = null,
     group: String? = getScheduleRepository().savedGroup,
-    date: Calendar? = Calendar.getInstance()
+    date: Calendar? = Calendar.getInstance(),
+    sharedTransitionScope: SharedTransitionScope? = null,
+    animatedVisibilityScope: AnimatedVisibilityScope? = null
 ){
     val navigator = getNavigator()
     val model = viewModel { EditNoteModel() }
@@ -173,7 +179,10 @@ fun EditNoteScreen(
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
-            AttachNotePhotoView()
+            AttachNotePhotoView(
+                sharedTransitionScope = sharedTransitionScope,
+                animatedVisibilityScope = animatedVisibilityScope
+            )
             Row {
                 IconButton(
                     { navigator.goBack() },

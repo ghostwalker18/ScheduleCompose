@@ -22,6 +22,9 @@ import android.net.Uri
 import android.os.Environment
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
@@ -53,8 +56,12 @@ import java.util.*
 import kotlin.random.Random
 
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-actual fun AttachNotePhotoView(){
+actual fun AttachNotePhotoView(
+    sharedTransitionScope: SharedTransitionScope?,
+    animatedVisibilityScope: AnimatedVisibilityScope?
+){
     val context = LocalContext.current
     val model = viewModel { EditNoteModel() }
     val photoIds by model.photoIDs.collectAsState()
@@ -145,7 +152,9 @@ actual fun AttachNotePhotoView(){
         }
         PhotoPreview(
             photoIDs = photoIds,
-            isEditable = true
+            isEditable = true,
+            sharedTransitionScope = sharedTransitionScope,
+            animatedVisibilityScope = animatedVisibilityScope
         ){
             model.removePhotoID(it)
         }

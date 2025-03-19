@@ -14,6 +14,9 @@
 
 package com.ghostwalker18.schedule.views
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
@@ -26,13 +29,20 @@ actual fun TimesFragmentPortrait() {/*Not required*/}
 @Composable
 actual fun ShareAppScreenPortrait() {/*Not required*/}
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-actual fun AttachNotePhotoView(){/*Not required*/}
+actual fun AttachNotePhotoView(
+    sharedTransitionScope: SharedTransitionScope?,
+    animatedVisibilityScope: AnimatedVisibilityScope?
+){/*Not required*/}
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 actual fun PhotoPreview(
     modifier: Modifier,
     photoIDs: List<String>,
     isEditable: Boolean,
+    sharedTransitionScope: SharedTransitionScope?,
+    animatedVisibilityScope: AnimatedVisibilityScope?,
     onDeleteListener: (id: String) -> Unit
 ) {/*Not required*/}

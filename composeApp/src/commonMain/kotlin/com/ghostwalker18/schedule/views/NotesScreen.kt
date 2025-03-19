@@ -50,10 +50,13 @@ import java.util.*
  * @author Ипатов Никита
  * @since 1.0
  */
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun NotesScreen(
     group: String? = getScheduleRepository().savedGroup,
-    date: Calendar? = Calendar.getInstance()
+    date: Calendar? = Calendar.getInstance(),
+    sharedTransitionScope: SharedTransitionScope? = null,
+    animatedVisibilityScope: AnimatedVisibilityScope? = null
 ){
     val navigator = getNavigator()
     val worker = getNotesScreenController()
@@ -213,7 +216,7 @@ fun NotesScreen(
                         item {
                             NoteView(
                                 note = note,
-                                selectedNotes,
+                                selectedNotes = selectedNotes,
                                 onSelected = {
                                     selectedNotes.add(note)
                                 },

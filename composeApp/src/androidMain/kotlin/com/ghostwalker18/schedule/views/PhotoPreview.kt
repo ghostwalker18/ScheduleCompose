@@ -17,7 +17,11 @@ package com.ghostwalker18.schedule.views
 import android.graphics.ImageDecoder
 import android.os.Build
 import android.provider.MediaStore
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -38,14 +42,18 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import com.ghostwalker18.schedule.getNavigator
 import kotlinx.coroutines.launch
 import java.util.*
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 actual fun PhotoPreview(
     modifier: Modifier,
     photoIDs: List<String>,
     isEditable: Boolean,
+    sharedTransitionScope: SharedTransitionScope?,
+    animatedVisibilityScope: AnimatedVisibilityScope?,
     onDeleteListener: (id: String) -> Unit
 ){
     val pagerState = rememberPagerState { photoIDs.size }
@@ -93,7 +101,20 @@ actual fun PhotoPreview(
         }
         HorizontalPager(pagerState){
             page ->
-            bitmaps[photoIDs[page]]?.let { Image(it, null) }
+            bitmaps[photoIDs[page]]?.let {
+                with(sharedTransitionScope!!){
+                    Image(
+                        bitmap = it,
+                        modifier = Modifier
+                            .sharedElement(
+                                state = rememberSharedContentState(photoIDs[page]),
+                                animatedVisibilityScope = animatedVisibilityScope!!
+                            ).clickable {
+                                getNavigator().goPhotoView(photoIDs[page])
+                            },
+                        contentDescription = null)
+                }
+            }
         }
         Row{
             IconButton(

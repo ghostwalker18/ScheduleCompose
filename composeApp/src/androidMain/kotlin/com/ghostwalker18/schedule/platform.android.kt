@@ -83,6 +83,7 @@ actual interface Navigator{
     actual fun goImportActivity()
     actual fun goNotesActivity(group: String, date: Calendar)
     actual fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?)
+    fun goPhotoView(photoID: String)
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")

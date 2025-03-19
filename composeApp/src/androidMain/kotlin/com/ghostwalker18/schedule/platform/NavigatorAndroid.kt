@@ -17,6 +17,8 @@ package com.ghostwalker18.schedule.platform
 import com.ghostwalker18.schedule.Navigator
 import androidx.navigation.NavController
 import com.ghostwalker18.schedule.converters.DateConverters
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import java.util.*
 
 class NavigatorAndroid(private val navController: NavController) : Navigator {
@@ -45,5 +47,10 @@ class NavigatorAndroid(private val navController: NavController) : Navigator {
     override fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?){
         val dateString = DateConverters().toString(date)!!
         navController.navigate("editNote/$group/$dateString/$noteID")
+    }
+
+    override fun goPhotoView(photoID: String) {
+        val encodedID = URLEncoder.encode(photoID, StandardCharsets.UTF_8.toString())
+        navController.navigate("notePhoto/$encodedID")
     }
 }

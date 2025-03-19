@@ -16,6 +16,8 @@ package com.ghostwalker18.schedule.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionLayout
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -39,58 +41,94 @@ import java.util.*
  */
 class MainActivity : AppCompatActivity() {
 
+    @OptIn(ExperimentalSharedTransitionApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentWithTheme {
             val navController = rememberNavController()
             ScheduleApp.getInstance().navigator = NavigatorAndroid(navController)
-            NavHost(
-                navController = navController,
-                startDestination = "main"
-            ){
-                composable(route = "main"){
-                    MainScreen()
-                }
-                composable(route = "settings"){
-                    SettingsScreen()
-                }
-                composable(route = "shareApp") {
-                    when(getScreenOrientation()){
-                        Orientation.Portrait -> ShareAppScreenPortrait()
-                        else -> ShareAppScreenLand()
+            SharedTransitionLayout {
+                NavHost(
+                    navController = navController,
+                    startDestination = "main"
+                ){
+                    composable(route = "main"){
+                        MainScreen()
                     }
-                }
-                composable(route = "import") {
-                    ImportScreen()
-                }
-                composable(
-                    route = "notes/{group}/{date}",
-                    arguments = listOf(
-                        navArgument("group"){ type = NavType.StringType },
-                        navArgument("date"){ type = NavType.StringType })
-                ){
-                        stackEntry ->
-                    val group = stackEntry.arguments?.getString("group")
-                    val date = DateConverters().fromString(
-                        stackEntry.arguments?.getString("date")
-                    )
-                    NotesScreen(group, date)
-                }
-                composable(
-                    route = "editNote/{group}/{date}/{noteID}",
-                    arguments = listOf(
-                        navArgument("group"){ type = NavType.StringType },
-                        navArgument("date"){ type = NavType.StringType },
-                        navArgument("noteID"){ type = NavType.IntType },
-                    )
-                ){
-                        stackEntry ->
-                    val group = stackEntry.arguments?.getString("group")
-                    val date = DateConverters().fromString(
-                        stackEntry.arguments?.getString("date")
-                    )
-                    val noteID = stackEntry.arguments?.getInt("noteID")
-                    EditNoteScreen(noteID, group, date)
+
+                    composable(route = "settings"){
+                        SettingsScreen()
+                    }
+
+                    composable(route = "shareApp") {
+                        when(getScreenOrientation()){
+                            Orientation.Portrait -> ShareAppScreenPortrait()
+                            else -> ShareAppScreenLand()
+                        }
+                    }
+
+                    composable(route = "import") {
+                        ImportScreen()
+                    }
+
+                    composable(
+                        route = "notes/{group}/{date}",
+                        arguments = listOf(
+                            navArgument("group"){ type = NavType.StringType },
+                            navArgument("date"){ type = NavType.StringType })
+                    ){
+                            stackEntry ->
+                        val group = stackEntry.arguments?.getString("group")
+                        val date = DateConverters().fromString(
+                            stackEntry.arguments?.getString("date")
+                        )
+                        NotesScreen(
+                            group = group,
+                            date = date,
+                            sharedTransitionScope = this@SharedTransitionLayout,
+                            animatedVisibilityScope = this@composable
+                        )
+                    }
+
+                    composable(
+                        route="notePhoto/{photoID}",
+                        arguments = listOf(
+                            navArgument("photoID"){ type = NavType.StringType}
+                        )
+                    ){
+                            stackEntry ->
+                        val photoID = stackEntry.arguments?.getString("photoID")!!
+                        PhotoViewScreen(
+                            photoID = photoID,
+                            sharedTransitionScope  = this@SharedTransitionLayout,
+                            animatedVisibilityScope = this@composable
+                        ){
+                            getNavigator().goBack()
+                        }
+                    }
+
+                    composable(
+                        route = "editNote/{group}/{date}/{noteID}",
+                        arguments = listOf(
+                            navArgument("group"){ type = NavType.StringType },
+                            navArgument("date"){ type = NavType.StringType },
+                            navArgument("noteID"){ type = NavType.IntType },
+                        )
+                    ){
+                            stackEntry ->
+                        val group = stackEntry.arguments?.getString("group")
+                        val date = DateConverters().fromString(
+                            stackEntry.arguments?.getString("date")
+                        )
+                        val noteID = stackEntry.arguments?.getInt("noteID")
+                        EditNoteScreen(
+                            noteID = noteID,
+                            group = group,
+                            date = date,
+                            sharedTransitionScope =  this@SharedTransitionLayout,
+                            animatedVisibilityScope = this@composable
+                        )
+                    }
                 }
             }
             when(intent.extras?.getString("shortcut_id")){

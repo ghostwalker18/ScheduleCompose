@@ -14,6 +14,9 @@
 
 package com.ghostwalker18.schedule.views
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
@@ -72,8 +75,12 @@ expect fun DownloadDialog(
  * @author Ипатов Никита
  * @since 5.0
  */
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-expect fun AttachNotePhotoView()
+expect fun AttachNotePhotoView(
+    sharedTransitionScope: SharedTransitionScope? = null,
+    animatedVisibilityScope: AnimatedVisibilityScope? = null
+)
 
 /**
  * Эта функция предназначена для отображения фотографий, прикладываемых к заметкам.
@@ -85,10 +92,13 @@ expect fun AttachNotePhotoView()
  * @author Ипатов Никита
  * @since 5.0
  */
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 expect fun PhotoPreview(
     modifier: Modifier = Modifier,
     photoIDs: List<String> = listOf(),
     isEditable: Boolean = false,
+    sharedTransitionScope: SharedTransitionScope? = null,
+    animatedVisibilityScope: AnimatedVisibilityScope? = null,
     onDeleteListener: (id: String) -> Unit = {}
 )

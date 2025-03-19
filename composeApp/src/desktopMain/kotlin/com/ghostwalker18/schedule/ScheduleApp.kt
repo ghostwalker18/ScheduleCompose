@@ -14,6 +14,7 @@
 
 package com.ghostwalker18.schedule
 
+import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.collectAsState
@@ -96,6 +97,7 @@ class ScheduleApp {
     /**
      * Этот метод отображает UI приложения
      */
+    @OptIn(ExperimentalSharedTransitionApi::class)
     @Composable
     @Preview
     fun App() {
