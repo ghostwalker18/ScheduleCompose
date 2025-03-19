@@ -17,9 +17,7 @@ package com.ghostwalker18.schedule.views
 import android.graphics.ImageDecoder
 import android.os.Build
 import android.provider.MediaStore
-import androidx.compose.animation.AnimatedVisibilityScope
-import androidx.compose.animation.ExperimentalSharedTransitionApi
-import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.animation.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -43,6 +41,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import com.ghostwalker18.schedule.getNavigator
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -56,23 +55,27 @@ actual fun PhotoPreview(
     animatedVisibilityScope: AnimatedVisibilityScope?,
     onDeleteListener: (id: String) -> Unit
 ){
+    val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState { photoIDs.size }
     val bitmaps = remember { mutableStateMapOf<String, ImageBitmap>() }
-    photoIDs.forEach{
-        if(!bitmaps.containsKey(it)){
-            bitmaps[it] = if (Build.VERSION.SDK_INT < 28) {
-                MediaStore.Images.Media.getBitmap(
-                    LocalContext.current.contentResolver, it.toUri()
-                ).asImageBitmap()
-            } else {
-                val source = ImageDecoder.createSource(
-                    LocalContext.current.contentResolver, it.toUri()
-                )
-                ImageDecoder.decodeBitmap(source).asImageBitmap()
+    val context = LocalContext.current
+    scope.launch(Dispatchers.IO) {
+        photoIDs.forEach{
+            if(!bitmaps.containsKey(it)){
+                bitmaps[it] = if (Build.VERSION.SDK_INT < 28) {
+                    MediaStore.Images.Media.getBitmap(
+                        context.contentResolver, it.toUri()
+                    ).asImageBitmap()
+                } else {
+                    val source = ImageDecoder.createSource(
+                        context.contentResolver, it.toUri()
+                    )
+                    ImageDecoder.decodeBitmap(source).asImageBitmap()
+                }
             }
         }
     }
-    val scope = rememberCoroutineScope()
+
     Column(
         modifier = modifier
             .fillMaxWidth(),
@@ -81,15 +84,39 @@ actual fun PhotoPreview(
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = String.format(
-                    Locale("ru"),
-                    "%d/%d",
-                    pagerState.currentPage + 1, pagerState.pageCount
+            if(pagerState.pageCount > 0){
+                AnimatedContent(
+                    targetState = pagerState.currentPage,
+                    transitionSpec = {
+                        if(targetState > initialState){
+                            slideInVertically { height -> -height } + fadeIn() togetherWith
+                                    slideOutVertically { height -> height } + fadeOut()
+                        }
+                        else {
+                            slideInVertically { height -> height } + fadeIn() togetherWith
+                                    slideOutVertically { height -> -height } + fadeOut()
+                        }.using(
+                            SizeTransform(clip = false)
+                        )
+                    }
+                ){
+                    targetState ->
+                    Text(text = (targetState + 1).toString())
+                }
+                Text(
+                    text = String.format(
+                        Locale("ru"),
+                        "/%d",
+                        pagerState.pageCount
+                    )
                 )
-            )
+            }
             Spacer(modifier = Modifier.weight(1f))
-            if(isEditable){
+            AnimatedVisibility(
+                visible = isEditable && pagerState.pageCount > 0,
+                enter = slideInVertically() + fadeIn(),
+                exit = slideOutVertically() + fadeOut()
+            ){
                 IconButton({
                     if(photoIDs.isNotEmpty()) {
                         onDeleteListener(photoIDs[pagerState.currentPage])
@@ -99,67 +126,95 @@ actual fun PhotoPreview(
                 }
             }
         }
-        HorizontalPager(pagerState){
-            page ->
-            bitmaps[photoIDs[page]]?.let {
-                with(sharedTransitionScope!!){
-                    Image(
-                        bitmap = it,
-                        modifier = Modifier
-                            .sharedElement(
-                                state = rememberSharedContentState(photoIDs[page]),
-                                animatedVisibilityScope = animatedVisibilityScope!!
-                            ).clickable {
-                                getNavigator().goPhotoView(photoIDs[page])
-                            },
-                        contentDescription = null)
+        AnimatedVisibility(
+            visible = pagerState.pageCount > 0,
+            enter = fadeIn() + expandVertically(
+                expandFrom = Alignment.CenterVertically
+            ),
+            exit = fadeOut() + shrinkVertically(
+                shrinkTowards = Alignment.CenterVertically
+            )
+        ){
+            HorizontalPager(pagerState){
+                    page ->
+                bitmaps[photoIDs[page]]?.let {
+                    with(sharedTransitionScope!!){
+                        Image(
+                            bitmap = it,
+                            modifier = Modifier
+                                .sharedElement(
+                                    state = rememberSharedContentState(photoIDs[page]),
+                                    animatedVisibilityScope = animatedVisibilityScope!!
+                                ).clickable {
+                                    getNavigator().goPhotoView(photoIDs[page])
+                                },
+                            contentDescription = null)
+                    }
                 }
             }
         }
-        Row{
-            IconButton(
-                onClick = {
-                    scope.launch {
-                        pagerState.animateScrollToPage(0)
+        AnimatedVisibility(
+            visible = pagerState.pageCount > 1,
+            enter = fadeIn(),
+            exit = fadeOut()
+        ){
+            Row{
+                AnimatedVisibility(
+                    visible = pagerState.pageCount > 2,
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ){
+                    IconButton(
+                        onClick = {
+                            scope.launch {
+                                pagerState.animateScrollToPage(0)
+                            }
+                        },
+                        modifier = Modifier
+                            .padding(horizontal = 10.dp)
+                    ){
+                        Icon(Icons.Filled.FirstPage, null)
                     }
-                },
-                modifier = Modifier
-                    .padding(horizontal = 10.dp)
-            ){
-                Icon(Icons.Filled.FirstPage, null)
-            }
-            IconButton(
-                onClick = {
-                    scope.launch {
-                        pagerState.animateScrollToPage(pagerState.currentPage - 1)
+                }
+                IconButton(
+                    onClick = {
+                        scope.launch {
+                            pagerState.animateScrollToPage(pagerState.currentPage - 1)
+                        }
+                    },
+                    modifier = Modifier
+                        .padding(horizontal = 10.dp)
+                ){
+                    Icon(Icons.AutoMirrored.Filled.ArrowLeft, null)
+                }
+                IconButton(
+                    onClick = {
+                        scope.launch {
+                            pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                        }
+                    },
+                    modifier = Modifier
+                        .padding(horizontal = 10.dp)
+                ){
+                    Icon(Icons.AutoMirrored.Filled.ArrowRight,null)
+                }
+                AnimatedVisibility(
+                    visible = pagerState.pageCount > 2,
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ){
+                    IconButton(
+                        onClick = {
+                            scope.launch {
+                                pagerState.animateScrollToPage(pagerState.pageCount)
+                            }
+                        },
+                        modifier = Modifier
+                            .padding(horizontal = 10.dp)
+                    ){
+                        Icon(Icons.AutoMirrored.Filled.LastPage,null)
                     }
-                },
-                modifier = Modifier
-                    .padding(horizontal = 10.dp)
-            ){
-                Icon(Icons.AutoMirrored.Filled.ArrowLeft, null)
-            }
-            IconButton(
-                onClick = {
-                    scope.launch {
-                        pagerState.animateScrollToPage(pagerState.currentPage + 1)
-                    }
-                },
-                modifier = Modifier
-                    .padding(horizontal = 10.dp)
-            ){
-                Icon(Icons.AutoMirrored.Filled.ArrowRight,null)
-            }
-            IconButton(
-                onClick = {
-                    scope.launch {
-                        pagerState.animateScrollToPage(pagerState.pageCount)
-                    }
-                },
-                modifier = Modifier
-                    .padding(horizontal = 10.dp)
-            ){
-                Icon(Icons.AutoMirrored.Filled.LastPage,null)
+                }
             }
         }
     }

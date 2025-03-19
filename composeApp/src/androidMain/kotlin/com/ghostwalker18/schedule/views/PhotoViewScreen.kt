@@ -98,6 +98,7 @@ fun PhotoViewScreen(
         }
         Spacer(
             modifier = Modifier
+                .fillMaxWidth()
                 .weight(1f)
                 .clickable { scale = 1f }
         )
@@ -123,6 +124,7 @@ fun PhotoViewScreen(
         }
         Spacer(
             Modifier
+                .fillMaxWidth()
                 .weight(1f)
                 .clickable { scale = 1f }
         )

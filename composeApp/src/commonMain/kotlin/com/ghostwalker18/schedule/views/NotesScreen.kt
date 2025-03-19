@@ -16,10 +16,7 @@ package com.ghostwalker18.schedule.views
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -210,7 +207,7 @@ fun NotesScreen(
                     text = stringResource(Res.string.no_notes_now),
                     textAlign = TextAlign.Center,
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxSize()
                 )
             }
             else {
