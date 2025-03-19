@@ -66,6 +66,7 @@ class ScheduleApp {
     private val db: AppDatabase
     private val themeState = MutableStateFlow(preferences["theme", "system"])
     lateinit var navigator: NavigatorDesktop
+        private set
 
     val themeChangedListener = preferences.addStringListener("theme", "system"){
         themeState.value = it

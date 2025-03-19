@@ -15,22 +15,27 @@
 package com.ghostwalker18.schedule
 
 import android.app.Application
-import androidx.preference.PreferenceManager
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
+import androidx.preference.PreferenceManager
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
+import com.ghostwalker18.schedule.database.AppDatabase
+import com.ghostwalker18.schedule.models.NotesRepository
 import com.ghostwalker18.schedule.models.ScheduleRepositoryAndroid
 import com.ghostwalker18.schedule.network.NetworkService
 import com.ghostwalker18.schedule.notifications.NotificationManagerWrapper
+import com.ghostwalker18.schedule.notifications.ScheduleUpdateNotificationWorker
 import com.ghostwalker18.schedule.platform.*
+import com.ghostwalker18.schedule.utils.AndroidUtils
 import com.google.android.material.color.DynamicColors
 import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.SettingsListener
 import com.russhwolf.settings.SharedPreferencesSettings
 import com.russhwolf.settings.get
-import com.ghostwalker18.schedule.database.AppDatabase
-import com.ghostwalker18.schedule.models.NotesRepository
-import com.ghostwalker18.schedule.utils.AndroidUtils
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import ru.rustore.sdk.pushclient.RuStorePushClient
@@ -39,6 +44,8 @@ import ru.rustore.sdk.universalpush.RuStoreUniversalPushClient
 import ru.rustore.sdk.universalpush.firebase.provides.FirebasePushProvider
 import ru.rustore.sdk.universalpush.rustore.providers.RuStorePushProvider
 import java.util.*
+import java.util.concurrent.TimeUnit
+
 
 /**
  * <h1>Schedule</h1>
@@ -51,6 +58,7 @@ import java.util.*
  */
 class ScheduleApp : Application() {
     lateinit var navigator: Navigator
+
     lateinit var mainActivityController: MainScreenController
         private set
     lateinit var notesActivityController: NotesScreenController
@@ -61,38 +69,85 @@ class ScheduleApp : Application() {
         private set
     lateinit var importScreenController: ImportScreenController
         private set
+
     lateinit var preferences: ObservableSettings
         private set
+
     private lateinit var localeChangedListener: SettingsListener
     private lateinit var themeChangedListener: SettingsListener
+    private lateinit var scheduleUpdateChangedListener: SettingsListener
+    private lateinit var appUpdateChangedListener: SettingsListener
+
     lateinit var database: AppDatabase
         private set
     lateinit var notesRepository: NotesRepository
         private set
     lateinit var scheduleRepository: ScheduleRepositoryAndroid
         private set
+
     private lateinit var _themeState: MutableStateFlow<String>
     lateinit var themeState: StateFlow<String>
         private set
+
     internal var isAppMetricaActivated = false
 
 
     override fun onCreate() {
         super.onCreate()
         DynamicColors.applyToActivitiesIfAvailable(this)
+
         instance = this
-        database = AppDatabase.getInstance()
+
         preferences = SharedPreferencesSettings(
             PreferenceManager.getDefaultSharedPreferences(this)
         )
+
         _themeState = MutableStateFlow(preferences["theme", "system"])
         themeState = _themeState
-        themeChangedListener = preferences.addStringListener("theme", "system"){
+        themeChangedListener = preferences.addStringListener(
+            "theme", "system"
+        ){
             _themeState.value = it
         }
-        localeChangedListener = preferences.addStringListener("language", "ru"){
+
+        localeChangedListener = preferences.addStringListener(
+            "language", "ru"
+        ){
             setLocale(it)
         }
+
+        appUpdateChangedListener = preferences.addBooleanListener(
+            "update_notifications", false
+        ) {
+            if (it) {
+                RuStoreUniversalPushClient.subscribeToTopic("update_notifications")
+            } else
+                RuStoreUniversalPushClient.unsubscribeFromTopic("update_notifications")
+        }
+
+        scheduleUpdateChangedListener = preferences.addBooleanListener(
+            "schedule_notifications", false
+        ){
+            if (it) {
+                val constraints = Constraints.Builder()
+                    .setRequiredNetworkType(NetworkType.UNMETERED)
+                    .build()
+                val request =
+                    PeriodicWorkRequest.Builder(
+                        workerClass = ScheduleUpdateNotificationWorker::class.java,
+                        repeatInterval = 30,
+                        repeatIntervalTimeUnit = TimeUnit.MINUTES
+                    )
+                        .addTag("update_schedule")
+                        .setConstraints(constraints)
+                        .build()
+                WorkManager.getInstance(this).enqueue(request)
+            } else {
+                WorkManager.getInstance(this).cancelAllWorkByTag("update_schedule")
+            }
+        }
+
+        database = AppDatabase.getInstance()
         scheduleRepository = ScheduleRepositoryAndroid(
             this,
             database,
@@ -101,6 +156,7 @@ class ScheduleApp : Application() {
         )
         scheduleRepository.update()
         notesRepository = NotesRepository(database)
+
         mainActivityController = MainScreenControllerAndroid(this)
         notesActivityController = NotesScreenControllerAndroid(this)
         shareActivityController = ShareScreenControllerAndroid(this)
@@ -117,6 +173,7 @@ class ScheduleApp : Application() {
             // Initializing the RuStore Push SDK.
             initPushes()
         } catch (e: Exception) { /*Not required*/ }*/
+        AndroidUtils.checkNotificationsPermissions(this, preferences)
         AndroidUtils.clearPOICache(this)
     }
 
