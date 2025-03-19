@@ -107,7 +107,9 @@ fun NoteView(
             )
             PhotoPreview(
                 modifier = Modifier.padding(5.dp),
-                photoIDs = note.photoIDs as MutableList
+                photoIDs = note.photoIDs as MutableList,
+                sharedTransitionScope = sharedTransitionScope,
+                animatedVisibilityScope = animatedVisibilityScope
             )
         }
     }

@@ -29,6 +29,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -179,7 +180,11 @@ fun NotesScreen(
                 { navigator.goEditNoteActivity(model.group!!, model.startDate.value, 0 ) },
                 backgroundColor = MaterialTheme.colors.primaryVariant
             ){
-                Icon(Icons.AutoMirrored.Filled.NoteAdd, null)
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.NoteAdd,
+                    tint = Color.White,
+                    contentDescription = null
+                )
             }
         }
     ){
@@ -217,6 +222,8 @@ fun NotesScreen(
                             NoteView(
                                 note = note,
                                 selectedNotes = selectedNotes,
+                                sharedTransitionScope = sharedTransitionScope,
+                                animatedVisibilityScope = animatedVisibilityScope,
                                 onSelected = {
                                     selectedNotes.add(note)
                                 },

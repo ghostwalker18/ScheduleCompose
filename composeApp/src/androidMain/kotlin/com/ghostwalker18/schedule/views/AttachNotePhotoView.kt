@@ -32,6 +32,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -103,16 +104,10 @@ actual fun AttachNotePhotoView(
         }
     }
 
-    val scrollState = rememberScrollState()
-
     Column(
         modifier = Modifier
             .padding(horizontal = 10.dp)
-            .scrollable(
-                state = scrollState,
-                orientation = Orientation.Vertical,
-                enabled = true
-            )
+            .verticalScroll(rememberScrollState())
     ){
         Row(
             verticalAlignment = Alignment.CenterVertically
