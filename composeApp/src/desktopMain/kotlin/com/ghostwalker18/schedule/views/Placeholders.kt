@@ -30,7 +30,7 @@ actual fun ShareAppScreenPortrait() {/*Not required*/}
 actual fun AttachNotePhotoView(){/*Not required*/}
 
 @Composable
-actual fun PhotoView(
+actual fun PhotoPreview(
     modifier: Modifier,
     photoIDs: List<String>,
     isEditable: Boolean,

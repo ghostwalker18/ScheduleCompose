@@ -143,7 +143,7 @@ actual fun AttachNotePhotoView(){
                 Icon(Icons.Filled.AddAPhoto, null)
             }
         }
-        PhotoView(
+        PhotoPreview(
             photoIDs = photoIds,
             isEditable = true
         ){

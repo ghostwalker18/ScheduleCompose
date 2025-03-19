@@ -86,7 +86,7 @@ expect fun AttachNotePhotoView()
  * @since 5.0
  */
 @Composable
-expect fun PhotoView(
+expect fun PhotoPreview(
     modifier: Modifier = Modifier,
     photoIDs: List<String> = listOf(),
     isEditable: Boolean = false,

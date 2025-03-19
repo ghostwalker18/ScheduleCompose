@@ -42,7 +42,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 @Composable
-actual fun PhotoView(
+actual fun PhotoPreview(
     modifier: Modifier,
     photoIDs: List<String>,
     isEditable: Boolean,
@@ -52,15 +52,15 @@ actual fun PhotoView(
     val bitmaps = remember { mutableStateMapOf<String, ImageBitmap>() }
     photoIDs.forEach{
         if(!bitmaps.containsKey(it)){
-            if (Build.VERSION.SDK_INT < 28) {
-                bitmaps[it] = MediaStore.Images.Media.getBitmap(
+            bitmaps[it] = if (Build.VERSION.SDK_INT < 28) {
+                MediaStore.Images.Media.getBitmap(
                     LocalContext.current.contentResolver, it.toUri()
                 ).asImageBitmap()
             } else {
                 val source = ImageDecoder.createSource(
                     LocalContext.current.contentResolver, it.toUri()
                 )
-                bitmaps[it] = ImageDecoder.decodeBitmap(source).asImageBitmap()
+                ImageDecoder.decodeBitmap(source).asImageBitmap()
             }
         }
     }

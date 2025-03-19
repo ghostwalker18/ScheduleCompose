@@ -99,7 +99,7 @@ fun NoteView(
                     .fillMaxWidth()
                     .padding(10.dp)
             )
-            PhotoView(
+            PhotoPreview(
                 modifier = Modifier.padding(5.dp),
                 photoIDs = note.photoIDs as MutableList
             )
