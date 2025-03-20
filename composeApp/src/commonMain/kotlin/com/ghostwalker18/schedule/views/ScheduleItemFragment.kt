@@ -151,7 +151,7 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
  * @since 1.0
  */
 @Composable
-private fun ScheduleTable(lessons: Array<Lesson>){
+fun ScheduleTable(lessons: Array<Lesson>){
     Row(
         modifier = Modifier
             .height(intrinsicSize = IntrinsicSize.Max)

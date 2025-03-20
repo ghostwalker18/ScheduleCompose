@@ -14,6 +14,8 @@
   -->
 <resources>
     <string name="app_name">Кесте ПСҚК</string>
+    <string name="schedule">Кесте</string>
+    <string name="day_table">Кесте</string>
     <string name="settings">Параметрлер</string>
     <string name="days_tab">Сабақ кестесі</string>
     <string name="times_tab">Қоңырау кестесі</string>

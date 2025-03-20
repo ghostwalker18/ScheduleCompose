@@ -15,6 +15,7 @@
 <resources>
     <string name="app_name">Расписание ПАСТ</string>
     <string name="schedule">Расписание</string>
+    <string name="day_table">Расписание на</string>
     <string name="settings">Настройки</string>
     <string name="days_tab">Расписание занятий</string>
     <string name="times_tab">Расписание звонков</string>

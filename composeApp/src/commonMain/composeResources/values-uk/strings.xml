@@ -14,6 +14,8 @@
   -->
 <resources>
     <string name="app_name">Розклад ПАБТ</string>
+    <string name="schedule">Розклад</string>
+    <string name="day_table">Розклад на</string>
     <string name="settings">Налаштування</string>
     <string name="days_tab">Розклад занять</string>
     <string name="times_tab">Розклад дзвінків</string>

@@ -70,7 +70,7 @@ fun MainScreen() {
         scaffoldState = scaffoldState,
         topBar = {
             androidx.compose.material3.TopAppBar(
-                title = { Text(stringResource(Res.string.app_name)) },
+                title = { Text(stringResource(Res.string.schedule)) },
                 actions = {
                     IconButton(
                         {
