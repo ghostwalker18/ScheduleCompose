@@ -33,8 +33,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.schedule.widgets.AutocompleteTextView
 import com.ghostwalker18.schedule.widgets.DatePickerModal
 import com.ghostwalker18.schedule.converters.DateConverters
-import com.ghostwalker18.schedule.getNavigator
-import com.ghostwalker18.schedule.getScheduleRepository
+import com.ghostwalker18.schedule.*
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -53,12 +52,12 @@ import java.util.*
 @Composable
 fun EditNoteScreen(
     noteID: Int? = null,
-    group: String? = getScheduleRepository().savedGroup,
+    group: String? = ScheduleApp.instance.scheduleRepository.savedGroup,
     date: Calendar? = Calendar.getInstance(),
     sharedTransitionScope: SharedTransitionScope? = null,
     animatedVisibilityScope: AnimatedVisibilityScope? = null
 ){
-    val navigator = getNavigator()
+    val navigator = ScheduleApp.instance.navigator
     val model = viewModel { EditNoteModel() }
     val themes by model.themes.collectAsState()
     val noteDate  by model.date.collectAsState()

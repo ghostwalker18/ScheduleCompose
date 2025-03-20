@@ -15,7 +15,7 @@
 package com.ghostwalker18.schedule.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.ghostwalker18.schedule.getScheduleRepository
+import com.ghostwalker18.schedule.ScheduleApp
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.util.*
 
@@ -26,7 +26,7 @@ import java.util.*
  * @since 1.0
  */
 class ScheduleModel : ViewModel() {
-    val group = MutableStateFlow(getScheduleRepository().savedGroup)
+    val group = MutableStateFlow(ScheduleApp.instance.scheduleRepository.savedGroup)
     val teacher: MutableStateFlow<String?> = MutableStateFlow(null)
     val calendar = MutableStateFlow(Calendar.getInstance())
 
@@ -58,6 +58,6 @@ class ScheduleModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        getScheduleRepository().savedGroup = group.value
+        ScheduleApp.instance.scheduleRepository.savedGroup = group.value
     }
 }

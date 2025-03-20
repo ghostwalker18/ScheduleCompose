@@ -21,7 +21,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.ghostwalker18.schedule.getScheduleRepository
+import com.ghostwalker18.schedule.ScheduleApp
 
 /**
  * Эта функция представляет собой элемент интерфейса для отображения
@@ -32,7 +32,7 @@ import com.ghostwalker18.schedule.getScheduleRepository
  */
 @Composable
 fun TimesFragmentLand(){
-    val repository = getScheduleRepository()
+    val repository = ScheduleApp.instance.scheduleRepository
     val mondayPainter by repository.mondayTimes.collectAsState()
     val otherPainter by repository.otherTimes.collectAsState()
 

@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentWithTheme {
             val navController = rememberNavController()
-            ScheduleApp.getInstance().navigator = NavigatorAndroid(navController)
+            ScheduleApp.instance._navigator = NavigatorAndroid(navController)
             SharedTransitionLayout {
                 NavHost(
                     navController = navController,
@@ -63,17 +63,17 @@ class MainActivity : AppCompatActivity() {
                             sharedTransitionScope  = this@SharedTransitionLayout,
                             animatedVisibilityScope = this@composable
                         ){
-                            getNavigator().goBack()
+                            ScheduleApp.instance.navigator.goBack()
                         }
                     }
                 }
             }
             when(intent.extras?.getString("shortcut_id")){
-                "notes" -> getScheduleRepository().savedGroup?.let {
-                    getNavigator().goNotesActivity(it, Calendar.getInstance())
+                "notes" -> ScheduleApp.instance.scheduleRepository.savedGroup?.let {
+                    ScheduleApp.instance.navigator.goNotesActivity(it, Calendar.getInstance())
                 }
-                "add_note" -> getScheduleRepository().savedGroup?.let {
-                    getNavigator().goEditNoteActivity(it, Calendar.getInstance(), 0)
+                "add_note" -> ScheduleApp.instance.scheduleRepository.savedGroup?.let {
+                    ScheduleApp.instance.navigator.goEditNoteActivity(it, Calendar.getInstance(), 0)
                 }
             }
         }

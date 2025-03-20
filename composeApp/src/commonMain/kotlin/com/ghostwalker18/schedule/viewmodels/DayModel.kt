@@ -16,7 +16,7 @@ package com.ghostwalker18.schedule.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ghostwalker18.schedule.getScheduleRepository
+import com.ghostwalker18.schedule.ScheduleApp
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import com.ghostwalker18.schedule.models.Lesson
@@ -29,7 +29,7 @@ import java.util.*
  * @since 1.0
  */
 class DayModel : ViewModel() {
-    private val repository = getScheduleRepository()
+    private val repository = ScheduleApp.instance.scheduleRepository
     var isOpened  = MutableStateFlow(false)
     private val _date = MutableStateFlow(Calendar.getInstance())
     private val _lessons = MutableStateFlow(emptyArray<Lesson>())

@@ -52,8 +52,8 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
-    val navigator = getNavigator()
-    val worker = getShareController()
+    val navigator = ScheduleApp.instance.navigator
+    val worker = ScheduleApp.instance.shareController
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
     val pagerState = rememberPagerState{ 2 }
@@ -133,8 +133,8 @@ fun MainScreen() {
             val links = mutableListOf<String>()
             lateinit var mimeType:String
             if(pagerState.currentPage == 0){
-                links += getScheduleRepository().linksForFirstCorpusSchedule
-                links += getScheduleRepository().linksForSecondCorpusSchedule
+                links += ScheduleApp.instance.scheduleRepository.linksForFirstCorpusSchedule
+                links += ScheduleApp.instance.scheduleRepository.linksForSecondCorpusSchedule
                 mimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             } else {
                 links += listOf(URLs.MONDAY_TIMES_URL, URLs.OTHER_TIMES_URL)

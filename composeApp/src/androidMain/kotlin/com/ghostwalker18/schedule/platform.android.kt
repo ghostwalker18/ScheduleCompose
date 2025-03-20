@@ -26,18 +26,14 @@ import com.ghostwalker18.schedule.database.APP_DATABASE_NAME
 import com.ghostwalker18.schedule.database.AppDatabase
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
-import com.ghostwalker18.schedule.models.NotesRepository
-import com.ghostwalker18.schedule.models.ScheduleRepository
-import com.russhwolf.settings.Settings
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.qr_code
 import java.util.*
 
-
 actual fun getScreenOrientation(): Orientation {
-    return when (ScheduleApp.getInstance().resources.configuration.orientation){
+    return when (ScheduleApp.instance.resources.configuration.orientation){
         Configuration.ORIENTATION_PORTRAIT -> Orientation.Portrait
         else -> Orientation.LandScape
     }
@@ -52,7 +48,7 @@ actual fun hideKeyboard(){
 
 actual fun grantURIPermission(photoIDs: List<String>) {
     for (photoID in photoIDs){
-        ScheduleApp.getInstance().contentResolver
+        ScheduleApp.instance.contentResolver
             .takePersistableUriPermission(
                 photoID.toUri(),
                 Intent.FLAG_GRANT_READ_URI_PERMISSION
@@ -61,19 +57,13 @@ actual fun grantURIPermission(photoIDs: List<String>) {
 }
 
 actual fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>{
-    val context = ScheduleApp.getInstance() as Context
+    val context = ScheduleApp.instance as Context
     val dbFile = context.getDatabasePath(APP_DATABASE_NAME)
     return Room.databaseBuilder<AppDatabase>(
         context = context,
         name = dbFile.absolutePath
     )
 }
-
-actual fun getScheduleRepository(): ScheduleRepository = ScheduleApp.getInstance().scheduleRepository
-
-actual fun getNotesRepository(): NotesRepository = ScheduleApp.getInstance().notesRepository
-
-actual fun getPreferences(): Settings = ScheduleApp.getInstance().preferences
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual interface Navigator{
@@ -114,9 +104,5 @@ actual interface ImportScreenController{
 
     actual fun exportDB()
 }
-
-actual fun getNavigator(): Navigator = ScheduleApp.getInstance().navigator
-actual fun getShareController(): ShareController = ScheduleApp.getInstance().shareController
-actual fun getImportScreenController(): ImportScreenController = ScheduleApp.getInstance().importScreenController
 
 actual fun getAppQR(): DrawableResource = Res.drawable.qr_code

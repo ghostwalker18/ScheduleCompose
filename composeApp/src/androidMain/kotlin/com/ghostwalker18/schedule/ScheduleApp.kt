@@ -25,6 +25,7 @@ import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import com.ghostwalker18.schedule.database.AppDatabase
 import com.ghostwalker18.schedule.models.NotesRepository
+import com.ghostwalker18.schedule.models.ScheduleRepository
 import com.ghostwalker18.schedule.models.ScheduleRepositoryAndroid
 import com.ghostwalker18.schedule.network.NetworkService
 import com.ghostwalker18.schedule.notifications.NotificationManagerWrapper
@@ -56,16 +57,19 @@ import java.util.concurrent.TimeUnit
  * @author  Ипатов Никита
  * @version  5.0
  */
-class ScheduleApp : Application() {
-    lateinit var navigator: Navigator
-        private set
-    lateinit var importScreenController: ImportScreenController
-        private set
-    lateinit var shareController: ShareControllerAndroid
-        private set
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+actual class ScheduleApp : Application() {
+    lateinit var _navigator: Navigator
+    actual val navigator by lazy { _navigator }
 
-    lateinit var preferences: ObservableSettings
-        private set
+    private lateinit var _importScreenController: ImportScreenController
+    actual val importScreenController by lazy { _importScreenController }
+
+    private lateinit var _shareController: ShareControllerAndroid
+    actual val shareController by lazy { _shareController  as ShareController}
+
+    private lateinit var _preferences: ObservableSettings
+    actual val preferences by lazy { _preferences }
 
     private lateinit var localeChangedListener: SettingsListener
     private lateinit var themeChangedListener: SettingsListener
@@ -74,10 +78,14 @@ class ScheduleApp : Application() {
 
     lateinit var database: AppDatabase
         private set
-    lateinit var notesRepository: NotesRepository
+
+    lateinit var _notesRepository: NotesRepository
         private set
-    lateinit var scheduleRepository: ScheduleRepositoryAndroid
+    actual val notesRepository by lazy { _notesRepository }
+
+    lateinit var _scheduleRepository: ScheduleRepositoryAndroid
         private set
+    actual val scheduleRepository by lazy { _scheduleRepository as ScheduleRepository }
 
     private lateinit var _themeState: MutableStateFlow<String>
     lateinit var themeState: StateFlow<String>
@@ -90,9 +98,9 @@ class ScheduleApp : Application() {
         super.onCreate()
         DynamicColors.applyToActivitiesIfAvailable(this)
 
-        instance = this
+        _instance = this
 
-        preferences = SharedPreferencesSettings(
+        _preferences = SharedPreferencesSettings(
             PreferenceManager.getDefaultSharedPreferences(this)
         )
 
@@ -142,16 +150,16 @@ class ScheduleApp : Application() {
         }
 
         database = AppDatabase.getInstance()
-        scheduleRepository = ScheduleRepositoryAndroid(
+        _scheduleRepository = ScheduleRepositoryAndroid(
             this,
             database,
             NetworkService(this, URLs.BASE_URI, preferences).getScheduleAPI(),
             preferences
         )
         scheduleRepository.update()
-        notesRepository = NotesRepository(database)
+        _notesRepository = NotesRepository(database)
 
-        shareController = ShareControllerAndroid(this)
+        _shareController = ShareControllerAndroid(this)
 
         //Initializing of third-party analytics and push services.
         /*try {
@@ -223,8 +231,8 @@ class ScheduleApp : Application() {
         AppCompatDelegate.setApplicationLocales(localeListCompat)
     }
 
-    companion object{
-        private lateinit var instance: ScheduleApp
-        fun getInstance() = instance
+    actual companion object{
+        private lateinit var _instance: ScheduleApp
+        actual val instance by lazy { _instance }
     }
 }

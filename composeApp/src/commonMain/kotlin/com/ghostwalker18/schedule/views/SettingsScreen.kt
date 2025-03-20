@@ -44,11 +44,11 @@ import scheduledesktop2.composeapp.generated.resources.schedule_style_entries
  */
 @Composable
 fun SettingsScreen() {
-    val navigator = getNavigator()
-    val preferences = getPreferences()
+    val navigator = ScheduleApp.instance.navigator
+    val preferences = ScheduleApp.instance.preferences
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
-    val worker = getShareController()
+    val worker =ScheduleApp.instance.shareController
     Scaffold(
         topBar = {
             TopAppBar(

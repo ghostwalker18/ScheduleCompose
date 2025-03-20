@@ -14,16 +14,15 @@
 
 package com.ghostwalker18.schedule.views
 
-import com.ghostwalker18.schedule.getNavigator
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Share
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.schedule.converters.DateConverters
-import com.ghostwalker18.schedule.getScheduleRepository
+import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.viewmodels.ScheduleModel
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
@@ -45,6 +44,7 @@ fun ScheduleItemScreen(
 ){
     val scope = rememberCoroutineScope()
     val model = viewModel { ScheduleModel() }
+    var lessonsState by remember { mutableStateOf(emptyArray<Lesson>()) }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -54,7 +54,7 @@ fun ScheduleItemScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton({ getNavigator().goBack() }){
+                    IconButton({ ScheduleApp.instance.navigator.goBack() }){
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, null)
                     }
                 },
@@ -75,11 +75,12 @@ fun ScheduleItemScreen(
             }
         }
     ){
-        val lessons = getScheduleRepository().getLessons(date, teacher, group)
+        val lessons = ScheduleApp.instance.scheduleRepository.getLessons(date, teacher, group)
         scope.launch {
             lessons.collect{
-                ScheduleTable(it)
+                lessonsState = it
             }
         }
+        ScheduleTable(lessonsState)
     }
 }

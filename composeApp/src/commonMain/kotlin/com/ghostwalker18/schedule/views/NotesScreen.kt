@@ -30,9 +30,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ghostwalker18.schedule.getNavigator
-import com.ghostwalker18.schedule.getScheduleRepository
-import com.ghostwalker18.schedule.getShareController
 import kotlinx.coroutines.launch
 import com.ghostwalker18.schedule.models.Note
 import org.jetbrains.compose.resources.stringResource
@@ -40,6 +37,7 @@ import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.no_notes_now
 import scheduledesktop2.composeapp.generated.resources.notes_activity
 import com.ghostwalker18.schedule.viewmodels.NotesModel
+import com.ghostwalker18.schedule.ScheduleApp
 import java.util.*
 
 /**
@@ -51,13 +49,13 @@ import java.util.*
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun NotesScreen(
-    group: String? = getScheduleRepository().savedGroup,
+    group: String? = ScheduleApp.instance.scheduleRepository.savedGroup,
     date: Calendar? = Calendar.getInstance(),
     sharedTransitionScope: SharedTransitionScope? = null,
     animatedVisibilityScope: AnimatedVisibilityScope? = null
 ){
-    val navigator = getNavigator()
-    val worker = getShareController()
+    val navigator = ScheduleApp.instance.navigator
+    val worker = ScheduleApp.instance.shareController
     val scope = rememberCoroutineScope()
     val model = viewModel { NotesModel() }
     model.group = group

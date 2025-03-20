@@ -15,7 +15,6 @@
 <resources>
     <string name="app_name">Кесте ПСҚК</string>
     <string name="schedule">Кесте</string>
-    <string name="day_table">Кесте</string>
     <string name="settings">Параметрлер</string>
     <string name="days_tab">Сабақ кестесі</string>
     <string name="times_tab">Қоңырау кестесі</string>
@@ -53,7 +52,6 @@
     <string name="schedule_parsing_status">Кестені өңдеу</string>
     <string name="processing_completed_status">Кесте сәтті жаңартылды</string>
     <string name="schedule_download_status">Кестені жүктеу</string>
-    <string name="schedule">Кесте</string>
     <string name="notes_activity">Ескертпелер</string>
     <string name="no_notes_now">Әзірге жазбалар жоқ</string>
     <string name="edit_notes_activity">Жазбаны қосу / өңдеу</string>

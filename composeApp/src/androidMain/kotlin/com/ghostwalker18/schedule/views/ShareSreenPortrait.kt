@@ -25,9 +25,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.getAppQR
-import com.ghostwalker18.schedule.getNavigator
-import com.ghostwalker18.schedule.getShareController
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.painterResource
@@ -40,8 +39,8 @@ import scheduledesktop2.composeapp.generated.resources.share_link
 
 @Composable
 actual fun ShareAppScreenPortrait(){
-    val navigator = getNavigator()
-    val worker = getShareController()
+    val navigator = ScheduleApp.instance.navigator
+    val worker = ScheduleApp.instance.shareController
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
 

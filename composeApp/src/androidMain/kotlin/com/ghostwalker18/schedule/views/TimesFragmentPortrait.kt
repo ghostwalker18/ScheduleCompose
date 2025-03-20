@@ -23,11 +23,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.ghostwalker18.schedule.getScheduleRepository
+import com.ghostwalker18.schedule.ScheduleApp
 
 @Composable
 actual fun TimesFragmentPortrait(){
-    val repository = getScheduleRepository()
+    val repository = ScheduleApp.instance.scheduleRepository
     val mondayPainter by repository.mondayTimes.collectAsState()
     val otherPainter by repository.otherTimes.collectAsState()
 

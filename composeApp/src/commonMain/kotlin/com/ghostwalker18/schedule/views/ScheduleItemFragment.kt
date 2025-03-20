@@ -34,8 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.schedule.Orientation
-import com.ghostwalker18.schedule.getNavigator
-import com.ghostwalker18.schedule.getNotesRepository
+import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.getScreenOrientation
 import com.ghostwalker18.schedule.ui.theme.gray500Color
 import kotlinx.coroutines.launch
@@ -56,9 +55,9 @@ import java.util.*
  */
 @Composable
 fun ScheduleItemFragment(dayOfWeek: StringResource) {
-    val navigator = getNavigator()
+    val navigator = ScheduleApp.instance.navigator
     val scheduleModel = viewModel{ ScheduleModel() }
-    val notesRepository = getNotesRepository()
+    val notesRepository = ScheduleApp.instance.notesRepository
     val weekDayNumbers = hashMapOf(
         Res.string.monday to Calendar.MONDAY,
         Res.string.tuesday to Calendar.TUESDAY,

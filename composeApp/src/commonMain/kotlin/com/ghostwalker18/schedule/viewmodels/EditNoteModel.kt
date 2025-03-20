@@ -16,8 +16,7 @@ package com.ghostwalker18.schedule.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ghostwalker18.schedule.getNotesRepository
-import com.ghostwalker18.schedule.getScheduleRepository
+import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.grantURIPermission
 import com.ghostwalker18.schedule.models.Note
 import kotlinx.coroutines.flow.Flow
@@ -33,8 +32,8 @@ import java.util.*
  * @since 1.0
  */
 class EditNoteModel : ViewModel() {
-    private val scheduleRepository = getScheduleRepository()
-    private val notesRepository = getNotesRepository()
+    private val scheduleRepository = ScheduleApp.instance.scheduleRepository
+    private val notesRepository = ScheduleApp.instance.notesRepository
     private var note: Note? = null
     private var noteThemesMediator: Flow<Array<String>>? = null
     private val _themes = MutableStateFlow(emptyArray<String>())

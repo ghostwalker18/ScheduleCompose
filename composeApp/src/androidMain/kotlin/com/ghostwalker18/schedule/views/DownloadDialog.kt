@@ -102,7 +102,7 @@ actual fun DownloadDialog(
                                             )
                                         downloadManager.enqueue(request)
                                     }
-                                    if (ScheduleApp.getInstance().isAppMetricaActivated)
+                                    if (ScheduleApp.instance.isAppMetricaActivated)
                                         AppMetrica.reportEvent("Скачали файлы расписания")
                                 }.start()
                             }

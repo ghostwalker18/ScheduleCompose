@@ -27,11 +27,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.widgets.AutocompleteTextView
 import com.ghostwalker18.schedule.widgets.CustomButton
 import com.ghostwalker18.schedule.widgets.DatePickerModal
-import com.ghostwalker18.schedule.getPreferences
-import com.ghostwalker18.schedule.getScheduleRepository
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
@@ -45,7 +44,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 @Composable
 actual fun DaysFragmentPortrait(){
-    val repository = getScheduleRepository()
+    val repository = ScheduleApp.instance.scheduleRepository
     val model: ScheduleModel = viewModel { ScheduleModel() }
     val group by model.group.collectAsState()
     val teacher by model.teacher.collectAsState()
@@ -98,7 +97,7 @@ actual fun DaysFragmentPortrait(){
                     Icon(Icons.Filled.Close, "")
                 }
             }
-            if(getPreferences().getBoolean("addTeacherSearch", true)){
+            if(ScheduleApp.instance.preferences.getBoolean("addTeacherSearch", true)){
                 Text(
                     text = stringResource(Res.string.teacher_choice_text),
                     color = MaterialTheme.colors.primaryVariant

@@ -15,7 +15,6 @@
 <resources>
     <string name="app_name">Розклад ПАБТ</string>
     <string name="schedule">Розклад</string>
-    <string name="day_table">Розклад на</string>
     <string name="settings">Налаштування</string>
     <string name="days_tab">Розклад занять</string>
     <string name="times_tab">Розклад дзвінків</string>
@@ -53,7 +52,6 @@
     <string name="schedule_parsing_status">Обробка розкладу</string>
     <string name="processing_completed_status">Розклад успішно оновлено</string>
     <string name="schedule_download_status">Скачування розкладу</string>
-    <string name="schedule">Розклад</string>
     <string name="notes_activity">Нотатки</string>
     <string name="no_notes_now">Поки немає нотаток</string>
     <string name="edit_notes_activity">Додати / редагувати нотатку</string>

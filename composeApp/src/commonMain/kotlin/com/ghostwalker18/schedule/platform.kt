@@ -16,12 +16,9 @@ package com.ghostwalker18.schedule
 
 import androidx.compose.runtime.Composable
 import androidx.room.RoomDatabase
-import com.russhwolf.settings.Settings
 import com.ghostwalker18.schedule.database.AppDatabase
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
-import com.ghostwalker18.schedule.models.NotesRepository
-import com.ghostwalker18.schedule.models.ScheduleRepository
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import java.util.*
@@ -65,21 +62,6 @@ expect fun grantURIPermission(photoIDs: List<String>)
  * Эта функция предоставляет доступ к построителю БД для текущей платформы.
  */
 expect fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>
-
-/**
- * Эта функция позволяет получить доступ к репозиторию расписания приложения.
- */
-expect fun getScheduleRepository(): ScheduleRepository
-
-/**
- * Эта функция позволяет получить доступ к репозиторию заметок приложения.
- */
-expect fun getNotesRepository(): NotesRepository
-
-/**
- * Эта функция позволяет получить доступ к настройкам приложения.
- */
-expect fun getPreferences(): Settings
 
 /**
  * Этот интерфейс описывает навигацию по приложению.
@@ -163,14 +145,6 @@ expect interface ImportScreenController {
      */
     fun exportDB()
 }
-
-/**
- * Эта функция позволяет получить доступ к навигатору приложения
- */
-expect fun getNavigator(): Navigator
-
-expect fun getShareController(): ShareController
-expect fun getImportScreenController(): ImportScreenController
 
 /**
  * Эта функция позволяет получить QR код, ведущий к скачиванию этой версии приложения.

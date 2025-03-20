@@ -23,7 +23,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ghostwalker18.schedule.widgets.ListView
-import com.ghostwalker18.schedule.getNavigator
+import com.ghostwalker18.schedule.ScheduleApp
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -39,7 +39,7 @@ import scheduledesktop2.composeapp.generated.resources.operation_type
  */
 @Composable
 fun ImportScreen(){
-    val navigator = getNavigator()
+    val navigator = ScheduleApp.instance.navigator
     Scaffold(
         topBar = {
             TopAppBar(

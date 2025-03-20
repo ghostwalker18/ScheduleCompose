@@ -40,7 +40,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
-import com.ghostwalker18.schedule.getNavigator
+import com.ghostwalker18.schedule.ScheduleApp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
@@ -146,7 +146,7 @@ actual fun PhotoPreview(
                                     state = rememberSharedContentState(photoIDs[page]),
                                     animatedVisibilityScope = animatedVisibilityScope!!
                                 ).clickable {
-                                    getNavigator().goPhotoView(photoIDs[page])
+                                    ScheduleApp.instance.navigator.goPhotoView(photoIDs[page])
                                 },
                             contentDescription = null)
                     }

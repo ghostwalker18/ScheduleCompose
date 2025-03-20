@@ -26,8 +26,6 @@ import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -77,7 +75,7 @@ actual fun AttachNotePhotoView(
     ){
         _ ->
         photoUri?.let { model.addPhotoID(it) }
-        MediaScannerConnection.scanFile(ScheduleApp.getInstance(),
+        MediaScannerConnection.scanFile(ScheduleApp.instance,
             arrayOf(photoUri), arrayOf("image/jpeg"), null)
     }
 
@@ -97,7 +95,7 @@ actual fun AttachNotePhotoView(
                 newFile = File(directory, makeNotePhotoName(model.date.value))
             photoUri = Uri.fromFile(newFile).toString()
             val contentUri = FileProvider.getUriForFile(
-                ScheduleApp.getInstance(),
+                ScheduleApp.instance,
                 "com.ghostwalker18.schedule.timefilesprovider", newFile
             )
             takePhotoLauncher.launch(contentUri)

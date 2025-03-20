@@ -15,7 +15,6 @@
 package com.ghostwalker18.schedule
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.Composable
@@ -49,16 +48,18 @@ import javax.swing.UIManager
  * @author  Ипатов Никита
  * @version  1.0
  */
-class ScheduleApp {
-    val scheduleRepository: ScheduleRepository
-    val notesRepository: NotesRepository
-    val importScreenController: ImportScreenControllerDesktop
-    val shareController: ShareController
-    val preferences: ObservableSettings = PreferencesSettings(Preferences.userNodeForPackage(ScheduleApp::class.java))
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+actual class ScheduleApp {
+    actual val scheduleRepository: ScheduleRepository
+    actual val notesRepository: NotesRepository
+    actual val importScreenController: ImportScreenController
+    actual val shareController: ShareController
+    actual val preferences: ObservableSettings = PreferencesSettings(Preferences.userNodeForPackage(ScheduleApp::class.java))
     private val db: AppDatabase
     private val themeState = MutableStateFlow(preferences["theme", "system"])
-    lateinit var navigator: NavigatorDesktop
-        private set
+
+    private lateinit var _navigator: Navigator
+    actual val navigator by lazy { _navigator }
 
     private val themeChangedListener = preferences.addStringListener("theme", "system"){
         themeState.value = it
@@ -69,7 +70,7 @@ class ScheduleApp {
     }
 
     init {
-        instance = this
+        _instance = this
         db = AppDatabase.getInstance()
         scheduleRepository = ScheduleRepositoryDesktop(
             db,
@@ -89,11 +90,10 @@ class ScheduleApp {
      */
     @OptIn(ExperimentalSharedTransitionApi::class)
     @Composable
-    @Preview
     fun App() {
         val theme by themeState.collectAsState()
         val navController = rememberNavController()
-        navigator = NavigatorDesktop(navController)
+        this._navigator = NavigatorDesktop(navController)
         ScheduleTheme(
             when(theme){
                 "day" -> false
@@ -111,16 +111,10 @@ class ScheduleApp {
         }
     }
 
-    companion object{
-        private lateinit var instance: ScheduleApp
+    actual companion object{
+        private lateinit var _instance: ScheduleApp
+        actual val instance by lazy { _instance }
         val preferences: Preferences = Preferences.userNodeForPackage(ScheduleApp::class.java)
-
-        /**
-         * Этот метод позволяет получить доступ к экземпляру приложения.
-         */
-        fun getInstance(): ScheduleApp {
-            return instance
-        }
     }
 
 

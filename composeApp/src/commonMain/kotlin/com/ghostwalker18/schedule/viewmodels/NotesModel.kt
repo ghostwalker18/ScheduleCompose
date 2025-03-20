@@ -16,8 +16,7 @@ package com.ghostwalker18.schedule.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ghostwalker18.schedule.getNotesRepository
-import com.ghostwalker18.schedule.getScheduleRepository
+import com.ghostwalker18.schedule.ScheduleApp
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -31,7 +30,7 @@ import java.util.*
  * @since 1.0
  */
 class NotesModel : ViewModel() {
-    private val repository = getNotesRepository()
+    private val repository = ScheduleApp.instance.notesRepository
     private val _notes = MutableStateFlow(emptyArray<Note>())
     private var _notesMediator: Flow<Array<Note>>? = null
     private val _startDate = MutableStateFlow(Calendar.getInstance())
@@ -59,7 +58,7 @@ class NotesModel : ViewModel() {
         }
 
     init {
-        group = getScheduleRepository().savedGroup
+        group = ScheduleApp.instance.scheduleRepository.savedGroup
     }
 
     /**
