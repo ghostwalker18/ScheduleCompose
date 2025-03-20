@@ -53,6 +53,27 @@ fun NavGraphBuilder.baseRoutes(
     }
 
     composable(
+        route = "schedule/{date}/{group}/{teacher}",
+        arguments = listOf(
+            navArgument("date"){ type = NavType.StringType },
+            navArgument("group"){ type = NavType.StringType },
+            navArgument("teacher"){ type = NavType.StringType }
+        )
+    ){
+        stackEntry ->
+        val date = DateConverters().fromString(
+            stackEntry.arguments?.getString("date")
+        )
+        val group = stackEntry.arguments?.getString("group")
+        val teacher = stackEntry.arguments?.getString("teacher")
+        ScheduleItemScreen(
+            group = group,
+            teacher = teacher,
+            date = date!!
+        )
+    }
+
+    composable(
         route = "notes/{group}/{date}",
         arguments = listOf(
             navArgument("group"){ type = NavType.StringType },

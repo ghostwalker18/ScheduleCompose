@@ -14,23 +14,28 @@
 
 package com.ghostwalker18.schedule.platform
 
-import android.app.Activity
-import com.ghostwalker18.schedule.MainScreenController
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.FileProvider
+import com.ghostwalker18.schedule.R
 import com.ghostwalker18.schedule.ScheduleApp
-import io.appmetrica.analytics.AppMetrica
+import com.ghostwalker18.schedule.ShareController
 import com.ghostwalker18.schedule.models.Lesson
+import com.ghostwalker18.schedule.models.Note
+import io.appmetrica.analytics.AppMetrica
+import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.developer_email
 import scheduledesktop2.composeapp.generated.resources.nothing_to_share
 import java.io.File
 
+class ShareControllerAndroid(private val context: Context) : ShareController {
 
-class MainScreenControllerAndroid(private val context: Context) : MainScreenController {
     override fun shareSchedule(lessons: Collection<Lesson>): Pair<Boolean, StringResource> {
         if(lessons.isEmpty()){
             return Pair(true, Res.string.nothing_to_share)
@@ -90,5 +95,58 @@ class MainScreenControllerAndroid(private val context: Context) : MainScreenCont
         } else {
             return Pair(true, Res.string.nothing_to_share)
         }
+    }
+
+    override fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource> {
+        val notesToShare = StringBuilder()
+        for (note in notes) {
+            notesToShare.append(note.toString()).append("\n")
+        }
+
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.setType("text/plain")
+        intent.putExtra(Intent.EXTRA_TEXT, notesToShare.toString())
+
+        val shareIntent = Intent.createChooser(intent, null)
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+        startActivity(context, shareIntent, null)
+        if (ScheduleApp.getInstance().isAppMetricaActivated)
+            AppMetrica.reportEvent("Поделились заметками")
+
+        return Pair(false, Res.string.nothing_to_share)
+    }
+
+    override fun shareLink(): Pair<Boolean, StringResource> {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.setType("text/plain")
+        intent.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.rustore_link) )
+
+        val shareIntent = Intent.createChooser(intent, null)
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+        startActivity(context, intent, null)
+        return Pair(false, Res.string.nothing_to_share)
+    }
+
+    override fun connectToDeveloper(): Pair<Boolean, StringResource> {
+        try {
+            val intent = Intent(Intent.ACTION_SENDTO)
+            intent.setData(Uri.parse("mailto:")) // only email apps should handle this
+            intent.putExtra(Intent.EXTRA_EMAIL,
+                arrayOf(runBlocking { getString(Res.string.developer_email) }))
+            intent.putExtra(Intent.EXTRA_SUBJECT, runBlocking { getString(Res.string.developer_email) } )
+
+            val shareIntent = Intent.createChooser(
+                intent,
+                runBlocking { getString(Res.string.developer_email) }
+            )
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            context.startActivity(shareIntent, null)
+        } catch (e: ActivityNotFoundException) {
+            return Pair(true, Res.string.developer_email)
+        } catch (ignored: Exception) { /*Not required*/ }
+        return Pair(false, Res.string.nothing_to_share)
     }
 }

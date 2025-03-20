@@ -48,7 +48,7 @@ fun SettingsScreen() {
     val preferences = getPreferences()
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
-    val worker = getSettingsScreenController()
+    val worker = getShareController()
     Scaffold(
         topBar = {
             TopAppBar(

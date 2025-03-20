@@ -27,7 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ghostwalker18.schedule.getAppQR
 import com.ghostwalker18.schedule.getNavigator
-import com.ghostwalker18.schedule.getShareScreenController
+import com.ghostwalker18.schedule.getShareController
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.painterResource
@@ -46,7 +46,7 @@ import scheduledesktop2.composeapp.generated.resources.share_app
 @Composable
 fun ShareAppScreenLand() {
     val navigator = getNavigator()
-    val worker = getShareScreenController()
+    val worker = getShareController()
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     Scaffold(

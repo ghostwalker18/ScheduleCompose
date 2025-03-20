@@ -118,11 +118,8 @@ expect interface Navigator {
     fun goEditNoteActivity(group: String, date: Calendar, noteID: Int? = null)
 }
 
-/**
- * Этот интерфейс определяет платформно-зависимые операции для MainActivity
- */
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect interface MainScreenController {
+expect interface ShareController {
 
     /**
      * Этот метод позволяет поделиться расписанием занятий.
@@ -133,37 +130,16 @@ expect interface MainScreenController {
      * Этот метод позволяет поделиться расписанием звонков.
      */
     fun shareTimes(): Pair<Boolean, StringResource>
-}
-
-/**
- * Этот интерфейс определяет платформно-зависимые операции для NotesActivity
- */
-@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect interface NotesScreenController{
 
     /**
      * Этот метод позволяет поделиться заметками.
      */
     fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource>
-}
-
-/**
- * Этот интерфейс определяет платформно-зависимые операции для ShareActivity
- */
-@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect interface ShareScreenController {
 
     /**
      * Этот метод позволяет поделиться ссылкой на приложение
      */
     fun shareLink(): Pair<Boolean, StringResource>
-}
-
-/**
- * Этот интерфейс определяет платформно-зависимые операции для SettingsActivity
- */
-@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect interface SettingsScreenController {
 
     /**
      * Этот метод позволяет связаться с разработчиком.
@@ -193,10 +169,7 @@ expect interface ImportScreenController {
  */
 expect fun getNavigator(): Navigator
 
-expect fun getMainScreenController(): MainScreenController
-expect fun getNotesScreenController(): NotesScreenController
-expect fun getShareScreenController(): ShareScreenController
-expect fun getSettingsScreenController(): SettingsScreenController
+expect fun getShareController(): ShareController
 expect fun getImportScreenController(): ImportScreenController
 
 /**

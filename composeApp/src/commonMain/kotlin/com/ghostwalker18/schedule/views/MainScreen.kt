@@ -36,7 +36,6 @@ import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
-import scheduledesktop2.composeapp.generated.resources.app_name
 import scheduledesktop2.composeapp.generated.resources.days_tab
 import com.ghostwalker18.schedule.viewmodels.DayModel
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -54,7 +53,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 @Composable
 fun MainScreen() {
     val navigator = getNavigator()
-    val worker = getMainScreenController()
+    val worker = getShareController()
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
     val pagerState = rememberPagerState{ 2 }

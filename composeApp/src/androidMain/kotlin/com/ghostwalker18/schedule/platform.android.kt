@@ -77,47 +77,46 @@ actual fun getPreferences(): Settings = ScheduleApp.getInstance().preferences
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual interface Navigator{
+
     actual fun goBack()
+
     actual fun goSettingsActivity()
+
     actual fun goShareAppActivity()
+
     actual fun goImportActivity()
+
     actual fun goNotesActivity(group: String, date: Calendar)
+
     actual fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?)
+
     fun goPhotoView(photoID: String)
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual interface MainScreenController {
+actual interface ShareController {
+
     actual fun shareSchedule(lessons: Collection<Lesson>): Pair<Boolean, StringResource>
+
     actual fun shareTimes(): Pair<Boolean, StringResource>
-}
 
-@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual interface NotesScreenController {
     actual fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource>
-}
 
-@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual interface ShareScreenController {
     actual fun shareLink(): Pair<Boolean, StringResource>
-}
 
-@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual interface SettingsScreenController {
     actual fun connectToDeveloper(): Pair<Boolean, StringResource>
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual interface ImportScreenController{
+
     actual fun importDB()
+
     actual fun exportDB()
 }
 
 actual fun getNavigator(): Navigator = ScheduleApp.getInstance().navigator
-actual fun getMainScreenController(): MainScreenController = ScheduleApp.getInstance().mainActivityController
-actual fun getNotesScreenController(): NotesScreenController = ScheduleApp.getInstance().notesActivityController
-actual fun getShareScreenController(): ShareScreenController = ScheduleApp.getInstance().shareActivityController
-actual fun getSettingsScreenController(): SettingsScreenController = ScheduleApp.getInstance().settingsActivityController
+actual fun getShareController(): ShareController = ScheduleApp.getInstance().shareController
 actual fun getImportScreenController(): ImportScreenController = ScheduleApp.getInstance().importScreenController
 
 actual fun getAppQR(): DrawableResource = Res.drawable.qr_code

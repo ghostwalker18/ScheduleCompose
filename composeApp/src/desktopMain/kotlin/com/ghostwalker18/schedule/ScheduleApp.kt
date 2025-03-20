@@ -52,11 +52,8 @@ import javax.swing.UIManager
 class ScheduleApp {
     val scheduleRepository: ScheduleRepository
     val notesRepository: NotesRepository
-    val mainActivityController: MainScreenControllerDesktop
-    val notesActivityController: NotesScreenControllerDesktop
-    val shareActivityController: ShareScreenConrollerDesktop
-    val settingsActivityController: SettingsScreenControllerDesktop
     val importScreenController: ImportScreenControllerDesktop
+    val shareController: ShareController
     val preferences: ObservableSettings = PreferencesSettings(Preferences.userNodeForPackage(ScheduleApp::class.java))
     private val db: AppDatabase
     private val themeState = MutableStateFlow(preferences["theme", "system"])
@@ -80,11 +77,8 @@ class ScheduleApp {
             preferences
         )
         notesRepository = NotesRepository(db)
-        mainActivityController = MainScreenControllerDesktop()
-        notesActivityController = NotesScreenControllerDesktop()
-        shareActivityController = ShareScreenConrollerDesktop()
-        settingsActivityController = SettingsScreenControllerDesktop()
         importScreenController = ImportScreenControllerDesktop()
+        shareController = ShareControllerDesktop()
         scheduleRepository.update()
         setupLocale()
         setupFileChooser()

@@ -21,8 +21,10 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.getScheduleRepository
+import com.ghostwalker18.schedule.viewmodels.ScheduleModel
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -42,6 +44,7 @@ fun ScheduleItemScreen(
     date: Calendar
 ){
     val scope = rememberCoroutineScope()
+    val model = viewModel { ScheduleModel() }
     Scaffold(
         topBar = {
             TopAppBar(

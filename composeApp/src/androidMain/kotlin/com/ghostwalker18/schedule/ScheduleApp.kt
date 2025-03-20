@@ -58,16 +58,10 @@ import java.util.concurrent.TimeUnit
  */
 class ScheduleApp : Application() {
     lateinit var navigator: Navigator
-
-    lateinit var mainActivityController: MainScreenController
-        private set
-    lateinit var notesActivityController: NotesScreenController
-        private set
-    lateinit var shareActivityController: ShareScreenController
-        private set
-    lateinit var settingsActivityController: SettingsScreenController
         private set
     lateinit var importScreenController: ImportScreenController
+        private set
+    lateinit var shareController: ShareControllerAndroid
         private set
 
     lateinit var preferences: ObservableSettings
@@ -157,10 +151,7 @@ class ScheduleApp : Application() {
         scheduleRepository.update()
         notesRepository = NotesRepository(database)
 
-        mainActivityController = MainScreenControllerAndroid(this)
-        notesActivityController = NotesScreenControllerAndroid(this)
-        shareActivityController = ShareScreenControllerAndroid(this)
-        settingsActivityController = SettingsScreenControllerAndroid(this)
+        shareController = ShareControllerAndroid(this)
 
         //Initializing of third-party analytics and push services.
         /*try {

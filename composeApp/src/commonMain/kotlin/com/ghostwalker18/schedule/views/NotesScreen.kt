@@ -31,8 +31,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.schedule.getNavigator
-import com.ghostwalker18.schedule.getNotesScreenController
 import com.ghostwalker18.schedule.getScheduleRepository
+import com.ghostwalker18.schedule.getShareController
 import kotlinx.coroutines.launch
 import com.ghostwalker18.schedule.models.Note
 import org.jetbrains.compose.resources.stringResource
@@ -57,7 +57,7 @@ fun NotesScreen(
     animatedVisibilityScope: AnimatedVisibilityScope? = null
 ){
     val navigator = getNavigator()
-    val worker = getNotesScreenController()
+    val worker = getShareController()
     val scope = rememberCoroutineScope()
     val model = viewModel { NotesModel() }
     model.group = group
