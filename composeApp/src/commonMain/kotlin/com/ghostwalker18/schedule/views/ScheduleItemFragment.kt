@@ -33,8 +33,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ghostwalker18.schedule.Orientation
 import com.ghostwalker18.schedule.getNavigator
 import com.ghostwalker18.schedule.getNotesRepository
+import com.ghostwalker18.schedule.getScreenOrientation
 import com.ghostwalker18.schedule.ui.theme.gray500Color
 import kotlinx.coroutines.launch
 import com.ghostwalker18.schedule.models.Lesson
@@ -157,7 +159,8 @@ private fun ScheduleTable(lessons: Array<Lesson>){
         if(lessons.isNotEmpty() && Utils.isDateToday(lessons[0].date))
             Icon(Icons.Outlined.AccessTime, null, Modifier.alpha(0f))
         TableCell(stringResource(Res.string.number), 0.1f)
-        TableCell(stringResource(Res.string.times), 0.2f)
+        if(getScreenOrientation() == Orientation.LandScape)
+            TableCell(stringResource(Res.string.times), 0.2f)
         TableCell(stringResource(Res.string.subject), 0.45f)
         TableCell(stringResource(Res.string.teacher), 0.2f)
         TableCell(stringResource(Res.string.room), 0.15f)
@@ -178,7 +181,8 @@ private fun ScheduleTable(lessons: Array<Lesson>){
                     null -> return
                 }
             TableCell(lesson.number, 0.1f)
-            TableCell(lesson.times?: "", 0.2f)
+            if(getScreenOrientation() == Orientation.LandScape)
+                TableCell(lesson.times?: "", 0.2f)
             TableCell(lesson.subject, 0.45f)
             TableCell(lesson.teacher?: "", 0.2f)
             TableCell(lesson.room?: "", 0.15f)
