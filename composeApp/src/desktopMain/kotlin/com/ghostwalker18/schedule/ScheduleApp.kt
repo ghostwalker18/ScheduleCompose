@@ -20,23 +20,18 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.ghostwalker18.schedule.models.ScheduleRepositoryDesktop
 import com.ghostwalker18.schedule.network.NetworkService
 import com.ghostwalker18.schedule.platform.*
 import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.PreferencesSettings
 import com.russhwolf.settings.get
-import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.database.AppDatabase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.runBlocking
 import com.ghostwalker18.schedule.models.NotesRepository
-import com.ghostwalker18.schedule.views.*
 import com.ghostwalker18.schedule.models.ScheduleRepository
 import com.ghostwalker18.schedule.ui.theme.ScheduleTheme
 import org.jetbrains.compose.resources.getString
@@ -68,12 +63,12 @@ class ScheduleApp {
     lateinit var navigator: NavigatorDesktop
         private set
 
-    val themeChangedListener = preferences.addStringListener("theme", "system"){
+    private val themeChangedListener = preferences.addStringListener("theme", "system"){
         themeState.value = it
     }
 
-    val localeChangedListener = preferences.addStringListener("language", "ru"){
-        setupLocale(it)
+    private val localeChangedListener = preferences.addStringListener("language", "ru"){
+        setupLocale()
     }
 
     init {
@@ -91,7 +86,7 @@ class ScheduleApp {
         settingsActivityController = SettingsScreenControllerDesktop()
         importScreenController = ImportScreenControllerDesktop()
         scheduleRepository.update()
-        setupLocale(preferences["language", "ru"])
+        setupLocale()
         setupFileChooser()
     }
 
@@ -117,49 +112,8 @@ class ScheduleApp {
                 navController = navController,
                 startDestination = "main"
             ){
-                composable(route = "main"){
-                    MainScreen()
-                }
-                composable(route = "settings"){
-                    SettingsScreen()
-                }
-                composable(route = "shareApp") {
-                    ShareAppScreenLand()
-                }
-                composable(route = "import") {
-                    ImportScreen()
-                }
-                composable(
-                    route = "notes/{group}/{date}",
-                    arguments = listOf(
-                        navArgument("group"){ type = NavType.StringType },
-                        navArgument("date"){ type = NavType.StringType })
-                ){
-                    stackEntry ->
-                    val group = stackEntry.arguments?.getString("group")
-                    val date = DateConverters().fromString(
-                        stackEntry.arguments?.getString("date")
-                    )
-                    NotesScreen(group, date)
-                }
-                composable(
-                    route = "editNote/{group}/{date}/{noteID}",
-                    arguments = listOf(
-                        navArgument("group"){ type = NavType.StringType },
-                        navArgument("date"){ type = NavType.StringType },
-                        navArgument("noteID"){ type = NavType.IntType },
-                    )
-                ){
-                    stackEntry ->
-                    val group = stackEntry.arguments?.getString("group")
-                    val date = DateConverters().fromString(
-                        stackEntry.arguments?.getString("date")
-                    )
-                    val noteID = stackEntry.arguments?.getInt("noteID")
-                    EditNoteScreen(noteID, group, date)
-                }
+                baseRoutes()
             }
-
         }
     }
 
@@ -179,7 +133,7 @@ class ScheduleApp {
     /**
      * Этот метод настраивает локаль приложения.
      */
-    private fun setupLocale(locale: String){
+    private fun setupLocale(){
         val locale = Locale(Companion.preferences["language", "ru"])
         Locale.setDefault(locale)
     }

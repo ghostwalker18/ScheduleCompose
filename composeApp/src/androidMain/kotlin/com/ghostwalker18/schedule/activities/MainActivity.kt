@@ -23,11 +23,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.ghostwalker18.schedule.Orientation
-import com.ghostwalker18.schedule.ScheduleApp
-import com.ghostwalker18.schedule.converters.DateConverters
-import com.ghostwalker18.schedule.getNavigator
-import com.ghostwalker18.schedule.getScreenOrientation
+import com.ghostwalker18.schedule.*
 import com.ghostwalker18.schedule.platform.NavigatorAndroid
 import com.ghostwalker18.schedule.utils.setContentWithTheme
 import com.ghostwalker18.schedule.views.*
@@ -52,43 +48,7 @@ class MainActivity : AppCompatActivity() {
                     navController = navController,
                     startDestination = "main"
                 ){
-                    composable(route = "main"){
-                        MainScreen()
-                    }
-
-                    composable(route = "settings"){
-                        SettingsScreen()
-                    }
-
-                    composable(route = "shareApp") {
-                        when(getScreenOrientation()){
-                            Orientation.Portrait -> ShareAppScreenPortrait()
-                            else -> ShareAppScreenLand()
-                        }
-                    }
-
-                    composable(route = "import") {
-                        ImportScreen()
-                    }
-
-                    composable(
-                        route = "notes/{group}/{date}",
-                        arguments = listOf(
-                            navArgument("group"){ type = NavType.StringType },
-                            navArgument("date"){ type = NavType.StringType })
-                    ){
-                            stackEntry ->
-                        val group = stackEntry.arguments?.getString("group")
-                        val date = DateConverters().fromString(
-                            stackEntry.arguments?.getString("date")
-                        )
-                        NotesScreen(
-                            group = group,
-                            date = date,
-                            sharedTransitionScope = this@SharedTransitionLayout,
-                            animatedVisibilityScope = this@composable
-                        )
-                    }
+                    baseRoutes(this@SharedTransitionLayout)
 
                     composable(
                         route="notePhoto/{photoID}",
@@ -106,34 +66,15 @@ class MainActivity : AppCompatActivity() {
                             getNavigator().goBack()
                         }
                     }
-
-                    composable(
-                        route = "editNote/{group}/{date}/{noteID}",
-                        arguments = listOf(
-                            navArgument("group"){ type = NavType.StringType },
-                            navArgument("date"){ type = NavType.StringType },
-                            navArgument("noteID"){ type = NavType.IntType },
-                        )
-                    ){
-                            stackEntry ->
-                        val group = stackEntry.arguments?.getString("group")
-                        val date = DateConverters().fromString(
-                            stackEntry.arguments?.getString("date")
-                        )
-                        val noteID = stackEntry.arguments?.getInt("noteID")
-                        EditNoteScreen(
-                            noteID = noteID,
-                            group = group,
-                            date = date,
-                            sharedTransitionScope =  this@SharedTransitionLayout,
-                            animatedVisibilityScope = this@composable
-                        )
-                    }
                 }
             }
             when(intent.extras?.getString("shortcut_id")){
-                "notes" -> getNavigator().goNotesActivity("ИС-22", Calendar.getInstance())
-                "add_note" -> getNavigator().goEditNoteActivity("ИС-22", Calendar.getInstance(), 0)
+                "notes" -> getScheduleRepository().savedGroup?.let {
+                    getNavigator().goNotesActivity(it, Calendar.getInstance())
+                }
+                "add_note" -> getScheduleRepository().savedGroup?.let {
+                    getNavigator().goEditNoteActivity(it, Calendar.getInstance(), 0)
+                }
             }
         }
     }

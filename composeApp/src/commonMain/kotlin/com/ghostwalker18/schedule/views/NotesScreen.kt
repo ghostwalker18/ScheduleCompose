@@ -80,7 +80,7 @@ fun NotesScreen(
                 modifier = Modifier
                     .background(MaterialTheme.colors.background)
                     .weight(1f),
-                onValueChange = { model.setKeyword(if (it == "") null else it) }
+                onValueChange = { model.setKeyword(it.ifEmpty{ null }) }
             )
             IconButton({ model.isFilterEnabled.value = true }){
                 Icon(Icons.Filled.Tune, null)
@@ -133,29 +133,38 @@ fun NotesScreen(
                 },
                 actions = {
                     AnimatedVisibility(selectedNotes.size == 1){
-                        IconButton({
-                            val note = selectedNotes[0]
-                            navigator.goEditNoteActivity(note.group, note.date, note.id)
-                        }){
+                        IconButton(
+                            onClick = {
+                                val note = selectedNotes[0]
+                                navigator.goEditNoteActivity(note.group, note.date, note.id)
+                            }
+                        ){
                             Icon(Icons.Filled.EditNote, "")
                         }
                     }
                     AnimatedVisibility(selectedNotes.isNotEmpty()){
                         Row {
-                            IconButton({ model.deleteNotes(selectedNotes) }){
+                            IconButton(
+                                onClick = {
+                                    model.deleteNotes(selectedNotes)
+                                    selectedNotes.clear()
+                                }
+                            ){
                                 Icon(Icons.Filled.Delete, "")
                             }
-                            IconButton({
-                                val (showTextRequired, text) = worker.shareNotes(selectedNotes)
-                                if (showTextRequired)
-                                    scope.launch {
-                                        scaffoldState.snackbarHostState.showSnackbar(
-                                            org.jetbrains.compose.resources.getString(
-                                                text
+                            IconButton(
+                                onClick = {
+                                    val (showTextRequired, text) = worker.shareNotes(selectedNotes)
+                                    if (showTextRequired)
+                                        scope.launch {
+                                            scaffoldState.snackbarHostState.showSnackbar(
+                                                org.jetbrains.compose.resources.getString(
+                                                    text
+                                                )
                                             )
-                                        )
-                                    }
-                            }){
+                                        }
+                                }
+                            ){
                                 Icon(Icons.Filled.Share, "")
                             }
                         }
