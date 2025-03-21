@@ -45,6 +45,7 @@ import scheduledesktop2.composeapp.generated.resources.*
 import com.ghostwalker18.schedule.utils.Utils
 import com.ghostwalker18.schedule.viewmodels.DayModel
 import com.ghostwalker18.schedule.viewmodels.ScheduleModel
+import com.russhwolf.settings.get
 import java.util.*
 
 /**
@@ -65,7 +66,11 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
         Res.string.thursday to Calendar.THURSDAY,
         Res.string.friday to Calendar.FRIDAY
     )
+
     val model = viewModel(key =dayOfWeek.key) { DayModel() }
+    val mode = ScheduleApp.instance.preferences["scheduleStyle", "in_fragment"]
+    if(mode == "in_activity") model.isOpened.value = false
+
     val date by model.getDate().collectAsState()
     val lessons by model.lessons.collectAsState()
     val isOpened by model.isOpened.collectAsState()
@@ -105,7 +110,16 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
         Button(
             modifier = Modifier
                 .fillMaxWidth(),
-            onClick = { model.isOpened.value = !isOpened }
+            onClick = {
+                when(mode){
+                    "in_fragment" -> model.isOpened.value = !isOpened
+                    "in_activity" -> ScheduleApp.instance.navigator.goScheduleScreen(
+                        model.getDate().value,
+                        model.group,
+                        model.teacher
+                    )
+                }
+            }
         ){
             Box(
                 modifier = Modifier

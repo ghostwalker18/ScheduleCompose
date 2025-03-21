@@ -27,6 +27,10 @@ class NavigatorAndroid(private val navController: NavController) : Navigator {
         navController.navigateUp()
     }
 
+    override fun goScheduleScreen(date: Calendar, group: String?, teacher: String?){
+
+    }
+
     override fun goSettingsActivity(){
         navController.navigate("settings")
     }

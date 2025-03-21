@@ -55,9 +55,22 @@ fun NavGraphBuilder.baseRoutes(
     composable(
         route = "schedule/{date}/{group}/{teacher}",
         arguments = listOf(
-            navArgument("date"){ type = NavType.StringType },
-            navArgument("group"){ type = NavType.StringType },
-            navArgument("teacher"){ type = NavType.StringType }
+            navArgument("date")
+            {
+                type = NavType.StringType
+            },
+            navArgument("group")
+            {
+                type = NavType.StringType
+                nullable = true
+                defaultValue = null
+            },
+            navArgument("teacher")
+            {
+                type = NavType.StringType
+                nullable = true
+                defaultValue = null
+            },
         )
     ){
         stackEntry ->

@@ -75,6 +75,11 @@ expect interface Navigator {
     fun goBack()
 
     /**
+     * Этот метод позволяет перейти к экрану просмотра расписания на день
+     */
+    fun goScheduleScreen(date: Calendar, group: String?, teacher: String?)
+
+    /**
      * Этот метод позволяет перейти к экрану настроек приложения.
      */
     fun goSettingsActivity()

@@ -14,17 +14,19 @@
 
 package com.ghostwalker18.schedule.views
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.Notes
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.*
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.ScheduleApp
-import com.ghostwalker18.schedule.models.Lesson
-import com.ghostwalker18.schedule.viewmodels.ScheduleModel
-import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.days_tab
@@ -42,9 +44,14 @@ fun ScheduleItemScreen(
     teacher: String?,
     date: Calendar
 ){
-    val scope = rememberCoroutineScope()
-    val model = viewModel { ScheduleModel() }
-    var lessonsState by remember { mutableStateOf(emptyArray<Lesson>()) }
+    val lessons by ScheduleApp.instance.scheduleRepository
+        .getLessons(date, teacher, group)
+        .collectAsState(emptyArray())
+    val notesCount by ScheduleApp.instance.notesRepository
+        .getNotesCount(group?: "", date)
+        .collectAsState(0)
+    val navigator = ScheduleApp.instance.navigator
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -75,12 +82,27 @@ fun ScheduleItemScreen(
             }
         }
     ){
-        val lessons = ScheduleApp.instance.scheduleRepository.getLessons(date, teacher, group)
-        scope.launch {
-            lessons.collect{
-                lessonsState = it
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            ScheduleTable(lessons)
+            IconButton(
+                {
+                    group?.let{
+                        navigator.goNotesActivity(it, date)
+                    }
+                }
+            ){
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Icon(Icons.AutoMirrored.Filled.Notes, "")
+                    if(notesCount > 0)
+                        Text(text = notesCount.toString())
+                }
             }
         }
-        ScheduleTable(lessonsState)
     }
 }

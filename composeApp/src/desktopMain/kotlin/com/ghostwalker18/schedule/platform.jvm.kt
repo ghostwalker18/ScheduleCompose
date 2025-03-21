@@ -49,6 +49,8 @@ actual interface Navigator{
 
     actual fun goBack()
 
+    actual fun goScheduleScreen(date: Calendar, group: String?, teacher: String?)
+
     actual fun goSettingsActivity()
 
     actual fun goShareAppActivity()
