@@ -135,6 +135,7 @@ compose.desktop {
         mainClass = "com.ghostwalker18.schedule.MainKt"
 
         buildTypes.release.proguard {
+            configurationFiles.from("proguard-rules.pro")
             version.set("7.4.0")
         }
 
@@ -183,7 +184,7 @@ android {
         targetSdk = 35
 
         applicationId = "com.ghostwalker18.schedule"
-        versionCode = 14
+        versionCode = 15
         versionName = "5.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
