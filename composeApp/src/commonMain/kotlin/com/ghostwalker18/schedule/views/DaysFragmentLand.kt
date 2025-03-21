@@ -117,7 +117,9 @@ fun DaysFragmentLand(){
                         Icon(Icons.Filled.Close, "")
                     }
                 }
-                if(ScheduleApp.instance.preferences.getBoolean("addTeacherSearch", true)){
+                if(ScheduleApp.instance.preferences.getBoolean(
+                        "addTeacherSearch", true
+                )){
                     Text(
                         text = stringResource(Res.string.teacher_choice_text),
                         color = MaterialTheme.colors.primaryVariant

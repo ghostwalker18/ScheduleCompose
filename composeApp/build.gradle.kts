@@ -88,9 +88,9 @@ kotlin {
             implementation("org.apache.xmlbeans:xmlbeans:3.1.0")
             implementation("javax.xml.stream:stax-api:1.0")
             implementation("com.fasterxml:aalto-xml:1.2.2")
-            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
-            implementation("com.squareup.retrofit2:retrofit:2.9.0")
-            implementation("org.jsoup:jsoup:1.12.2")
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha11")
+            implementation("com.squareup.retrofit2:retrofit:2.11.0")
+            implementation("org.jsoup:jsoup:1.16.1")
             implementation("com.google.code.gson:gson:2.11.0")
         }
 
@@ -129,21 +129,27 @@ compose.resources {
 }
 
 compose.desktop {
+
     application {
+
         mainClass = "com.ghostwalker18.schedule.MainKt"
+
+        buildTypes.release.proguard {
+            version.set("7.4.0")
+        }
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "Schedule PCCE"
-            packageVersion = "1.0.0"
+            packageVersion = "3.0.0"
 
             linux {
                 iconFile.set(project.file("desktopAppIcons/LinuxIcon.png"))
             }
 
-            /*windows {
+            windows {
                 iconFile.set(project.file("desktopAppIcons/WindowsIcon.ico"))
-            }*/
+            }
         }
     }
 }

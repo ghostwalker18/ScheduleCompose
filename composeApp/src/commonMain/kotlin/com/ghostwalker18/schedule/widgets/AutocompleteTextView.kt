@@ -35,7 +35,7 @@ import com.ghostwalker18.schedule.hideKeyboard
 fun AutocompleteTextView(
     value: String = "",
     onDismissRequest: () -> Unit = {},
-    competitionThreshold: Int = 0,
+    competitionThreshold: Int = 1,
     placeholder: String = "",
     options: Array<String>,
     modifier: Modifier = Modifier,
@@ -53,15 +53,17 @@ fun AutocompleteTextView(
             modifier = Modifier
                 .fillMaxWidth()
                 .onFocusChanged { focusState ->
-                    if (!focusState.isFocused)
+                    if (!focusState.isFocused){
                         onDismissRequest()
+                        exp = false
+                    }
                 },
-            value = selectedOption,
+            value = value,
             placeholder = { Text(placeholder) },
             onValueChange = {
                 selectedOption = it
-                exp = selectedOption.length > competitionThreshold
-                onValueSet(selectedOption) },
+                exp = it.length > competitionThreshold
+                onValueSet(it) },
             colors = TextFieldDefaults.outlinedTextFieldColors()
         )
         val filterOpts = options.filter { it.contains(selectedOption, ignoreCase = true) }
