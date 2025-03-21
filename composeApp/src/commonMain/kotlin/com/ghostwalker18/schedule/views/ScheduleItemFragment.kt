@@ -141,7 +141,13 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
             ) {
                 ScheduleTable(lessons)
                 IconButton(
-                    { navigator.goNotesActivity(model.group!!, model.getDate().value) }
+                    {
+                        model.group?.let{
+                            navigator.goNotesActivity(
+                                group = it, date = model.getDate().value
+                            )
+                        }
+                    }
                 ){
                     Row(
                         verticalAlignment = Alignment.CenterVertically

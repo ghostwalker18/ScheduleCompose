@@ -27,6 +27,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.ScheduleApp
+import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.days_tab
@@ -51,8 +53,11 @@ fun ScheduleItemScreen(
         .getNotesCount(group?: "", date)
         .collectAsState(0)
     val navigator = ScheduleApp.instance.navigator
+    val scope = rememberCoroutineScope()
+    val scaffoldState = rememberScaffoldState()
 
     Scaffold(
+        scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(
                 title = {
@@ -66,7 +71,16 @@ fun ScheduleItemScreen(
                     }
                 },
                 actions = {
-                    IconButton({}){
+                    IconButton(
+                        {
+                            val (showTextRequired, text) = ScheduleApp.instance.shareController
+                                .shareSchedule(lessons.toList())
+                            if (showTextRequired)
+                                scope.launch {
+                                    scaffoldState.snackbarHostState.showSnackbar(getString(text))
+                                }
+                        }
+                    ){
                         Icon(Icons.Filled.Share, null)
                     }
                 }
