@@ -28,9 +28,8 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.ghostwalker18.schedule.R
-import com.ghostwalker18.schedule.ScheduleApp.Companion.getInstance
+import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.ScheduleWidget
-import com.ghostwalker18.schedule.models.ScheduleRepository
 import io.appmetrica.analytics.AppMetrica
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -90,7 +89,8 @@ class WidgetSettingsActivity
     override fun onClick(view: View) {
         setResult(RESULT_OK, resultValue)
 
-        if (getInstance().isAppMetricaActivated) AppMetrica.reportEvent("Добавили виджет")
+        if (ScheduleApp.instance.isAppMetricaActivated)
+            AppMetrica.reportEvent("Добавили виджет")
 
         val appWidgetManager = AppWidgetManager.getInstance(this)
         preferences!!.edit()
@@ -132,7 +132,7 @@ class WidgetSettingsActivity
 
     class SettingsFragment
         : PreferenceFragmentCompat, OnSharedPreferenceChangeListener {
-        private val repository: ScheduleRepository = getInstance().scheduleRepository
+        private val repository = ScheduleApp.instance.scheduleRepository
         private var widgetId: Int = 0
         private var preferences: SharedPreferences? = null
         private var groupChoicePreference: ListPreference? = null

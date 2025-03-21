@@ -21,7 +21,6 @@ import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
 import androidx.core.content.ContextCompat
-import com.ghostwalker18.schedule.ScheduleApp.Companion.getInstance
 import com.ghostwalker18.schedule.activities.MainActivity
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.utils.AndroidUtils.checkNotificationsPermissions
@@ -54,8 +53,8 @@ class ScheduleWidget : AppWidgetProvider() {
             context: Context, appWidgetManager: AppWidgetManager,
             appWidgetId: Int
         ) {
-            val repository = getInstance().scheduleRepository
-            val appPreferences = getInstance().preferences
+            val repository = ScheduleApp.instance.scheduleRepository
+            val appPreferences = ScheduleApp.instance.preferences
             if (!checkNotificationsPermissions(context, appPreferences)
                 || !appPreferences.getBoolean("schedule_notifications", false)
             ) {
@@ -139,7 +138,7 @@ class ScheduleWidget : AppWidgetProvider() {
          * @since 5.0
          */
         private fun updateScheduleWidget(lessons: Array<Lesson>, id: Int) {
-            val context = getInstance().applicationContext
+            val context = ScheduleApp.instance.applicationContext
             val views = RemoteViews(
                 context.packageName,
                 R.layout.schedule_widget_wrapper

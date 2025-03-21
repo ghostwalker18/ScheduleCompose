@@ -65,8 +65,8 @@ actual class ScheduleApp : Application() {
     private lateinit var _importScreenController: ImportScreenController
     actual val importScreenController by lazy { _importScreenController }
 
-    private lateinit var _shareController: ShareControllerAndroid
-    actual val shareController by lazy { _shareController  as ShareController}
+    private lateinit var _shareController: ShareController
+    actual val shareController by lazy { _shareController }
 
     private lateinit var _preferences: ObservableSettings
     actual val preferences by lazy { _preferences }
@@ -79,13 +79,11 @@ actual class ScheduleApp : Application() {
     lateinit var database: AppDatabase
         private set
 
-    lateinit var _notesRepository: NotesRepository
-        private set
+    private lateinit var _notesRepository: NotesRepository
     actual val notesRepository by lazy { _notesRepository }
 
-    lateinit var _scheduleRepository: ScheduleRepositoryAndroid
-        private set
-    actual val scheduleRepository by lazy { _scheduleRepository as ScheduleRepository }
+    private lateinit var _scheduleRepository: ScheduleRepository
+    actual val scheduleRepository by lazy { _scheduleRepository }
 
     private lateinit var _themeState: MutableStateFlow<String>
     lateinit var themeState: StateFlow<String>

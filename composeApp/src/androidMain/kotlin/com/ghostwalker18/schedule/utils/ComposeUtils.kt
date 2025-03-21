@@ -30,7 +30,7 @@ import com.ghostwalker18.schedule.ui.theme.ScheduleTheme
  */
 fun ComponentActivity.setContentWithTheme(content: @Composable () -> Unit){
     setContent {
-        val theme by ScheduleApp.getInstance().themeState.collectAsState()
+        val theme by ScheduleApp.instance.themeState.collectAsState()
         val isInDarkMode = when(theme){
             "night" -> true
             "day" -> false

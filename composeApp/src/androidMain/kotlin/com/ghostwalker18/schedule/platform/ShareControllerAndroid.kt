@@ -54,7 +54,7 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
             shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
             context.startActivity(shareIntent, null)
-            if (ScheduleApp.getInstance().isAppMetricaActivated)
+            if (ScheduleApp.instance.isAppMetricaActivated)
                 AppMetrica.reportEvent("Поделились расписанием занятий")
 
             return Pair(false, Res.string.nothing_to_share)
@@ -88,7 +88,7 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
             shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
             context.startActivity(shareIntent, null)
-            if (ScheduleApp.getInstance().isAppMetricaActivated)
+            if (ScheduleApp.instance.isAppMetricaActivated)
                 AppMetrica.reportEvent("Поделились расписанием звонков")
 
             return Pair(false, Res.string.nothing_to_share)
@@ -111,7 +111,7 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
         startActivity(context, shareIntent, null)
-        if (ScheduleApp.getInstance().isAppMetricaActivated)
+        if (ScheduleApp.instance.isAppMetricaActivated)
             AppMetrica.reportEvent("Поделились заметками")
 
         return Pair(false, Res.string.nothing_to_share)

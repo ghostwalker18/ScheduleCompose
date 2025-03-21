@@ -44,7 +44,7 @@ class ScheduleUpdateNotificationWorker(context: Context, workerParameters: Worke
         val service: ListeningExecutorService = MoreExecutors
             .listeningDecorator(Executors.newSingleThreadExecutor())
         return service.submit<Result> {
-            val repository = ScheduleApp.getInstance().scheduleRepository
+            val repository = ScheduleApp.instance.scheduleRepository
             val lastUpdateResult = repository.lastUpdateResult
             val lastAvailableDate = runBlocking { repository.getLastKnownLessonDate(repository.savedGroup) }
             repository.update()
