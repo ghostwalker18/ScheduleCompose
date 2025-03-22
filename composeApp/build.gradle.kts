@@ -141,8 +141,12 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "Schedule PCCE"
+            packageName = "Schedule PCACE"
+            description = "Desktop app for Petrozavodsk College of Architecture and Civil Engineering schedule"
             packageVersion = "3.0.0"
+            copyright = "2025 © Ipatov Nikita"
+            licenseFile.set(rootProject.file("LICENSE"))
+            vendor = "Ghostwalker18"
 
             linux {
                 iconFile.set(project.file("desktopAppIcons/LinuxIcon.png"))
@@ -150,6 +154,7 @@ compose.desktop {
 
             windows {
                 iconFile.set(project.file("desktopAppIcons/WindowsIcon.ico"))
+                shortcut = true
             }
         }
     }
