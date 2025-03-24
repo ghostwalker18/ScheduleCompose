@@ -25,3 +25,5 @@ captures
 /composeApp/database.db.lck
 /composeApp/database.db-journal
 /.fleet/receipt.json
+/appMetrica.properties
+/signing.properties

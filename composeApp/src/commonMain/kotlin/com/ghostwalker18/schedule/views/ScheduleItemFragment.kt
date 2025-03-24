@@ -127,10 +127,10 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
             ){
                 Title(date, dayOfWeek, Modifier.align(Alignment.Center))
                 val modifier = Modifier.align(Alignment.CenterEnd)
-                if(isOpened){
+                if(isOpened && mode == "in_fragment"){
                     Icon(Icons.Filled.KeyboardArrowUp, "", modifier)
                 }
-                else{
+                else if( mode == "in_fragment"){
                     Icon(Icons.Filled.KeyboardArrowDown, "", modifier)
                 }
             }

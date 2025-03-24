@@ -135,7 +135,7 @@ compose.desktop {
         mainClass = "com.ghostwalker18.schedule.MainKt"
 
         buildTypes.release.proguard {
-            configurationFiles.from("proguard-rules.pro")
+            configurationFiles.from("proguard-rules-desktop.pro")
             version.set("7.4.0")
         }
 
@@ -201,7 +201,7 @@ android {
             isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android.txt"),
-                "proguard-rules.pro"
+                "proguard-rules-android.pro"
             )
             signingConfig = signingConfigs.getByName("release")
         }
