@@ -99,4 +99,5 @@
     <string name="notifications_notification_app_update_channel_name">Обновления приложений</string>
     <string name="notifications_notification_schedule_update_channel_name">Расписание</string>
     <string name="developer_email" translatable="false">ghostwalker18@mail.ru</string>
+    <string name="repo_address" translatable="false">https://github.com/ghostwalker18/ScheduleCompose/releases/latest</string>
 </resources>

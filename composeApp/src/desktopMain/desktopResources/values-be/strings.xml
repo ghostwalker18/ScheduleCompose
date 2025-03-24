@@ -19,6 +19,9 @@
     <string name="share_link_completed">Спасылка была скапіяваная ў буфер абмену</string>
     <string name="share_email_completed">Email быў скапіяваны ў буфер абмену</string>
     <string name="download_file_dialog">Захаваць расклад у</string>
+    <string name="check_for_update">Праверыць наяўнасць абнаўленняў</string>
+    <string name="update_available">Даступна новае абнаўленне</string>
+    <string name="update_info">Версія прыкладання %1$s даступная для запампоўкі па адрасе:</string>
     <string name="lookInLabelText">Пошук у</string>
     <string name="filesOfTypeLabelText">Пашырэнне</string>
     <string name="upFolderToolTipText">Наверх</string>

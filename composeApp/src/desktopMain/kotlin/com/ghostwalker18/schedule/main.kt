@@ -14,18 +14,39 @@
 
 package com.ghostwalker18.schedule
 
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.application
+import androidx.compose.ui.window.*
+import com.ghostwalker18.schedule.network.NetworkService
+import com.ghostwalker18.schedule.notifications.NotificationWorker
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.app_name
+import scheduledesktop2.composeapp.generated.resources.check_for_update
 import scheduledesktop2.composeapp.generated.resources.favicon
 
 /**
  * Точка входа в десктопное приложение.
  */
 fun main() = application {
+    val tray = rememberTrayState()
+
+    Tray(
+        icon = painterResource(Res.drawable.favicon),
+        state = tray,
+        menu = {
+            Item(
+                text = stringResource(Res.string.check_for_update),
+                onClick = {
+                    val worker = NotificationWorker(
+                        updateAPI = NetworkService(URLs.BASE_URI).getUpdateAPI(),
+                        tray = tray
+                    )
+                    worker.checkForUpdates()
+                }
+            )
+        }
+    )
+
     Window(
         onCloseRequest = ::exitApplication,
         title = stringResource(Res.string.app_name),

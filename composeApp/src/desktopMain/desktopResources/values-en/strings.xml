@@ -19,6 +19,9 @@
     <string name="share_link_completed">The link was copied to the clipboard</string>
     <string name="share_email_completed">The email was copied to the clipboard</string>
     <string name="download_file_dialog">Save the schedule in</string>
+    <string name="check_for_update">Check for updates</string>
+    <string name="update_available">A new update is available</string>
+    <string name="update_info">The %1$s version of the app is available for download at:</string>
     <string name="lookInLabelText">Search in</string>
     <string name="filesOfTypeLabelText">Extension</string>
     <string name="upFolderToolTipText">Up</string>

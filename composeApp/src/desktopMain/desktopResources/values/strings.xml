@@ -19,6 +19,9 @@
     <string name="share_link_completed">Ссылка была скопирована в буфер обмена</string>
     <string name="share_email_completed">Email был скопирован в буфер обмена</string>
     <string name="download_file_dialog">Сохранить расписание в</string>
+    <string name="check_for_update">Проверить наличие обновлений</string>
+    <string name="update_available">Доступно новое обновление</string>
+    <string name="update_info">Версия приложения %1$s доступна для скачивания по адресу:</string>
     <string name="lookInLabelText">Поиск в</string>
     <string name="filesOfTypeLabelText">Расширение</string>
     <string name="upFolderToolTipText">Наверх</string>

@@ -14,39 +14,37 @@
 
 package com.ghostwalker18.schedule.network
 
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonObject
 import okhttp3.ResponseBody
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.jsoup.parser.Parser
 import retrofit2.Converter
 import retrofit2.Retrofit
-import java.io.IOException
 import java.lang.reflect.Type
 
 /**
- * Этот класс используется для преобразования тела ответа Retrofit в Document библиотеки Jsoup.
+ * Этот класс используется для преобразования тела ответа Retrofit в Json.
  *
  * @author Ипатов Никита
  * @since 1.0
  */
-class JsoupConverterFactory : Converter.Factory() {
+class JsonConverterFactory : Converter.Factory() {
+
     override fun responseBodyConverter(
         type: Type,
-        annotations: Array<Annotation?>,
+        annotations: Array<out Annotation>,
         retrofit: Retrofit
     ): Converter<ResponseBody, *>? {
-        if (type === Document::class.java) {
-            return JsoupConverter(retrofit.baseUrl().toString())
+        if (type === JsonObject::class.java) {
+            return JsonConverter()
         }
         return null
     }
 
-    private class JsoupConverter(private val baseUri: String)
-        : Converter<ResponseBody, Document> {
-        @Throws(IOException::class)
-        override fun convert(value: ResponseBody): Document {
-            val parser: Parser = Parser.htmlParser()
-            return Jsoup.parse(value.byteStream(), "UTF-8", baseUri, parser)
+    class JsonConverter : Converter<ResponseBody, JsonObject>{
+
+        override fun convert(value: ResponseBody): JsonObject {
+            return Json.parseToJsonElement(value.bytes().toString(Charsets.UTF_8)).jsonObject
         }
     }
 }

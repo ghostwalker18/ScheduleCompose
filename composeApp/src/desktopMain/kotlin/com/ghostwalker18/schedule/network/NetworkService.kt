@@ -64,4 +64,13 @@ class NetworkService(private val baseUri: String) {
             .build()
             .create(ScheduleNetworkAPI::class.java)
     }
+
+    fun getUpdateAPI(): AppUpdateAPI{
+        return Retrofit.Builder()
+            .baseUrl(baseUri)
+            .callbackExecutor(Executors.newSingleThreadExecutor())
+            .addConverterFactory(JsonConverterFactory())
+            .build()
+            .create(AppUpdateAPI::class.java)
+    }
 }
