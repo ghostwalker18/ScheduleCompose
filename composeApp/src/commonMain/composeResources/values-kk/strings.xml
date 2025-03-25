@@ -99,6 +99,9 @@
     <string name="notifications">Хабарландырулар</string>
     <string name="notifications_notification_app_update_channel_name">Қолданба жаңартулары</string>
     <string name="notifications_notification_schedule_update_channel_name">Кесте</string>
+    <string name="main_share_schedule_descr">Кестемен бөлісу</string>
+    <string name="main_download_descr">Кесте файлдарын жүктеп алыңыз</string>
+    <string name="main_settings_descr">Параметрлерді ашыңыз</string>
     <string name="note_discard_descr">Өзгерістерді болдырмау</string>
     <string name="note_set_date_descr">Күнді таңдаңыз</string>
     <string name="note_clear_group_descr">Топты тазарту</string>

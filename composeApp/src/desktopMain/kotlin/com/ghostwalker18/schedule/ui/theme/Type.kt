@@ -14,17 +14,15 @@
 
 package com.ghostwalker18.schedule.ui.theme
 
-import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.Composable
+import androidx.compose.material.Typography
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
 
-@Composable
-actual fun ScheduleTheme(
-    darkTheme: Boolean,
-    content: @Composable () -> Unit
-) {
-    MaterialTheme(
-        colors = if (darkTheme) DarkColors else LightColors,
-        typography = Typography,
-        content = content
+val Typography = Typography(
+    body1 = TextStyle(
+        fontSize = 24.sp,
+    ),
+    button = TextStyle(
+        fontSize = 18.sp,
     )
-}
+)

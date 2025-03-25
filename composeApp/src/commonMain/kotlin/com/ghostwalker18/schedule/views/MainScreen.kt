@@ -39,9 +39,11 @@ import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.days_tab
 import com.ghostwalker18.schedule.viewmodels.DayModel
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import com.russhwolf.settings.get
 
 /**
  * Эта функция представляет собой главный экран приложения
@@ -68,47 +70,57 @@ fun MainScreen() {
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
-            androidx.compose.material3.TopAppBar(
+            TopAppBar(
                 title = { Text(stringResource(Res.string.schedule)) },
                 actions = {
-                    IconButton(
-                        {
-                            when(pagerState.currentPage){
-                                0 -> {
-                                    val lessons = mutableListOf<Lesson>()
-                                    for(model in dayModels){
-                                        if(model.isOpened.value)
-                                            for (lesson in model.lessons.value){
-                                                lessons += lesson
+                    AnimatedVisibility(pagerState.currentPage == 0
+                            && ScheduleApp.instance.preferences["scheduleStyle", "in_fragment"] == "in_fragment"
+                            || pagerState.currentPage == 1
+                    ){
+                        IconButton(
+                            {
+                                when(pagerState.currentPage){
+                                    0 -> {
+                                        val lessons = mutableListOf<Lesson>()
+                                        for(model in dayModels){
+                                            if(model.isOpened.value)
+                                                for (lesson in model.lessons.value){
+                                                    lessons += lesson
+                                                }
+                                        }
+                                        val (showTextRequired, text) = worker.shareSchedule(lessons)
+                                        if (showTextRequired)
+                                            scope.launch {
+                                                scaffoldState.snackbarHostState.showSnackbar(getString(text))
                                             }
                                     }
-                                    val (showTextRequired, text) = worker.shareSchedule(lessons)
-                                    if (showTextRequired)
-                                        scope.launch {
-                                            scaffoldState.snackbarHostState.showSnackbar(getString(text))
-                                        }
-                                }
-                                1 -> {
-                                    val (showTextRequired, text) = worker.shareTimes()
-                                    if (showTextRequired)
-                                        scope.launch {
-                                            scaffoldState.snackbarHostState.showSnackbar(getString(text))
-                                        }
+                                    1 -> {
+                                        val (showTextRequired, text) = worker.shareTimes()
+                                        if (showTextRequired)
+                                            scope.launch {
+                                                scaffoldState.snackbarHostState.showSnackbar(getString(text))
+                                            }
+                                    }
                                 }
                             }
+                        ){
+                            Icon(
+                                imageVector = Icons.Filled.Share,
+                                contentDescription = stringResource(Res.string.main_share_schedule_descr)
+                            )
                         }
-                    ){
-                        Icon(Icons.Filled.Share, "")
                     }
-                    IconButton(
-                        {isDownloadDialogEnabled.value = true}
-                    ){
-                        Icon(Icons.Filled.Download, "")
+                    IconButton({ isDownloadDialogEnabled.value = true }){
+                        Icon(
+                            imageVector = Icons.Filled.Download,
+                            contentDescription = stringResource(Res.string.main_download_descr)
+                        )
                     }
-                    IconButton(
-                        { navigator.goSettingsActivity() }
-                    ) {
-                        Icon(Icons.Filled.Settings, "")
+                    IconButton({ navigator.goSettingsActivity() }){
+                        Icon(
+                            imageVector = Icons.Filled.Settings,
+                            contentDescription = stringResource(Res.string.main_settings_descr)
+                        )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(

@@ -98,6 +98,9 @@
     <string name="notifications">Повідомлення</string>
     <string name="notifications_notification_app_update_channel_name">Оновлення додатків</string>
     <string name="notifications_notification_schedule_update_channel_name">Розклад</string>
+    <string name="main_share_schedule_descr">Поділитися розкладом</string>
+    <string name="main_download_descr">Завантажити файли розкладу</string>
+    <string name="main_settings_descr">Відкрити налаштування</string>
     <string name="note_discard_descr">Скасувати зміни</string>
     <string name="note_set_date_descr">Виберіть дату</string>
     <string name="note_clear_group_descr">Очистити групу</string>

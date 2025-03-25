@@ -99,6 +99,9 @@
     <string name="notifications">Апавяшчэнні</string>
     <string name="notifications_notification_app_update_channel_name">Абнаўлення прыкладанняў</string>
     <string name="notifications_notification_schedule_update_channel_name">Расклад</string>
+    <string name="main_share_schedule_descr">Падзяліцца раскладам</string>
+    <string name="main_download_descr">Спампаваць файлы раскладу</string>
+    <string name="main_settings_descr">Адкрыць налады</string>
     <string name="note_discard_descr">Адмяніць змены</string>
     <string name="note_set_date_descr">Выберыце дату</string>
     <string name="note_clear_group_descr">Ачысціць групу</string>

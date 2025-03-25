@@ -31,6 +31,10 @@ import scheduledesktop2.composeapp.generated.resources.update_info
 
 /**
  * Этот класс исполняет работу по работе с уведомлениями для десктопного приложения.
+ * @property tray объект системного трея.
+ * @property updateAPI АPI для получения информации об обновлениях.
+ *
+ * @author Ипатов Никита
  */
 class NotificationWorker(
     private val tray: TrayState,
