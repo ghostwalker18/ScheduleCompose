@@ -185,7 +185,7 @@ actual fun PhotoPreview(
                     ){
                         Icon(
                             imageVector = Icons.Filled.FirstPage,
-                            contentDescription = null
+                            contentDescription = stringResource(Res.string.preview_first_descr)
                         )
                     }
                 }
@@ -233,7 +233,8 @@ actual fun PhotoPreview(
                     ){
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.LastPage,
-                            contentDescription = null)
+                            contentDescription = stringResource(Res.string.preview_last_descr)
+                        )
                     }
                 }
             }

@@ -49,15 +49,17 @@ fun SettingsScreen() {
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     val worker =ScheduleApp.instance.shareController
+
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(Res.string.settings)) },
                 navigationIcon = {
-                    IconButton(
-                        { navigator.goBack() }
-                    ){
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "")
+                    IconButton({ navigator.goBack() }){
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = stringResource(Res.string.go_back_descr)
+                        )
                     }
                 }
             )

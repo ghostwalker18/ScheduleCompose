@@ -18,6 +18,8 @@
     <string name="note_photo_preview_descr">Ескерту үшін фотосуретті алдын ала қарау</string>
     <string name="preview_next_descr">Келесі фотосуретті көрсету</string>
     <string name="preview_previous_descr">Алдыңғы фотосуретті көрсету</string>
+    <string name="preview_first_descr">Бірінші фотосуретті көрсету</string>
+    <string name="preview_last_descr">Соңғы фотосуретті көрсету</string>
     <string name="preview_photo_descr">Ағымдағы фотосурет</string>
     <string name="preview_image_clear_descr">Фотосуретті тазалау</string>
     <string name="photoview_back_descr">Фотосуретті бүктеңіз</string>

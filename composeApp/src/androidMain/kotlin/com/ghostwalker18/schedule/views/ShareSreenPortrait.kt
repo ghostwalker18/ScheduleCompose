@@ -51,10 +51,11 @@ actual fun ShareAppScreenPortrait(){
             TopAppBar(
                 title = { Text(text = stringResource(Res.string.share_app)) },
                 navigationIcon = {
-                    IconButton(
-                        { navigator.goBack()}
-                    ){
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "")
+                    IconButton({ navigator.goBack()}){
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = stringResource(Res.string.go_back_descr)
+                        )
                     }
                 },
             )

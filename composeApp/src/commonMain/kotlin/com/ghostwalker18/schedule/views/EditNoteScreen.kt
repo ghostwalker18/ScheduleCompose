@@ -81,10 +81,11 @@ fun EditNoteScreen(
                         Text(stringResource(Res.string.edit_note))
                 },
                 navigationIcon = {
-                    IconButton(
-                        { navigator.goBack()}
-                    ){
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "")
+                    IconButton({ navigator.goBack() }){
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = stringResource(Res.string.go_back_descr)
+                        )
                     }
                 },
             )
@@ -104,7 +105,10 @@ fun EditNoteScreen(
                 Text(text = DateConverters().toString(noteDate)!!)
                 var showDatePicker by remember { mutableStateOf(false) }
                 IconButton({ showDatePicker = true }){
-                    Icon(Icons.Filled.ArrowDropDown, null)
+                    Icon(
+                        imageVector = Icons.Filled.ArrowDropDown,
+                        contentDescription = stringResource(Res.string.note_set_date_descr)
+                    )
                 }
                 if (showDatePicker)
                     DatePickerModal(

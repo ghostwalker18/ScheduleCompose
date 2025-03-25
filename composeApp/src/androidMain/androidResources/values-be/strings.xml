@@ -18,6 +18,8 @@
     <string name="note_photo_preview_descr">Прадпрагляд фота для нататкі</string>
     <string name="preview_next_descr">Паказаць наступную фатаграфію</string>
     <string name="preview_previous_descr">Паказаць папярэднюю фотаздымак</string>
+    <string name="preview_first_descr">Паказаць першую фатаграфію</string>
+    <string name="preview_last_descr">Паказаць апошнюю фатаграфію</string>
     <string name="preview_photo_descr">Бягучая фотаздымак</string>
     <string name="preview_image_clear_descr">Ачысціць фота</string>
     <string name="photoview_back_descr">Згарнуць фота</string>

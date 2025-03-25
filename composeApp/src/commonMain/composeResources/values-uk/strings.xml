@@ -122,4 +122,11 @@
     <string name="days_teacher_clear_descr">Очистити викладача</string>
     <string name="notes_selection_cancel_descr">Скасувати виділення нотаток</string>
     <string name="availability_descr">Доступність для відвідування</string>
+    <string name="notes_delete_selected_descr">Видалити вибрані нотатки</string>
+    <string name="notes_share_selected_descr">Поділитися вибраними нотатками</string>
+    <string name="notes_edit_selected_descr">Редагувати вибрану нотатку</string>
+    <string name="lesson_available_descr">Заняття йде</string>
+    <string name="lesson_ended_descr">Заняття пройшло</string>
+    <string name="lesson_not_started_descr">Заняття не почалося</string>
+    <string name="go_back_descr">Повернутися на попередній екран</string>
 </resources>

@@ -18,6 +18,8 @@
     <string name="note_photo_preview_descr">Photo preview</string>
     <string name="preview_next_descr">Show the next photo</string>
     <string name="preview_previous_descr">Show the previous photo</string>
+    <string name="preview_first_descr">Show the first photo</string>
+    <string name="preview_last_descr">Show the last photo</string>
     <string name="preview_photo_descr">Current photo</string>
     <string name="preview_image_clear_descr">Clear photo</string>
     <string name="photoview_back_descr">Collapse photo</string>

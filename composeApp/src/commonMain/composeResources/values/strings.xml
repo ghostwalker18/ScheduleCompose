@@ -123,6 +123,13 @@
     <string name="days_group_clear_descr">Очистить группу</string>
     <string name="days_teacher_clear_descr">Очистить преподавателя</string>
     <string name="notes_selection_cancel_descr">Отменить выделение заметок</string>
+    <string name="notes_delete_selected_descr">Удалить выбранные заметки</string>
+    <string name="notes_share_selected_descr">Поделиться выбранными заметками</string>
+    <string name="notes_edit_selected_descr">Редактировать выбранную заметку</string>
+    <string name="lesson_available_descr">Занятие идет</string>
+    <string name="lesson_ended_descr">Занятие прошло</string>
+    <string name="lesson_not_started_descr">Занятие не началось</string>
+    <string name="go_back_descr">Вернуться на предыдущий экран</string>
     <string name="developer_email" translatable="false">ghostwalker18@mail.ru</string>
     <string name="repo_address" translatable="false">https://github.com/ghostwalker18/ScheduleCompose/releases/latest</string>
 </resources>

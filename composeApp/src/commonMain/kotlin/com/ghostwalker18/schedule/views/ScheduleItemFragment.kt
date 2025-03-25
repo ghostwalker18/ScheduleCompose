@@ -199,13 +199,16 @@ fun ScheduleTable(lessons: Array<Lesson>){
                 when(Utils.isLessonAvailable(lesson.date, lesson.times)){
                     Utils.LessonAvailability.ENDED -> Icon(
                         imageVector = Icons.Outlined.EventBusy,
-                        contentDescription = null)
+                        contentDescription = stringResource(Res.string.lesson_ended_descr)
+                    )
                     Utils.LessonAvailability.STARTED -> Icon(
                         imageVector = Icons.Outlined.AccessTime,
-                        contentDescription = null)
+                        contentDescription = stringResource(Res.string.lesson_available_descr)
+                    )
                     Utils.LessonAvailability.NOT_STARTED -> Icon(
                         imageVector = Icons.Outlined.EventAvailable,
-                        contentDescription = null)
+                        contentDescription = stringResource(Res.string.lesson_not_started_descr)
+                    )
                     null -> return
                 }
             TableCell(lesson.number, 0.1f)

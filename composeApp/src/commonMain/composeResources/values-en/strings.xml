@@ -123,4 +123,11 @@
     <string name="days_teacher_clear_descr">Clear teacher</string>
     <string name="notes_selection_cancel_descr">"Сancel notes` selection "</string>
     <string name="availability_descr">Accessibility to visit</string>
+    <string name="notes_delete_selected_descr">Delete selected notes</string>
+    <string name="notes_share_selected_descr">Share selected notes</string>
+    <string name="notes_edit_selected_descr">Edit a selected note</string>
+    <string name="lesson_available_descr">The lesson is in progress</string>
+    <string name="lesson_ended_descr">The lesson is over</string>
+    <string name="lesson_not_started_descr">The lesson has not started</string>
+    <string name="go_back_descr">Go back to the previous screen</string>
 </resources>

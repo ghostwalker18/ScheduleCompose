@@ -83,7 +83,8 @@ fun ScheduleItemScreen(
                     ){
                         Icon(
                             imageVector = Icons.Filled.Share,
-                            contentDescription = null)
+                            contentDescription = null
+                        )
                     }
                 }
             )

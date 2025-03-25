@@ -18,6 +18,8 @@
     <string name="note_photo_preview_descr">Предпросмотр фото для заметки</string>
     <string name="preview_next_descr">Показать следующую фотографию</string>
     <string name="preview_previous_descr">Показать предыдущую фотография</string>
+    <string name="preview_first_descr">Показать первую фотографию</string>
+    <string name="preview_last_descr">Показать последнюю фотографию</string>
     <string name="preview_photo_descr">Текущая фотография</string>
     <string name="preview_image_clear_descr">Очистить фото</string>
     <string name="photoview_back_descr">Свернуть фото</string>

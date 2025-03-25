@@ -123,4 +123,11 @@
     <string name="days_teacher_clear_descr">Ачысціць выкладчыка</string>
     <string name="notes_selection_cancel_descr">Адмяніць вылучэнне нататак</string>
     <string name="availability_descr">Даступнасць для наведвання</string>
+    <string name="notes_delete_selected_descr">Выдаліць выбраныя нататкі</string>
+    <string name="notes_share_selected_descr">Падзяліцца выбранымі нататкамі</string>
+    <string name="notes_edit_selected_descr">Рэдагаваць выбраную нататку</string>
+    <string name="lesson_available_descr">Занятак ідзе</string>
+    <string name="lesson_ended_descr">Занятак прайшоў</string>
+    <string name="lesson_not_started_descr">Занятак не пачаўся</string>
+    <string name="go_back_descr">Вярнуцца на папярэдні экран</string>
 </resources>

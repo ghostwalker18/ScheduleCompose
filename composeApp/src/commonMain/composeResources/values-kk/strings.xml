@@ -123,4 +123,11 @@
     <string name="days_teacher_clear_descr">Мұғалімді тазарту</string>
     <string name="notes_selection_cancel_descr">Жазбаларды бөлектеуді болдырмау</string>
     <string name="availability_descr">Келуге қол жетімділік</string>
+    <string name="notes_delete_selected_descr">Таңдалған жазбаларды жою</string>
+    <string name="notes_share_selected_descr">Таңдалған жазбаларды бөлісу</string>
+    <string name="notes_edit_selected_descr">Таңдалған жазбаны өңдеу</string>
+    <string name="lesson_available_descr">Сабақ жүріп жатыр</string>
+    <string name="lesson_ended_descr">Сабақ өтті</string>
+    <string name="lesson_not_started_descr">Сабақ басталған жоқ</string>
+    <string name="go_back_descr">Алдыңғы экранға оралу</string>
 </resources>

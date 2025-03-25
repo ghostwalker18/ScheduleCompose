@@ -39,6 +39,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import org.jetbrains.compose.resources.stringResource
+import scheduledesktop2.composeapp.generated.resources.preview_photo_descr
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.photoview_back_descr
 import scheduledesktop2.composeapp.generated.resources.photoview_share_descr
@@ -123,7 +124,7 @@ fun PhotoViewScreen(
                         state = rememberSharedContentState(photoID),
                         animatedVisibilityScope = animatedVisibilityScope!!
                     ),
-                contentDescription = null
+                contentDescription = stringResource(Res.string.preview_photo_descr)
             )
         }
         Spacer(

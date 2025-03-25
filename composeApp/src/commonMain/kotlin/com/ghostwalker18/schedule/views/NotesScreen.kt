@@ -99,7 +99,10 @@ fun NotesScreen(
         ){
             IconButton({ selectedNotes.clear() })
             {
-                Icon(Icons.Filled.Close, null)
+                Icon(
+                    imageVector = Icons.Filled.Close,
+                    contentDescription = stringResource(Res.string.notes_selection_cancel_descr)
+                )
             }
             AnimatedContent(
                 targetState = selectedNotes.size,
@@ -129,10 +132,11 @@ fun NotesScreen(
             TopAppBar(
                 title = { Text(stringResource(Res.string.notes_activity)) },
                 navigationIcon = {
-                    IconButton(
-                        { navigator.goBack()}
-                    ){
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "")
+                    IconButton({ navigator.goBack() }){
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = stringResource(Res.string.go_back_descr)
+                        )
                     }
                 },
                 actions = {
@@ -143,7 +147,10 @@ fun NotesScreen(
                                 navigator.goEditNoteActivity(note.group, note.date, note.id)
                             }
                         ){
-                            Icon(Icons.Filled.EditNote, "")
+                            Icon(
+                                imageVector = Icons.Filled.EditNote,
+                                contentDescription = stringResource(Res.string.notes_edit_selected_descr)
+                            )
                         }
                     }
                     AnimatedVisibility(selectedNotes.isNotEmpty()){
@@ -156,7 +163,7 @@ fun NotesScreen(
                             ){
                                 Icon(
                                     imageVector = Icons.Filled.Delete,
-                                    contentDescription = null
+                                    contentDescription = stringResource(Res.string.notes_delete_selected_descr)
                                 )
                             }
                             IconButton(
@@ -172,7 +179,8 @@ fun NotesScreen(
                             ){
                                 Icon(
                                     imageVector = Icons.Filled.Share,
-                                    contentDescription = "")
+                                    contentDescription = stringResource(Res.string.notes_share_selected_descr)
+                                )
                             }
                         }
                     }
