@@ -46,23 +46,43 @@ class NotificationWorker(
                 val latestVersion = response.body()?.get("tag_name")?.jsonPrimitive?.content
                 val currentVersion = "3.0"
                 latestVersion?.let {
-                    if(latestVersion > currentVersion){
-                        val title = runBlocking { getString(Res.string.update_available) }
-                        val message = runBlocking {
-                            getString(Res.string.update_info, latestVersion) + " " + getString(Res.string.repo_address)
-                        }
-                        tray.sendNotification(
-                            Notification(
-                                title = title,
-                                message = message,
-                                type = Notification.Type.Info
-                            )
-                        )
+                    val title = if(latestVersion > currentVersion)
+                        runBlocking { getString(Res.string.update_available) }
+                    else
+                        runBlocking { getString(Res.string.update_unavailable) }
+                    val message = runBlocking {
+                        getString(Res.string.update_info, latestVersion) + " " + getString(Res.string.repo_address)
                     }
+                    tray.sendNotification(
+                        Notification(
+                            title = title,
+                            message = message,
+                            type = Notification.Type.Info
+                        )
+                    )
+                    return
                 }
+                notifyFailure()
             }
 
-            override fun onFailure(p0: Call<JsonObject>, p1: Throwable) { /*Not required*/ }
+            override fun onFailure(call: Call<JsonObject>, throwable: Throwable) {
+                notifyFailure()
+            }
         })
+    }
+
+    /**
+     * Этот метод уведомляет о неудаче получения информации об обновлении.
+     */
+    private fun notifyFailure(){
+        val title = runBlocking { getString(Res.string.something_weird) }
+        val message = runBlocking { getString(Res.string.update_info_unavailable) }
+        tray.sendNotification(
+            Notification(
+                title = title,
+                message = message,
+                type = Notification.Type.Info
+            )
+        )
     }
 }

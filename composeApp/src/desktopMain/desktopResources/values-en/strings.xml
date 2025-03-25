@@ -22,6 +22,8 @@
     <string name="check_for_update">Check for updates</string>
     <string name="update_available">A new update is available</string>
     <string name="update_info">The %1$s version of the app is available for download at:</string>
+    <string name="update_unavailable">The latest version of the app is already installed</string>
+    <string name="update_info_unavailable">Information about updates is not available</string>
     <string name="lookInLabelText">Search in</string>
     <string name="filesOfTypeLabelText">Extension</string>
     <string name="upFolderToolTipText">Up</string>

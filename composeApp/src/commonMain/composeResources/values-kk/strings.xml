@@ -14,6 +14,7 @@
   -->
 <resources>
     <string name="app_name">Кесте ПСҚК</string>
+    <string name="something_weird">Ой, бірдеңе дұрыс болмады</string>
     <string name="schedule">Кесте</string>
     <string name="settings">Параметрлер</string>
     <string name="days_tab">Сабақ кестесі</string>

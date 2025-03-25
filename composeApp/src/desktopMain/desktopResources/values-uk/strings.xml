@@ -22,6 +22,8 @@
     <string name="check_for_update">Перевірити наявність оновлень</string>
     <string name="update_available">Доступне нове оновлення</string>
     <string name="update_info">Версія програми %1$s доступна для скачування за адресою:</string>
+    <string name="update_unavailable">Остання версія програми вже встановлена</string>
+    <string name="update_info_unavailable">Інформація про оновлення не доступна</string>
     <string name="lookInLabelText">Пошук в</string>
     <string name="filesOfTypeLabelText">Розширення</string>
     <string name="upFolderToolTipText">Наверх</string>
