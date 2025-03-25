@@ -33,11 +33,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 import com.ghostwalker18.schedule.models.Note
 import org.jetbrains.compose.resources.stringResource
+import com.ghostwalker18.schedule.viewmodels.NotesModel
+import com.ghostwalker18.schedule.ScheduleApp
+import org.jetbrains.compose.resources.getString
+import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.no_notes_now
 import scheduledesktop2.composeapp.generated.resources.notes_activity
-import com.ghostwalker18.schedule.viewmodels.NotesModel
-import com.ghostwalker18.schedule.ScheduleApp
+import scheduledesktop2.composeapp.generated.resources.notes_filter_descr
 import java.util.*
 
 /**
@@ -81,7 +84,10 @@ fun NotesScreen(
                 onValueChange = { model.setKeyword(it.ifEmpty{ null }) }
             )
             IconButton({ model.isFilterEnabled.value = true }){
-                Icon(Icons.Filled.Tune, null)
+                Icon(
+                    imageVector = Icons.Filled.Tune,
+                    contentDescription = stringResource(Res.string.notes_filter_descr)
+                )
             }
         }
     }
@@ -148,7 +154,10 @@ fun NotesScreen(
                                     selectedNotes.clear()
                                 }
                             ){
-                                Icon(Icons.Filled.Delete, "")
+                                Icon(
+                                    imageVector = Icons.Filled.Delete,
+                                    contentDescription = null
+                                )
                             }
                             IconButton(
                                 onClick = {
@@ -156,14 +165,14 @@ fun NotesScreen(
                                     if (showTextRequired)
                                         scope.launch {
                                             scaffoldState.snackbarHostState.showSnackbar(
-                                                org.jetbrains.compose.resources.getString(
-                                                    text
-                                                )
+                                                getString(text)
                                             )
                                         }
                                 }
                             ){
-                                Icon(Icons.Filled.Share, "")
+                                Icon(
+                                    imageVector = Icons.Filled.Share,
+                                    contentDescription = "")
                             }
                         }
                     }
@@ -187,7 +196,7 @@ fun NotesScreen(
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.NoteAdd,
                     tint = Color.White,
-                    contentDescription = null
+                    contentDescription = stringResource(Res.string.notes_add_descr)
                 )
             }
         }
@@ -220,8 +229,9 @@ fun NotesScreen(
             else {
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth()
-                ) {
-                    notes.forEach{ note ->
+                ){
+                    notes.forEach {
+                        note ->
                         item {
                             NoteView(
                                 note = note,

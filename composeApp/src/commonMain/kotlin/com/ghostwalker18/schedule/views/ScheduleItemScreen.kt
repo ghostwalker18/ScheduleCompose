@@ -81,7 +81,9 @@ fun ScheduleItemScreen(
                                 }
                         }
                     ){
-                        Icon(Icons.Filled.Share, null)
+                        Icon(
+                            imageVector = Icons.Filled.Share,
+                            contentDescription = null)
                     }
                 }
             )

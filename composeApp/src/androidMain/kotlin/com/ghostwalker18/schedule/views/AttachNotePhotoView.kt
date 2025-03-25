@@ -50,10 +50,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.viewmodels.EditNoteModel
+import org.jetbrains.compose.resources.stringResource
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.note_choose_photo_descr
+import scheduledesktop2.composeapp.generated.resources.note_take_photo_descr
 import java.io.File
 import java.util.*
 import kotlin.random.Random
-
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
@@ -119,7 +122,10 @@ actual fun AttachNotePhotoView(
                     .background(MaterialTheme.colors.primary)
                     .weight(0.5f)
             ){
-                Icon(Icons.Filled.PhotoLibrary, null)
+                Icon(
+                    imageVector = Icons.Filled.PhotoLibrary,
+                    contentDescription = stringResource(Res.string.note_choose_photo_descr)
+                )
             }
             IconButton(
                 onClick = {
@@ -140,7 +146,10 @@ actual fun AttachNotePhotoView(
                     .background(MaterialTheme.colors.primary)
                     .weight(0.5f)
             ){
-                Icon(Icons.Filled.AddAPhoto, null)
+                Icon(
+                    imageVector = Icons.Filled.AddAPhoto,
+                    contentDescription = stringResource(Res.string.note_take_photo_descr)
+                )
             }
         }
         PhotoPreview(

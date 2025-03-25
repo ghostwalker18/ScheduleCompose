@@ -43,6 +43,12 @@ import androidx.core.net.toUri
 import com.ghostwalker18.schedule.ScheduleApp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.stringResource
+import scheduledesktop2.composeapp.generated.resources.*
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.preview_image_clear_descr
+import scheduledesktop2.composeapp.generated.resources.preview_next_descr
+import scheduledesktop2.composeapp.generated.resources.preview_previous_descr
 import java.util.*
 
 @OptIn(ExperimentalSharedTransitionApi::class)
@@ -122,7 +128,10 @@ actual fun PhotoPreview(
                         onDeleteListener(photoIDs[pagerState.currentPage])
                     }
                 }){
-                    Icon(Icons.Filled.Delete, null)
+                    Icon(
+                        imageVector = Icons.Filled.Delete,
+                        contentDescription = stringResource(Res.string.preview_image_clear_descr)
+                    )
                 }
             }
         }
@@ -148,7 +157,8 @@ actual fun PhotoPreview(
                                 ).clickable {
                                     ScheduleApp.instance.navigator.goPhotoView(photoIDs[page])
                                 },
-                            contentDescription = null)
+                            contentDescription = stringResource(Res.string.preview_photo_descr)
+                        )
                     }
                 }
             }
@@ -173,7 +183,10 @@ actual fun PhotoPreview(
                         modifier = Modifier
                             .padding(horizontal = 10.dp)
                     ){
-                        Icon(Icons.Filled.FirstPage, null)
+                        Icon(
+                            imageVector = Icons.Filled.FirstPage,
+                            contentDescription = null
+                        )
                     }
                 }
                 IconButton(
@@ -185,7 +198,10 @@ actual fun PhotoPreview(
                     modifier = Modifier
                         .padding(horizontal = 10.dp)
                 ){
-                    Icon(Icons.AutoMirrored.Filled.ArrowLeft, null)
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowLeft,
+                        contentDescription = stringResource(Res.string.preview_previous_descr)
+                    )
                 }
                 IconButton(
                     onClick = {
@@ -196,7 +212,10 @@ actual fun PhotoPreview(
                     modifier = Modifier
                         .padding(horizontal = 10.dp)
                 ){
-                    Icon(Icons.AutoMirrored.Filled.ArrowRight,null)
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowRight,
+                        contentDescription = stringResource(Res.string.preview_next_descr)
+                    )
                 }
                 AnimatedVisibility(
                     visible = pagerState.pageCount > 2,
@@ -212,7 +231,9 @@ actual fun PhotoPreview(
                         modifier = Modifier
                             .padding(horizontal = 10.dp)
                     ){
-                        Icon(Icons.AutoMirrored.Filled.LastPage,null)
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.LastPage,
+                            contentDescription = null)
                     }
                 }
             }

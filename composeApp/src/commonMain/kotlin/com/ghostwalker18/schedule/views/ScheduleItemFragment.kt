@@ -152,7 +152,10 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ){
-                        Icon(Icons.AutoMirrored.Filled.Notes, "")
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.Notes,
+                            contentDescription = ""
+                        )
                         if(notesCount > 0)
                             Text(text = notesCount.toString())
                     }
@@ -194,9 +197,15 @@ fun ScheduleTable(lessons: Array<Lesson>){
         ) {
             if(Utils.isDateToday(lesson.date))
                 when(Utils.isLessonAvailable(lesson.date, lesson.times)){
-                    Utils.LessonAvailability.ENDED -> Icon(Icons.Outlined.EventBusy, null)
-                    Utils.LessonAvailability.STARTED -> Icon(Icons.Outlined.AccessTime, null)
-                    Utils.LessonAvailability.NOT_STARTED -> Icon(Icons.Outlined.EventAvailable, null)
+                    Utils.LessonAvailability.ENDED -> Icon(
+                        imageVector = Icons.Outlined.EventBusy,
+                        contentDescription = null)
+                    Utils.LessonAvailability.STARTED -> Icon(
+                        imageVector = Icons.Outlined.AccessTime,
+                        contentDescription = null)
+                    Utils.LessonAvailability.NOT_STARTED -> Icon(
+                        imageVector = Icons.Outlined.EventAvailable,
+                        contentDescription = null)
                     null -> return
                 }
             TableCell(lesson.number, 0.1f)

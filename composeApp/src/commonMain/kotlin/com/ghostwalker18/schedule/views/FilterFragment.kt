@@ -79,7 +79,10 @@ fun NotesFilterFragment(){
                     modifier = Modifier.weight(1f)
                 )
                 IconButton({model.isFilterEnabled.value = false}){
-                    Icon(Icons.Filled.Close, null)
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        contentDescription = stringResource(Res.string.filter_close_descr)
+                    )
                 }
             }
             Text(
@@ -93,7 +96,10 @@ fun NotesFilterFragment(){
                     modifier = Modifier.weight(1f)
                 )
                 IconButton({ model.group = null }){
-                    Icon(Icons.Filled.Close, null)
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        contentDescription = stringResource(Res.string.note_clear_group_descr)
+                    )
                 }
             }
             Text(
@@ -109,7 +115,10 @@ fun NotesFilterFragment(){
                 )
                 var showDatePicker by remember { mutableStateOf(false) }
                 IconButton({ showDatePicker = true }){
-                    Icon(Icons.Filled.ArrowDropDown, null)
+                    Icon(
+                        imageVector = Icons.Filled.ArrowDropDown,
+                        contentDescription = stringResource(Res.string.filter_start_date_descr)
+                    )
                 }
                 if (showDatePicker)
                     DatePickerModal(
@@ -132,7 +141,10 @@ fun NotesFilterFragment(){
                 )
                 var showDatePicker by remember { mutableStateOf(false) }
                 IconButton({ showDatePicker = true}){
-                    Icon(Icons.Filled.ArrowDropDown, null)
+                    Icon(
+                        imageVector = Icons.Filled.ArrowDropDown,
+                        contentDescription = stringResource(Res.string.filter_end_date_descr)
+                    )
                 }
                 if (showDatePicker)
                     DatePickerModal(

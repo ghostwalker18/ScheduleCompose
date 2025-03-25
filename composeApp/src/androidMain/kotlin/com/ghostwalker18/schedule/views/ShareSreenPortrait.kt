@@ -31,6 +31,7 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.or
 import scheduledesktop2.composeapp.generated.resources.scan_qr_code
@@ -90,7 +91,7 @@ actual fun ShareAppScreenPortrait(){
 
                 Image(
                     painter = painter,
-                    contentDescription = null,
+                    contentDescription = stringResource(Res.string.share_app_qr_descr),
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(aspectRatio)

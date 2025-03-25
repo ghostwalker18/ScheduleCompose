@@ -38,6 +38,10 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import org.jetbrains.compose.resources.stringResource
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.photoview_back_descr
+import scheduledesktop2.composeapp.generated.resources.photoview_share_descr
 
 /**
  * Эта функция отображает фото из заметки в полноэкранном режиме.
@@ -79,7 +83,7 @@ fun PhotoViewScreen(
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     tint = Color.White,
-                    contentDescription = null
+                    contentDescription = stringResource(Res.string.photoview_back_descr)
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
@@ -92,7 +96,7 @@ fun PhotoViewScreen(
                 Icon(
                     imageVector = Icons.Filled.Share,
                     tint = Color.White,
-                    contentDescription = null
+                    contentDescription = stringResource(Res.string.photoview_share_descr)
                 )
             }
         }

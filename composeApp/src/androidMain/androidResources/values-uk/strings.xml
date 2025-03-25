@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="note_choose_photo_descr">Виберіть фото для замітки</string>
+    <string name="note_take_photo_descr">Зробити фото для замітки</string>
+    <string name="note_photo_preview_descr">Передпроглядання фото для замітки</string>
+    <string name="preview_next_descr">Показати наступну фотографію</string>
+    <string name="preview_previous_descr">Показати попередню фотографія</string>
+    <string name="preview_photo_descr">Поточна фотографія</string>
+    <string name="preview_image_clear_descr">Очистити фото</string>
+    <string name="photoview_back_descr">Згорнути фото</string>
+    <string name="photoview_share_descr">Поділитися фото</string>
+</resources>

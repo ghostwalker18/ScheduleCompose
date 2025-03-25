@@ -88,7 +88,10 @@ fun ShareAppScreenLand() {
                         .padding(5.dp)
                         .fillMaxWidth()
                 )
-                Image(painterResource(getAppQR()), null)
+                Image(
+                    painter = painterResource(getAppQR()),
+                    contentDescription = stringResource(Res.string.share_app_qr_descr)
+                )
             }
             Text(
                 text = stringResource(Res.string.or),

@@ -22,6 +22,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ghostwalker18.schedule.ScheduleApp
+import org.jetbrains.compose.resources.stringResource
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.times_monday
+import scheduledesktop2.composeapp.generated.resources.times_other
 
 /**
  * Эта функция представляет собой элемент интерфейса для отображения
@@ -45,7 +49,7 @@ fun TimesFragmentLand(){
             val aspectRatio = it.intrinsicSize.width / it.intrinsicSize.height
             Image(
                 painter = it,
-                contentDescription = null,
+                contentDescription = stringResource(Res.string.times_monday),
                 modifier = Modifier
                     .fillMaxHeight()
                     .weight(0.5f)
@@ -57,7 +61,7 @@ fun TimesFragmentLand(){
             val aspectRatio = it.intrinsicSize.width / it.intrinsicSize.height
             Image(
                 painter = it,
-                contentDescription = null,
+                contentDescription = stringResource(Res.string.times_other),
                 modifier = Modifier
                     .fillMaxHeight()
                     .weight(0.5f)

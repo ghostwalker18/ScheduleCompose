@@ -98,6 +98,31 @@
     <string name="notifications">Уведомления</string>
     <string name="notifications_notification_app_update_channel_name">Обновления приложений</string>
     <string name="notifications_notification_schedule_update_channel_name">Расписание</string>
+    <string name="note_discard_descr">Отменить изменения</string>
+    <string name="note_set_date_descr">Выберите дату</string>
+    <string name="note_clear_group_descr">Очистить группу</string>
+    <string name="note_theme_clear_descr">Очистить тему</string>
+    <string name="note_text_clear_descr">Очистить текст</string>
+    <string name="note_save_descr">Сохранить заметку</string>
+    <string name="main_tabs_descr">Вкладки расписание и звонки</string>
+    <string name="notes_add_descr">Добавить заметку</string>
+    <string name="notes_filter_descr">Фильтровать заметки</string>
+    <string name="schedule_item_notes_descr">Открыть заметки</string>
+    <string name="schedule_item_show_descr">Показать расписание</string>
+    <string name="share_app_qr_descr">QR код страницы в магазине</string>
+    <string name="widget_settings_previes_descr">Внешний вид виджета</string>
+    <string name="filter_close_descr">Закрыть и применить</string>
+    <string name="filter_start_date_descr">Выберите начальную дату</string>
+    <string name="filter_end_date_descr">Выберите конечную дату</string>
+    <string name="note_item_photo_descr">Фото заметки</string>
+    <string name="note_item_checked_descr">Заметка выбрана</string>
+    <string name="times_monday">Звонки на понедельник</string>
+    <string name="times_other">Звонки со вторника по пятницу</string>
+    <string name="update_descr">Обновить расписание</string>
+    <string name="availability_descr">Доступность для посещения</string>
+    <string name="days_group_clear_descr">Очистить группу</string>
+    <string name="days_teacher_clear_descr">Очистить преподавателя</string>
+    <string name="notes_selection_cancel_descr">Отменить выделение заметок</string>
     <string name="developer_email" translatable="false">ghostwalker18@mail.ru</string>
     <string name="repo_address" translatable="false">https://github.com/ghostwalker18/ScheduleCompose/releases/latest</string>
 </resources>

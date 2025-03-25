@@ -24,6 +24,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ghostwalker18.schedule.ScheduleApp
+import org.jetbrains.compose.resources.stringResource
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.times_monday
+import scheduledesktop2.composeapp.generated.resources.times_other
 
 @Composable
 actual fun TimesFragmentPortrait(){
@@ -40,7 +44,7 @@ actual fun TimesFragmentPortrait(){
             val aspectRatio = it.intrinsicSize.width / it.intrinsicSize.height
             Image(
                 painter = it,
-                contentDescription = null,
+                contentDescription = stringResource(Res.string.times_monday),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(15.dp)
@@ -51,7 +55,7 @@ actual fun TimesFragmentPortrait(){
             val aspectRatio = it.intrinsicSize.width / it.intrinsicSize.height
             Image(
                 painter = it,
-                contentDescription = null,
+                contentDescription = stringResource(Res.string.times_other),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(15.dp)

@@ -135,7 +135,10 @@ fun EditNoteScreen(
                         model.setGroup("")
                     }
                 ){
-                    Icon(Icons.Filled.Close, null)
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        contentDescription = stringResource(Res.string.note_clear_group_descr)
+                    )
                 }
             }
             Row(
@@ -153,7 +156,10 @@ fun EditNoteScreen(
                     model.theme.value = null
                 }
                 ){
-                    Icon(Icons.Filled.Close, null)
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        contentDescription = stringResource(Res.string.note_theme_clear_descr)
+                    )
                 }
             }
             Row(
@@ -174,7 +180,10 @@ fun EditNoteScreen(
                     model.text.value = ""
                 }
                 ){
-                    Icon(Icons.Filled.Close, null)
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        contentDescription = stringResource(Res.string.note_text_clear_descr)
+                    )
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
@@ -190,7 +199,10 @@ fun EditNoteScreen(
                         .background(MaterialTheme.colors.primary)
                         .weight(0.5f)
                 ){
-                    Icon(Icons.Filled.Close, null)
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        contentDescription = stringResource(Res.string.note_discard_descr)
+                    )
                 }
                 IconButton(
                     {
@@ -202,7 +214,10 @@ fun EditNoteScreen(
                         .background(MaterialTheme.colors.primary)
                         .weight(0.5f)
                 ){
-                    Icon(Icons.Filled.Save, null)
+                    Icon(
+                        imageVector = Icons.Filled.Save,
+                        contentDescription = stringResource(Res.string.note_save_descr)
+                    )
                 }
             }
         }

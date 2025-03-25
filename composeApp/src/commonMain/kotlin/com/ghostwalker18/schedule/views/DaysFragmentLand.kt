@@ -114,7 +114,10 @@ fun DaysFragmentLand(){
                     IconButton({
                         model.group.value = null
                     }){
-                        Icon(Icons.Filled.Close, "")
+                        Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = stringResource(Res.string.days_group_clear_descr)
+                        )
                     }
                 }
                 if(ScheduleApp.instance.preferences.getBoolean(
@@ -134,7 +137,10 @@ fun DaysFragmentLand(){
                         }
                         IconButton({ model.teacher.value = null })
                         {
-                            Icon(Icons.Filled.Close, "")
+                            Icon(
+                                imageVector = Icons.Filled.Close,
+                                contentDescription = stringResource(Res.string.days_teacher_clear_descr)
+                            )
                         }
                     }
                 }
@@ -150,7 +156,12 @@ fun DaysFragmentLand(){
                 color = MaterialTheme.colors.primaryVariant,
                 modifier = Modifier.fillMaxWidth()
             )
-            IconButton({repository.update()}){ Icon(Icons.Filled.Refresh, "") }
+            IconButton({ repository.update() }){
+                Icon(
+                    imageVector = Icons.Filled.Refresh,
+                    contentDescription = stringResource(Res.string.update_descr)
+                )
+            }
         }
         CustomButton(
             onClick = { model.goNextWeek() },
