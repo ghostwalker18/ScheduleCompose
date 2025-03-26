@@ -43,7 +43,7 @@
             android:roundIcon="@drawable/favicon"
             android:supportsRtl="true"
             tools:targetApi="34"
-            android:minSdkVersion="26">
+            android:minSdkVersion="26" tools:ignore="Instantiatable">
 
         <meta-data
                 android:name="ru.rustore.sdk.pushclient.default_notification_icon"

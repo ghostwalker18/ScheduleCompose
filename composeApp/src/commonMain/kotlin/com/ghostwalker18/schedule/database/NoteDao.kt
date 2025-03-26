@@ -15,8 +15,6 @@
 package com.ghostwalker18.schedule.database
 
 import androidx.room.*
-import com.ghostwalker18.schedule.converters.DateConverters
-import com.ghostwalker18.schedule.converters.PhotoURIArrayConverter
 import com.ghostwalker18.schedule.models.Note
 import kotlinx.coroutines.flow.Flow
 import java.util.*
@@ -29,7 +27,6 @@ import java.util.*
  * @since 1.0
  */
 @Dao
-//@TypeConverters(DateConverters::class)
 interface NoteDao {
 
     /**
@@ -69,12 +66,24 @@ interface NoteDao {
             "ORDER BY noteDate DESC")
     fun getNotesByKeyword(keyword: String?, group: String): Flow<Array<Note>>
 
-
     /**
      * Этот метод позволяет получить число заметок для выбранных группы и дня.
      */
     @Query("SELECT COUNT(*) FROM tblNote WHERE noteGroup = :group AND noteDate = :date")
     fun getNotesCountForDay(group: String, date: Calendar): Flow<Int>
+
+    /**
+     * Этот метод позволяет синхронно получить все содержимое заметок (например, для экспорта).
+     * @return все содержимое tblNote
+     */
+    @Query("SELECT * FROM tblNote")
+    suspend fun getAllNotes(): List<Note>
+
+    /**
+     * Этот метод позволяет синхронно удалить все содержимое tblNote
+     */
+    @Query("DELETE FROM tblNote")
+    suspend fun deleteAllNotes(): Int
 
     /**
      * Этот метод позволяет внести заметку в БД.
@@ -83,6 +92,7 @@ interface NoteDao {
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(note: Note)
+
     /**
      * Этот метод позволяет обновить заметку из БД.
      * @param note заметка

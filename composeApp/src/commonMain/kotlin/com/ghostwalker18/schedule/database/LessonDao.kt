@@ -16,8 +16,8 @@ package com.ghostwalker18.schedule.database
 
 import androidx.room.*
 import com.ghostwalker18.schedule.converters.DateConverters
-import kotlinx.coroutines.flow.Flow
 import com.ghostwalker18.schedule.models.Lesson
+import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 /**
@@ -100,6 +100,19 @@ interface LessonDao {
      */
     @Query("SELECT MAX(lessonDate) FROM tblSchedule WHERE groupName =:group")
     suspend fun getLastKnownLessonDate(group: String?): Calendar?
+
+    /**
+     * Этот метод позволяет синхронно получить все содержимое расписания (например, для экспорта).
+     * @return все содержимое tblSchedule
+     */
+    @Query("SELECT * FROM tblSchedule")
+    suspend fun getAllLessons(): List<Lesson>
+
+    /**
+     * Этот метод позволяет синхронно удалить все содержимое tblSchedule
+     */
+    @Query("DELETE FROM tblSchedule")
+    suspend fun deleteAllLessons()
 
     /**
      * Этот метод позволяет вставить элемент Lesson в БД.
