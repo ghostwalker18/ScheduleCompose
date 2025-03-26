@@ -15,9 +15,9 @@
 package com.ghostwalker18.schedule.platform
 
 import android.content.Context
-import com.ghostwalker18.schedule.ImportScreenController
+import com.ghostwalker18.schedule.ImportController
 
-class ImportScreenControllerAndroid(val context: Context) : ImportScreenController {
+class ImportControllerAndroid(val context: Context) : ImportController {
 
     override fun importDB(){
 

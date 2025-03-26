@@ -25,7 +25,7 @@ expect class ScheduleApp() {
     val preferences: ObservableSettings
     val navigator: Navigator
     val shareController: ShareController
-    val importScreenController: ImportScreenController
+    val importController: ImportController
 
     companion object{
        val instance: ScheduleApp

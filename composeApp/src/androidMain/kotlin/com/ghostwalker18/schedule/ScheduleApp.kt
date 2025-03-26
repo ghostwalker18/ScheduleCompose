@@ -65,8 +65,8 @@ actual class ScheduleApp : Application() {
     lateinit var _navigator: Navigator
     actual val navigator by lazy { _navigator }
 
-    private lateinit var _importScreenController: ImportScreenController
-    actual val importScreenController by lazy { _importScreenController }
+    private lateinit var _importController: ImportController
+    actual val importController by lazy { _importController }
 
     private lateinit var _shareController: ShareController
     actual val shareController by lazy { _shareController }

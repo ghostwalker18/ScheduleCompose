@@ -77,7 +77,7 @@ actual interface ShareController {
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual interface ImportScreenController {
+actual interface ImportController {
     actual fun importDB()
 
     actual fun exportDB()

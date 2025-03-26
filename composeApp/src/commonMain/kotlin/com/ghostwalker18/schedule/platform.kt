@@ -138,7 +138,7 @@ expect interface ShareController {
  * Этот интерфейс определяет платформно-зависимые операции для ImportScreen
  */
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect interface ImportScreenController {
+expect interface ImportController {
 
     /**
      * Этот метод позволяет импортировать БД приложения

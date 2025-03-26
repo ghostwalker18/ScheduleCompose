@@ -14,9 +14,9 @@
 
 package com.ghostwalker18.schedule.platform
 
-import com.ghostwalker18.schedule.ImportScreenController
+import com.ghostwalker18.schedule.ImportController
 
-class ImportScreenControllerDesktop : ImportScreenController {
+class ImportControllerDesktop : ImportController {
 
     override fun importDB(){
 

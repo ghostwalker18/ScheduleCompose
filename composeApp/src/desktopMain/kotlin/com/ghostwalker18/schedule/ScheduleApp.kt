@@ -52,7 +52,7 @@ import javax.swing.UIManager
 actual class ScheduleApp {
     actual val scheduleRepository: ScheduleRepository
     actual val notesRepository: NotesRepository
-    actual val importScreenController: ImportScreenController
+    actual val importController: ImportController
     actual val shareController: ShareController
     actual val preferences: ObservableSettings = PreferencesSettings(Preferences.userNodeForPackage(ScheduleApp::class.java))
     private val db: AppDatabase
@@ -78,7 +78,7 @@ actual class ScheduleApp {
             preferences
         )
         notesRepository = NotesRepository(db)
-        importScreenController = ImportScreenControllerDesktop()
+        importController = ImportControllerDesktop()
         shareController = ShareControllerDesktop()
         scheduleRepository.update()
         setupLocale()
