@@ -104,11 +104,15 @@ fun EditNoteScreen(
                 )
                 Text(text = DateConverters().toString(noteDate)!!)
                 var showDatePicker by remember { mutableStateOf(false) }
-                IconButton({ showDatePicker = true }){
-                    Icon(
-                        imageVector = Icons.Filled.ArrowDropDown,
-                        contentDescription = stringResource(Res.string.note_set_date_descr)
-                    )
+                ContentWrapper(
+                    toolTip = Res.string.note_set_date_descr
+                ){
+                    IconButton({ showDatePicker = true }){
+                        Icon(
+                            imageVector = Icons.Filled.ArrowDropDown,
+                            contentDescription = stringResource(Res.string.note_set_date_descr)
+                        )
+                    }
                 }
                 if (showDatePicker)
                     DatePickerModal(
@@ -135,14 +139,18 @@ fun EditNoteScreen(
                         Text(text = stringResource(Res.string.for_group))
                     }
                 )
-                IconButton({
+                ContentWrapper(
+                    toolTip = Res.string.note_clear_group_descr
+                ){
+                    IconButton({
                         model.setGroup("")
                     }
-                ){
-                    Icon(
-                        imageVector = Icons.Filled.Close,
-                        contentDescription = stringResource(Res.string.note_clear_group_descr)
-                    )
+                    ){
+                        Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = stringResource(Res.string.note_clear_group_descr)
+                        )
+                    }
                 }
             }
             Row(
@@ -156,14 +164,18 @@ fun EditNoteScreen(
                 ){
                     model.theme.value = it
                 }
-                IconButton({
-                    model.theme.value = null
-                }
+                ContentWrapper(
+                    toolTip = Res.string.note_theme_clear_descr
                 ){
-                    Icon(
-                        imageVector = Icons.Filled.Close,
-                        contentDescription = stringResource(Res.string.note_theme_clear_descr)
-                    )
+                    IconButton({
+                        model.theme.value = null
+                    }
+                    ){
+                        Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = stringResource(Res.string.note_theme_clear_descr)
+                        )
+                    }
                 }
             }
             Row(
@@ -180,14 +192,18 @@ fun EditNoteScreen(
                         Text(text = stringResource(Res.string.text))
                     }
                 )
-                IconButton({
-                    model.text.value = ""
-                }
+                ContentWrapper(
+                    toolTip = Res.string.note_text_clear_descr
                 ){
-                    Icon(
-                        imageVector = Icons.Filled.Close,
-                        contentDescription = stringResource(Res.string.note_text_clear_descr)
-                    )
+                    IconButton({
+                        model.text.value = ""
+                    }
+                    ){
+                        Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = stringResource(Res.string.note_text_clear_descr)
+                        )
+                    }
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
@@ -196,32 +212,40 @@ fun EditNoteScreen(
                 animatedVisibilityScope = animatedVisibilityScope
             )
             Row {
-                IconButton(
-                    { navigator.goBack() },
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .background(MaterialTheme.colors.primary)
-                        .weight(0.5f)
+                ContentWrapper(
+                    toolTip = Res.string.note_discard_descr
                 ){
-                    Icon(
-                        imageVector = Icons.Filled.Close,
-                        contentDescription = stringResource(Res.string.note_discard_descr)
-                    )
+                    IconButton(
+                        { navigator.goBack() },
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .background(MaterialTheme.colors.primary)
+                            .weight(0.5f)
+                    ){
+                        Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = stringResource(Res.string.note_discard_descr)
+                        )
+                    }
                 }
-                IconButton(
-                    {
-                        model.saveNote()
-                        navigator.goBack()
-                    },
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .background(MaterialTheme.colors.primary)
-                        .weight(0.5f)
+                ContentWrapper(
+                    toolTip = Res.string.note_save_descr
                 ){
-                    Icon(
-                        imageVector = Icons.Filled.Save,
-                        contentDescription = stringResource(Res.string.note_save_descr)
-                    )
+                    IconButton(
+                        {
+                            model.saveNote()
+                            navigator.goBack()
+                        },
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .background(MaterialTheme.colors.primary)
+                            .weight(0.5f)
+                    ){
+                        Icon(
+                            imageVector = Icons.Filled.Save,
+                            contentDescription = stringResource(Res.string.note_save_descr)
+                        )
+                    }
                 }
             }
         }

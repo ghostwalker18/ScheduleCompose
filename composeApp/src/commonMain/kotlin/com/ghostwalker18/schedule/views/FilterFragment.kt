@@ -78,11 +78,15 @@ fun NotesFilterFragment(){
                     textAlign = TextAlign.Center,
                     modifier = Modifier.weight(1f)
                 )
-                IconButton({model.isFilterEnabled.value = false}){
-                    Icon(
-                        imageVector = Icons.Filled.Close,
-                        contentDescription = stringResource(Res.string.filter_close_descr)
-                    )
+                ContentWrapper(
+                    toolTip = Res.string.filter_close_descr
+                ){
+                    IconButton({model.isFilterEnabled.value = false}){
+                        Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = stringResource(Res.string.filter_close_descr)
+                        )
+                    }
                 }
             }
             Text(
@@ -95,11 +99,15 @@ fun NotesFilterFragment(){
                     onValueChange = { model.group = it },
                     modifier = Modifier.weight(1f)
                 )
-                IconButton({ model.group = null }){
-                    Icon(
-                        imageVector = Icons.Filled.Close,
-                        contentDescription = stringResource(Res.string.note_clear_group_descr)
-                    )
+                ContentWrapper(
+                    toolTip = Res.string.note_clear_group_descr
+                ){
+                    IconButton({ model.group = null }){
+                        Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = stringResource(Res.string.note_clear_group_descr)
+                        )
+                    }
                 }
             }
             Text(
@@ -114,11 +122,15 @@ fun NotesFilterFragment(){
                     modifier = Modifier.weight(1f)
                 )
                 var showDatePicker by remember { mutableStateOf(false) }
-                IconButton({ showDatePicker = true }){
-                    Icon(
-                        imageVector = Icons.Filled.ArrowDropDown,
-                        contentDescription = stringResource(Res.string.filter_start_date_descr)
-                    )
+                ContentWrapper(
+                    toolTip = Res.string.filter_start_date_descr
+                ){
+                    IconButton({ showDatePicker = true }){
+                        Icon(
+                            imageVector = Icons.Filled.ArrowDropDown,
+                            contentDescription = stringResource(Res.string.filter_start_date_descr)
+                        )
+                    }
                 }
                 if (showDatePicker)
                     DatePickerModal(
@@ -140,11 +152,15 @@ fun NotesFilterFragment(){
                     modifier = Modifier.weight(1f)
                 )
                 var showDatePicker by remember { mutableStateOf(false) }
-                IconButton({ showDatePicker = true}){
-                    Icon(
-                        imageVector = Icons.Filled.ArrowDropDown,
-                        contentDescription = stringResource(Res.string.filter_end_date_descr)
-                    )
+                ContentWrapper(
+                    toolTip = Res.string.filter_end_date_descr
+                ){
+                    IconButton({ showDatePicker = true}){
+                        Icon(
+                            imageVector = Icons.Filled.ArrowDropDown,
+                            contentDescription = stringResource(Res.string.filter_end_date_descr)
+                        )
+                    }
                 }
                 if (showDatePicker)
                     DatePickerModal(

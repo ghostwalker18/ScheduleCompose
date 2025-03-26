@@ -20,6 +20,7 @@ import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
+import org.jetbrains.compose.resources.StringResource
 
 /**
  * Эта функция представляет собой элемент интерфейса, используемый для
@@ -67,6 +68,12 @@ expect fun DownloadDialog(
     title: String,
     links: Array<String>,
     mimeType: String
+)
+
+@Composable
+expect fun ContentWrapper(
+    toolTip: StringResource,
+    content: @Composable () -> Unit
 )
 
 /**

@@ -177,20 +177,24 @@ fun SettingsScreen() {
             ){
                 Text(stringResource(Res.string.share_app))
             }
-            Text(
-                text = "2024© Ипатов Никита",
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(10.dp)
-                    .clickable {
-                        val (showMessageRequired, text) = worker.connectToDeveloper()
-                        if(showMessageRequired)
-                            scope.launch {
-                                scaffoldState.snackbarHostState.showSnackbar(getString(text))
-                            }
-                    }
-            )
+            ContentWrapper(
+                toolTip = Res.string.developer_tooltip
+            ){
+                Text(
+                    text = "2025© Ипатов Никита",
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp)
+                        .clickable {
+                            val (showMessageRequired, text) = worker.connectToDeveloper()
+                            if(showMessageRequired)
+                                scope.launch {
+                                    scaffoldState.snackbarHostState.showSnackbar(getString(text))
+                                }
+                        }
+                )
+            }
         }
     }
 }

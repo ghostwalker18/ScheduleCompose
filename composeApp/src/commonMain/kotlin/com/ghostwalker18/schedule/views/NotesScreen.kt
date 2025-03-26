@@ -83,11 +83,15 @@ fun NotesScreen(
                     .weight(1f),
                 onValueChange = { model.setKeyword(it.ifEmpty{ null }) }
             )
-            IconButton({ model.isFilterEnabled.value = true }){
-                Icon(
-                    imageVector = Icons.Filled.Tune,
-                    contentDescription = stringResource(Res.string.notes_filter_descr)
-                )
+            ContentWrapper(
+                toolTip = Res.string.notes_filter_descr
+            ){
+                IconButton({ model.isFilterEnabled.value = true }){
+                    Icon(
+                        imageVector = Icons.Filled.Tune,
+                        contentDescription = stringResource(Res.string.notes_filter_descr)
+                    )
+                }
             }
         }
     }
@@ -97,12 +101,16 @@ fun NotesScreen(
         Row(
             verticalAlignment = Alignment.CenterVertically
         ){
-            IconButton({ selectedNotes.clear() })
-            {
-                Icon(
-                    imageVector = Icons.Filled.Close,
-                    contentDescription = stringResource(Res.string.notes_selection_cancel_descr)
-                )
+            ContentWrapper(
+                toolTip = Res.string.notes_selection_cancel_descr
+            ){
+                IconButton({ selectedNotes.clear() })
+                {
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        contentDescription = stringResource(Res.string.notes_selection_cancel_descr)
+                    )
+                }
             }
             AnimatedContent(
                 targetState = selectedNotes.size,
@@ -141,46 +149,58 @@ fun NotesScreen(
                 },
                 actions = {
                     AnimatedVisibility(selectedNotes.size == 1){
-                        IconButton(
-                            onClick = {
-                                val note = selectedNotes[0]
-                                navigator.goEditNoteActivity(note.group, note.date, note.id)
-                            }
+                        ContentWrapper(
+                            toolTip = Res.string.notes_edit_selected_descr
                         ){
-                            Icon(
-                                imageVector = Icons.Filled.EditNote,
-                                contentDescription = stringResource(Res.string.notes_edit_selected_descr)
-                            )
+                            IconButton(
+                                onClick = {
+                                    val note = selectedNotes[0]
+                                    navigator.goEditNoteActivity(note.group, note.date, note.id)
+                                }
+                            ){
+                                Icon(
+                                    imageVector = Icons.Filled.EditNote,
+                                    contentDescription = stringResource(Res.string.notes_edit_selected_descr)
+                                )
+                            }
                         }
                     }
                     AnimatedVisibility(selectedNotes.isNotEmpty()){
                         Row {
-                            IconButton(
-                                onClick = {
-                                    model.deleteNotes(selectedNotes)
-                                    selectedNotes.clear()
-                                }
+                            ContentWrapper(
+                                toolTip = Res.string.notes_delete_selected_descr
                             ){
-                                Icon(
-                                    imageVector = Icons.Filled.Delete,
-                                    contentDescription = stringResource(Res.string.notes_delete_selected_descr)
-                                )
+                                IconButton(
+                                    onClick = {
+                                        model.deleteNotes(selectedNotes)
+                                        selectedNotes.clear()
+                                    }
+                                ){
+                                    Icon(
+                                        imageVector = Icons.Filled.Delete,
+                                        contentDescription = stringResource(Res.string.notes_delete_selected_descr)
+                                    )
+                                }
                             }
-                            IconButton(
-                                onClick = {
-                                    val (showTextRequired, text) = worker.shareNotes(selectedNotes)
-                                    if (showTextRequired)
-                                        scope.launch {
-                                            scaffoldState.snackbarHostState.showSnackbar(
-                                                getString(text)
-                                            )
-                                        }
-                                }
+                            ContentWrapper(
+                                toolTip = Res.string.notes_share_selected_descr
                             ){
-                                Icon(
-                                    imageVector = Icons.Filled.Share,
-                                    contentDescription = stringResource(Res.string.notes_share_selected_descr)
-                                )
+                                IconButton(
+                                    onClick = {
+                                        val (showTextRequired, text) = worker.shareNotes(selectedNotes)
+                                        if (showTextRequired)
+                                            scope.launch {
+                                                scaffoldState.snackbarHostState.showSnackbar(
+                                                    getString(text)
+                                                )
+                                            }
+                                    }
+                                ){
+                                    Icon(
+                                        imageVector = Icons.Filled.Share,
+                                        contentDescription = stringResource(Res.string.notes_share_selected_descr)
+                                    )
+                                }
                             }
                         }
                     }
@@ -201,11 +221,15 @@ fun NotesScreen(
                 { navigator.goEditNoteActivity(model.group!!, model.startDate.value, 0 ) },
                 backgroundColor = MaterialTheme.colors.primaryVariant
             ){
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.NoteAdd,
-                    tint = Color.White,
-                    contentDescription = stringResource(Res.string.notes_add_descr)
-                )
+                ContentWrapper(
+                    toolTip = Res.string.notes_add_descr
+                ){
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.NoteAdd,
+                        tint = Color.White,
+                        contentDescription = stringResource(Res.string.notes_add_descr)
+                    )
+                }
             }
         }
     ){

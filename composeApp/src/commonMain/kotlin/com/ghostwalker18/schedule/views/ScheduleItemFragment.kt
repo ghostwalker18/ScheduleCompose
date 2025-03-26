@@ -107,31 +107,35 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
         modifier = Modifier
             .fillMaxWidth()
     ) {
-        Button(
-            modifier = Modifier
-                .fillMaxWidth(),
-            onClick = {
-                when(mode){
-                    "in_fragment" -> model.isOpened.value = !isOpened
-                    "in_activity" -> ScheduleApp.instance.navigator.goScheduleScreen(
-                        model.getDate().value,
-                        model.group,
-                        model.teacher
-                    )
-                }
-            }
+        ContentWrapper(
+            toolTip = Res.string.schedule_tooltip
         ){
-            Box(
+            Button(
                 modifier = Modifier
-                    .fillMaxSize()
-            ){
-                Title(date, dayOfWeek, Modifier.align(Alignment.Center))
-                val modifier = Modifier.align(Alignment.CenterEnd)
-                if(isOpened && mode == "in_fragment"){
-                    Icon(Icons.Filled.KeyboardArrowUp, "", modifier)
+                    .fillMaxWidth(),
+                onClick = {
+                    when(mode){
+                        "in_fragment" -> model.isOpened.value = !isOpened
+                        "in_activity" -> ScheduleApp.instance.navigator.goScheduleScreen(
+                            model.getDate().value,
+                            model.group,
+                            model.teacher
+                        )
+                    }
                 }
-                else if( mode == "in_fragment"){
-                    Icon(Icons.Filled.KeyboardArrowDown, "", modifier)
+            ){
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                ){
+                    Title(date, dayOfWeek, Modifier.align(Alignment.Center))
+                    val modifier = Modifier.align(Alignment.CenterEnd)
+                    if(isOpened && mode == "in_fragment"){
+                        Icon(Icons.Filled.KeyboardArrowUp, "", modifier)
+                    }
+                    else if( mode == "in_fragment"){
+                        Icon(Icons.Filled.KeyboardArrowDown, "", modifier)
+                    }
                 }
             }
         }
@@ -140,24 +144,28 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 ScheduleTable(lessons)
-                IconButton(
-                    {
-                        model.group?.let{
-                            navigator.goNotesActivity(
-                                group = it, date = model.getDate().value
-                            )
-                        }
-                    }
+                ContentWrapper(
+                    toolTip = Res.string.notes_tooltip
                 ){
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
+                    IconButton(
+                        {
+                            model.group?.let {
+                                navigator.goNotesActivity(
+                                    group = it, date = model.getDate().value
+                                )
+                            }
+                        }
                     ){
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.Notes,
-                            contentDescription = ""
-                        )
-                        if(notesCount > 0)
-                            Text(text = notesCount.toString())
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ){
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.Notes,
+                                contentDescription = stringResource(Res.string.notes_tooltip)
+                            )
+                            if(notesCount > 0)
+                                Text(text = notesCount.toString())
+                        }
                     }
                 }
             }

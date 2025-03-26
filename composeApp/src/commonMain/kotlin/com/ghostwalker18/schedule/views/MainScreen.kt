@@ -77,50 +77,62 @@ fun MainScreen() {
                             && ScheduleApp.instance.preferences["scheduleStyle", "in_fragment"] == "in_fragment"
                             || pagerState.currentPage == 1
                     ){
-                        IconButton(
-                            {
-                                when(pagerState.currentPage){
-                                    0 -> {
-                                        val lessons = mutableListOf<Lesson>()
-                                        for(model in dayModels){
-                                            if(model.isOpened.value)
-                                                for (lesson in model.lessons.value){
-                                                    lessons += lesson
+                        ContentWrapper(
+                            toolTip = Res.string.main_share_schedule_descr
+                        ){
+                            IconButton(
+                                {
+                                    when(pagerState.currentPage){
+                                        0 -> {
+                                            val lessons = mutableListOf<Lesson>()
+                                            for(model in dayModels){
+                                                if(model.isOpened.value)
+                                                    for (lesson in model.lessons.value){
+                                                        lessons += lesson
+                                                    }
+                                            }
+                                            val (showTextRequired, text) = worker.shareSchedule(lessons)
+                                            if (showTextRequired)
+                                                scope.launch {
+                                                    scaffoldState.snackbarHostState.showSnackbar(getString(text))
                                                 }
                                         }
-                                        val (showTextRequired, text) = worker.shareSchedule(lessons)
-                                        if (showTextRequired)
-                                            scope.launch {
-                                                scaffoldState.snackbarHostState.showSnackbar(getString(text))
-                                            }
-                                    }
-                                    1 -> {
-                                        val (showTextRequired, text) = worker.shareTimes()
-                                        if (showTextRequired)
-                                            scope.launch {
-                                                scaffoldState.snackbarHostState.showSnackbar(getString(text))
-                                            }
+                                        1 -> {
+                                            val (showTextRequired, text) = worker.shareTimes()
+                                            if (showTextRequired)
+                                                scope.launch {
+                                                    scaffoldState.snackbarHostState.showSnackbar(getString(text))
+                                                }
+                                        }
                                     }
                                 }
+                            ){
+                                Icon(
+                                    imageVector = Icons.Filled.Share,
+                                    contentDescription = stringResource(Res.string.main_share_schedule_descr)
+                                )
                             }
-                        ){
+                        }
+                    }
+                    ContentWrapper(
+                        toolTip = Res.string.main_download_descr
+                    ){
+                        IconButton({ isDownloadDialogEnabled.value = true }){
                             Icon(
-                                imageVector = Icons.Filled.Share,
-                                contentDescription = stringResource(Res.string.main_share_schedule_descr)
+                                imageVector = Icons.Filled.Download,
+                                contentDescription = stringResource(Res.string.main_download_descr)
                             )
                         }
                     }
-                    IconButton({ isDownloadDialogEnabled.value = true }){
-                        Icon(
-                            imageVector = Icons.Filled.Download,
-                            contentDescription = stringResource(Res.string.main_download_descr)
-                        )
-                    }
-                    IconButton({ navigator.goSettingsActivity() }){
-                        Icon(
-                            imageVector = Icons.Filled.Settings,
-                            contentDescription = stringResource(Res.string.main_settings_descr)
-                        )
+                    ContentWrapper(
+                        toolTip = Res.string.main_settings_descr
+                    ){
+                        IconButton({ navigator.goSettingsActivity() }){
+                            Icon(
+                                imageVector = Icons.Filled.Settings,
+                                contentDescription = stringResource(Res.string.main_settings_descr)
+                            )
+                        }
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(

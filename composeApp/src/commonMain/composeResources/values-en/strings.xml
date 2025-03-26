@@ -134,4 +134,11 @@
     <string name="lesson_ended_descr">The lesson is over</string>
     <string name="lesson_not_started_descr">The lesson has not started</string>
     <string name="go_back_descr">Go back to the previous screen</string>
+    <string name="notes_tooltip">Show notes for the day</string>
+    <string name="schedule_tooltip">Show the schedule for the day</string>
+    <string name="developer_tooltip">Contact the developer</string>
+    <string name="previous_week_tooltip">Short press - go to previous week.
+        Long press to go to the date</string>
+    <string name="next_week_tooltip">Short press - go to next week.
+        Long press to go to the date</string>
 </resources>

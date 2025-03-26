@@ -86,7 +86,11 @@ fun DaysFragmentLand(){
                 .align(Alignment.CenterVertically)
 
         ){
-            Text(stringResource(Res.string.back))
+            ContentWrapper(
+                toolTip = Res.string.previous_week_tooltip
+            ){
+                Text(stringResource(Res.string.back))
+            }
         }
         Column(
             modifier = Modifier
@@ -156,11 +160,15 @@ fun DaysFragmentLand(){
                 color = MaterialTheme.colors.primaryVariant,
                 modifier = Modifier.fillMaxWidth()
             )
-            IconButton({ repository.update() }){
-                Icon(
-                    imageVector = Icons.Filled.Refresh,
-                    contentDescription = stringResource(Res.string.update_descr)
-                )
+            ContentWrapper(
+                toolTip = Res.string.update_descr
+            ){
+                IconButton({ repository.update() }){
+                    Icon(
+                        imageVector = Icons.Filled.Refresh,
+                        contentDescription = stringResource(Res.string.update_descr)
+                    )
+                }
             }
         }
         CustomButton(
@@ -170,7 +178,11 @@ fun DaysFragmentLand(){
                 .weight(0.125f)
                 .align(Alignment.CenterVertically)
         ){
-            Text(stringResource(Res.string.forward))
+            ContentWrapper(
+                toolTip = Res.string.next_week_tooltip
+            ){
+                Text(stringResource(Res.string.forward))
+            }
         }
     }
 }

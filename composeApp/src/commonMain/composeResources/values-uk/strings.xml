@@ -133,4 +133,11 @@
     <string name="lesson_ended_descr">Заняття пройшло</string>
     <string name="lesson_not_started_descr">Заняття не почалося</string>
     <string name="go_back_descr">Повернутися на попередній екран</string>
+    <string name="notes_tooltip">Показати нотатки на день</string>
+    <string name="schedule_tooltip">Показати розклад на день</string>
+    <string name="developer_tooltip">Зв\'язатися з розробником</string>
+    <string name="previous_week_tooltip">Коротке натискання-перейти до попереднього тижня.
+        Довге натискання-перейти до дати</string>
+    <string name="next_week_tooltip">Коротке натискання-перейти до наступного тижня.
+        Довге натискання-перейти до дати</string>
 </resources>
