@@ -13,6 +13,15 @@
   ~ limitations under the License.
   -->
 <resources>
+    <string name="app_name">Расписание ПАСТ</string>
+    <string name="notes">Заметки</string>
+    <string name="add_note">Новая заметка</string>
+    <string name="today">Сегодня</string>
+    <string name="date">Дата</string>
+    <string name="number">Пара</string>
+    <string name="room">Каб</string>
+    <string name="subject">Предмет</string>
+    <string name="teacher">Препод.</string>
     <string name="email_subject" translatable="false">Расписание ПАСТ (мобильное)</string>
     <string name="rustore_link" translatable="false">
         https://www.rustore.ru/catalog/app/com.ghostwalker18.schedule

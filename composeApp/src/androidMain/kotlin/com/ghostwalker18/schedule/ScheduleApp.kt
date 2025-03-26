@@ -33,10 +33,13 @@ import com.ghostwalker18.schedule.notifications.ScheduleUpdateNotificationWorker
 import com.ghostwalker18.schedule.platform.*
 import com.ghostwalker18.schedule.utils.AndroidUtils
 import com.google.android.material.color.DynamicColors
+import com.google.firebase.FirebaseApp
 import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.SettingsListener
 import com.russhwolf.settings.SharedPreferencesSettings
 import com.russhwolf.settings.get
+import io.appmetrica.analytics.AppMetrica
+import io.appmetrica.analytics.AppMetricaConfig
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import ru.rustore.sdk.pushclient.RuStorePushClient
@@ -160,16 +163,16 @@ actual class ScheduleApp : Application() {
         _shareController = ShareControllerAndroid(this)
 
         //Initializing of third-party analytics and push services.
-        /*try {
+        try {
             val appMetricaApiKey = getString(R.string.app_metrica_api_key) //from non-public strings
-            val config: AppMetricaConfig = AppMetricaConfig.newConfigBuilder(appMetricaApiKey).build()
+            val config = AppMetricaConfig.newConfigBuilder(appMetricaApiKey).build()
             // Initializing the AppMetrica SDK.
             AppMetrica.activate(this, config)
             isAppMetricaActivated = true
             FirebaseApp.initializeApp(this)
             // Initializing the RuStore Push SDK.
             initPushes()
-        } catch (e: Exception) { /*Not required*/ }*/
+        } catch (e: Exception) { /*Not required*/ }
         AndroidUtils.checkNotificationsPermissions(this, preferences)
         AndroidUtils.clearPOICache(this)
     }

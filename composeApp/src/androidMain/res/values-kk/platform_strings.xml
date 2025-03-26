@@ -13,6 +13,15 @@
   ~ limitations under the License.
   -->
 <resources>
+    <string name="app_name">Кесте ПСҚК</string>
+    <string name="notes">Ескертпелер</string>
+    <string name="add_note">Жаңа ескерту</string>
+    <string name="today">Бүгін</string>
+    <string name="date">Күні</string>
+    <string name="number">Нөмірі</string>
+    <string name="room">Каб</string>
+    <string name="subject">Тақырып</string>
+    <string name="teacher">Мұғалім</string>
     <string name="app_widget_description">Топқа арналған ПСҚК кестесі</string>
     <string name="day">Күн</string>
     <string name="appearance">Сыртқы түрі</string>
@@ -25,6 +34,7 @@
     <string name="updated">Жаңартылды:</string>
     <string name="schedule_missing">Сабақтар тізімі жоқ</string>
     <string name="add_widget">Виджет қосу</string>
+    <string name="update_descr">Кестені жаңарту</string>
     <string name="notifications_notification_app_update_channel_name">Қолданба жаңартулары</string>
     <string name="notifications_notification_app_update_channel_descr">
         Қолданбаның мобильді және жұмыс үстелі нұсқасы үшін жаңа жаңартулар туралы хабарландырулар алыңыз

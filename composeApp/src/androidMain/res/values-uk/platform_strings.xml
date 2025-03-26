@@ -13,6 +13,15 @@
   ~ limitations under the License.
   -->
 <resources>
+    <string name="app_name">Розклад ПАБТ</string>
+    <string name="notes">Нотатки</string>
+    <string name="add_note">Нова замітка</string>
+    <string name="today">Сьогодні</string>
+    <string name="date">Дата</string>
+    <string name="number">Пара</string>
+    <string name="room">Каб</string>
+    <string name="subject">Предмет</string>
+    <string name="teacher">Викладач.</string>
     <string name="app_widget_description">Розклад ПАБТ на день для групи</string>
     <string name="day">День</string>
     <string name="appearance">Зовнішній вигляд</string>
@@ -25,6 +34,7 @@
     <string name="updated">Оновлений:</string>
     <string name="schedule_missing">Список занять відсутній</string>
     <string name="add_widget">Додати віджет</string>
+    <string name="update_descr">Оновити розклад</string>
     <string name="notifications_notification_app_update_channel_name">Оновлення додатків</string>
     <string name="notifications_notification_app_update_channel_descr">
         Отримайте сповіщення про нові оновлення для мобільної та настільної версії програми
