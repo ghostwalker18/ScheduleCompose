@@ -66,6 +66,8 @@ kotlin {
             implementation(libs.kotlinx.coroutines.swing)
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha11")
         }
+
+
         
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -92,6 +94,11 @@ kotlin {
             implementation("com.squareup.retrofit2:retrofit:2.11.0")
             implementation("org.jsoup:jsoup:1.16.1")
             implementation("com.google.code.gson:gson:2.11.0")
+            implementation("com.squareup.okhttp3:okhttp"){
+                version{
+                    strictly("3.14.9")
+                }
+            }
         }
 
         androidMain.dependencies {
