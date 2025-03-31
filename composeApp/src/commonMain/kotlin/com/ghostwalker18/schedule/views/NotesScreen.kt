@@ -116,12 +116,12 @@ fun NotesScreen(
                 targetState = selectedNotes.size,
                 transitionSpec = {
                     if(targetState > initialState){
-                        slideInVertically { height -> -height } + fadeIn() togetherWith
-                                slideOutVertically { height -> height } + fadeOut()
+                        slideInVertically { -it } + fadeIn() togetherWith
+                                slideOutVertically { it } + fadeOut()
                     }
                     else {
-                        slideInVertically { height -> height } + fadeIn() togetherWith
-                                slideOutVertically { height -> -height } + fadeOut()
+                        slideInVertically { it } + fadeIn() togetherWith
+                                slideOutVertically { -it } + fadeOut()
                     }.using(
                         SizeTransform(clip = false)
                     )
@@ -245,8 +245,8 @@ fun NotesScreen(
             }
             AnimatedVisibility(
                 isFilterEnabled,
-                enter = fadeIn() + expandHorizontally(),
-                exit = fadeOut() + shrinkHorizontally()
+                enter = fadeIn() + slideInHorizontally { it / 2 },
+                exit = fadeOut() + slideOutHorizontally { it / 2 }
             ){
                 NotesFilterFragment()
             }

@@ -152,7 +152,8 @@ fun MainScreen() {
             }
         },
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
-        ){ innerPadding ->
+    ){
+        innerPadding ->
         AnimatedVisibility(isDownloadDialogEnabled.value){
             val links = mutableListOf<String>()
             lateinit var mimeType:String

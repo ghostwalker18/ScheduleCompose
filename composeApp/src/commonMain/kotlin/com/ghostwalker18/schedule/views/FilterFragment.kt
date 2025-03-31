@@ -14,7 +14,6 @@
 
 package com.ghostwalker18.schedule.views
 
-import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -53,123 +52,116 @@ fun NotesFilterFragment(){
     val group = model.group
     val startDate by model.startDate.collectAsState()
     val endDate by model.endDate.collectAsState()
-    val isFilterEnabled by model.isFilterEnabled.collectAsState()
 
-    AnimatedVisibility(
-        isFilterEnabled,
-        enter = fadeIn() + expandHorizontally(),
-        exit = fadeOut() + shrinkHorizontally()
-    ){
-        Column(
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 10.dp)
+            .border(width = 1.dp, color = MaterialTheme.colors.secondary)
+            .background(MaterialTheme.colors.background)
+            .padding(10.dp)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 10.dp)
-                .border(width = 1.dp, color = MaterialTheme.colors.secondary)
-                .background(MaterialTheme.colors.background)
-                .padding(10.dp)
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                Text(
-                    text = stringResource(Res.string.filters),
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.weight(1f)
-                )
-                ContentWrapper(
-                    toolTip = Res.string.filter_close_descr
-                ){
-                    IconButton({model.isFilterEnabled.value = false}){
-                        Icon(
-                            imageVector = Icons.Filled.Close,
-                            contentDescription = stringResource(Res.string.filter_close_descr)
-                        )
-                    }
-                }
-            }
             Text(
-                text = stringResource(Res.string.for_group),
-                modifier = Modifier
-                    .padding(5.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                TextField(
-                    value = group ?: "",
-                    onValueChange = { model.group = it },
-                    modifier = Modifier.weight(1f)
-                )
-                ContentWrapper(
-                    toolTip = Res.string.note_clear_group_descr
-                ){
-                    IconButton({ model.group = null }){
-                        Icon(
-                            imageVector = Icons.Filled.Close,
-                            contentDescription = stringResource(Res.string.note_clear_group_descr)
-                        )
-                    }
-                }
-            }
-            Text(
-                text = stringResource(Res.string.start_date),
-                modifier = Modifier
-                    .padding(5.dp)
+                text = stringResource(Res.string.filters),
+                textAlign = TextAlign.Center,
+                modifier = Modifier.weight(1f)
             )
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                TextField(
-                    value = DateConverters().toString(startDate) ?: "",
-                    onValueChange = { model.setStartDate(DateConverters().fromString(it)) },
-                    modifier = Modifier.weight(1f)
-                )
-                var showDatePicker by remember { mutableStateOf(false) }
-                ContentWrapper(
-                    toolTip = Res.string.filter_start_date_descr
-                ){
-                    IconButton({ showDatePicker = true }){
-                        Icon(
-                            imageVector = Icons.Filled.ArrowDropDown,
-                            contentDescription = stringResource(Res.string.filter_start_date_descr)
-                        )
-                    }
-                }
-                if (showDatePicker)
-                    DatePickerModal(
-                        confirmButtonText = Res.string.chose_date,
-                        dismissButtonText = Res.string.cancelButtonText,
-                        onDismiss = { showDatePicker = false },
-                        onDateSelected = { model.setStartDate(it) }
+            ContentWrapper(
+                toolTip = Res.string.filter_close_descr
+            ){
+                IconButton({model.isFilterEnabled.value = false}){
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        contentDescription = stringResource(Res.string.filter_close_descr)
                     )
+                }
             }
-            Text(
-                text = stringResource(Res.string.end_date),
-                modifier = Modifier
-                    .padding(5.dp)
+        }
+        Text(
+            text = stringResource(Res.string.for_group),
+            modifier = Modifier
+                .padding(5.dp))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            TextField(
+                value = group ?: "",
+                onValueChange = { model.group = it },
+                modifier = Modifier.weight(1f)
             )
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                TextField(
-                    value = DateConverters().toString(endDate) ?: "",
-                    onValueChange = { model.setEndDate(DateConverters().fromString(it)) },
-                    modifier = Modifier.weight(1f)
-                )
-                var showDatePicker by remember { mutableStateOf(false) }
-                ContentWrapper(
-                    toolTip = Res.string.filter_end_date_descr
-                ){
-                    IconButton({ showDatePicker = true}){
-                        Icon(
-                            imageVector = Icons.Filled.ArrowDropDown,
-                            contentDescription = stringResource(Res.string.filter_end_date_descr)
-                        )
-                    }
-                }
-                if (showDatePicker)
-                    DatePickerModal(
-                        confirmButtonText = Res.string.chose_date,
-                        dismissButtonText = Res.string.cancelButtonText,
-                        onDismiss = { showDatePicker = false },
-                        onDateSelected = { model.setEndDate(it) }
+            ContentWrapper(
+                toolTip = Res.string.note_clear_group_descr
+            ){
+                IconButton({ model.group = null }){
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        contentDescription = stringResource(Res.string.note_clear_group_descr)
                     )
+                }
             }
+        }
+        Text(
+            text = stringResource(Res.string.start_date),
+            modifier = Modifier
+                .padding(5.dp)
+        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            TextField(
+                value = DateConverters().toString(startDate) ?: "",
+                onValueChange = { model.setStartDate(DateConverters().fromString(it)) },
+                modifier = Modifier.weight(1f)
+            )
+            var showDatePicker by remember { mutableStateOf(false) }
+            ContentWrapper(
+                toolTip = Res.string.filter_start_date_descr
+            ){
+                IconButton({ showDatePicker = true }){
+                    Icon(
+                        imageVector = Icons.Filled.ArrowDropDown,
+                        contentDescription = stringResource(Res.string.filter_start_date_descr)
+                    )
+                }
+            }
+            if (showDatePicker)
+                DatePickerModal(
+                    confirmButtonText = Res.string.chose_date,
+                    dismissButtonText = Res.string.cancelButtonText,
+                    onDismiss = { showDatePicker = false },
+                    onDateSelected = { model.setStartDate(it) }
+                )
+        }
+        Text(
+            text = stringResource(Res.string.end_date),
+            modifier = Modifier
+                .padding(5.dp)
+        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            TextField(
+                value = DateConverters().toString(endDate) ?: "",
+                onValueChange = { model.setEndDate(DateConverters().fromString(it)) },
+                modifier = Modifier.weight(1f)
+            )
+            var showDatePicker by remember { mutableStateOf(false) }
+            ContentWrapper(
+                toolTip = Res.string.filter_end_date_descr
+            ){
+                IconButton({ showDatePicker = true }){
+                    Icon(
+                        imageVector = Icons.Filled.ArrowDropDown,
+                        contentDescription = stringResource(Res.string.filter_end_date_descr)
+                    )
+                }
+            }
+            if (showDatePicker)
+                DatePickerModal(
+                    confirmButtonText = Res.string.chose_date,
+                    dismissButtonText = Res.string.cancelButtonText,
+                    onDismiss = { showDatePicker = false },
+                    onDateSelected = { model.setEndDate(it) }
+                )
         }
     }
 }
