@@ -28,8 +28,8 @@ import retrofit2.http.GET
 interface AppUpdateAPI {
 
     /**
-     * Этот метод используется для получения информации о последнем доступном релизе десктопного приложения.
+     * Это свойство используется для получения информации о последнем доступном релизе приложения.
      */
-    @get: GET("https://api.github.com/repos/ghostwalker18/ScheduleDesktop/releases/latest")
+    @get: GET("https://api.github.com/repos/ghostwalker18/ScheduleCompose/releases/latest")
     val latestDesktopReleaseInfo: Call<JsonObject>
 }

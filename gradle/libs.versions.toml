@@ -5,8 +5,8 @@ junit = "4.13.2"
 kotlin = "2.1.0"
 ksp = "2.1.0-1.0.29"
 kotlinx-coroutines = "1.10.1"
-androidxRoom = "2.7.0-rc02"
-sqlite = "2.5.0-rc02"
+androidxRoom = "2.7.0-rc03"
+sqlite = "2.5.0-rc03"
 uiAndroid = "1.7.8"
 material3Android = "1.3.1"
 androidx-activityCompose = "1.10.1"
@@ -15,6 +15,8 @@ agp = "8.6.1"
 appcompat = "1.7.0"
 material = "1.12.0"
 firebaseCommonKtx = "21.0.0"
+rustorePush = "6.5.0"
+appMetrica = "7.5.0"
 workRuntimeKtx = "2.10.0"
 
 [libraries]
@@ -38,6 +40,10 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 firebase-common-ktx = { group = "com.google.firebase", name = "firebase-common-ktx", version.ref = "firebaseCommonKtx" }
 androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workRuntimeKtx" }
+rustore-universalpush = { group = "ru.rustore.sdk", name = "universalpush", version.ref = "rustorePush" }
+rustore-universalfcm = { group = "ru.rustore.sdk", name = "universalfcm", version.ref = "rustorePush" }
+rustore-universalrustore = { group = "ru.rustore.sdk", name = "universalrustore", version.ref = "rustorePush" }
+appmetrica-analitycs = { group = "io.appmetrica.analytics", name = "analytics", version.ref = "appMetrica" }
 
 [plugins]
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }

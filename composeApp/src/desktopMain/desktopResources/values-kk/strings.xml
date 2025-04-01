@@ -22,6 +22,7 @@
     <string name="check_for_update">Жаңартуларды тексеріңіз</string>
     <string name="update_available">Жаңа жаңарту қол жетімді</string>
     <string name="update_info">%1$s  приложения  қосымшасының нұсқасын мына жерден жүктеуге болады:</string>
+    <string name="update_description">Не жаңалық:</string>
     <string name="update_unavailable">Қолданбаның соңғы нұсқасы қазірдің өзінде орнатылған</string>
     <string name="update_info_unavailable">Жаңартулар туралы ақпарат жоқ</string>
     <string name="lookInLabelText">Іздеу</string>

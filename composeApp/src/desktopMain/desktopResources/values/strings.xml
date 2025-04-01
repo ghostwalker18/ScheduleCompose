@@ -22,6 +22,7 @@
     <string name="check_for_update">Проверить наличие обновлений</string>
     <string name="update_available">Доступно новое обновление</string>
     <string name="update_info">Версия приложения %1$s доступна для скачивания по адресу:</string>
+    <string name="update_description">Что нового:</string>
     <string name="update_unavailable">Последняя версия приложения уже установлена</string>
     <string name="update_info_unavailable">Информация об обновлениях не доступна</string>
     <string name="lookInLabelText">Поиск в</string>

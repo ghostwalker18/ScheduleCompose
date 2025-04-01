@@ -93,7 +93,6 @@ kotlin {
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha11")
             implementation("com.squareup.retrofit2:retrofit:2.11.0")
             implementation("org.jsoup:jsoup:1.16.1")
-            implementation("com.google.code.gson:gson:2.11.0")
             implementation("com.squareup.okhttp3:okhttp"){
                 version{
                     strictly("3.14.9")
@@ -107,12 +106,12 @@ kotlin {
             implementation(libs.androidx.work.runtime.ktx)
             implementation(compose.uiTooling)
             implementation(libs.androidx.activityCompose)
+            implementation(libs.rustore.universalpush)
+            implementation(libs.rustore.universalfcm)
+            implementation(libs.rustore.universalrustore)
+            implementation(libs.appmetrica.analitycs)
             implementation("androidx.preference:preference:1.2.1")
             implementation("com.google.guava:guava:33.4.0-android")
-            implementation("io.appmetrica.analytics:analytics:7.5.0")
-            implementation("ru.rustore.sdk:universalpush:6.5.0")
-            implementation("ru.rustore.sdk:universalrustore:6.5.0")
-            implementation("ru.rustore.sdk:universalfcm:6.5.0")
             implementation("com.google.firebase:firebase-messaging:22.0.0")
             implementation("com.google.android.gms:play-services-base:17.5.0")
         }

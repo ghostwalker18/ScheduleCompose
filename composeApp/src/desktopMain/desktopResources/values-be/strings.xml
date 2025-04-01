@@ -22,6 +22,7 @@
     <string name="check_for_update">Праверыць наяўнасць абнаўленняў</string>
     <string name="update_available">Даступна новае абнаўленне</string>
     <string name="update_info">Версія прыкладання %1$s даступная для запампоўкі па адрасе:</string>
+    <string name="update_description">Што новага:</string>
     <string name="update_unavailable">Апошняя версія прыкладання ўжо ўстаноўлена</string>
     <string name="update_info_unavailable">Інфармацыя аб абнаўленнях не даступная</string>
     <string name="lookInLabelText">Пошук у</string>
