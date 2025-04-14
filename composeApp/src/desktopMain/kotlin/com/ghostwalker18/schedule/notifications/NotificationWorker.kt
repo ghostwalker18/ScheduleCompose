@@ -48,14 +48,19 @@ class NotificationWorker(
         updateAPI.latestDesktopReleaseInfo.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 val latestVersion = response.body()?.get("tag_name")?.jsonPrimitive?.content
-                val currentVersion = "3.0"
+                val description = response.body()?.get("body")?.jsonPrimitive?.content
+                val currentVersion = "5.0"
                 latestVersion?.let {
                     val title = if(latestVersion > currentVersion)
                         runBlocking { getString(Res.string.update_available) }
                     else
                         runBlocking { getString(Res.string.update_unavailable) }
-                    val message = runBlocking {
+                    var message = runBlocking {
                         getString(Res.string.update_info, latestVersion) + " " + getString(Res.string.repo_address)
+                    }
+                    description?.let {
+                        message += runBlocking { getString(Res.string.update_description) }
+                        message += description
                     }
                     tray.sendNotification(
                         Notification(

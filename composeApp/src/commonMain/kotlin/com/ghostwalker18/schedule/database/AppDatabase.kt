@@ -24,9 +24,11 @@ import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.converters.PhotoURIArrayConverter
 import com.ghostwalker18.schedule.database.DataBaseMigrations.migrations
 import com.ghostwalker18.schedule.getDatabaseBuilder
+import com.ghostwalker18.schedule.getDecoratedDBBuilder
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
 import kotlinx.coroutines.Dispatchers
+import java.io.File
 
 /**
  * Этот класс используется Room для генерации класса для ORM операций с БД приложения.
@@ -34,24 +36,43 @@ import kotlinx.coroutines.Dispatchers
  * @author  Ипатов Никита
  * @since 1.0
  */
-const val APP_DATABASE_NAME: String = "database.db"
-
 @Database(entities = [Lesson::class, Note:: class], version = 5, exportSchema = true)
 @TypeConverters(DateConverters::class, PhotoURIArrayConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun lessonDao(): LessonDao
     abstract fun noteDao(): NoteDao
+    suspend fun exportDBFile(dataType: String): File? {
+        return com.ghostwalker18.schedule.exportDBFile(dataType)
+    }
+    suspend fun importDBFile(dbFile: File, dataType: String, importPolicy: String){
+        com.ghostwalker18.schedule.importDBFile(dbFile, dataType, importPolicy)
+    }
+    fun deleteExportDBFile(){
+        com.ghostwalker18.schedule.deleteExportDBFile()
+    }
 
     companion object {
-        private const val APP_DATABASE_NAME = "database"
-        private const val EXPORT_DATABASE_NAME = "export_database.db"
-        private const val IMPORT_DATABASE_NAME = "import_database.db"
+        const val APP_DATABASE_NAME = "database.db"
+        const val EXPORT_DATABASE_NAME = "export_database.db"
+        const val IMPORT_DATABASE_NAME = "import_database.db"
+        private var _instance: AppDatabase? = null
 
         /**
          * Этот метод позволяет получить сконфигурированную базу данных приложения по умолчанию.
          * @return база данных Room
          */
         fun getInstance(): AppDatabase {
+            if (_instance == null) {
+                synchronized(AppDatabase::class.java) {
+                    if (_instance == null) {
+                        _instance = createAppDatabase(APP_DATABASE_NAME, null)
+                    }
+                }
+            }
+            return _instance!!
+        }
+
+        fun createAppDatabase(dbName: String, dbFile: File? = null): AppDatabase{
             val callback = object : Callback() {
                 override fun onCreate(connection: SQLiteConnection) {
                     super.onCreate(connection)
@@ -59,14 +80,15 @@ abstract class AppDatabase : RoomDatabase() {
                     connection.execSQL(UPDATE_DAY_TRIGGER_2)
                 }
             }
-            val builder = getDatabaseBuilder()
+            val builder = getDatabaseBuilder(dbName)
                 .addCallback(callback)
                 .setQueryCoroutineContext(Dispatchers.Main)
                 .setJournalMode(JournalMode.TRUNCATE)
                 .setDriver(BundledSQLiteDriver())
             for (migration in migrations)
                 builder.addMigrations(migration)
-            return builder.build()
+            val platformBuilder = getDecoratedDBBuilder(builder, dbFile)
+            return platformBuilder.build()
         }
 
         const val UPDATE_DAY_TRIGGER_1 =

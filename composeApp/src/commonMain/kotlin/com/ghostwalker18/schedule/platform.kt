@@ -15,8 +15,6 @@
 package com.ghostwalker18.schedule
 
 import androidx.compose.runtime.Composable
-import androidx.room.RoomDatabase
-import com.ghostwalker18.schedule.database.AppDatabase
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
 import org.jetbrains.compose.resources.DrawableResource
@@ -57,11 +55,6 @@ expect fun hideKeyboard()
  * Эта функция выдает приложению разрешения на доступ к фото заметок, если того требует платформа
  */
 expect fun grantURIPermission(photoIDs: List<String>)
-
-/**
- * Эта функция предоставляет доступ к построителю БД для текущей платформы.
- */
-expect fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>
 
 /**
  * Этот интерфейс описывает навигацию по приложению.

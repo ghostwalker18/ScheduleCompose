@@ -93,6 +93,9 @@ interface NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(note: Note)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertMany(notes: List<Note>)
+
     /**
      * Этот метод позволяет обновить заметку из БД.
      * @param note заметка

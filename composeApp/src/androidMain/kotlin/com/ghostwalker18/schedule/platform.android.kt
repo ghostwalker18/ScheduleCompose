@@ -14,16 +14,11 @@
 
 package com.ghostwalker18.schedule
 
-import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.core.net.toUri
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.ghostwalker18.schedule.database.APP_DATABASE_NAME
-import com.ghostwalker18.schedule.database.AppDatabase
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
 import org.jetbrains.compose.resources.DrawableResource
@@ -54,15 +49,6 @@ actual fun grantURIPermission(photoIDs: List<String>) {
                 Intent.FLAG_GRANT_READ_URI_PERMISSION
             )
     }
-}
-
-actual fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase>{
-    val context = ScheduleApp.instance as Context
-    val dbFile = context.getDatabasePath(APP_DATABASE_NAME)
-    return Room.databaseBuilder<AppDatabase>(
-        context = context,
-        name = dbFile.absolutePath
-    )
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
