@@ -122,10 +122,10 @@ actual class ScheduleApp : Application() {
         appUpdateChangedListener = preferences.addBooleanListener(
             "update_notifications", false
         ) {
-            if (it) {
+            /*if (it) {
                 RuStoreUniversalPushClient.subscribeToTopic("update_notifications")
             } else
-                RuStoreUniversalPushClient.unsubscribeFromTopic("update_notifications")
+                RuStoreUniversalPushClient.unsubscribeFromTopic("update_notifications")*/
         }
 
         scheduleUpdateChangedListener = preferences.addBooleanListener(
@@ -161,9 +161,10 @@ actual class ScheduleApp : Application() {
         _notesRepository = NotesRepository(database)
 
         _shareController = ShareControllerAndroid(this)
+        _importController = ImportControllerAndroid(this)
 
         //Initializing of third-party analytics and push services.
-        try {
+        /*try {
             val appMetricaApiKey = getString(R.string.app_metrica_api_key) //from non-public strings
             val config = AppMetricaConfig.newConfigBuilder(appMetricaApiKey).build()
             // Initializing the AppMetrica SDK.
@@ -172,7 +173,7 @@ actual class ScheduleApp : Application() {
             FirebaseApp.initializeApp(this)
             // Initializing the RuStore Push SDK.
             initPushes()
-        } catch (e: Exception) { /*Not required*/ }
+        } catch (e: Exception) { /*Not required*/ }*/
         AndroidUtils.checkNotificationsPermissions(this, preferences)
         AndroidUtils.clearPOICache(this)
     }
@@ -181,7 +182,7 @@ actual class ScheduleApp : Application() {
      * Этот метод используется для инициализации доставки Push-уведомлений RuStore и Firebase.
      */
     private fun initPushes() {
-        RuStoreUniversalPushClient.init(
+        /*RuStoreUniversalPushClient.init(
             this,
             RuStorePushProvider(
                 this,
@@ -202,7 +203,7 @@ actual class ScheduleApp : Application() {
                     "AppPushes", "getToken onFailure", throwable
                 )
             }
-
+        */
         //Do not forget to add same calls in NotificationLocaleUpdater for locale changes updates
         NotificationManagerWrapper.getInstance(this).createNotificationChannel(
             getString(R.string.notifications_notification_app_update_channel_id),
@@ -214,12 +215,12 @@ actual class ScheduleApp : Application() {
             getString(R.string.notifications_notification_schedule_update_channel_name),
             getString(R.string.notifications_notification_schedule_update_channel_descr)
         )
-        if (preferences.getBoolean("update_notifications", false)) RuStorePushClient.subscribeToTopic("update_notificatons")
+        /*if (preferences.getBoolean("update_notifications", false)) RuStorePushClient.subscribeToTopic("update_notificatons")
         if (preferences.getBoolean(
                 "schedule_notifications",
                 false
             )
-        ) RuStorePushClient.subscribeToTopic("schedule_notifications")
+        ) RuStorePushClient.subscribeToTopic("schedule_notifications")*/
     }
 
     /**

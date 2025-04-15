@@ -14,15 +14,17 @@
 
 package com.ghostwalker18.schedule.platform
 
+import androidx.compose.runtime.Composable
 import com.ghostwalker18.schedule.ImportController
 
 class ImportControllerDesktop : ImportController {
+    override lateinit var dataType: String
+    override lateinit var importPolicy: String
 
-    override fun importDB(){
+    @Composable
+    override fun initController(){}
 
-    }
+    override fun importDB(){}
 
-    override fun exportDB(){
-
-    }
+    override fun exportDB(){}
 }

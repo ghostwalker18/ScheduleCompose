@@ -40,6 +40,8 @@ import scheduledesktop2.composeapp.generated.resources.operation_type
 @Composable
 fun ImportScreen(){
     val navigator = ScheduleApp.instance.navigator
+    val controller = ScheduleApp.instance.importController
+    controller.initController()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -109,7 +111,14 @@ fun ImportScreen(){
             }
             Spacer(Modifier.weight(0.5f))
             Button(
-                {},
+                {
+                    controller.importPolicy = importMode
+                    controller.dataType = dataType
+                    if (operationType == "import")
+                        controller.importDB()
+                    else
+                        controller.exportDB()
+                },
                 modifier = Modifier
                     .fillMaxWidth()
             ){

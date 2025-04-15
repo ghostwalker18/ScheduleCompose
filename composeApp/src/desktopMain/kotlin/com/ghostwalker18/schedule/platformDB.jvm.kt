@@ -26,7 +26,8 @@ actual fun getDatabaseBuilder(dbName: String): RoomDatabase.Builder<AppDatabase>
     )
 }
 
-actual fun getDecoratedDBBuilder(builder: RoomDatabase.Builder<AppDatabase>, file: File?): RoomDatabase.Builder<AppDatabase>{
+actual fun getDecoratedDBBuilder(builder: RoomDatabase.Builder<AppDatabase>,
+                                 file: File?): RoomDatabase.Builder<AppDatabase> {
     return builder
 }
 
@@ -34,6 +35,8 @@ actual suspend fun exportDBFile(dataType: String): File? {
     return null
 }
 
-actual suspend fun importDBFile(dbFile: File, dataType: String, importPolicy: String) {}
+actual suspend fun importDBFile(dbFile: File,
+                                dataType: String,
+                                importPolicy: String) {/*Cannot be implemented yet*/}
 
-actual fun deleteExportDBFile(){}
+actual fun deleteExportDBFile(){/*Cannot be implemented yet*/}

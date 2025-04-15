@@ -132,6 +132,22 @@ expect interface ShareController {
  */
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 expect interface ImportController {
+    /**
+     * Тип данных для импорта или экспорта
+     */
+    var dataType: String
+
+    /**
+     * Тип политики импорта данных
+     */
+    var importPolicy: String
+
+    /**
+     * Этот метод позволяет провести процедуру инициализации контролера.
+     * Должен вызываться до использования других методов.
+     */
+    @Composable
+    fun initController()
 
     /**
      * Этот метод позволяет импортировать БД приложения

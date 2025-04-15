@@ -42,6 +42,6 @@ expect suspend fun exportDBFile(dataType: String): File?
 expect suspend fun importDBFile(dbFile: File, dataType: String, importPolicy: String)
 
 /**
- * Этот метод удаляет файл экспортной БД
+ * Этот метод удаляет файл экспортной БД после завершения экспорта
  */
 expect fun deleteExportDBFile()
