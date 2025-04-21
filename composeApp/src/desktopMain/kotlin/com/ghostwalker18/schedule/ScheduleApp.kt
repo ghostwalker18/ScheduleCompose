@@ -16,9 +16,7 @@ package com.ghostwalker18.schedule
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.ghostwalker18.schedule.models.ScheduleRepositoryDesktop
@@ -35,7 +33,6 @@ import com.ghostwalker18.schedule.models.ScheduleRepository
 import com.ghostwalker18.schedule.ui.theme.ScheduleTheme
 import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.*
-import java.util.*
 import java.util.prefs.Preferences
 import javax.swing.UIManager
 
@@ -54,19 +51,26 @@ actual class ScheduleApp {
     actual val notesRepository: NotesRepository
     actual val importController: ImportController
     actual val shareController: ShareController
-    actual val preferences: ObservableSettings = PreferencesSettings(Preferences.userNodeForPackage(ScheduleApp::class.java))
+    actual val preferences: ObservableSettings = PreferencesSettings(
+        Preferences.userNodeForPackage(ScheduleApp::class.java)
+    )
     private val db: AppDatabase
     private val themeState = MutableStateFlow(preferences["theme", "system"])
+    var language by mutableStateOf(preferences.getString("language", "ru"))
 
     private lateinit var _navigator: Navigator
     actual val navigator by lazy { _navigator }
 
-    private val themeChangedListener = preferences.addStringListener("theme", "system"){
+    private val themeChangedListener = preferences.addStringListener(
+        "theme", "system"
+    ){
         themeState.value = it
     }
 
-    private val localeChangedListener = preferences.addStringListener("language", "ru"){
-        setupLocale()
+    private val localeChangedListener = preferences.addStringListener(
+        "language", "ru"
+    ){
+        language = it
     }
 
     init {
@@ -81,7 +85,6 @@ actual class ScheduleApp {
         importController = ImportControllerDesktop()
         shareController = ShareControllerDesktop()
         scheduleRepository.update()
-        setupLocale()
         setupFileChooser()
     }
 
@@ -94,19 +97,26 @@ actual class ScheduleApp {
         val theme by themeState.collectAsState()
         val navController = rememberNavController()
         this._navigator = NavigatorDesktop(navController)
-        ScheduleTheme(
-            when(theme){
-                "day" -> false
-                "night" -> true
-                "system" -> isSystemInDarkTheme()
-                else -> true
-            }
+
+        CompositionLocalProvider(
+            LocalAppLocaleISO provides language
         ){
-            NavHost(
-                navController = navController,
-                startDestination = "main"
-            ){
-                baseRoutes()
+            key(language){
+                ScheduleTheme(
+                    when(theme){
+                        "day" -> false
+                        "night" -> true
+                        "system" -> isSystemInDarkTheme()
+                        else -> true
+                    }
+                ){
+                    NavHost(
+                        navController = navController,
+                        startDestination = "main"
+                    ){
+                        baseRoutes()
+                    }
+                }
             }
         }
     }
@@ -114,16 +124,6 @@ actual class ScheduleApp {
     actual companion object{
         private lateinit var _instance: ScheduleApp
         actual val instance by lazy { _instance }
-    }
-
-    /**
-     * Этот метод настраивает локаль приложения.
-     */
-    private fun setupLocale(){
-        val locale = Locale.Builder()
-            .setLanguageTag(preferences["language", "ru"])
-            .build()
-        Locale.setDefault(locale)
     }
 
     /**
