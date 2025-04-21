@@ -114,15 +114,15 @@ actual class ScheduleApp {
     actual companion object{
         private lateinit var _instance: ScheduleApp
         actual val instance by lazy { _instance }
-        val preferences: Preferences = Preferences.userNodeForPackage(ScheduleApp::class.java)
     }
-
 
     /**
      * Этот метод настраивает локаль приложения.
      */
     private fun setupLocale(){
-        val locale = Locale(Companion.preferences["language", "ru"])
+        val locale = Locale.Builder()
+            .setLanguageTag(preferences["language", "ru"])
+            .build()
         Locale.setDefault(locale)
     }
 

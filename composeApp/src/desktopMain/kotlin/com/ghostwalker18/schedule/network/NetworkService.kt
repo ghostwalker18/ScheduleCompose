@@ -20,7 +20,6 @@ import retrofit2.Retrofit
 import java.io.File
 import com.ghostwalker18.schedule.ScheduleApp
 import java.util.concurrent.Executors
-import java.util.prefs.Preferences
 
 /**
  * Этот класс используется для предоставления приложению услуг доступа к сети.
@@ -30,8 +29,7 @@ import java.util.prefs.Preferences
  */
 class NetworkService(private val baseUri: String) {
     private val sizeOfCache: Long = 10 * 1024 * 1024
-    private val preferences: Preferences = ScheduleApp.preferences
-
+    private val preferences = ScheduleApp.instance.preferences
 
     /**
      * Этот метод позволяет получить API сайта ПТГХ.
@@ -65,6 +63,10 @@ class NetworkService(private val baseUri: String) {
             .create(ScheduleNetworkAPI::class.java)
     }
 
+    /**
+     * Этот метод позволяет получить API Github.
+     * @return API для получения информации об обновлениях приложения
+     */
     fun getUpdateAPI(): AppUpdateAPI{
         return Retrofit.Builder()
             .baseUrl(baseUri)

@@ -229,7 +229,12 @@ actual class ScheduleApp : Application() {
      */
     private fun setLocale(localeCode: String) {
         val localeListCompat = if (localeCode == "system") LocaleListCompat.getEmptyLocaleList()
-        else LocaleListCompat.create(Locale(localeCode))
+
+        else LocaleListCompat.create(
+            Locale.Builder()
+                .setLanguageTag(localeCode)
+                .build()
+        )
         AppCompatDelegate.setApplicationLocales(localeListCompat)
     }
 

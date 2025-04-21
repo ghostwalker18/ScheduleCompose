@@ -19,7 +19,6 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 /**
  * Этот класс используется для ORM.
  * Содержит методы для преобразования Calendar в String для БД и наоборот
@@ -28,21 +27,37 @@ import java.util.*
  * @since 1.0
  */
 class DateConverters {
+
     companion object {
         val dateFormatNotification: SimpleDateFormat = SimpleDateFormat(
             "dd.MM",
-            Locale("ru")
+            Locale.Builder()
+                .setLanguageTag("ru")
+                .build()
         )
-        val dateFormatPhoto = SimpleDateFormat("dd_MM_yyyy",
-            Locale("ru"))
-        private val dateFormatDb = SimpleDateFormat("dd.MM.yyyy",
-            Locale("ru"))
-        private val dateFormatFirstCorpus = SimpleDateFormat("d MMMM yyyy",
-            Locale("ru"))
-        private val dateFormatSecondCorpus = SimpleDateFormat("dd.MM.yyyy",
-            Locale("ru"))
-        private val dateFormatThirdCorpus = SimpleDateFormat("",
-            Locale("ru")
+        val dateFormatPhoto = SimpleDateFormat(
+            "dd_MM_yyyy",
+            Locale.Builder()
+                .setLanguageTag("ru")
+                .build()
+        )
+        private val dateFormatDb = SimpleDateFormat(
+            "dd.MM.yyyy",
+            Locale.Builder()
+                .setLanguageTag("ru")
+                .build()
+        )
+        private val dateFormatFirstCorpus = SimpleDateFormat(
+            "d MMMM yyyy",
+            Locale.Builder()
+                .setLanguageTag("ru")
+                .build()
+        )
+        private val dateFormatSecondCorpus = SimpleDateFormat(
+            "dd.MM.yyyy",
+            Locale.Builder()
+                .setLanguageTag("ru")
+                .build()
         )
 
         /**
@@ -66,7 +81,7 @@ class DateConverters {
     }
 
     /**
-     * Этот метод преобразует Calendar сущнисти в String для БД.
+     * Этот метод преобразует Calendar сущности в String для БД.
      * @param date  the entity attribute value to be converted
      * @return
      */
@@ -82,8 +97,8 @@ class DateConverters {
      * @return
      */
     @TypeConverter
-    fun fromString(value: String?): Calendar? {
-        return stringToCal(value, dateFormatDb)
+    fun fromString(date: String?): Calendar? {
+        return stringToCal(date, dateFormatDb)
     }
 
     /**
