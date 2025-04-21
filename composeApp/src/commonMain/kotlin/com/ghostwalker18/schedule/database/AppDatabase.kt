@@ -39,17 +39,20 @@ import java.io.File
 @Database(entities = [Lesson::class, Note:: class], version = 5, exportSchema = true)
 @TypeConverters(DateConverters::class, PhotoURIArrayConverter::class)
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun lessonDao(): LessonDao
+
     abstract fun noteDao(): NoteDao
+
     suspend fun exportDBFile(dataType: String): File? {
         return com.ghostwalker18.schedule.exportDBFile(dataType)
     }
+
     suspend fun importDBFile(dbFile: File, dataType: String, importPolicy: String){
         com.ghostwalker18.schedule.importDBFile(dbFile, dataType, importPolicy)
     }
-    fun deleteExportDBFile(){
-        com.ghostwalker18.schedule.deleteExportDBFile()
-    }
+
+    fun deleteExportDBFile() = com.ghostwalker18.schedule.deleteExportDBFile()
 
     companion object {
         const val APP_DATABASE_NAME = "database.db"

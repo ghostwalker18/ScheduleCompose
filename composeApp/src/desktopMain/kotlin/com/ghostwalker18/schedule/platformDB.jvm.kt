@@ -17,10 +17,19 @@ package com.ghostwalker18.schedule
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.ghostwalker18.schedule.database.AppDatabase
+import com.ghostwalker18.schedule.platform.OsUtils
 import java.io.File
 
 actual fun getDatabaseBuilder(dbName: String): RoomDatabase.Builder<AppDatabase> {
-    val dbFile = File(System.getProperty("user.dir"), AppDatabase.APP_DATABASE_NAME)
+    val userDirectory = File(System.getProperty("user.home"))
+    val currentOS = OsUtils.hostOS
+    val databaseDir = when(currentOS){
+        OsUtils.OSType.Windows -> File(userDirectory, "AppData/Local/SchedulePCCE/database")
+        OsUtils.OSType.MacOS -> TODO()
+        OsUtils.OSType.Linux -> File(userDirectory, "SchedulePCCE/database")
+        OsUtils.OSType.Unknown -> TODO()
+    }
+    val dbFile = File(databaseDir, AppDatabase.APP_DATABASE_NAME)
     return Room.databaseBuilder<AppDatabase>(
         name = dbFile.absolutePath,
     )
