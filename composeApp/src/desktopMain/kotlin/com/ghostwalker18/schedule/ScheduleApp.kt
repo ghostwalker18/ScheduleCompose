@@ -54,7 +54,7 @@ actual class ScheduleApp {
     actual val preferences: ObservableSettings = PreferencesSettings(
         Preferences.userNodeForPackage(ScheduleApp::class.java)
     )
-    private val db: AppDatabase
+    val database: AppDatabase
     private val themeState = MutableStateFlow(preferences["theme", "system"])
     var language by mutableStateOf(preferences.getString("language", "ru"))
 
@@ -75,13 +75,13 @@ actual class ScheduleApp {
 
     init {
         _instance = this
-        db = AppDatabase.getInstance()
+        database = AppDatabase.getInstance()
         scheduleRepository = ScheduleRepositoryDesktop(
-            db,
+            database,
             NetworkService(URLs.BASE_URI).getScheduleAPI(),
             preferences
         )
-        notesRepository = NotesRepository(db)
+        notesRepository = NotesRepository(database)
         importController = ImportControllerDesktop()
         shareController = ShareControllerDesktop()
         scheduleRepository.update()

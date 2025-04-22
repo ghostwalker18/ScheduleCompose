@@ -17,19 +17,25 @@ package com.ghostwalker18.schedule
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.ghostwalker18.schedule.database.AppDatabase
+import com.ghostwalker18.schedule.database.AppDatabase.Companion.EXPORT_DATABASE_NAME
+import com.ghostwalker18.schedule.database.AppDatabase.Companion.createAppDatabase
+import com.ghostwalker18.schedule.database.AppDatabase.Companion.getInstance
 import com.ghostwalker18.schedule.platform.OsUtils
 import java.io.File
 
-actual fun getDatabaseBuilder(dbName: String): RoomDatabase.Builder<AppDatabase> {
+fun getDatabaseDir(): File{
     val userDirectory = File(System.getProperty("user.home"))
     val currentOS = OsUtils.hostOS
-    val databaseDir = when(currentOS){
+    return when(currentOS){
         OsUtils.OSType.Windows -> File(userDirectory, "AppData/Local/SchedulePCCE/database")
         OsUtils.OSType.MacOS -> TODO()
         OsUtils.OSType.Linux -> File(userDirectory, "SchedulePCCE/database")
         OsUtils.OSType.Unknown -> TODO()
     }
-    val dbFile = File(databaseDir, AppDatabase.APP_DATABASE_NAME)
+}
+
+actual fun getDatabaseBuilder(dbName: String): RoomDatabase.Builder<AppDatabase> {
+    val dbFile = File(getDatabaseDir(), dbName)
     return Room.databaseBuilder<AppDatabase>(
         name = dbFile.absolutePath,
     )
@@ -41,11 +47,29 @@ actual fun getDecoratedDBBuilder(builder: RoomDatabase.Builder<AppDatabase>,
 }
 
 actual suspend fun exportDBFile(dataType: String): File? {
-    return null
+    val exportDB = createAppDatabase(EXPORT_DATABASE_NAME, null)
+    val instance = getInstance()
+    exportDB.lessonDao().deleteAllLessons()
+    exportDB.noteDao().deleteAllNotes()
+    if (dataType == "schedule" || dataType == "schedule_and_notes") {
+        val lessons = instance.lessonDao().getAllLessons()
+        exportDB.lessonDao().insertMany(lessons)
+    }
+    if (dataType == "notes" || dataType == "schedule_and_notes") {
+        val notes = instance.noteDao().getAllNotes()
+        exportDB.noteDao().insertMany(notes)
+    }
+    exportDB.close()
+    val exportDBFile = File(getDatabaseDir(), EXPORT_DATABASE_NAME)
+    return exportDBFile
 }
 
 actual suspend fun importDBFile(dbFile: File,
                                 dataType: String,
                                 importPolicy: String) {/*Cannot be implemented yet*/}
 
-actual fun deleteExportDBFile(){/*Cannot be implemented yet*/}
+actual fun deleteExportDBFile(){
+    val exportDBFile = File(getDatabaseDir(), EXPORT_DATABASE_NAME)
+    if (exportDBFile.exists())
+        exportDBFile.delete()
+}

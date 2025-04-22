@@ -51,11 +51,11 @@ actual suspend fun exportDBFile(dataType: String): File? {
     exportDB.lessonDao().deleteAllLessons()
     exportDB.noteDao().deleteAllNotes()
     if (dataType == "schedule" || dataType == "schedule_and_notes") {
-        val lessons: List<Lesson> = instance.lessonDao().getAllLessons()
+        val lessons = instance.lessonDao().getAllLessons()
         exportDB.lessonDao().insertMany(lessons)
     }
     if (dataType == "notes" || dataType == "schedule_and_notes") {
-        val notes: List<Note> = instance.noteDao().getAllNotes()
+        val notes = instance.noteDao().getAllNotes()
         exportDB.noteDao().insertMany(notes)
     }
     exportDB.close()
