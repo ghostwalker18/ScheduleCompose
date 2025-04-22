@@ -192,6 +192,9 @@ fun EditNoteScreen(
                         Text(text = stringResource(Res.string.text))
                     }
                 )
+                SpeechInput {
+                    model.text.value = it
+                }
                 ContentWrapper(
                     toolTip = Res.string.note_text_clear_descr
                 ){

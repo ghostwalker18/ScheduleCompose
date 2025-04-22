@@ -109,3 +109,8 @@ expect fun PhotoPreview(
     animatedVisibilityScope: AnimatedVisibilityScope? = null,
     onDeleteListener: (id: String) -> Unit = {}
 )
+
+@Composable
+expect fun SpeechInput(
+    onInput: (text: String) -> Unit
+)

@@ -67,8 +67,6 @@ kotlin {
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha11")
         }
 
-
-        
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -114,6 +112,9 @@ kotlin {
             implementation("com.google.guava:guava:33.4.0-android")
             implementation("com.google.firebase:firebase-messaging:22.0.0")
             implementation("com.google.android.gms:play-services-base:17.5.0")
+            implementation ("net.java.dev.jna:jna:5.13.0@aar")
+            implementation ("com.alphacephei:vosk-android:0.3.47@aar")
+            implementation (project(":models"))
         }
     }
 }
@@ -197,6 +198,11 @@ android {
         applicationId = "com.ghostwalker18.schedule"
         versionCode = 15
         versionName = "5.0"
+
+        ndkVersion = "25.2.9519653"
+        ndk {
+            abiFilters += mutableSetOf("armeabi-v7a", "arm64-v8a", "x86_64", "x86")
+        }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
