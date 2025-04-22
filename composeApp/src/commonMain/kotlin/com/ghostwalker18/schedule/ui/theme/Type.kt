@@ -15,16 +15,15 @@
 package com.ghostwalker18.schedule.ui.theme
 
 import androidx.compose.material.Typography
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.TextUnit
 
-actual val Typography = Typography(
-    body1 = TextStyle(
-        fontSize = 24.sp,
-    ),
-    button = TextStyle(
-        fontSize = 18.sp,
-    )
-)
+/**
+ * Это свойство задает общие настройки шрифтов мобильного и десктопного приложения.
+ */
+expect val Typography: Typography
 
-actual val ScheduleTableFontSize = 18.sp
+/**
+ * Это свойство задает размер шрифта для таблицы с расписанием
+ * мобильного и десктопного приложения.
+ */
+expect val ScheduleTableFontSize: TextUnit

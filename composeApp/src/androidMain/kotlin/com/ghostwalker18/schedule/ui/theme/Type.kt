@@ -18,11 +18,13 @@ import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
 
-val Typography = Typography(
+actual val Typography = Typography(
     body1 = TextStyle(
-        fontSize = 24.sp,
+        fontSize = 18.sp,
     ),
     button = TextStyle(
-        fontSize = 18.sp,
+        fontSize = 16.sp,
     )
 )
+
+actual val ScheduleTableFontSize = 15.sp
