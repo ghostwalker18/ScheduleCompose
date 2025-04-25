@@ -25,18 +25,16 @@ import org.vosk.Recognizer
 import org.vosk.android.RecognitionListener
 import org.vosk.android.SpeechService
 import org.vosk.android.StorageService
+import java.util.Locale
 
 /**
- * Этот класс осуществляет преобразование речи в голос.
+ * Этот класс осуществляет преобразование речи в голос на Android.
  *
  * @author Ипатов Никита
  */
 class SpeechRecognizer(val context: Context): RecognitionListener {
-    private var model: Model? = null
     private var speechService: SpeechService? = null
     private var speechToText: String = ""
-    private val _isReady = MutableStateFlow(false)
-
     /**
      * Это свойство отображает готовность распознавателя к работе.
      */
@@ -44,7 +42,7 @@ class SpeechRecognizer(val context: Context): RecognitionListener {
 
     init {
         LibVosk.setLogLevel(LogLevel.INFO)
-        initModel()
+        initModel(context)
     }
 
     /**
@@ -73,7 +71,7 @@ class SpeechRecognizer(val context: Context): RecognitionListener {
         if (hypothesis != null) {
             Log.i("Result", hypothesis)
         }
-        speechToText += ( extractResult(hypothesis ?: "") + ". ")
+        speechToText += extractResult(hypothesis ?: "")
     }
 
     override fun onPartialResult(hypothesis: String?) {/*Not required*/}
@@ -95,18 +93,30 @@ class SpeechRecognizer(val context: Context): RecognitionListener {
             .let{
                 it.substring(2, it.length - 1)
             }
+            .replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.Builder()
+                        .setLanguageTag("ru")
+                        .build()
+                ) else it.toString()
+            } + ". "
     }
 
-    /**
-     * Этот метод загружает модель для использования.
-     */
-    private fun initModel() {
-        StorageService.unpack(
-            context, "model-ru-ru", "model",
-            { model: Model? ->
-                this.model = model
-                _isReady.value = true
-            },
-            { })
+    companion  object {
+        private var model: Model? = null
+        private val _isReady = MutableStateFlow(false)
+
+        /**
+         * Этот метод загружает модель для использования.
+         */
+        fun initModel(context: Context){
+            StorageService.unpack(
+                context, "model-ru-ru", "model",
+                { model: Model? ->
+                    this.model = model
+                    _isReady.value = true
+                },
+                { })
+        }
     }
 }

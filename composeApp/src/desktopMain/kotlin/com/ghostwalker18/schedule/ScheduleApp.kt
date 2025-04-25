@@ -31,6 +31,9 @@ import kotlinx.coroutines.runBlocking
 import com.ghostwalker18.schedule.models.NotesRepository
 import com.ghostwalker18.schedule.models.ScheduleRepository
 import com.ghostwalker18.schedule.ui.theme.ScheduleTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.*
 import java.util.prefs.Preferences
@@ -54,12 +57,13 @@ actual class ScheduleApp {
     actual val preferences: ObservableSettings = PreferencesSettings(
         Preferences.userNodeForPackage(ScheduleApp::class.java)
     )
+    private lateinit var _navigator: Navigator
+    actual val navigator by lazy { _navigator }
     val database: AppDatabase
+
     private val themeState = MutableStateFlow(preferences["theme", "system"])
     var language by mutableStateOf(preferences.getString("language", "ru"))
 
-    private lateinit var _navigator: Navigator
-    actual val navigator by lazy { _navigator }
 
     private val themeChangedListener = preferences.addStringListener(
         "theme", "system"
@@ -73,6 +77,8 @@ actual class ScheduleApp {
         language = it
     }
 
+    private val scope = CoroutineScope(Dispatchers.IO)
+
     init {
         _instance = this
         database = AppDatabase.getInstance()
@@ -85,7 +91,10 @@ actual class ScheduleApp {
         importController = ImportControllerDesktop()
         shareController = ShareControllerDesktop()
         scheduleRepository.update()
-        setupFileChooser()
+        scope.launch {
+            setupFileChooser()
+            SpeechRecognizer.initModel()
+        }
     }
 
     /**

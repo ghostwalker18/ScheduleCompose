@@ -91,6 +91,9 @@
 # With R8 full mode generic signatures are stripped for classes that are not kept.
 -keep,allowobfuscation,allowshrinking class retrofit2.Response
 
+-dontwarn okhttp3.MediaType$Companion
+-dontwarn okhttp3.RequestBody$Companion
+
 # Vosk recognition
 -keep class com.sun.jna.* { *; }
 -keepclassmembers class * extends com.sun.jna.* { public *; }

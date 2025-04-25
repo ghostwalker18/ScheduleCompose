@@ -17,6 +17,7 @@ package com.ghostwalker18.schedule
 import android.app.Application
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat
 import androidx.core.os.LocaleListCompat
 import androidx.preference.PreferenceManager
 import androidx.work.Constraints
@@ -40,8 +41,12 @@ import com.russhwolf.settings.SharedPreferencesSettings
 import com.russhwolf.settings.get
 import io.appmetrica.analytics.AppMetrica
 import io.appmetrica.analytics.AppMetricaConfig
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import okhttp3.Dispatcher
+import org.vosk.Model
 import ru.rustore.sdk.pushclient.RuStorePushClient
 import ru.rustore.sdk.pushclient.common.logger.DefaultLogger
 import ru.rustore.sdk.universalpush.RuStoreUniversalPushClient
@@ -49,7 +54,9 @@ import ru.rustore.sdk.universalpush.firebase.provides.FirebasePushProvider
 import ru.rustore.sdk.universalpush.rustore.providers.RuStorePushProvider
 import java.util.*
 import java.util.concurrent.TimeUnit
-
+import android.Manifest
+import android.content.pm.PackageManager
+import kotlinx.coroutines.launch
 
 /**
  * <h1>Schedule</h1>
@@ -94,6 +101,7 @@ actual class ScheduleApp : Application() {
 
     internal var isAppMetricaActivated = false
 
+    val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onCreate() {
         super.onCreate()
@@ -176,6 +184,15 @@ actual class ScheduleApp : Application() {
         } catch (e: Exception) { /*Not required*/ }*/
         AndroidUtils.checkNotificationsPermissions(this, preferences)
         AndroidUtils.clearPOICache(this)
+        scope.launch {
+            if(ActivityCompat.checkSelfPermission(
+                    this@ScheduleApp,
+                    Manifest.permission.RECORD_AUDIO) ==
+                PackageManager.PERMISSION_GRANTED
+            ){
+                SpeechRecognizer.initModel(this@ScheduleApp)
+            }
+        }
     }
 
     /**

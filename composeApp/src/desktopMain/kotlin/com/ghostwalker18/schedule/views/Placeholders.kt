@@ -46,8 +46,3 @@ actual fun PhotoPreview(
     animatedVisibilityScope: AnimatedVisibilityScope?,
     onDeleteListener: (id: String) -> Unit
 ) {/*Not required*/}
-
-@Composable
-actual fun SpeechInput(
-    onInput: (text: String) -> Unit
-) { /*Not required*/ }
