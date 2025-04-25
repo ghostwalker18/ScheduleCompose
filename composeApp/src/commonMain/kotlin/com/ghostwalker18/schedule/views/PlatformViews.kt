@@ -70,6 +70,11 @@ expect fun DownloadDialog(
     mimeType: String
 )
 
+/**
+ * Эта функция добавляет текстовую подсказку к элементу для десктопной версии приложения.
+ *
+ * @author Ипатов Никита
+ */
 @Composable
 expect fun ContentWrapper(
     toolTip: StringResource,
@@ -110,6 +115,12 @@ expect fun PhotoPreview(
     onDeleteListener: (id: String) -> Unit = {}
 )
 
+/**
+ * Эта функция предназначена для отображения элемента управления голосового ввода текста
+ * @param onInput callback, вызываемый для результата преобразования речи в текст
+ *
+ * @author Ипатов Никита
+ */
 @Composable
 expect fun SpeechInput(
     onInput: (text: String) -> Unit

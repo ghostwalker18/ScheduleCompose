@@ -16,6 +16,7 @@ package com.ghostwalker18.schedule
 
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.ghostwalker18.schedule.database.AppDatabase
 import com.ghostwalker18.schedule.database.AppDatabase.Companion.EXPORT_DATABASE_NAME
 import com.ghostwalker18.schedule.database.AppDatabase.Companion.createAppDatabase
@@ -43,7 +44,7 @@ actual fun getDatabaseBuilder(dbName: String): RoomDatabase.Builder<AppDatabase>
 
 actual fun getDecoratedDBBuilder(builder: RoomDatabase.Builder<AppDatabase>,
                                  file: File?): RoomDatabase.Builder<AppDatabase> {
-    return builder
+    return builder.setDriver(BundledSQLiteDriver())
 }
 
 actual suspend fun exportDBFile(dataType: String): File? {

@@ -65,7 +65,10 @@ fun ImportScreen(){
                 .padding(10.dp)
                 .fillMaxSize()
         ) {
-            Row {
+            Row(
+                modifier = Modifier
+                    .padding(vertical = 5.dp)
+            ){
                 Text(
                     text = stringResource(Res.string.operation_type),
                     modifier = Modifier
@@ -79,7 +82,10 @@ fun ImportScreen(){
                     operationType = it
                 }
             }
-            Row {
+            Row(
+                modifier = Modifier
+                    .padding(vertical = 5.dp)
+            ){
                 Text(
                     text = stringResource(Res.string.data_types),
                     modifier = Modifier
@@ -94,7 +100,10 @@ fun ImportScreen(){
                 }
             }
             AnimatedVisibility(operationType == "import"){
-                Row {
+                Row(
+                    modifier = Modifier
+                        .padding(vertical = 5.dp)
+                ){
                     Text(
                         text = stringResource(Res.string.import_policy_type),
                         modifier = Modifier

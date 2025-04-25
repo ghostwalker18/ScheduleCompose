@@ -18,7 +18,6 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.SQLiteConnection
-import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import androidx.sqlite.execSQL
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.converters.PhotoURIArrayConverter
@@ -87,7 +86,6 @@ abstract class AppDatabase : RoomDatabase() {
                 .addCallback(callback)
                 .setQueryCoroutineContext(Dispatchers.Main)
                 .setJournalMode(JournalMode.TRUNCATE)
-                .setDriver(BundledSQLiteDriver())
             for (migration in migrations)
                 builder.addMigrations(migration)
             val platformBuilder = getDecoratedDBBuilder(builder, dbFile)

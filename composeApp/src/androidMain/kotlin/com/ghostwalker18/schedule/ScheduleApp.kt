@@ -172,16 +172,16 @@ actual class ScheduleApp : Application() {
         _importController = ImportControllerAndroid(this)
 
         //Initializing of third-party analytics and push services.
-        /*try {
-            val appMetricaApiKey = getString(R.string.app_metrica_api_key) //from non-public strings
+        try {
+            /*val appMetricaApiKey = getString(R.string.app_metrica_api_key) //from non-public strings
             val config = AppMetricaConfig.newConfigBuilder(appMetricaApiKey).build()
             // Initializing the AppMetrica SDK.
             AppMetrica.activate(this, config)
-            isAppMetricaActivated = true
+            isAppMetricaActivated = true*/
             FirebaseApp.initializeApp(this)
             // Initializing the RuStore Push SDK.
             initPushes()
-        } catch (e: Exception) { /*Not required*/ }*/
+        } catch (e: Exception) { /*Not required*/ }
         AndroidUtils.checkNotificationsPermissions(this, preferences)
         AndroidUtils.clearPOICache(this)
         scope.launch {
