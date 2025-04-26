@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="app_name">პასტების განრიგი</string>
+    <string name="notes">შენიშვნები</string>
+    <string name="add_note">ახალი შენიშვნა</string>
+    <string name="today">დღეს</string>
+    <string name="date">თარიღი</string>
+    <string name="number">წყვილი</string>
+    <string name="room">ოფისი</string>
+    <string name="subject">თემა</string>
+    <string name="teacher">მასწავლებელი</string>
+    <string name="email_subject" translatable="false">Расписание ПАСТ (мобильное)</string>
+    <string name="rustore_link" translatable="false">
+        https://www.rustore.ru/catalog/app/com.ghostwalker18.schedule
+    </string>
+    <string name="app_widget_description">ჯგუფის დღის პასტორალური გრაფიკი</string>
+    <string name="day">დღე</string>
+    <string name="appearance">გარეგნობა</string>
+    <string name="option_theme">თემა</string>
+    <string name="dynamic_colors">გამოიყენეთ დინამიური ფერები</string>
+    <string name="tomorrow">ხვალ</string>
+    <string name="for_group">ჯგუფისათვის:</string>
+    <string name="last_chosen">ბოლოს შერჩეული</string>
+    <string name="not_mentioned">არ არის მითითებული</string>
+    <string name="updated">განახლებულია:</string>
+    <string name="schedule_missing">არ არსებობს კლასების სია</string>
+    <string name="add_widget">დაამატეთ ვიჯეტი</string>
+    <string name="update_descr">განაახლეთ გრაფიკი</string>
+    <string name="notifications_notification_app_update_channel_name">განაცხადის განახლებები</string>
+    <string name="notifications_notification_app_update_channel_descr">
+        მიიღეთ შეტყობინებები აპლიკაციის მობილური და დესკტოპის ვერსიების ახალი განახლებების შესახებ.
+    </string>
+    <string name="notifications_notification_schedule_update_channel_name">გრაფიკი</string>
+    <string name="notifications_notification_schedule_update_channel_descr">
+        ღია რედაქტორი
+    </string>
+    <string name="notifications_new_schedule_available">ახალი გრაფიკი გამოქვეყნდა, სანამ</string>
+    <string name="notifications_schedule_unavailable">ოოპ! გრაფიკის განახლება ვერ მოხერხდა…</string>
+</resources>

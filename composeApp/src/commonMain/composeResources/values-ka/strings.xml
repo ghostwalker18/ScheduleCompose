@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="app_name">პასტების განრიგი</string>
+    <string name="something_weird">უი, რაღაც შეცდომა მოხდა</string>
+    <string name="schedule">გრაფიკი</string>
+    <string name="day_table">განრიგი</string>
+    <string name="settings">პარამეტრები</string>
+    <string name="days_tab">გაკვეთილის განრიგი</string>
+    <string name="times_tab">ზარის განრიგი</string>
+    <string name="monday">ორშაბათი</string>
+    <string name="tuesday">სამშაბათი</string>
+    <string name="wednesday">ოთხშაბათი</string>
+    <string name="thursday">ხუთშაბათი</string>
+    <string name="friday">პარასკევი</string>
+    <string name="today">დღეს</string>
+    <string name="app_settings">გამოყენება</string>
+    <string name="option_theme">თემა</string>
+    <string name="option_add_teacher_search">მასწავლებლის ძებნა</string>
+    <string name="date">თარიღი</string>
+    <string name="number">წყვილი</string>
+    <string name="room">ოფისი</string>
+    <string name="times">დრო</string>
+    <string name="subject">თემა</string>
+    <string name="group_choice_text">აირჩიეთ ჯგუფი:</string>
+    <string name="teacher_choice_text">აირჩიეთ მასწავლებელი:</string>
+    <string name="share">გაზიარება</string>
+    <string name="nothing_to_share">ჯერ არაფერია გასაზიარებელი</string>
+    <string name="back">უკან</string>
+    <string name="forward">წინ</string>
+    <string name="teacher">მასწავლებელი</string>
+    <string name="schedule_style">გრაფიკის ჩვენების რეჟიმი</string>
+    <string name="option_do_not_update_times">არ განაახლოთ ზარები</string>
+    <string name="download_schedule">ჩამოტვირთეთ გრაფიკის ფაილი</string>
+    <string name="schedule_settings">გრაფიკი</string>
+    <string name="option_language">ენა</string>
+    <string name="schedule_download_error">შეცდომა გრაფიკის ჩამოტვირთვისას</string>
+    <string name="schedule_opening_error">შეცდომა გრაფიკის ფაილის გახსნისას</string>
+    <string name="schedule_parsing_error">შეცდომა გრაფიკის დამუშავებისას</string>
+    <string name="schedule_download_status">გრაფიკის ჩამოტვირთვა</string>
+    <string name="schedule_opening_status">გრაფიკის ფაილის გახსნა</string>
+    <string name="schedule_parsing_status">გრაფიკის დამუშავება</string>
+    <string name="processing_completed_status">გრაფიკი წარმატებით განახლდა</string>
+    <string name="notes_activity">შენიშვნები</string>
+    <string name="no_notes_now">შენიშვნები ჯერ არ არის</string>
+    <string name="edit_notes_activity">შენიშვნის დამატება / რედაქტირება</string>
+    <string name="note_theme">შენიშვნის საგანი</string>
+    <string name="choose_date">აირჩიეთ თარიღი</string>
+    <string name="filters">ფილტრები</string>
+    <string name="for_group">ჯგუფისათვის</string>
+    <string name="start_date">დაწყების თარიღი:</string>
+    <string name="end_date">დასრულების თარიღი:</string>
+    <string name="cancel">გაუქმება</string>
+    <string name="chose_date">აირჩიეთ თარიღი</string>
+    <string name="go_to_date">გადასვლა თარიღი</string>
+    <string name="text">ტექსტი</string>
+    <string name="photo_error">ფოტოს ატვირთვა ვერ მოხერხდა</string>
+    <string name="gallery_access_denied">ფოტოზე წვდომის ნებართვა არ არსებობს</string>
+    <string name="group">ჯგუფი</string>
+    <string name="theme">თემა</string>
+    <string name="delete">ამოღება</string>
+    <string name="edit">რედაქტირება</string>
+    <string name="edit_note">ჩანაწერის რედაქტირება</string>
+    <string name="add_note">ახალი ჩანაწერი</string>
+    <string name="network_settings">ბადე</string>
+    <string name="option_enable_caching">ქეშირების ჩართვა</string>
+    <string name="option_download_for">ჩამოტვირთეთ გრაფიკი</string>
+    <string name="share_app">აპლიკაციის გაზიარება</string>
+    <string name="scan_qr_code">QR კოდის სკანირება</string>
+    <string name="or">ან</string>
+    <string name="share_link">ბმულის გაზიარება</string>
+    <string name="data_transfer">მონაცემთა გადაცემა</string>
+    <string name="import_activity">იმპორტი/ექსპორტი მონაცემები</string>
+    <string name="operation_type">აირჩიეთ ოპერაციის ტიპი</string>
+    <string name="data_types">მონაცემების არჩევა</string>
+    <string name="import_policy_type">იმპორტის რეჟიმი</string>
+    <string name="import_data">მონაცემების იმპორტი</string>
+    <string name="export_data">ექსპორტის მონაცემები</string>
+    <string name="import_file_dialog">აირჩიეთ ფაილი იმპორტისთვის</string>
+    <string name="import_db_success">გრაფიკი წარმატებით იმპორტირებულია</string>
+    <string name="import_db_error">მონაცემების იმპორტი ვერ მოხერხდა. შეამოწმეთ მონაცემთა ფორმატი</string>
+    <string name="download_approvement">ჩამოტვირთვის დადასტურება</string>
+    <string name="download_notice">ჩამოსატვირთი გრაფიკის ფაილების რაოდენობა: %1$d. გსურთ მათი ჩამოტვირთვა?</string>
+    <string name="download_ok">ჩამოტვირთვა</string>
+    <string name="download_cancel">გაუქმება</string>
+    <string name="cancelButtonText">გაუქმება</string>
+    <string name="notifications">შეტყობინებები</string>
+    <string name="notifications_notification_app_update_channel_name">აპლიკაციის განახლებები</string>
+    <string name="notifications_notification_schedule_update_channel_name">გრაფიკი</string>
+    <string name="main_share_schedule_descr">განრიგის გაზიარება</string>
+    <string name="main_download_descr">გრაფიკის ფაილების ჩამოტვირთვა</string>
+    <string name="main_settings_descr">პარამეტრების გახსნა</string>
+    <string name="note_discard_descr">ცვლილებების გაუქმება</string>
+    <string name="note_set_date_descr">თარიღის არჩევა</string>
+    <string name="note_clear_group_descr">ჯგუფის გასუფთავება</string>
+    <string name="note_theme_clear_descr">თემის გასუფთავება</string>
+    <string name="note_text_clear_descr">ტექსტის გასუფთავება</string>
+    <string name="note_save_descr">ჩანაწერის შენახვა</string>
+    <string name="main_tabs_descr">განრიგისა და ზარების ჩანართები</string>
+    <string name="notes_add_descr">შენიშვნის დამატება</string>
+    <string name="notes_filter_descr">შენიშვნების ფილტრი</string>
+    <string name="schedule_item_notes_descr">გახსენით შენიშვნები</string>
+    <string name="schedule_item_show_descr">გრაფიკის ჩვენება</string>
+    <string name="share_app_qr_descr">მაღაზიაში გვერდის QR კოდი</string>
+    <string name="widget_settings_previes_descr">ვიჯეტის გარეგნობა</string>
+    <string name="filter_close_descr">დახურვა და გამოყენება</string>
+    <string name="filter_start_date_descr">აირჩიეთ დაწყების თარიღი</string>
+    <string name="filter_end_date_descr">აირჩიეთ დასრულების თარიღი</string>
+    <string name="note_item_photo_descr">ფოტო ჩანაწერები</string>
+    <string name="note_item_checked_descr">შენიშვნა არჩეულია</string>
+    <string name="times_monday">ორშაბათის ზარები</string>
+    <string name="times_other">ზარები სამშაბათიდან პარასკევის ჩათვლით</string>
+    <string name="update_descr">განახლების გრაფიკი</string>
+    <string name="availability_descr">სტუმრებისთვის ხელმისაწვდომობა</string>
+    <string name="days_group_clear_descr">ჯგუფის გასუფთავება</string>
+    <string name="days_teacher_clear_descr">მასწავლებლის გასუფთავება</string>
+    <string name="notes_selection_cancel_descr">ჩანაწერების მოხსნა</string>
+    <string name="notes_delete_selected_descr">არჩეული ჩანაწერების წაშლა</string>
+    <string name="notes_share_selected_descr">არჩეული შენიშვნების გაზიარება</string>
+    <string name="notes_edit_selected_descr">არჩეული ჩანაწერის რედაქტირება</string>
+    <string name="lesson_available_descr">გაკვეთილი მიმდინარეობს</string>
+    <string name="lesson_ended_descr">გაკვეთილი გავიდა</string>
+    <string name="lesson_not_started_descr">გაკვეთილი არ დაწყებულა</string>
+    <string name="go_back_descr">წინა ეკრანზე დაბრუნება</string>
+    <string name="voice_input_descr">ხმოვანი შეყვანა</string>
+    <string name="notes_tooltip">დღის შენიშვნების ჩვენება</string>
+    <string name="schedule_tooltip">ყოველდღიური გრაფიკის ჩვენება</string>
+    <string name="developer_tooltip">დაუკავშირდით დეველოპერს</string>
+    <string name="previous_week_tooltip">მოკლე დაჭერით - გადადით წინა კვირაზე.
+        ხანგრძლივი დაჭერა - პაემანზე გადასვლა</string>
+    <string name="next_week_tooltip">მოკლე დაჭერით - გადადით შემდეგ კვირაზე.
+        ხანგრძლივი დაჭერა - პაემანზე გადასვლა</string>
+    <string name="developer_email" translatable="false">ghostwalker18@mail.ru</string>
+    <string name="repo_address" translatable="false">https://github.com/ghostwalker18/ScheduleCompose/releases/latest</string>
+</resources>

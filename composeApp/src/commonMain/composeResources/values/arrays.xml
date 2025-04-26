@@ -32,6 +32,7 @@
         <item>Белорусский</item>
         <item>Украинский</item>
         <item>Казахстанский</item>
+        <item>Грузинский</item>
         <item>Английский</item>
     </string-array>
 
@@ -41,6 +42,7 @@
         <item>be</item>
         <item>uk</item>
         <item>kk</item>
+        <item>ka</item>
         <item>en</item>
     </string-array>
 

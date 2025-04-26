@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="share_completed">გრაფიკი გადაწერილია ბუფერში</string>
+    <string name="share_times_completed">ზარის გრაფიკის ფაილები გადაწერილია ბუფერში</string>
+    <string name="notes_share_completed">შერჩეული შენიშვნები გადაწერილია ბუფერში.</string>
+    <string name="share_link_completed">ბმული გადაწერა ბუფერში</string>
+    <string name="share_email_completed">ელფოსტა გადაწერა ბუფერში</string>
+    <string name="download_file_dialog">შეინახეთ გრაფიკი</string>
+    <string name="check_for_update">შეამოწმეთ განახლებები</string>
+    <string name="update_available">ახალი განახლება ხელმისაწვდომია</string>
+    <string name="update_info">აპლიკაციის %1$s ვერსია ხელმისაწვდომია ჩამოტვირთვისთვის:</string>
+    <string name="update_description">რა არის ახალი:</string>
+    <string name="update_unavailable">აპლიკაციის უახლესი ვერსია უკვე დაინსტალირებულია</string>
+    <string name="update_info_unavailable">ინფორმაცია განახლებების შესახებ არ არის ხელმისაწვდომი</string>
+    <string name="lookInLabelText">ძიება</string>
+    <string name="filesOfTypeLabelText">გაფართოება</string>
+    <string name="upFolderToolTipText">ზემოთ</string>
+    <string name="homeFolderToolTipText">სახლი</string>
+    <string name="newFolderToolTipText">ახალი საქაღალდე</string>
+    <string name="listViewButtonToolTipText">სია</string>
+    <string name="detailsViewButtonToolTipText">დეტალები</string>
+    <string name="folderNameLabelText">საქაღალდე</string>
+    <string name="saveButtonText">შენახვა</string>
+    <string name="email_subject" translatable="false">Расписание%20ПАСТ%20(десктоп)</string>
+    <string name="github_link" translatable="false">https://github.com/ghostwalker18/ScheduleCompose/releases/latest</string>
+</resources>
