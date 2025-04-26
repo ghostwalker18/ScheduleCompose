@@ -86,7 +86,7 @@ class ShareControllerDesktop : ShareController {
                 )
             )
             return Pair(false, Res.string.share_email_completed)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             Toolkit.getDefaultToolkit()
                 .systemClipboard
                 .setContents(StringSelection(runBlocking { return@runBlocking getString(Res.string.developer_email) }), null)

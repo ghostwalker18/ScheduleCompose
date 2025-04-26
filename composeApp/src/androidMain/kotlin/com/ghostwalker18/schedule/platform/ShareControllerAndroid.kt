@@ -47,7 +47,7 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
             }
 
             val intent = Intent(Intent.ACTION_SEND)
-            intent.setType("text/plain")
+            intent.type = "text/plain"
             intent.putExtra(Intent.EXTRA_TEXT, schedule.toString())
 
             val shareIntent = Intent.createChooser(intent, null)
@@ -82,7 +82,7 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
 
             val intent = Intent(Intent.ACTION_SEND_MULTIPLE)
             intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris)
-            intent.setType("image/*")
+            intent.type = "image/*"
 
             val shareIntent = Intent.createChooser(intent, null)
             shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -104,7 +104,7 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
         }
 
         val intent = Intent(Intent.ACTION_SEND)
-        intent.setType("text/plain")
+        intent.type = "text/plain"
         intent.putExtra(Intent.EXTRA_TEXT, notesToShare.toString())
 
         val shareIntent = Intent.createChooser(intent, null)
@@ -119,7 +119,7 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
 
     override fun shareLink(): Pair<Boolean, StringResource> {
         val intent = Intent(Intent.ACTION_SEND)
-        intent.setType("text/plain")
+        intent.type = "text/plain"
         intent.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.rustore_link) )
 
         val shareIntent = Intent.createChooser(intent, null)
@@ -132,7 +132,7 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
     override fun connectToDeveloper(): Pair<Boolean, StringResource> {
         try {
             val intent = Intent(Intent.ACTION_SENDTO)
-            intent.setData(Uri.parse("mailto:")) // only email apps should handle this
+            intent.data = Uri.parse("mailto:") // only email apps should handle this
             intent.putExtra(Intent.EXTRA_EMAIL,
                 arrayOf(runBlocking { getString(Res.string.developer_email) }))
             intent.putExtra(Intent.EXTRA_SUBJECT, runBlocking { getString(Res.string.developer_email) } )
@@ -144,9 +144,9 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
             shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
             context.startActivity(shareIntent, null)
-        } catch (e: ActivityNotFoundException) {
+        } catch (_: ActivityNotFoundException) {
             return Pair(true, Res.string.developer_email)
-        } catch (ignored: Exception) { /*Not required*/ }
+        } catch (_: Exception) { /*Not required*/ }
         return Pair(false, Res.string.nothing_to_share)
     }
 }

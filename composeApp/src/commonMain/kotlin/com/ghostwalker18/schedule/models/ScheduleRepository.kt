@@ -96,7 +96,7 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
                     }
                 }
                 return links
-            } catch (e: IOException) {
+            } catch (_: IOException) {
                 return links
             }
         }
@@ -118,7 +118,7 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
                     }
                 }
                 return links
-            } catch (e: IOException) {
+            } catch (_: IOException) {
                 return links
             }
         }

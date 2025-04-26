@@ -61,7 +61,7 @@ class ScheduleRepositoryDesktop(
         val scheduleLinks: List<String>
         try {
             scheduleLinks = linksGetter.call()
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             return UpdateResult.FAIL
         }
         if (scheduleLinks.isEmpty()) {
@@ -122,28 +122,28 @@ class ScheduleRepositoryDesktop(
                                     }
                             }
                         }
-                    } catch (e: OpenException) {
+                    } catch (_: OpenException) {
                         scope.launch {
                             _status.value = Status(
                                 getString(Res.string.schedule_opening_error),
                                 0
                             )
                         }
-                    } catch (e: ReadException) {
+                    } catch (_: ReadException) {
                         scope.launch {
                             _status.value = Status(
                                 getString(Res.string.schedule_opening_error),
                                 0
                             )
                         }
-                    } catch (e: ParseException) {
+                    } catch (_: ParseException) {
                         scope.launch {
                             _status.value = Status(
                                 getString(Res.string.schedule_opening_error),
                                 0
                             )
                         }
-                    } catch (e: Exception) {
+                    } catch (_: Exception) {
                         scope.launch {
                             _status.value = Status(
                                 getString(Res.string.schedule_opening_error),
@@ -172,10 +172,10 @@ class ScheduleRepositoryDesktop(
                 UpdateResult.SUCCESS
             else
                 UpdateResult.FAIL
-        } catch (e: InterruptedException) {
+        } catch (_: InterruptedException) {
             Thread.currentThread().interrupt()
             return UpdateResult.FAIL
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             return UpdateResult.FAIL
         }
     }
@@ -196,7 +196,7 @@ class ScheduleRepositoryDesktop(
                             _mondayTimes.value = bufferedImage.toPainter()
                             ImageIO.write(bufferedImage, "jpg", mondayTimesFile)
                         }
-                    } catch (ignored: java.lang.Exception) { /*Not required*/ }
+                    } catch (_: Exception) { /*Not required*/ }
                 }
 
                 override fun onFailure(call: Call<ResponseBody?>, t: Throwable) { /*Not required*/ }
@@ -209,7 +209,7 @@ class ScheduleRepositoryDesktop(
                             _otherTimes.value = bufferedImage.toPainter()
                             ImageIO.write(bufferedImage, "jpg", mondayTimesFile)
                         }
-                    } catch (ignored: java.lang.Exception) { /*Not required*/
+                    } catch (_: Exception) { /*Not required*/
                     }
                 }
 
@@ -221,7 +221,7 @@ class ScheduleRepositoryDesktop(
                 _mondayTimes.value = bitmap1.toPainter()
                 val bitmap2 = ImageIO.read(otherTimesFile)
                 _otherTimes.value = bitmap2.toPainter()
-            } catch (ignored: java.lang.Exception) { /*Not required*/
+            } catch (_: Exception) { /*Not required*/
             }
         }
         return UpdateResult.SUCCESS

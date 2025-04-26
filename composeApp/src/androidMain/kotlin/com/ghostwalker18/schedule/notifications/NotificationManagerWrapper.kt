@@ -92,7 +92,7 @@ class NotificationManagerWrapper private constructor(
                 val channel = notificationManager.getNotificationChannel(channelId)
                 if (channel != null) return channel.importance != NotificationManager.IMPORTANCE_NONE
             }
-        } catch (ignored: Exception) { /*Not required*/ }
+        } catch (_: Exception) { /*Not required*/ }
         return false
     }
 

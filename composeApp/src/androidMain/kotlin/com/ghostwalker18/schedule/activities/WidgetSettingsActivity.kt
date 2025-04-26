@@ -194,7 +194,7 @@ class WidgetSettingsActivity
         override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, s: String?) {
             val preference = preferenceScreen.findPreference<Preference>(s!!)
             if (preference is ListPreference) {
-                preference.setSummary(preference.entry)
+                preference.summary = preference.entry
             }
         }
     }

@@ -64,7 +64,7 @@ class ScheduleRepositoryAndroid(
         val scheduleLinks: List<String>
         try {
             scheduleLinks = linksGetter.call()
-        } catch (e: java.lang.Exception) {
+        } catch (_: java.lang.Exception) {
             return UpdateResult.FAIL
         }
         if (scheduleLinks.isEmpty()) {
@@ -120,28 +120,28 @@ class ScheduleRepositoryAndroid(
                                     successCounter.add(UpdateResult.SUCCESS)
                                 }
                         }
-                    } catch (e: OpenException) {
+                    } catch (_: OpenException) {
                         scope.launch {
                             _status.value = Status(
                                 getString(Res.string.schedule_opening_error),
                                 0
                             )
                         }
-                    } catch (e: ReadException) {
+                    } catch (_: ReadException) {
                         scope.launch {
                             _status.value = Status(
                                 getString(Res.string.schedule_opening_error),
                                 0
                             )
                         }
-                    } catch (e: ParseException) {
+                    } catch (_: ParseException) {
                         scope.launch {
                             _status.value = Status(
                                 getString(Res.string.schedule_opening_error),
                                 0
                         )
                     }
-                    } catch (e: Exception) {
+                    } catch (_: Exception) {
                         scope.launch {
                             _status.value = Status(
                                 getString(Res.string.schedule_opening_error),
@@ -168,7 +168,7 @@ class ScheduleRepositoryAndroid(
             latch.await()
             return if (successCounter.size == scheduleLinks.size) UpdateResult.SUCCESS
             else UpdateResult.FAIL
-        } catch (e: java.lang.Exception) {
+        } catch (_: Exception) {
             return UpdateResult.FAIL
         }
     }
@@ -195,7 +195,7 @@ class ScheduleRepositoryAndroid(
                                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
                                 }
                         }
-                    } catch (ignored: Exception) { /*Not required*/ }
+                    } catch (_: Exception) { /*Not required*/ }
                 }
 
                 override fun onFailure(call: Call<ResponseBody?>, t: Throwable) { /*Not required*/ }
@@ -214,8 +214,7 @@ class ScheduleRepositoryAndroid(
                                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
                                 }
                         }
-                    } catch (ignored: Exception) { /*Not required*/
-                    }
+                    } catch (_: Exception) { /*Not required*/ }
                 }
 
                 override fun onFailure(call: Call<ResponseBody?>, t: Throwable) { /*Not required*/ }

@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 /**
- * Интерфейс DAO для работы с таблицой БД, содержащей сведения о занятиях.
+ * Интерфейс DAO для работы с таблицей БД, содержащей сведения о занятиях.
  * Используется Room для генерации.
  *
  * @author  Ипатов Никита
@@ -33,20 +33,20 @@ interface LessonDao {
 
     /**
      * Этот метод позволяет получить список учителей из БД.
-     * @return списко учителей
+     * @return список учителей
      */
     @Query("SELECT DISTINCT teacherName FROM tblSchedule ORDER BY teacherName ASC")
     fun getTeachers(): Flow<Array<String>>
 
     /**
-     * Этот метод позволяет получить списко групп из БД.
+     * Этот метод позволяет получить список групп из БД.
      * @return список групп
      */
     @Query("SELECT DISTINCT groupName FROM tblSchedule ORDER BY groupName ASC")
     fun getGroups(): Flow<Array<String>>
 
     /**
-     * Этот метод позволяет позволяет получить список занятий на заданную дату у заданной группы,
+     * Этот метод позволяет получить список занятий на заданную дату у заданной группы,
      * которые проводит заданный преподаватель.
      * @param date дата
      * @param group группа

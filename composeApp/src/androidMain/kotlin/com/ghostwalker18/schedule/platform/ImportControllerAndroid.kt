@@ -78,7 +78,7 @@ class ImportControllerAndroid(val context: Context) : ImportController {
                                     Utils.unzip(archive, databaseCache)
                                     importedFile = File(databaseCache, "export_database.db")
                                     ScheduleApp.instance.database.importDBFile(
-                                        importedFile!!, dataType, importPolicy
+                                        importedFile, dataType, importPolicy
                                     )
                                 }
                             }
@@ -136,9 +136,9 @@ class ImportControllerAndroid(val context: Context) : ImportController {
                         exportedFile
                     )
                 )
-                shareIntent.setType("application/zip")
+                shareIntent.type = "application/zip"
                 shareDBFileLauncher.launch(Intent.createChooser(shareIntent, null))
-            } catch (ignored: Exception) { /*Not required*/ }
+            } catch (_: Exception) { /*Not required*/ }
         }
     }
 

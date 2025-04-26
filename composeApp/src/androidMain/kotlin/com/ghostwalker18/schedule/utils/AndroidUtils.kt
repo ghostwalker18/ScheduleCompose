@@ -52,7 +52,7 @@ object AndroidUtils {
                         ) cachedFile.delete()
                     }
                 }
-            } catch (ignored: Exception) { /*Not required*/ }
+            } catch (_: Exception) { /*Not required*/ }
         }.start()
     }
 

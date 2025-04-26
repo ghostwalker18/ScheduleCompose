@@ -176,10 +176,10 @@ class ScheduleWidget : AppWidgetProvider() {
         }
 
         /**
-         * Этот метод используется для получения id нужного лэйаута.
+         * Этот метод используется для получения id нужного макета.
          * @param theme сохраненная тема
          * @param isDynamicColorsEnabled выбрано ли использование динамических цветов
-         * @return id лэйаута
+         * @return id макета
          */
         private fun getRequiredLayout(theme: String, isDynamicColorsEnabled: Boolean): Int {
             return when(theme){
