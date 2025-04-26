@@ -122,6 +122,6 @@ expect fun PhotoPreview(
  * @author Ипатов Никита
  */
 @Composable
-expect fun SpeechInput(
+expect fun VoiceInput(
     onInput: (text: String) -> Unit
 )

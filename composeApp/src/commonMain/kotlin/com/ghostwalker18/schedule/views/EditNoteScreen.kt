@@ -195,7 +195,7 @@ fun EditNoteScreen(
                 ContentWrapper(
                     toolTip = Res.string.voice_input_descr
                 ){
-                    SpeechInput {
+                    VoiceInput {
                         model.text.value = it
                     }
                 }

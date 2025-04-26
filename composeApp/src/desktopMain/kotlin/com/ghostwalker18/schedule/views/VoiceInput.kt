@@ -14,24 +14,53 @@
 
 package com.ghostwalker18.schedule.views
 
+import androidx.compose.animation.animateColor
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mic
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import com.ghostwalker18.schedule.SpeechRecognizer
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.voice_input_descr
 
 @Composable
-actual fun SpeechInput(
+actual fun VoiceInput(
     onInput: (text: String) -> Unit
 ) {
     var isRecording by remember { mutableStateOf(false) }
     val recognizer = remember{ return@remember SpeechRecognizer() }
+    val infiniteTransition = rememberInfiniteTransition("recording")
+    val animatedColor by infiniteTransition.animateColor(
+        initialValue = IconButtonDefaults.iconButtonColors().containerColor,
+        targetValue = MaterialTheme.colors.primary,
+        animationSpec = infiniteRepeatable(
+            animation = tween(600, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "color"
+    )
 
     IconButton(
+        modifier = Modifier
+            .background(
+                color = if(isRecording)
+                            animatedColor
+                        else
+                            IconButtonDefaults.iconButtonColors().containerColor,
+                shape = CircleShape
+            ),
         enabled = true,
         onClick = {
             if(!isRecording){
