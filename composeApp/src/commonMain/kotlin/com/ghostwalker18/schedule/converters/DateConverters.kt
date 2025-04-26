@@ -42,7 +42,7 @@ class DateConverters {
                 .build()
         )
         private val dateFormatDb = SimpleDateFormat(
-            "dd.MM.yyyy",
+            "yyyy-MM-dd",
             Locale.Builder()
                 .setLanguageTag("ru")
                 .build()
@@ -73,7 +73,7 @@ class DateConverters {
                     val cal = Calendar.getInstance()
                     cal.time = format.parse(it)!!
                     cal
-                } catch (e: ParseException) {
+                } catch (_: ParseException) {
                     null
                 }
             }

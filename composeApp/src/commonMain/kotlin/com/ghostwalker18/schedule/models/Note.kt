@@ -39,7 +39,7 @@ data class Note(
     @ColumnInfo(name = "noteGroup") var group : String,
     @ColumnInfo(name = "noteTheme") var theme: String?,
     @ColumnInfo(name = "noteText") var text: String,
-    @ColumnInfo(name = "notePhotoIDs") var photoIDs: List<String> = emptyList()
+    @ColumnInfo(name = "notePhotoIDs") var photoIDs: List<String>? = emptyList()
 ){
     override fun toString(): String {
         return runBlocking {
