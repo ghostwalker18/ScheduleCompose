@@ -46,7 +46,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import okhttp3.Dispatcher
-import org.vosk.Model
 import ru.rustore.sdk.pushclient.RuStorePushClient
 import ru.rustore.sdk.pushclient.common.logger.DefaultLogger
 import ru.rustore.sdk.universalpush.RuStoreUniversalPushClient
@@ -101,7 +100,7 @@ actual class ScheduleApp : Application() {
 
     internal var isAppMetricaActivated = false
 
-    val scope = CoroutineScope(Dispatchers.IO)
+    private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onCreate() {
         super.onCreate()
@@ -158,7 +157,7 @@ actual class ScheduleApp : Application() {
             }
         }
 
-        database = AppDatabase.getInstance()
+        database = AppDatabase.instance
         _scheduleRepository = ScheduleRepositoryAndroid(
             this,
             database,

@@ -20,7 +20,6 @@ import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.ghostwalker18.schedule.database.AppDatabase
 import com.ghostwalker18.schedule.database.AppDatabase.Companion.EXPORT_DATABASE_NAME
 import com.ghostwalker18.schedule.database.AppDatabase.Companion.createAppDatabase
-import com.ghostwalker18.schedule.database.AppDatabase.Companion.getInstance
 import com.ghostwalker18.schedule.platform.OsUtils
 import java.io.File
 
@@ -49,7 +48,7 @@ actual fun getDecoratedDBBuilder(builder: RoomDatabase.Builder<AppDatabase>,
 
 actual suspend fun exportDBFile(dataType: String): File? {
     val exportDB = createAppDatabase(EXPORT_DATABASE_NAME, null)
-    val instance = getInstance()
+    val instance = AppDatabase.instance
     exportDB.lessonDao().deleteAllLessons()
     exportDB.noteDao().deleteAllNotes()
     if (dataType == "schedule" || dataType == "schedule_and_notes") {

@@ -58,21 +58,21 @@ abstract class AppDatabase : RoomDatabase() {
         const val EXPORT_DATABASE_NAME = "export_database.db"
         const val IMPORT_DATABASE_NAME = "import_database.db"
         private var _instance: AppDatabase? = null
-
         /**
-         * Этот метод позволяет получить сконфигурированную базу данных приложения по умолчанию.
+         * Это свойство позволяет получить сконфигурированную базу данных приложения по умолчанию.
          * @return база данных Room
          */
-        fun getInstance(): AppDatabase {
-            if (_instance == null) {
-                synchronized(AppDatabase::class.java) {
-                    if (_instance == null) {
-                        _instance = createAppDatabase(APP_DATABASE_NAME, null)
+        val instance: AppDatabase
+            get() {
+                if (_instance == null) {
+                    synchronized(AppDatabase::class.java) {
+                        if (_instance == null) {
+                            _instance = createAppDatabase(APP_DATABASE_NAME, null)
+                        }
                     }
                 }
+                return _instance!!
             }
-            return _instance!!
-        }
 
         fun createAppDatabase(dbName: String, dbFile: File? = null): AppDatabase{
             val callback = object : Callback() {

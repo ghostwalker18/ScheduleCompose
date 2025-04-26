@@ -81,7 +81,7 @@ actual class ScheduleApp {
 
     init {
         _instance = this
-        database = AppDatabase.getInstance()
+        database = AppDatabase.instance
         scheduleRepository = ScheduleRepositoryDesktop(
             database,
             NetworkService(URLs.BASE_URI).getScheduleAPI(),

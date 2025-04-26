@@ -21,8 +21,6 @@ import com.ghostwalker18.schedule.database.AppDatabase
 import com.ghostwalker18.schedule.database.AppDatabase.Companion.EXPORT_DATABASE_NAME
 import com.ghostwalker18.schedule.database.AppDatabase.Companion.IMPORT_DATABASE_NAME
 import com.ghostwalker18.schedule.database.AppDatabase.Companion.createAppDatabase
-import com.ghostwalker18.schedule.database.AppDatabase.Companion.getInstance
-import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
 import java.io.File
 import java.util.stream.Collectors
@@ -47,7 +45,7 @@ actual fun getDecoratedDBBuilder(builder: RoomDatabase.Builder<AppDatabase>, fil
 actual suspend fun exportDBFile(dataType: String): File? {
     val context = ScheduleApp.instance as Context
     val exportDB = createAppDatabase(EXPORT_DATABASE_NAME, null)
-    val instance = getInstance()
+    val instance = AppDatabase.instance
     exportDB.lessonDao().deleteAllLessons()
     exportDB.noteDao().deleteAllNotes()
     if (dataType == "schedule" || dataType == "schedule_and_notes") {
@@ -64,16 +62,16 @@ actual suspend fun exportDBFile(dataType: String): File? {
 
 actual suspend fun importDBFile(dbFile: File, dataType: String, importPolicy: String) {
     val importDB = createAppDatabase(IMPORT_DATABASE_NAME, dbFile)
-    val instance = getInstance()
+    val instance = AppDatabase.instance
     val context = ScheduleApp.instance as Context
     if (dataType == "schedule" || dataType == "schedule_and_notes") {
         if (importPolicy == "replace") instance.lessonDao().deleteAllLessons()
-        val lessons: List<Lesson> = importDB.lessonDao().getAllLessons()
+        val lessons = importDB.lessonDao().getAllLessons()
         instance.lessonDao().insertMany(lessons)
     }
     if (dataType == "notes" || dataType == "schedule_and_notes") {
         if (importPolicy == "replace") instance.noteDao().deleteAllNotes()
-        val notes: List<Note> = importDB.noteDao().getAllNotes()
+        val notes = importDB.noteDao().getAllNotes()
         instance.noteDao().insertMany(
             notes
                 .stream()
