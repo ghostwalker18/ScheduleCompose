@@ -36,6 +36,7 @@ import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.ui.theme.ScheduleTableFontSize
 import com.ghostwalker18.schedule.ui.theme.gray500Color
 import com.ghostwalker18.schedule.utils.Utils
+import com.ghostwalker18.schedule.views.ContentWrapper
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
@@ -73,18 +74,33 @@ fun ScheduleTable(lessons: Array<Lesson>){
         ) {
             if(Utils.isDateToday(lesson.date))
                 when(Utils.isLessonAvailable(lesson.date, lesson.times)){
-                    Utils.LessonAvailability.ENDED -> Icon(
-                        imageVector = Icons.Outlined.EventBusy,
-                        contentDescription = stringResource(Res.string.lesson_ended_descr)
-                    )
-                    Utils.LessonAvailability.STARTED -> Icon(
-                        imageVector = Icons.Outlined.AccessTime,
-                        contentDescription = stringResource(Res.string.lesson_available_descr)
-                    )
-                    Utils.LessonAvailability.NOT_STARTED -> Icon(
-                        imageVector = Icons.Outlined.EventAvailable,
-                        contentDescription = stringResource(Res.string.lesson_not_started_descr)
-                    )
+                    Utils.LessonAvailability.ENDED ->
+                        ContentWrapper(
+                            toolTip = Res.string.lesson_ended_descr
+                        ){
+                            Icon(
+                                imageVector = Icons.Outlined.EventBusy,
+                                contentDescription = stringResource(Res.string.lesson_ended_descr)
+                            )
+                        }
+                    Utils.LessonAvailability.STARTED ->
+                        ContentWrapper(
+                            toolTip = Res.string.lesson_available_descr
+                        ){
+                            Icon(
+                                imageVector = Icons.Outlined.AccessTime,
+                                contentDescription = stringResource(Res.string.lesson_available_descr)
+                            )
+                        }
+                    Utils.LessonAvailability.NOT_STARTED ->
+                        ContentWrapper(
+                            toolTip = Res.string.lesson_not_started_descr
+                        ){
+                            Icon(
+                                imageVector = Icons.Outlined.EventAvailable,
+                                contentDescription = stringResource(Res.string.lesson_not_started_descr)
+                            )
+                        }
                     null -> return
                 }
             TableCell(lesson.number, 0.1f, ScheduleTableFontSize)

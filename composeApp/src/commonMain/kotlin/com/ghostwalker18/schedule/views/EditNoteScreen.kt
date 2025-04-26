@@ -192,8 +192,12 @@ fun EditNoteScreen(
                         Text(text = stringResource(Res.string.text))
                     }
                 )
-                SpeechInput {
-                    model.text.value = it
+                ContentWrapper(
+                    toolTip = Res.string.voice_input_descr
+                ){
+                    SpeechInput {
+                        model.text.value = it
+                    }
                 }
                 ContentWrapper(
                     toolTip = Res.string.note_text_clear_descr
@@ -214,7 +218,7 @@ fun EditNoteScreen(
                 sharedTransitionScope = sharedTransitionScope,
                 animatedVisibilityScope = animatedVisibilityScope
             )
-            Row {
+            Row{
                 ContentWrapper(
                     toolTip = Res.string.note_discard_descr
                 ){

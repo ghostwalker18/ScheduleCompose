@@ -134,6 +134,7 @@
     <string name="lesson_ended_descr">The lesson is over</string>
     <string name="lesson_not_started_descr">The lesson has not started</string>
     <string name="go_back_descr">Go back to the previous screen</string>
+    <string name="voice_input_descr">Voice input</string>
     <string name="notes_tooltip">Show notes for the day</string>
     <string name="schedule_tooltip">Show the schedule for the day</string>
     <string name="developer_tooltip">Contact the developer</string>

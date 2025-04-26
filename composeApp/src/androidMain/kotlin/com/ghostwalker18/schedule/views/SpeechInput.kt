@@ -29,6 +29,9 @@ import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.SpeechRecognizer
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.stringResource
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.voice_input_descr
 
 /**
  * Эта функция используется для отображения элемента голосового ввода текста.
@@ -85,6 +88,8 @@ actual fun SpeechInput(
             }
         }
     ){
-        Icon(Icons.Filled.Mic, "")
+        Icon(
+            imageVector = Icons.Filled.Mic,
+            contentDescription = stringResource(Res.string.voice_input_descr))
     }
 }

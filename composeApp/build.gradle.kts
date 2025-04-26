@@ -66,7 +66,6 @@ kotlin {
             implementation(libs.kotlinx.coroutines.swing)
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha11")
             implementation("com.alphacephei:vosk:0.3.45")
-            //implementation (project(":models"))
         }
 
         commonMain.dependencies {

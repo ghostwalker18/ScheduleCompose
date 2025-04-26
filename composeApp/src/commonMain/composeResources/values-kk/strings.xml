@@ -134,6 +134,7 @@
     <string name="lesson_ended_descr">Сабақ өтті</string>
     <string name="lesson_not_started_descr">Сабақ басталған жоқ</string>
     <string name="go_back_descr">Алдыңғы экранға оралу</string>
+    <string name="voice_input_descr">Дауыстық енгізу</string>
     <string name="notes_tooltip">Бір күнге жазбаларды көрсету</string>
     <string name="schedule_tooltip">Күн кестесін көрсету</string>
     <string name="developer_tooltip">Әзірлеушімен байланысыңыз</string>

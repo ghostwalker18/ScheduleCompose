@@ -20,6 +20,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.runtime.*
 import com.ghostwalker18.schedule.SpeechRecognizer
+import org.jetbrains.compose.resources.stringResource
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.voice_input_descr
 
 @Composable
 actual fun SpeechInput(
@@ -40,6 +43,9 @@ actual fun SpeechInput(
             }
         }
     ){
-        Icon(Icons.Filled.Mic, "")
+        Icon(
+            imageVector = Icons.Filled.Mic,
+            contentDescription = stringResource(Res.string.voice_input_descr)
+        )
     }
 }
