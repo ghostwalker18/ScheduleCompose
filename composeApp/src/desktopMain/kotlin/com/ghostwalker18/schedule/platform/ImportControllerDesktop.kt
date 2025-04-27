@@ -15,12 +15,8 @@
 package com.ghostwalker18.schedule.platform
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
-import com.ghostwalker18.schedule.ImportController
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.utils.Utils
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.getString
@@ -29,37 +25,50 @@ import scheduledesktop2.composeapp.generated.resources.saveButtonText
 import java.io.File
 import javax.swing.JFileChooser
 
-class ImportControllerDesktop : ImportController {
-    override lateinit var dataType: String
-    override lateinit var importPolicy: String
-    private lateinit var scope: CoroutineScope
+/**
+ * Этот класс представляет реализацию контроллера экспорта/импорта данных
+ * приложения для десктопа.
+ *
+ * @author Ипатов Никита
+ */
+class ImportControllerDesktop : ImportController() {
 
     @Composable
-    override fun initController(){
-        scope = rememberCoroutineScope()
-    }
+    override fun initController(){ /*Not required*/ }
 
-    override fun importDB(){/*Cannot be implemented yet*/}
+    override fun importDB(){ /*Cannot be implemented yet*/ }
 
     override fun exportDB(){
-        scope.launch(
-            context = Dispatchers.IO
-        ){
-            val exportFile = ScheduleApp.instance.database.exportDBFile(dataType)
-            val fileChooser = JFileChooser()
-            fileChooser.fileSelectionMode = JFileChooser.DIRECTORIES_ONLY
-            val result = fileChooser.showDialog(null,
-                runBlocking { getString(Res.string.saveButtonText) })
-            if (result == JFileChooser.APPROVE_OPTION) {
-                val directory = fileChooser.selectedFile.absolutePath
-                val exportedFile = File(directory, DATABASE_ARCHIVE)
-                if (exportedFile.exists()) {
-                    exportedFile.delete()
-                    exportedFile.createNewFile()
+        scope.launch {
+            _status.value = OperationStatus.Started
+            try {
+                val fileChooser = JFileChooser()
+                fileChooser.fileSelectionMode = JFileChooser.DIRECTORIES_ONLY
+                val result = fileChooser.showDialog(null,
+                    runBlocking { getString(Res.string.saveButtonText) })
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    _status.value = OperationStatus.Doing
+                    val exportFile = ScheduleApp.instance.database.exportDBFile(dataType)
+                    val directory = fileChooser.selectedFile.absolutePath
+                    val exportedFile = File(directory, DATABASE_ARCHIVE)
+                    if (exportedFile.exists()) {
+                        exportedFile.delete()
+                        exportedFile.createNewFile()
+                    }
+                    if(exportFile != null){
+                        _status.value = OperationStatus.Packing
+                        Utils.zip(arrayOf(exportFile), exportedFile)
+                    }
+                    else{
+                        _status.value = OperationStatus.Error
+                        return@launch
+                    }
                 }
-                exportFile?.let { Utils.zip(arrayOf(it), exportedFile) }
+                ScheduleApp.instance.database.deleteExportDBFile()
+                _status.value = OperationStatus.Ended
+            } catch (_: Exception){
+                _status.value = OperationStatus.Error
             }
-            ScheduleApp.instance.database.deleteExportDBFile()
         }
     }
 

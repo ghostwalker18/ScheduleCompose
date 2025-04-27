@@ -64,17 +64,4 @@ actual interface ShareController {
     actual fun connectToDeveloper(): Pair<Boolean, StringResource>
 }
 
-@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual interface ImportController {
-    actual var dataType: String
-    actual var importPolicy: String
-
-    @Composable
-    actual fun initController()
-
-    actual fun importDB()
-
-    actual fun exportDB()
-}
-
 actual fun getAppQR(): DrawableResource = Res.drawable.qr_code

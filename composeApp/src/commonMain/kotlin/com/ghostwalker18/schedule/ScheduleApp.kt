@@ -16,6 +16,7 @@ package com.ghostwalker18.schedule
 
 import com.ghostwalker18.schedule.models.ScheduleRepository
 import com.ghostwalker18.schedule.models.NotesRepository
+import com.ghostwalker18.schedule.platform.ImportController
 import com.russhwolf.settings.ObservableSettings
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")

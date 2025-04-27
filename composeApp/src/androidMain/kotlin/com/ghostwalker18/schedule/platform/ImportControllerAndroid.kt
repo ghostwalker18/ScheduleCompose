@@ -23,36 +23,32 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.core.content.FileProvider
-import com.ghostwalker18.schedule.ImportController
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.utils.Utils
 import io.appmetrica.analytics.AppMetrica
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.BufferedInputStream
 import java.io.File
 import java.nio.file.Files
 
-class ImportControllerAndroid(val context: Context) : ImportController {
-    override lateinit var dataType: String
-    override lateinit var importPolicy: String
+/**
+ * Этот класс представляет реализацию контроллера экспорта/импорта данных
+ * приложения для Android.
+ *
+ * @author Ипатов Никита
+ */
+class ImportControllerAndroid(val context: Context) : ImportController() {
     private lateinit var documentPicker: ManagedActivityResultLauncher<Array<String>, Uri?>
     private lateinit var shareDBFileLauncher: ManagedActivityResultLauncher<Intent, ActivityResult>
-    private lateinit var scope: CoroutineScope
 
     @Composable
     override fun initController(){
-        scope = rememberCoroutineScope()
         documentPicker = rememberLauncherForActivityResult(
             ActivityResultContracts.OpenDocument()
         ){
             fileName ->
-            scope.launch(
-                context = Dispatchers.IO
-            ){
+            scope.launch {
                 val databaseCache = File(context.cacheDir, "database")
                 if (!databaseCache.exists()) databaseCache.mkdir()
                 val archive = File(databaseCache, DATABASE_ARCHIVE)
@@ -74,17 +70,20 @@ class ImportControllerAndroid(val context: Context) : ImportController {
                                             0,
                                             count
                                         )
-
+                                    _status.value = OperationStatus.Unpacking
                                     Utils.unzip(archive, databaseCache)
                                     importedFile = File(databaseCache, "export_database.db")
+                                    _status.value = OperationStatus.Doing
                                     ScheduleApp.instance.database.importDBFile(
                                         importedFile, dataType, importPolicy
                                     )
                                 }
                             }
                         }
+                        _status.value = OperationStatus.Ended
                     } catch (e: Exception) {
                         Log.e("import", e.message ?: "")
+                        _status.value = OperationStatus.Error
                     }
                     finally {
                         archive.delete()
@@ -106,17 +105,17 @@ class ImportControllerAndroid(val context: Context) : ImportController {
     override fun importDB(){
         if (ScheduleApp.instance.isAppMetricaActivated)
             AppMetrica.reportEvent("Импортировали данные приложения")
-
+        _status.value = OperationStatus.Started
         Thread { documentPicker.launch(arrayOf("application/zip")) }.start()
     }
 
     override fun exportDB(){
+        _status.value = OperationStatus.Started
         if(ScheduleApp.instance.isAppMetricaActivated)
             AppMetrica.reportEvent("Экспортировали данные приложения")
-        scope.launch(
-            context = Dispatchers.IO
-        ){
+        scope.launch {
             try {
+                _status.value = OperationStatus.Doing
                 val file = ScheduleApp.instance.database
                     .exportDBFile(dataType)
                 val databaseCache = File(context.cacheDir, "database")
@@ -126,7 +125,13 @@ class ImportControllerAndroid(val context: Context) : ImportController {
                     exportedFile.delete()
                     exportedFile.createNewFile()
                 }
-                file?.let { Utils.zip(arrayOf(it), exportedFile) }
+                _status.value = OperationStatus.Packing
+                if(file != null){
+                    Utils.zip(arrayOf(file), exportedFile)
+                } else {
+                    _status.value = OperationStatus.Error
+                    return@launch
+                }
                 val shareIntent = Intent(Intent.ACTION_SEND)
                 shareIntent.putExtra(
                     Intent.EXTRA_STREAM,
@@ -138,7 +143,10 @@ class ImportControllerAndroid(val context: Context) : ImportController {
                 )
                 shareIntent.type = "application/zip"
                 shareDBFileLauncher.launch(Intent.createChooser(shareIntent, null))
-            } catch (_: Exception) { /*Not required*/ }
+                _status.value = OperationStatus.Ended
+            } catch (_: Exception) {
+                _status.value = OperationStatus.Error
+            }
         }
     }
 

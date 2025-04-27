@@ -128,39 +128,6 @@ expect interface ShareController {
 }
 
 /**
- * Этот интерфейс определяет платформно-зависимые операции для ImportScreen
- */
-@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect interface ImportController {
-    /**
-     * Тип данных для импорта или экспорта
-     */
-    var dataType: String
-
-    /**
-     * Тип политики импорта данных
-     */
-    var importPolicy: String
-
-    /**
-     * Этот метод позволяет провести процедуру инициализации контролера.
-     * Должен вызываться до использования других методов.
-     */
-    @Composable
-    fun initController()
-
-    /**
-     * Этот метод позволяет импортировать БД приложения
-     */
-    fun importDB()
-
-    /**
-     * Этот метод позволяет экспортировать БД приложения
-     */
-    fun exportDB()
-}
-
-/**
  * Эта функция позволяет получить QR код, ведущий к скачиванию этой версии приложения.
  */
 expect fun getAppQR(): DrawableResource

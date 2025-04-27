@@ -24,6 +24,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ghostwalker18.schedule.widgets.ListView
 import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.platform.ImportController
+import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -41,8 +44,27 @@ import scheduledesktop2.composeapp.generated.resources.operation_type
 fun ImportScreen(){
     val navigator = ScheduleApp.instance.navigator
     val controller = ScheduleApp.instance.importController
+    val scaffoldState = rememberScaffoldState()
     controller.initController()
+    val scope = rememberCoroutineScope()
+    val operationStatus by controller.status.collectAsState()
+    if(operationStatus != ImportController.OperationStatus.Ready){
+        scope.launch {
+            scaffoldState.snackbarHostState.showSnackbar(
+                when(operationStatus){
+                    ImportController.OperationStatus.Started -> getString(Res.string.starting_import)
+                    ImportController.OperationStatus.Packing -> getString(Res.string.packing_export_dp)
+                    ImportController.OperationStatus.Unpacking -> getString(Res.string.unpacking_import_db)
+                    ImportController.OperationStatus.Doing -> getString(Res.string.doing_import)
+                    ImportController.OperationStatus.Ended -> getString(Res.string.import_success)
+                    ImportController.OperationStatus.Error -> getString(Res.string.import_failed)
+                    else -> "unknown"
+                }
+            )
+        }
+    }
     Scaffold(
+        scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(
                 title = { Text(text = stringResource(Res.string.import_activity)) },
@@ -55,6 +77,15 @@ fun ImportScreen(){
                     }
                 }
             )
+        },
+        snackbarHost = {
+            SnackbarHost(it) { data ->
+                Snackbar(
+                    backgroundColor = MaterialTheme.colors.background,
+                    contentColor = MaterialTheme.colors.primaryVariant,
+                    snackbarData = data
+                )
+            }
         }
     ) {
         var operationType by remember { mutableStateOf("export") }
