@@ -15,47 +15,47 @@
 <resources>
 
     <string-array name="theme_entries">
-        <item>Системна</item>
-        <item>Темна</item>
-        <item>Світла</item>
+        <item>Համակարգային</item>
+        <item>Մութ</item>
+        <item>Լույս</item>
     </string-array>
 
     <string-array name="language_entries">
-        <item>Системна</item>
-        <item>Російська</item>
-        <item>Білоруська</item>
-        <item>Українська</item>
-        <item>Казахська</item>
-        <item>Грузинська</item>
-        <item>Вірменська</item>
-        <item>Азербайджанська</item>
-        <item>Англійська</item>
+        <item>Համակարգային</item>
+        <item>ռուսերեն</item>
+        <item>բելառուսական</item>
+        <item>ուկրաինական</item>
+        <item>ղազախերեն</item>
+        <item>վրացական</item>
+        <item>հայ</item>
+        <item>ադրբեջաներեն</item>
+        <item>անգլերեն</item>
     </string-array>
 
     <string-array name="schedule_style_entries">
-        <item>Разом</item>
-        <item>В окремому вікні</item>
+        <item>Միասին</item>
+        <item>Առանձին պատուհանում</item>
     </string-array>
 
     <string-array name="download_entries">
-        <item>Всіх корпусів</item>
-        <item>Першого корпусу</item>
-        <item>Другого корпусу</item>
+        <item>Բոլոր շենքերը</item>
+        <item>Առաջին կորպուս</item>
+        <item>Երկրորդ կորպուս</item>
     </string-array>
 
     <string-array name="operation_type_entries">
-        <item>Експорт</item>
-        <item>Імпорт</item>
+        <item>Արտահանել</item>
+        <item>Ներմուծել</item>
     </string-array>
 
     <string-array name="data_types_entries">
-        <item>Розклад</item>
-        <item>Нотатки</item>
-        <item>Розклад і нотатки</item>
+        <item>Ժամանակացույց</item>
+        <item>Նշումներ</item>
+        <item>Ժամանակացույց և նշումներ</item>
     </string-array>
 
     <string-array name="import_mode_entries">
-        <item>Заміна</item>
-        <item>Злиття</item>
+        <item>Փոխարինում</item>
+        <item>Միաձուլում</item>
     </string-array>
 </resources>

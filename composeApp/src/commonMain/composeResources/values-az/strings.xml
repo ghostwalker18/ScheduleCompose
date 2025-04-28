@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="app_name">ПАСТ cədvəl</string>
+    <string name="something_weird">Ups, nəsə xəta baş verdi</string>
+    <string name="schedule">Cədvəl</string>
+    <string name="day_table">üçün cədvəl</string>
+    <string name="settings">Parametrlər</string>
+    <string name="days_tab">Sinif cədvəli</string>
+    <string name="times_tab">Zəng cədvəli</string>
+    <string name="monday">Bazar ertəsi</string>
+    <string name="tuesday">Çərşənbə axşamı</string>
+    <string name="wednesday">Çərşənbə</string>
+    <string name="thursday">Cümə axşamı</string>
+    <string name="friday">Cümə</string>
+    <string name="today">Bu gün</string>
+    <string name="app_settings">Ərizə</string>
+    <string name="option_theme">Mövzu</string>
+    <string name="option_add_teacher_search">Müəllim tərəfindən axtarış</string>
+    <string name="date">Tarix</string>
+    <string name="number">Cütləşdirmək</string>
+    <string name="room">Kabinet</string>
+    <string name="times">Vaxt</string>
+    <string name="subject">Maddə</string>
+    <string name="group_choice_text">Qrup seçin:</string>
+    <string name="teacher_choice_text">Müəllim seçin:</string>
+    <string name="share">Paylaşın</string>
+    <string name="nothing_to_share">Hələ paylaşacaq heç nə yoxdur</string>
+    <string name="back">Geri</string>
+    <string name="forward">İrəli</string>
+    <string name="teacher">Müəllim</string>
+    <string name="schedule_style">Göstəriş rejimini planlaşdırın</string>
+    <string name="option_do_not_update_times">Zəngləri yeniləməyin</string>
+    <string name="download_schedule">Təqvim faylını yükləyin</string>
+    <string name="schedule_settings">Cədvəl</string>
+    <string name="option_language">Dil</string>
+    <string name="schedule_download_error">Cədvəli endirərkən xəta baş verdi</string>
+    <string name="schedule_opening_error">Cədvəl faylını açma xətası</string>
+    <string name="schedule_parsing_error">Cədvəli emal edərkən xəta</string>
+    <string name="schedule_download_status">Cədvəl yüklənir</string>
+    <string name="schedule_opening_status">Təqvim faylının açılması</string>
+    <string name="schedule_parsing_status">Emal cədvəli</string>
+    <string name="processing_completed_status">Emal cədvəli</string>
+    <string name="notes_activity">Qeydlər</string>
+    <string name="no_notes_now">Hələ qeyd yoxdur</string>
+    <string name="edit_notes_activity">Qeyd əlavə et/redaktə et</string>
+    <string name="note_theme">Qeydin mövzusu</string>
+    <string name="choose_date">Tarix seçin</string>
+    <string name="filters">Filtrlər</string>
+    <string name="for_group">Qrup üçün</string>
+    <string name="start_date">Başlama tarixi:</string>
+    <string name="end_date">Bitmə tarixi:</string>
+    <string name="cancel">Ləğv et</string>
+    <string name="chose_date">Tarix seçin</string>
+    <string name="go_to_date">Tarixə keçin</string>
+    <string name="text">Mətn</string>
+    <string name="photo_error">Fotonu yükləmək alınmadı</string>
+    <string name="gallery_access_denied">Fotoya giriş icazəsi yoxdur</string>
+    <string name="group">Qrup</string>
+    <string name="theme">Mövzu</string>
+    <string name="delete">Sil</string>
+    <string name="edit">Redaktə et</string>
+    <string name="edit_note">Qeydi redaktə edin</string>
+    <string name="add_note">Yeni qeyd</string>
+    <string name="network_settings">Net</string>
+    <string name="option_enable_caching">Keşləməni aktivləşdirin</string>
+    <string name="option_download_for">üçün cədvəli yükləyin</string>
+    <string name="share_app">Proqramı paylaşın</string>
+    <string name="scan_qr_code">QR kodunu skan edin</string>
+    <string name="or">Və ya</string>
+    <string name="share_link">Linki paylaşın</string>
+    <string name="data_transfer">Məlumat ötürülməsi</string>
+    <string name="import_activity">Məlumatları idxal/ixrac</string>
+    <string name="operation_type">Əməliyyat növünü seçin</string>
+    <string name="data_types">Məlumat seçin</string>
+    <string name="import_policy_type">İdxal rejimi</string>
+    <string name="import_data">Məlumatları idxal edin</string>
+    <string name="export_data">Məlumatları ixrac edin</string>
+    <string name="import_file_dialog">Import etmək üçün fayl seçin</string>
+    <string name="starting_import">Əməliyyatın başlanması</string>
+    <string name="doing_import">Əməliyyatın həyata keçirilməsi</string>
+    <string name="packing_export_dp">Məlumat paketini ixrac edin</string>
+    <string name="unpacking_import_db">İdxal məlumatlarının paketdən çıxarılması</string>
+    <string name="import_failed">Əməliyyatı tamamlamaq alınmadı</string>
+    <string name="import_success">Əməliyyat uğurla başa çatıb.</string>
+    <string name="download_approvement">Yükləməni təsdiqləyin</string>
+    <string name="download_notice">Endirmək üçün cədvəl fayllarının sayı: %1$d. Onları yükləmək istəyirsiniz?</string>
+    <string name="download_ok">Yüklə</string>
+    <string name="download_cancel">Ləğv et</string>
+    <string name="cancelButtonText">Ləğv et</string>
+    <string name="notifications">Bildirişlər</string>
+    <string name="notifications_notification_app_update_channel_name">Tətbiq yeniləmələri</string>
+    <string name="notifications_notification_schedule_update_channel_name">Cədvəl</string>
+    <string name="main_share_schedule_descr">Cədvəli paylaşın</string>
+    <string name="main_download_descr">Cədvəl fayllarını yükləyin</string>
+    <string name="main_settings_descr">Parametrləri açın</string>
+    <string name="note_discard_descr">Dəyişiklikləri geri qaytarın</string>
+    <string name="note_set_date_descr">Tarix seçin</string>
+    <string name="note_clear_group_descr">Qrupu təmizləyin</string>
+    <string name="note_theme_clear_descr">Mövzunu təmizləyin</string>
+    <string name="note_text_clear_descr">Mətni təmizləyin</string>
+    <string name="note_save_descr">Qeydi yadda saxla</string>
+    <string name="main_tabs_descr">Cədvəl və Zənglər nişanları</string>
+    <string name="notes_add_descr">Qeyd əlavə edin</string>
+    <string name="notes_filter_descr">Qeydləri süzün</string>
+    <string name="schedule_item_notes_descr">Açıq qeydlər</string>
+    <string name="schedule_item_show_descr">Cədvəli göstərin</string>
+    <string name="share_app_qr_descr">Mağazadakı səhifənin QR kodu</string>
+    <string name="widget_settings_previes_descr">Vidcetin görünüşü</string>
+    <string name="filter_close_descr">Bağlayın və tətbiq edin</string>
+    <string name="filter_start_date_descr">Başlama tarixini seçin</string>
+    <string name="filter_end_date_descr">Bitmə tarixini seçin</string>
+    <string name="note_item_photo_descr">Foto qeydlər</string>
+    <string name="note_item_checked_descr">Qeyd seçildi</string>
+    <string name="times_monday">Bazar ertəsi üçün zənglər</string>
+    <string name="times_other">Çərşənbə axşamından cümə gününə qədər zənglər</string>
+    <string name="update_descr">Təqvimi yeniləyin</string>
+    <string name="availability_descr">Ziyarət üçün əlçatanlıq</string>
+    <string name="days_group_clear_descr">Qrupu təmizləyin</string>
+    <string name="days_teacher_clear_descr">Aydın müəllim</string>
+    <string name="notes_selection_cancel_descr">Qeydlərin seçimini ləğv edin</string>
+    <string name="notes_delete_selected_descr">Seçilmiş qeydləri silin</string>
+    <string name="notes_share_selected_descr">Seçilmiş qeydləri paylaşın</string>
+    <string name="notes_edit_selected_descr">Seçilmiş qeydi redaktə edin</string>
+    <string name="lesson_available_descr">Dərs davam edir</string>
+    <string name="lesson_ended_descr">Dərs keçdi</string>
+    <string name="lesson_not_started_descr">Dərs başlamadı</string>
+    <string name="go_back_descr">Əvvəlki ekrana qayıdın</string>
+    <string name="voice_input_descr">Səs daxiletmə</string>
+    <string name="notes_tooltip">Gün üçün qeydləri göstərin</string>
+    <string name="schedule_tooltip">Gündəlik cədvəli göstərin</string>
+    <string name="developer_tooltip">Tərtibatçı ilə əlaqə saxlayın</string>
+    <string name="previous_week_tooltip">Qısa mətbuat - əvvəlki həftəyə keçin.
+        Uzun basın - tarixə keçin</string>
+    <string name="next_week_tooltip">Qısa mətbuat - gələn həftəyə keçin.
+        Uzun basın - tarixə keçin</string>
+</resources>

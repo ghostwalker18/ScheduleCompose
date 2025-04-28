@@ -31,8 +31,10 @@
         <item>Русский</item>
         <item>Белорусский</item>
         <item>Украинский</item>
-        <item>Казахстанский</item>
+        <item>Казахский</item>
         <item>Грузинский</item>
+        <item>Армянский</item>
+        <item>Азербайджанский</item>
         <item>Английский</item>
     </string-array>
 
@@ -43,6 +45,8 @@
         <item>uk</item>
         <item>kk</item>
         <item>ka</item>
+        <item>hy</item>
+        <item>az</item>
         <item>en</item>
     </string-array>
 

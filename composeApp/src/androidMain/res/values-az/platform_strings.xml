@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="app_name">ПАСТ cədvəl</string>
+    <string name="notes">Qeydlər</string>
+    <string name="add_note">Yeni qeyd</string>
+    <string name="today">Bu gün</string>
+    <string name="date">Tarix</string>
+    <string name="number">Cütləşdirmək</string>
+    <string name="room">Kabinet</string>
+    <string name="subject">Maddə</string>
+    <string name="teacher">Müəllim.</string>
+    <string name="app_widget_description">Qrup üçün gün üçün ПАСТ cədvəl</string>
+    <string name="day">Gün</string>
+    <string name="appearance">Görünüş</string>
+    <string name="option_theme">Mövzu</string>
+    <string name="dynamic_colors">Dinamik rənglərdən istifadə edin</string>
+    <string name="tomorrow">Sabah</string>
+    <string name="for_group">Qrup üçün:</string>
+    <string name="last_chosen">Sonuncu seçildi</string>
+    <string name="not_mentioned">Müəyyən edilməyib</string>
+    <string name="updated">Yenilənib:</string>
+    <string name="schedule_missing">Dərslərin siyahısı yoxdur</string>
+    <string name="add_widget">Vidcet əlavə edin</string>
+    <string name="update_descr">Təqvimi yeniləyin</string>
+    <string name="notifications_notification_app_update_channel_name">Tətbiq yeniləmələri</string>
+    <string name="notifications_notification_app_update_channel_descr">
+        Proqramın mobil və masaüstü versiyaları üçün yeni yeniləmələr haqqında bildirişlər alın
+    </string>
+    <string name="notifications_notification_schedule_update_channel_name">Cədvəl</string>
+    <string name="notifications_notification_schedule_update_channel_descr">
+        Cədvəl dəyişiklikləri haqqında bildirişlər alın
+    </string>
+    <string name="notifications_new_schedule_available">tarixinə qədər yeni cədvəl dərc olunub</string>
+    <string name="notifications_schedule_unavailable">Vay! Cədvəli yeniləmək alınmadı...</string>
+</resources>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="app_name">ПАСТ Ժամանակացույց</string>
+    <string name="something_weird">Վա՜յ, ինչ-որ բան սխալ է գնացել</string>
+    <string name="schedule">Ժամանակացույց</string>
+    <string name="day_table">Ժամանակացույց</string>
+    <string name="settings">Կարգավորումներ</string>
+    <string name="days_tab">Դասացուցակ</string>
+    <string name="times_tab">Զանգերի ժամանակացույց</string>
+    <string name="monday">Երկուշաբթի</string>
+    <string name="tuesday">Երեքշաբթի</string>
+    <string name="wednesday">չորեքշաբթի</string>
+    <string name="thursday">Հինգշաբթի</string>
+    <string name="friday">Ուրբաթ</string>
+    <string name="today">Այսօր</string>
+    <string name="app_settings">Դիմում</string>
+    <string name="option_theme">Թեմա</string>
+    <string name="option_add_teacher_search">Որոնել ըստ ուսուցչի</string>
+    <string name="date">Ամսաթիվ</string>
+    <string name="number">Զույգ</string>
+    <string name="room">Կաբինետ</string>
+    <string name="times">Ժամանակ</string>
+    <string name="subject">Ապրանք</string>
+    <string name="group_choice_text">Ընտրեք խումբը՝</string>
+    <string name="teacher_choice_text">Ընտրեք ուսուցիչ՝</string>
+    <string name="share">Կիսվել</string>
+    <string name="nothing_to_share">Դեռևս կիսվելու ոչինչ չկա</string>
+    <string name="back">Հետ</string>
+    <string name="forward">Առաջ</string>
+    <string name="teacher">Ուսուցիչ</string>
+    <string name="schedule_style">Ժամանակացույցի ցուցադրման ռեժիմ</string>
+    <string name="option_do_not_update_times">Չթարմացնել զանգերը</string>
+    <string name="download_schedule">Ներբեռնել ժամանակացույցի ֆայլը</string>
+    <string name="schedule_settings">Ժամանակացույց</string>
+    <string name="option_language">Լեզու</string>
+    <string name="schedule_download_error">Ժամանակացույցը ներբեռնելիս սխալ առաջացավ։</string>
+    <string name="schedule_opening_error">Սխալ առաջացավ ժամանակացույցի ֆայլը բացելիս։</string>
+    <string name="schedule_parsing_error">Սխալ՝ ժամանակացույցի մշակման ժամանակացույց</string>
+    <string name="schedule_download_status">Ժամանակացույցի ներբեռնում</string>
+    <string name="schedule_opening_status">Ժամանակացույցի ֆայլի բացում</string>
+    <string name="schedule_parsing_status">Ժամանակացույցի մշակում</string>
+    <string name="processing_completed_status">Ժամանակացույցը հաջողությամբ թարմացվել է։</string>
+    <string name="notes_activity">Նշումներ</string>
+    <string name="no_notes_now">Դեռևս նշումներ չկան</string>
+    <string name="edit_notes_activity">Ավելացնել/խմբագրել նշումը</string>
+    <string name="note_theme">Նշման թեման</string>
+    <string name="choose_date">Ընտրեք ամսաթիվը</string>
+    <string name="filters">Ֆիլտրեր</string>
+    <string name="for_group">Խմբի համար</string>
+    <string name="start_date">Սկզբի ամսաթիվը՝</string>
+    <string name="end_date">Ավարտի ամսաթիվ՝</string>
+    <string name="cancel">Չեղարկել</string>
+    <string name="chose_date">Ընտրեք ամսաթիվը</string>
+    <string name="go_to_date">Անցնել ամսաթվին</string>
+    <string name="text">Տեքստ</string>
+    <string name="photo_error">Լուսանկարը չհաջողվեց վերբեռնել</string>
+    <string name="gallery_access_denied">Լուսանկարին մուտք գործելու թույլտվություն չկա</string>
+    <string name="group">Խումբ</string>
+    <string name="theme">Թեմա</string>
+    <string name="delete">Ջնջել</string>
+    <string name="edit">Խմբագրել</string>
+    <string name="edit_note">Խմբագրել նշումը</string>
+    <string name="add_note">Նոր նշում</string>
+    <string name="network_settings">ցանց</string>
+    <string name="option_enable_caching">Միացնել քեշավորումը</string>
+    <string name="option_download_for">Ներբեռնեք ժամանակացույցը</string>
+    <string name="share_app">Կիսվել հավելվածով</string>
+    <string name="scan_qr_code">Սկանավորեք QR կոդը</string>
+    <string name="or">Կամ</string>
+    <string name="share_link">Կիսվել հղումով</string>
+    <string name="data_transfer">Տվյալների փոխանցում</string>
+    <string name="import_activity">Ներմուծման/արտահանման տվյալներ</string>
+    <string name="operation_type">Ընտրեք գործողության տեսակը</string>
+    <string name="data_types">Ընտրեք գործողության տեսակը</string>
+    <string name="import_policy_type">Ներմուծման ռեժիմ</string>
+    <string name="import_data">Ներմուծել տվյալներ</string>
+    <string name="export_data">Արտահանել տվյալները</string>
+    <string name="import_file_dialog">Ընտրեք ֆայլը ներմուծելու համար</string>
+    <string name="starting_import">Գործողության սկիզբ</string>
+    <string name="doing_import">Գործողության կատարումը</string>
+    <string name="packing_export_dp">Արտահանել տվյալների փաթեթավորումը</string>
+    <string name="unpacking_import_db">Ներմուծման տվյալների վերափաթեթավորում</string>
+    <string name="import_failed">Գործողությունը չհաջողվեց ավարտել</string>
+    <string name="import_success">Գործողությունը հաջողությամբ ավարտվեց։</string>
+    <string name="download_approvement">Հաստատեք ներբեռնումը</string>
+    <string name="download_notice">Ներբեռնվող ժամանակացույցի ֆայլերի քանակը՝ %1$d: Ուզու՞մ եք ներբեռնել դրանք։</string>
+    <string name="download_ok">Ներբեռնել</string>
+    <string name="download_cancel">Չեղարկել</string>
+    <string name="cancelButtonText">Չեղարկել</string>
+    <string name="notifications">Ծանուցումներ</string>
+    <string name="notifications_notification_app_update_channel_name">Հավելվածի թարմացումներ</string>
+    <string name="notifications_notification_schedule_update_channel_name">Ժամանակացույց</string>
+    <string name="main_share_schedule_descr">Կիսվել ժամանակացույցով</string>
+    <string name="main_download_descr">Ներբեռնեք ժամանակացույցի ֆայլերը</string>
+    <string name="main_settings_descr">Բացել կարգավորումները</string>
+    <string name="note_discard_descr">Հետարկել փոփոխությունները</string>
+    <string name="note_set_date_descr">Ընտրեք ամսաթիվը</string>
+    <string name="note_clear_group_descr">Մաքրել խումբը</string>
+    <string name="note_theme_clear_descr">Մաքրել թեման</string>
+    <string name="note_text_clear_descr">Մաքրել տեքստը</string>
+    <string name="note_save_descr">Պահպանել նշումը</string>
+    <string name="main_tabs_descr">Ժամանակացույց և զանգեր ներդիրներ</string>
+    <string name="notes_add_descr">Ավելացնել նշում</string>
+    <string name="notes_filter_descr">Զտել նշումները</string>
+    <string name="schedule_item_notes_descr">Բացել նշումները</string>
+    <string name="schedule_item_show_descr">Ցուցադրել ժամանակացույցը</string>
+    <string name="share_app_qr_descr">Խանութի էջի QR կոդը</string>
+    <string name="widget_settings_previes_descr">Վիջեթի տեսքը</string>
+    <string name="filter_close_descr">Փակել և կիրառել</string>
+    <string name="filter_start_date_descr">Ընտրեք մեկնարկի ամսաթիվը</string>
+    <string name="filter_end_date_descr">Ընտրեք ավարտի ամսաթիվը</string>
+    <string name="note_item_photo_descr">Լուսանկարների նշումներ</string>
+    <string name="note_item_checked_descr">Նշումը ընտրված է</string>
+    <string name="times_monday">Զանգեր երկուշաբթի օրվա համար</string>
+    <string name="times_other">Զանգեր երեքշաբթիից ուրբաթ</string>
+    <string name="update_descr">Թարմացման ժամանակացույց</string>
+    <string name="availability_descr">Այցելության համար հասանելիություն</string>
+    <string name="days_group_clear_descr">Մաքրել խումբը</string>
+    <string name="days_teacher_clear_descr">Մաքրել ուսուցիչը</string>
+    <string name="notes_selection_cancel_descr">Անջատել նշումները</string>
+    <string name="notes_delete_selected_descr">Ջնջել ընտրված նշումները</string>
+    <string name="notes_share_selected_descr">Կիսվել ընտրված նշումներով</string>
+    <string name="notes_edit_selected_descr">Խմբագրել ընտրված նշումը</string>
+    <string name="lesson_available_descr">Դասը ընթացքի մեջ է</string>
+    <string name="lesson_ended_descr">Դասը անցավ</string>
+    <string name="lesson_not_started_descr">Դասը չի սկսվել</string>
+    <string name="go_back_descr">Վերադառնալ նախորդ էկրանին</string>
+    <string name="voice_input_descr">Ձայնային մուտքագրում</string>
+    <string name="notes_tooltip">Ցուցադրել օրվա նշումները</string>
+    <string name="schedule_tooltip">Ցուցադրել օրական գրաֆիկը</string>
+    <string name="developer_tooltip">Կապվեք մշակողի հետ</string>
+    <string name="previous_week_tooltip">Կարճ սեղմում - անցնել նախորդ շաբաթ։
+        Երկար սեղմում - անցնել ժամադրության</string>
+    <string name="next_week_tooltip">Կարճ սեղմում՝ անցնել հաջորդ շաբաթ։
+        Երկար սեղմում - անցնել ժամադրության</string>
+</resources>

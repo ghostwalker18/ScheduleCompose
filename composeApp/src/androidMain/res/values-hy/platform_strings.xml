@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="app_name">Ժամանակացույց ПАСТ</string>
+    <string name="notes">Նշումներ</string>
+    <string name="add_note">Նոր նշում</string>
+    <string name="today">Այսօր</string>
+    <string name="date">Ամսաթիվ</string>
+    <string name="number">Զույգ</string>
+    <string name="room">Կաբինետ</string>
+    <string name="subject">Ապրանք</string>
+    <string name="teacher">Ուսուցիչ</string>
+    <string name="app_widget_description">Խմբի օրվա գրաֆիկը</string>
+    <string name="day">Օր</string>
+    <string name="appearance">Արտաքին տեսք</string>
+    <string name="option_theme">Թեմա</string>
+    <string name="dynamic_colors">Օգտագործեք դինամիկ գույներ</string>
+    <string name="tomorrow">Վաղը</string>
+    <string name="for_group">Խմբի համար՝</string>
+    <string name="last_chosen">Վերջին ընտրվածը</string>
+    <string name="not_mentioned">Նշված չէ</string>
+    <string name="updated">Թարմացված է՝</string>
+    <string name="schedule_missing">Դասերի ցանկ չկա</string>
+    <string name="add_widget">Ավելացնել վիջեթ</string>
+    <string name="update_descr">Թարմացման ժամանակացույց</string>
+    <string name="notifications_notification_app_update_channel_name">Հավելվածի թարմացումներ</string>
+    <string name="notifications_notification_app_update_channel_descr">
+        Ստացեք ծանուցումներ ծրագրի բջջային և համակարգչային տարբերակների նոր թարմացումների մասին
+    </string>
+    <string name="notifications_notification_schedule_update_channel_name">Ժամանակացույց</string>
+    <string name="notifications_notification_schedule_update_channel_descr">
+        Ստացեք ծանուցումներ ժամանակացույցի փոփոխությունների վերաբերյալ
+    </string>
+    <string name="notifications_new_schedule_available">Նոր ժամանակացույցը հրապարակվել է մինչև</string>
+    <string name="notifications_schedule_unavailable">Վա՜յ։ Չհաջողվեց թարմացնել ժամանակացույցը...</string>
+</resources>
