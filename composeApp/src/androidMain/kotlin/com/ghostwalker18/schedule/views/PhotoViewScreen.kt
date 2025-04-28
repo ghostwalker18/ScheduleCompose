@@ -31,6 +31,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
@@ -73,65 +74,98 @@ fun PhotoViewScreen(
     }
     val aspectRatio = bitmap.width.toFloat() / bitmap.height.toFloat()
 
-    Column {
-        Row {
-            IconButton(
-                onClick = onBackPressed,
-                modifier = Modifier
-                    .padding(5.dp)
-                    .size(48.dp)
-            ){
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    tint = Color.White,
-                    contentDescription = stringResource(Res.string.photoview_back_descr)
-                )
-            }
-            Spacer(modifier = Modifier.weight(1f))
-            IconButton(
-                onClick = {},
-                modifier = Modifier
-                    .padding(5.dp)
-                    .size(48.dp)
-            ){
-                Icon(
-                    imageVector = Icons.Filled.Share,
-                    tint = Color.White,
-                    contentDescription = stringResource(Res.string.photoview_share_descr)
-                )
-            }
-        }
-        Spacer(
+    @Composable
+    fun ActionsPanel(){
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .clickable { scale = 1f }
-        )
-        with(sharedTransitionScope!!){
-            Image(
-                bitmap = bitmap,
+                .fillMaxSize()
+        ){
+            Row(
                 modifier = Modifier
-                    .graphicsLayer(
-                        scaleX = if(scale > 1) scale else 1f,
-                        scaleY = if(scale > 1) scale else 1f
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                IconButton(
+                    onClick = onBackPressed,
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .size(48.dp)
+                ){
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        tint = Color.White,
+                        contentDescription = stringResource(Res.string.photoview_back_descr)
                     )
-                    .transformable(state = state)
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                IconButton(
+                    onClick = {},
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .size(48.dp)
+                ){
+                    Icon(
+                        imageVector = Icons.Filled.Share,
+                        tint = Color.White,
+                        contentDescription = stringResource(Res.string.photoview_share_descr)
+                    )
+                }
+            }
+            Spacer(
+                modifier = Modifier
                     .fillMaxWidth()
-                    .aspectRatio(aspectRatio)
-                    .clickable {
-                        onBackPressed()
-                    }.sharedElement(
-                        state = rememberSharedContentState(photoID),
-                        animatedVisibilityScope = animatedVisibilityScope!!
-                    ),
-                contentDescription = stringResource(Res.string.preview_photo_descr)
+                    .weight(1f)
             )
         }
-        Spacer(
-            Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .clickable { scale = 1f }
-        )
+    }
+
+    @Composable
+    fun ImagePanel(){
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+        ){
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .clickable { scale = 1f }
+            )
+            with(sharedTransitionScope!!){
+                Image(
+                    bitmap = bitmap,
+                    modifier = Modifier
+                        .graphicsLayer(
+                            scaleX = if(scale > 1) scale else 1f,
+                            scaleY = if(scale > 1) scale else 1f
+                        )
+                        .transformable(state = state)
+                        .fillMaxWidth()
+                        .aspectRatio(aspectRatio)
+                        .clickable {
+                            onBackPressed()
+                        }.sharedElement(
+                            state = rememberSharedContentState(photoID),
+                            animatedVisibilityScope = animatedVisibilityScope!!
+                        ),
+                    contentDescription = stringResource(Res.string.preview_photo_descr)
+                )
+            }
+            Spacer(
+                Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .clickable { scale = 1f }
+            )
+        }
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ){
+        ImagePanel()
+        ActionsPanel()
     }
 }
