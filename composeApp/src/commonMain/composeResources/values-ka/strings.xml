@@ -89,8 +89,12 @@
     <string name="import_data">მონაცემების იმპორტი</string>
     <string name="export_data">ექსპორტის მონაცემები</string>
     <string name="import_file_dialog">აირჩიეთ ფაილი იმპორტისთვის</string>
-    <string name="import_db_success">გრაფიკი წარმატებით იმპორტირებულია</string>
-    <string name="import_db_error">მონაცემების იმპორტი ვერ მოხერხდა. შეამოწმეთ მონაცემთა ფორმატი</string>
+    <string name="starting_import">ოპერაციის დასაწყისი</string>
+    <string name="doing_import">ოპერაციის შესრულება</string>
+    <string name="packing_export_dp">საექსპორტო მონაცემების შეფუთვა</string>
+    <string name="unpacking_import_db">იმპორტირებული მონაცემების ამოღება</string>
+    <string name="import_failed">ოპერაცია ვერ შესრულდა</string>
+    <string name="import_success">ოპერაცია წარმატებით დასრულდა</string>
     <string name="download_approvement">ჩამოტვირთვის დადასტურება</string>
     <string name="download_notice">ჩამოსატვირთი გრაფიკის ფაილების რაოდენობა: %1$d. გსურთ მათი ჩამოტვირთვა?</string>
     <string name="download_ok">ჩამოტვირთვა</string>

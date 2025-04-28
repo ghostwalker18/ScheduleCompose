@@ -89,8 +89,12 @@
     <string name="import_data">Импортировать данные</string>
     <string name="export_data">Экспортировать данные</string>
     <string name="import_file_dialog">Выберите файл для импорта</string>
-    <string name="import_db_success">Расписание успешно импортировано</string>
-    <string name="import_db_error">Не удалось импортировать данные. Проверьте формат данных</string>
+    <string name="starting_import">Начало операции</string>
+    <string name="doing_import">Выполнение операции</string>
+    <string name="packing_export_dp">Упаковка экспортных данных</string>
+    <string name="unpacking_import_db">Распаковка импортных данных</string>
+    <string name="import_failed">Не удалось выполнить операцию</string>
+    <string name="import_success">Операция успешно выполнена</string>
     <string name="download_approvement">Подтверждение скачивания</string>
     <string name="download_notice">Количество файлов расписания для скачивания: %1$d. Вы хотите скачать их?</string>
     <string name="download_ok">Скачать</string>

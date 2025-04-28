@@ -89,8 +89,12 @@
     <string name="import_data">Імпортувати дані</string>
     <string name="export_data">Експортувати дані</string>
     <string name="import_file_dialog">Виберіть файл для імпорту</string>
-    <string name="import_db_success">Дані успішно імпортовані</string>
-    <string name="import_db_error">Не вдалося імпортувати дані. Перевірте формат даних</string>
+    <string name="starting_import">Початок операції</string>
+    <string name="doing_import">Виконання операції</string>
+    <string name="packing_export_dp">Упаковка експортних даних</string>
+    <string name="unpacking_import_db">Розпакування імпортних даних</string>
+    <string name="import_failed">Не вдалося виконати операцію</string>
+    <string name="import_success">Операція успішно виконана</string>
     <string name="download_approvement">Підтвердження скачування</string>
     <string name="download_notice">Кількість файлів розкладу для завантаження: %1$d. ви хочете завантажити їх?</string>
     <string name="download_ok">Завантажити</string>

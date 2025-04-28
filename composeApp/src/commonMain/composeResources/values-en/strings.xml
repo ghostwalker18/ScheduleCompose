@@ -89,8 +89,12 @@
     <string name="import_data">Import data</string>
     <string name="export_data">Export data</string>
     <string name="import_file_dialog">Select the file to import</string>
-    <string name="import_db_success">The data has been successfully imported</string>
-    <string name="import_db_error">The data could not be imported. Check the data format</string>
+    <string name="starting_import">Beginning of the operation</string>
+    <string name="doing_import">Performing the operation</string>
+    <string name="packing_export_dp">Packaging of export data</string>
+    <string name="unpacking_import_db">Unpacking the imported data</string>
+    <string name="import_failed">The operation could not be performed</string>
+    <string name="import_success">The operation was completed successfully</string>
     <string name="download_approvement">Download confirmation</string>
     <string name="download_notice">Number of schedule files to download: %1$d. Do you want to download them?</string>
     <string name="download_ok">Download</string>

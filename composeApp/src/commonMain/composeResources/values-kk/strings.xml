@@ -89,8 +89,12 @@
     <string name="import_data">Деректерді импорттау</string>
     <string name="export_data">Деректерді экспорттау</string>
     <string name="import_file_dialog">Импортталатын файлды таңдаңыз</string>
-    <string name="import_db_success">Деректер сәтті импортталды</string>
-    <string name="import_db_error">Деректерді импорттау мүмкін болмады. Деректер пішімін тексеріңіз</string>
+    <string name="starting_import">Операцияның басталуы</string>
+    <string name="doing_import">Операцияны орындау</string>
+    <string name="packing_export_dp">Экспорттық деректерді орау</string>
+    <string name="unpacking_import_db">Импортталған деректерді ашу</string>
+    <string name="import_failed">Операцияны орындау мүмкін болмады</string>
+    <string name="import_success">Операция сәтті аяқталды</string>
     <string name="download_approvement">Жүктеуді растау</string>
     <string name="download_notice">Жүктеуге арналған кесте файлдарының саны: %1$d. оларды жүктеп алғыңыз келе ме?</string>
     <string name="download_ok">Жүктеу</string>
