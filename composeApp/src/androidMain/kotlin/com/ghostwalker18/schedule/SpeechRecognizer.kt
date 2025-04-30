@@ -42,7 +42,8 @@ class SpeechRecognizer(val context: Context): RecognitionListener {
 
     init {
         LibVosk.setLogLevel(LogLevel.INFO)
-        initModel(context)
+        if (model == null)
+            initModel(context)
     }
 
     /**
@@ -50,8 +51,8 @@ class SpeechRecognizer(val context: Context): RecognitionListener {
      */
     fun startRecognition(){
         try{
-            val rec = Recognizer(model, 16000.0f)
-            speechService = SpeechService(rec, 16000.0f)
+            val rec = Recognizer(model, SAMPLE_RATE)
+            speechService = SpeechService(rec, SAMPLE_RATE)
             speechService?.startListening(this)
         } catch(_: Exception){}
     }
@@ -103,6 +104,7 @@ class SpeechRecognizer(val context: Context): RecognitionListener {
     }
 
     companion  object {
+        private const val SAMPLE_RATE = 16000f
         private var model: Model? = null
         private val _isReady = MutableStateFlow(false)
 

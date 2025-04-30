@@ -51,7 +51,8 @@ class SpeechRecognizer {
         LibVosk.setLogLevel(LogLevel.INFO)
         microphone = AudioSystem.getLine(info) as TargetDataLine
         microphone.open(format)
-        initModel()
+        if(model == null)
+            initModel()
     }
 
     /**
@@ -68,6 +69,8 @@ class SpeechRecognizer {
                 recognizer?.let {
                     if(it.acceptWaveForm(buffer, bytesRead))
                         speechToText += extractResult(it.result)
+                    else
+                        println(it.partialResult)
                 }
             }
         }
@@ -111,7 +114,7 @@ class SpeechRecognizer {
         private const val CHUNK_SIZE = 1024
         private val format = AudioFormat(
             SAMPLE_RATE, 16,
-            1, true, true)
+            1, true, false)
         private val info = DataLine.Info(TargetDataLine::class.java, format)
         private var model: Model? = null
         private val _isReady = MutableStateFlow(false)
