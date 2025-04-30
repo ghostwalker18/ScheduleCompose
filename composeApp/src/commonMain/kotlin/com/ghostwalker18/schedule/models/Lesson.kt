@@ -38,12 +38,33 @@ import java.util.*
 @Entity(tableName = "tblSchedule",
     primaryKeys = ["lessonDate", "lessonNumber", "groupName", "subjectName"])
 data class Lesson(
+    /**
+     * Дата занятия
+     */
     @ColumnInfo(name = "lessonDate") val date : Calendar,
+    /**
+     * Номер пары
+     */
     @ColumnInfo(name = "lessonNumber") var number : String,
+    /**
+     * Номер/название кабинета
+     */
     @ColumnInfo(name="roomNumber") val room : String?,
+    /**
+     * Время проведения занятия
+     */
     @ColumnInfo(name = "lessonTimes") val times : String?,
+    /**
+     * Название группы
+     */
     @ColumnInfo(name = "groupName") var group : String,
+    /**
+     * Название предмета
+     */
     @ColumnInfo(name = "subjectName") val subject : String,
+    /**
+     * Имя преподавателя
+     */
     @ColumnInfo(name = "teacherName") var teacher: String?
 ){
      override fun toString(): String {

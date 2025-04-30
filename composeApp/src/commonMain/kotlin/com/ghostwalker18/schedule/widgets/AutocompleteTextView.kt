@@ -59,6 +59,7 @@ fun AutocompleteTextView(
                     }
                 },
             value = value,
+            singleLine = true,
             placeholder = { Text(placeholder) },
             onValueChange = {
                 selectedOption = it
