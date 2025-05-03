@@ -98,6 +98,10 @@ class NotificationManagerWrapper private constructor(
 
     companion object{
         private var instance: NotificationManagerWrapper? = null
+
+        /**
+         * Этот метод позволяет получить синглтон менеджера уведомлений.
+         */
         fun getInstance(context: Context): NotificationManagerWrapper{
             if(instance == null)
                 instance = NotificationManagerWrapper(NotificationManagerCompat.from(context))

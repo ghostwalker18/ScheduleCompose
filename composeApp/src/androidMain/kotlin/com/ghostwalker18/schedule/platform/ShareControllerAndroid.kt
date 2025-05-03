@@ -34,6 +34,12 @@ import scheduledesktop2.composeapp.generated.resources.developer_email
 import scheduledesktop2.composeapp.generated.resources.nothing_to_share
 import java.io.File
 
+/**
+ * Этот класс представляет собой реализацию контроллера шэринга для Android.
+ * @property context контекст приложения
+ *
+ * @author Ипатов Никита
+ */
 class ShareControllerAndroid(private val context: Context) : ShareController {
 
     override fun shareSchedule(lessons: Collection<Lesson>): Pair<Boolean, StringResource> {

@@ -32,6 +32,12 @@ import java.awt.datatransfer.StringSelection
 import java.io.File
 import java.net.URI
 
+/**
+ * Этот класс представляет реализацию контроллера шэринга
+ * приложения для десктопа.
+ *
+ * @author Ипатов Никита
+ */
 class ShareControllerDesktop : ShareController {
 
     /**

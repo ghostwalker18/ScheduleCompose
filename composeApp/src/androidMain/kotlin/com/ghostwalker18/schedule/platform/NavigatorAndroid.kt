@@ -21,6 +21,12 @@ import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 import java.util.*
 
+/**
+ * Этот класс представляет собой реализацию контроллера навигации приложения для Android.
+ * @property navController навигационный контроллер
+ *
+ * @author Ипатов Никита
+ */
 class NavigatorAndroid(private val navController: NavController) : Navigator {
 
     override fun goBack() {

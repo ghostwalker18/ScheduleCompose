@@ -40,11 +40,35 @@ class EditNoteModel : ViewModel() {
     private val _photoIDs = MutableStateFlow(listOf<String>())
     private val _group = MutableStateFlow(scheduleRepository.savedGroup)
     private var isEdited = false
+
+    /**
+     * Список возможных тем для заметки
+     */
     val themes = _themes.asStateFlow()
+
+    /**
+     * Группа для заметки
+     */
     val group = _group.asStateFlow()
+
+    /**
+     * Идентификаторы фотографий на устройстве для заметки
+     */
     val photoIDs = _photoIDs.asStateFlow()
+
+    /**
+     * Дата заметки
+     */
     val date = MutableStateFlow(Calendar.getInstance())
+
+    /**
+     * Тема заметки
+     */
     val theme:MutableStateFlow<String?> = MutableStateFlow("")
+
+    /**
+     * Текст заметки
+     */
     val text = MutableStateFlow("")
 
     init {

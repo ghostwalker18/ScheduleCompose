@@ -38,8 +38,11 @@ import java.util.concurrent.Executors
  * @author Ипатов Никита
  * @since 4.1
  */
-class ScheduleUpdateNotificationWorker(context: Context, workerParameters: WorkerParameters)
-    : ListenableWorker(context, workerParameters) {
+class ScheduleUpdateNotificationWorker(
+    context: Context,
+    workerParameters: WorkerParameters
+) : ListenableWorker(context, workerParameters) {
+
     override fun startWork(): ListenableFuture<Result> {
         val service: ListeningExecutorService = MoreExecutors
             .listeningDecorator(Executors.newSingleThreadExecutor())

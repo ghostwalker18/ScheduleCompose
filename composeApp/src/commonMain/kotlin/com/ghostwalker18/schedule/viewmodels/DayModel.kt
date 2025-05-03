@@ -30,27 +30,49 @@ import java.util.*
  */
 class DayModel : ViewModel() {
     private val repository = ScheduleApp.instance.scheduleRepository
-    var isOpened  = MutableStateFlow(false)
     private val _date = MutableStateFlow(Calendar.getInstance())
     private val _lessons = MutableStateFlow(emptyArray<Lesson>())
     private var _lessonsMediator: Flow<Array<Lesson>>? = null
+
+    /**
+     * Показывается ли расписание
+     */
+    var isOpened  = MutableStateFlow(false)
+
+    /**
+     * Занятия на день для выбранных группы и преподавателя
+     */
     val lessons = _lessons.asStateFlow()
+
+    /**
+     * Группа, для которой показывается расписание на день
+     */
     var group: String? = null
         set(value) {
             field = value
             revalidateLessons()
         }
+
+    /**
+     * Преподаватель, для которого показывается расписание на день
+     */
     var teacher: String? = null
         set(value) {
             field = value
             revalidateLessons()
         }
 
+    /**
+     * Этот метод устанавливает дату, для которой будет показано расписание.
+     */
     fun setDate(date: Calendar) {
         this._date.value = date
         revalidateLessons()
     }
 
+    /**
+     * Этот метод возвращает дату, для которой будет показано расписание.
+     */
     fun getDate(): StateFlow<Calendar> {
         return _date.asStateFlow()
     }

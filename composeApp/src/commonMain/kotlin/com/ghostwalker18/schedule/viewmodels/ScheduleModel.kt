@@ -26,8 +26,19 @@ import java.util.*
  * @since 1.0
  */
 class ScheduleModel : ViewModel() {
+    /**
+     * Группа для показа расписания на неделю
+     */
     val group = MutableStateFlow(ScheduleApp.instance.scheduleRepository.savedGroup)
+
+    /**
+     * Преподаватель для показа расписания на неделю
+     */
     val teacher: MutableStateFlow<String?> = MutableStateFlow(null)
+
+    /**
+     * Дата на неделе, для которой надо показать расписание
+     */
     val calendar = MutableStateFlow(Calendar.getInstance())
 
     /**

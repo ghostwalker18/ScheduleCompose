@@ -69,8 +69,6 @@ class SpeechRecognizer {
                 recognizer?.let {
                     if(it.acceptWaveForm(buffer, bytesRead))
                         speechToText += extractResult(it.result)
-                    else
-                        println(it.partialResult)
                 }
             }
         }

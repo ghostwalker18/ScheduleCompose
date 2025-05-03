@@ -26,7 +26,7 @@ import java.util.*
  * @since 1.0
  * @see IConverter
  */
-class XMLStoLessonsConverter : IConverter {
+class XLSXStoLessonsConverter : IConverter {
     private var firstRowGap1 = 0
 
     override fun convertFirstCorpus(excelFile: Workbook): List<Lesson> {

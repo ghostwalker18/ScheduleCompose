@@ -29,30 +29,49 @@ import java.util.*
 class DateConverters {
 
     companion object {
+        /**
+         * Формат даты уведомления
+         */
         val dateFormatNotification: SimpleDateFormat = SimpleDateFormat(
             "dd.MM",
             Locale.Builder()
                 .setLanguageTag("ru")
                 .build()
         )
+
+        /**
+         * Формат даты фотографии
+         */
         val dateFormatPhoto = SimpleDateFormat(
             "dd_MM_yyyy",
             Locale.Builder()
                 .setLanguageTag("ru")
                 .build()
         )
+
+        /**
+         * Формат даты в БД
+         */
         private val dateFormatDb = SimpleDateFormat(
             "yyyy-MM-dd",
             Locale.Builder()
                 .setLanguageTag("ru")
                 .build()
         )
+
+        /**
+         * Формат даты в файле расписания первого корпуса техникума
+         */
         private val dateFormatFirstCorpus = SimpleDateFormat(
             "d MMMM yyyy",
             Locale.Builder()
                 .setLanguageTag("ru")
                 .build()
         )
+
+        /**
+         * Формат даты в файле расписания второго корпуса техникума
+         */
         private val dateFormatSecondCorpus = SimpleDateFormat(
             "dd.MM.yyyy",
             Locale.Builder()

@@ -36,11 +36,35 @@ class NotesModel : ViewModel() {
     private val _startDate = MutableStateFlow(Calendar.getInstance())
     private val _endDate = MutableStateFlow(Calendar.getInstance())
     private val _keyword: MutableStateFlow<String?> = MutableStateFlow(null)
+
+    /**
+     * Заметки для показа пользователю
+     */
     val notes = _notes.asStateFlow()
+
+    /**
+     * Начальная дата, для которой показывать заметки
+     */
     val startDate = _startDate.asStateFlow()
+
+    /**
+     * Конечная дата, для которой показывать заметки
+     */
     val endDate = _endDate.asStateFlow()
+
+    /**
+     * Ключевое слово для поиска заметок
+     */
     val keyword = _keyword.asStateFlow()
+
+    /**
+     * Нужно ли фильтровать заметки
+     */
     val isFilterEnabled = MutableStateFlow(false)
+
+    /**
+     * Группа, для которой показываются заметки
+     */
     var group: String? = ""
         set(value) {
             field = value

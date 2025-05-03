@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.get
 import com.ghostwalker18.schedule.converters.IConverter
-import com.ghostwalker18.schedule.converters.XMLStoLessonsConverter
+import com.ghostwalker18.schedule.converters.XLSXStoLessonsConverter
 import com.ghostwalker18.schedule.database.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -49,36 +49,64 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
     private val mainSelector = "h2:contains(Расписание занятий и объявления:) + div > table > tbody"
     private var updateFutures: MutableList<CompletableFuture<UpdateResult>> = mutableListOf()
     private val updateExecutorService: ExecutorService = Executors.newFixedThreadPool(4)
-    private val converter: IConverter = XMLStoLessonsConverter()
+    private val converter: IConverter = XLSXStoLessonsConverter()
     private var allJobsDone = true
     protected val _mondayTimes = MutableStateFlow<Painter?>(null)
     protected val _otherTimes = MutableStateFlow<Painter?>(null)
     protected  val _status = MutableStateFlow(Status("", 0))
     protected val scope = CoroutineScope(Dispatchers.IO)
 
+    /**
+     * Это свойство показывает результат предпоследнего обновления репозитория.
+     */
     val lastUpdateResult: UpdateResult = UpdateResult
         .fromInt(preferences["previous_update_result", UpdateResult.SUCCESS.toInt()])
 
+    /**
+     * Это свойство показывает результат последнего обновления репозитория.
+     */
     var updateResult: CompletableFuture<UpdateResult>? = null
+        protected set
 
+    /**
+     * Это свойство показывает статус обновления репозитория.
+     */
     val status = _status.asStateFlow()
 
+    /**
+     * Это свойство представляет собой  список всех преподавателей техникума.
+     */
     val teachers: Flow<Array<String>>
         get() = db.lessonDao().getTeachers().flowOn(Dispatchers.IO)
 
+    /**
+     * Это свойство предоставляет собой список всех групп в техникуме.
+     */
     val groups: Flow<Array<String>>
         get() = db.lessonDao().getGroups().flowOn(Dispatchers.IO)
 
+    /**
+     * Это свойство представляет собой выбранную и сохраненную пользователем группу.
+     */
     var savedGroup: String?
         get() = preferences["savedGroup"]
         set (value) = preferences.putString("savedGroup", value ?: "")
 
+    /**
+     *  Это свойство представляет собой изображение расписания звонков в техникуме на понедельник.
+     */
     val mondayTimes: StateFlow<Painter?>
         get() = _mondayTimes.asStateFlow()
 
+    /**
+     * Это свойство представляет собой изображение расписания звонков в техникуме со вторника по пятницу.
+     */
     val otherTimes: StateFlow<Painter?>
         get() = _otherTimes.asStateFlow()
 
+    /**
+     * Это свойство представляет собой список ссылок на расписание для второго корпуса техникума.
+     */
     val linksForSecondCorpusSchedule: List<String>
         get() {
             val links: MutableList<String> = ArrayList()
@@ -101,6 +129,9 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
             }
         }
 
+    /**
+     * Это свойство представляет собой список ссылок на расписание для первого корпуса техникума.
+     */
     val linksForFirstCorpusSchedule: List<String>
         get() {
             val links: MutableList<String> = ArrayList()
@@ -123,6 +154,9 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
             }
         }
 
+    /**
+     * Это перечисление описывает результат обновления репозитория.
+     */
     enum class UpdateResult {
         SUCCESS, FAIL;
 
@@ -133,12 +167,23 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
         }
     }
 
+    /**
+     * Этот класс описывает статус обновления расписания.
+     * @property status статус обновления
+     * @property progress прогресс обновления в процентах
+     */
     data class Status(val status: String, val progress: Int)
 
+    /**
+     * Этот метод позволяет получить список предметов у заданной группы.
+     */
     fun getSubjects(group: String?): Flow<Array<String>> {
         return db.lessonDao().getSubjectsForGroup(group).flowOn(Dispatchers.IO)
     }
 
+    /**
+     * Этот метод позволяет получить список занятий на заданную дату для заданных группы и преподавателя.
+     */
     fun getLessons(date: Calendar, teacher: String?, group: String?): Flow<Array<Lesson>> {
         return if (teacher != null && group != null)
             db.lessonDao().getLessonsForGroupWithTeacher(date, group, teacher).flowOn(Dispatchers.IO)
@@ -147,10 +192,17 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
         else flowOf(emptyArray<Lesson>()).flowOn(Dispatchers.IO)
     }
 
+    /**
+     * Этот метод возвращает последнюю дату для которой доступно расписание занятий для заданной группы.
+     */
     suspend fun getLastKnownLessonDate(group: String?): Calendar? {
         return db.lessonDao().getLastKnownLessonDate(group)
     }
 
+    /**
+     * Этот метод позволяет обновить расписание занятий  и звоноков в репозитории
+     * в соответствии с настройками приложения.
+     */
     fun update() {
         val downloadFor = preferences["downloadFor", "all"]
         if (allJobsDone) {
@@ -206,15 +258,20 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
     }
 
     /**
-     * Этот метод используется для обновления БД приложения занятиями
+     * Этот метод используется для обновления БД приложения занятиями.
      * @param linksGetter метод для получения ссылок на файлы расписания
      * @param parser парсер файлов расписания
+     * @return результат обновления
      */
     protected abstract fun updateSchedule(
         linksGetter: Callable<List<String>>,
         parser: KFunction1<Workbook, List<Lesson>>
     ): UpdateResult
 
+    /**
+     * Этот метод используется для обновления расписания звонков.
+     * @return результат обновления
+     */
     protected abstract fun updateTimes(): UpdateResult
 
     companion object{
