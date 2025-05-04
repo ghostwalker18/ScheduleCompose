@@ -125,3 +125,6 @@ expect fun PhotoPreview(
 expect fun VoiceInput(
     onInput: (text: String) -> Unit
 )
+
+@Composable
+expect fun AddReminder()

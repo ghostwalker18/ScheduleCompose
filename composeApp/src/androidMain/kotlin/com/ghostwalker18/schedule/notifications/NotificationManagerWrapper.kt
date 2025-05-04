@@ -90,7 +90,8 @@ class NotificationManagerWrapper private constructor(
         try {
             if (!TextUtils.isEmpty(channelId)) {
                 val channel = notificationManager.getNotificationChannel(channelId)
-                if (channel != null) return channel.importance != NotificationManager.IMPORTANCE_NONE
+                if (channel != null)
+                    return channel.importance != NotificationManager.IMPORTANCE_NONE
             }
         } catch (_: Exception) { /*Not required*/ }
         return false
@@ -101,6 +102,7 @@ class NotificationManagerWrapper private constructor(
 
         /**
          * Этот метод позволяет получить синглтон менеджера уведомлений.
+         * @param context контекст приложения
          */
         fun getInstance(context: Context): NotificationManagerWrapper{
             if(instance == null)

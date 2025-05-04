@@ -48,6 +48,7 @@ fun AutocompleteTextView(
         hideKeyboard()
         shouldHideInput = false
     }
+
     Column(modifier) {
         TextField(
             modifier = Modifier

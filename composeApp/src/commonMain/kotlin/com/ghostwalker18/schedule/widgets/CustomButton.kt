@@ -35,6 +35,8 @@ import androidx.compose.ui.unit.dp
 
 /**
  * Эта функция отображает кнопку с поддержкой длинного клика
+ * @param onClick действие при обычном нажатии
+ * @param onLongClick действие при долгом нажатии
  * @since 1.0
  */
 @Composable

@@ -46,3 +46,6 @@ actual fun PhotoPreview(
     animatedVisibilityScope: AnimatedVisibilityScope?,
     onDeleteListener: (id: String) -> Unit
 ) {/*Not required*/}
+
+@Composable
+actual fun AddReminder() {/*Not required*/}

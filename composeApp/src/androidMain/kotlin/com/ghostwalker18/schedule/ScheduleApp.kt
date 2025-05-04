@@ -15,7 +15,6 @@
 package com.ghostwalker18.schedule
 
 import android.app.Application
-import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.os.LocaleListCompat
@@ -39,18 +38,10 @@ import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.SettingsListener
 import com.russhwolf.settings.SharedPreferencesSettings
 import com.russhwolf.settings.get
-import io.appmetrica.analytics.AppMetrica
-import io.appmetrica.analytics.AppMetricaConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import okhttp3.Dispatcher
-import ru.rustore.sdk.pushclient.RuStorePushClient
-import ru.rustore.sdk.pushclient.common.logger.DefaultLogger
-import ru.rustore.sdk.universalpush.RuStoreUniversalPushClient
-import ru.rustore.sdk.universalpush.firebase.provides.FirebasePushProvider
-import ru.rustore.sdk.universalpush.rustore.providers.RuStorePushProvider
 import java.util.*
 import java.util.concurrent.TimeUnit
 import android.Manifest
@@ -180,14 +171,13 @@ actual class ScheduleApp : Application() {
             FirebaseApp.initializeApp(this)
             // Initializing the RuStore Push SDK.
             initPushes()
-        } catch (e: Exception) { /*Not required*/ }
+        } catch (_: Exception) { /*Not required*/ }
         AndroidUtils.checkNotificationsPermissions(this, preferences)
         AndroidUtils.clearPOICache(this)
         scope.launch {
             if(ActivityCompat.checkSelfPermission(
                     this@ScheduleApp,
-                    Manifest.permission.RECORD_AUDIO) ==
-                PackageManager.PERMISSION_GRANTED
+                    Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
             ){
                 SpeechRecognizer.initModel(this@ScheduleApp)
             }

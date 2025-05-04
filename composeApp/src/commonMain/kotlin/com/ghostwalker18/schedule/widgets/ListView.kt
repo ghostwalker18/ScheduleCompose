@@ -31,6 +31,8 @@ import org.jetbrains.compose.resources.stringArrayResource
 
 /**
  * Эта функция отображает выпадающий список.
+ * @param entries отображаемые элементы списка
+ * @param entryValues значения элементов списка
  *
  * @author Ипатов Никита
  * @since 1.0

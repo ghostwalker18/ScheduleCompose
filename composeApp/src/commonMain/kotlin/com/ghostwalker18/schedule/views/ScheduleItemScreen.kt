@@ -37,6 +37,9 @@ import java.util.Calendar
 
 /**
  * Этот класс представляет собой экран приложения для отображения расписания на день.
+ * @param group группа
+ * @param teacher преподаватель
+ * @param date дата
  *
  * @author  Ипатов Никита
  * @since 1.0

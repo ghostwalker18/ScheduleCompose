@@ -25,7 +25,6 @@ import com.ghostwalker18.schedule.activities.MainActivity
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.models.ScheduleRepository
 import com.google.common.util.concurrent.ListenableFuture
-import com.google.common.util.concurrent.ListeningExecutorService
 import com.google.common.util.concurrent.MoreExecutors
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.Executors
@@ -44,8 +43,9 @@ class ScheduleUpdateNotificationWorker(
 ) : ListenableWorker(context, workerParameters) {
 
     override fun startWork(): ListenableFuture<Result> {
-        val service: ListeningExecutorService = MoreExecutors
-            .listeningDecorator(Executors.newSingleThreadExecutor())
+        val service = MoreExecutors.listeningDecorator(
+            Executors.newSingleThreadExecutor()
+        )
         return service.submit<Result> {
             val repository = ScheduleApp.instance.scheduleRepository
             val lastUpdateResult = repository.lastUpdateResult

@@ -44,6 +44,9 @@ import java.util.*
 
 /**
  * Эта функция представляет собой экран редактирования или добавления новой заметки.
+ * @param noteID ID заметки
+ * @param group группа для заметки
+ * @param date дата заметки
  *
  * @author Ипатов Никита
  * @since 1.0
@@ -60,7 +63,7 @@ fun EditNoteScreen(
     val navigator = ScheduleApp.instance.navigator
     val model = viewModel { EditNoteModel() }
     val themes by model.themes.collectAsState()
-    val noteDate  by model.date.collectAsState()
+    val noteDate by model.date.collectAsState()
     val noteGroup by model.group.collectAsState()
     val noteTheme by model.theme.collectAsState()
     val noteText by model.text.collectAsState()
@@ -124,6 +127,8 @@ fun EditNoteScreen(
                             model.date.value = date
                         }
                     )
+                Spacer(modifier = Modifier.weight(1f))
+                AddReminder()
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically

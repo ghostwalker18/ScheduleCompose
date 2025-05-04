@@ -37,12 +37,17 @@ import org.jetbrains.compose.resources.stringResource
 
 /**
  * Эта функция служит для группировки элементов настроек
+ * @param title название категории
+ * @param content настройки в категории
  *
  * @author Ипатов Никита
  * @since 1.0
  */
 @Composable
-fun PreferenceCategory(title: String, content: @Composable () -> Unit){
+fun PreferenceCategory(
+    title: String,
+    content: @Composable () -> Unit
+){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -58,6 +63,10 @@ fun PreferenceCategory(title: String, content: @Composable () -> Unit){
 
 /**
  * Эта функция служит для отображения настройки в виде переключателя.
+ * @param title название настройки
+ * @param key ключ для сохранения настройки
+ * @param preferences объект настроек, где будет сохраняться значение
+ *
  * @author Ипатов Никита
  * @since 1.0
  */
@@ -93,6 +102,12 @@ fun SwitchPreference(title: StringResource,
 
 /**
  * Эта функция служит для отображения настройки в виде списка.
+ * @param title название настройки
+ * @param key ключ для сохранения настройки
+ * @param entries отображаемые элементы списка
+ * @param entryValues значения элементов списка
+ * @param preferences объект настроек, где будет сохраняться значение
+ *
  * @author Ипатов Никита
  * @since 1.0
  */

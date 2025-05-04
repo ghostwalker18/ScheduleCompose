@@ -40,6 +40,7 @@ import com.ghostwalker18.schedule.widgets.*
 
 /**
  * Эта функция отображает элемент расписания на день
+ * @param dayOfWeek названия дня недели
  *
  * @author Ипатов Никита
  * @since 1.0
