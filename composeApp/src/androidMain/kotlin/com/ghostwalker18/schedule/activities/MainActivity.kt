@@ -24,6 +24,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ghostwalker18.schedule.*
+import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.platform.NavigatorAndroid
 import com.ghostwalker18.schedule.utils.setContentWithTheme
 import com.ghostwalker18.schedule.views.*
@@ -75,6 +76,16 @@ class MainActivity : AppCompatActivity() {
                 "add_note" -> ScheduleApp.instance.scheduleRepository.savedGroup?.let {
                     ScheduleApp.instance.navigator.goEditNoteActivity(it, Calendar.getInstance(), 0)
                 }
+            }
+
+            val noteGroup = intent.extras?.getString("note_group")
+            val noteDate = intent.extras?.getString("note_date")
+            if(noteDate != null && noteGroup != null){
+                ScheduleApp.instance.navigator
+                    .goNotesActivity(
+                        noteGroup,
+                        DateConverters().fromString(noteDate)!!
+                    )
             }
         }
     }

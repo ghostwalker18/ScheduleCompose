@@ -17,6 +17,7 @@ package com.ghostwalker18.schedule.utils
 import java.io.*
 import java.nio.file.Files
 import java.util.*
+import java.util.concurrent.TimeUnit
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
 import java.util.zip.ZipOutputStream
@@ -65,9 +66,7 @@ object Utils {
             return if (currentTime.before(start)) LessonAvailability.NOT_STARTED
             else if (currentTime.before(end)) LessonAvailability.STARTED
             else LessonAvailability.ENDED
-        } catch (e: Exception) {
-            return null
-        }
+        } catch (_: Exception) { return null }
     }
 
     /**
@@ -151,7 +150,7 @@ object Utils {
                     }
                 }
             }
-        } catch (ignores: Exception) { /**/
+        } catch (_: Exception) { /**/
         }
     }
 
@@ -177,6 +176,30 @@ object Utils {
                     zin.closeEntry()
                 }
             }
+        }
+    }
+
+    /**
+     * Эта функция рассчитывает временную дистанцию между двумя точками во времени
+     * @param startDate ранняя точка
+     * @param endDate поздняя точка
+     * @param timeUnit единица измерения
+     * @return кол-во временных единиц между точками
+     */
+    fun calculateTimeDistance(
+        startDate: Calendar,
+        endDate: Calendar,
+        timeUnit: TimeUnit
+    ): Long {
+        val duration = java.time.Duration.between(startDate.toInstant(), endDate.toInstant())
+        return when(timeUnit){
+            TimeUnit.NANOSECONDS -> duration.toNanos()
+            TimeUnit.MICROSECONDS -> duration.toMillis() * 1000
+            TimeUnit.MILLISECONDS -> duration.toMillis()
+            TimeUnit.SECONDS -> duration.toSeconds()
+            TimeUnit.MINUTES -> duration.toMinutes()
+            TimeUnit.HOURS -> duration.toHours()
+            TimeUnit.DAYS -> duration.toDays()
         }
     }
 }

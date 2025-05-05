@@ -221,6 +221,11 @@ actual class ScheduleApp : Application() {
             getString(R.string.notifications_notification_schedule_update_channel_name),
             getString(R.string.notifications_notification_schedule_update_channel_descr)
         )
+        NotificationManagerWrapper.getInstance(this).createNotificationChannel(
+            getString(R.string.notifications_notification_note_reminder_channel_id),
+            getString(R.string.notifications_notification_note_reminder_channel_name),
+            getString(R.string.notifications_notification_note_reminder_channel_descr)
+        )
         /*if (preferences.getBoolean("update_notifications", false)) RuStorePushClient.subscribeToTopic("update_notificatons")
         if (preferences.getBoolean(
                 "schedule_notifications",

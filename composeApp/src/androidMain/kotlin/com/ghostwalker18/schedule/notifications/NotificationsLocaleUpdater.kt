@@ -40,6 +40,11 @@ class NotificationsLocaleUpdater : BroadcastReceiver() {
                 context.getString(R.string.notifications_notification_schedule_update_channel_name),
                 context.getString(R.string.notifications_notification_schedule_update_channel_descr)
             )
+            NotificationManagerWrapper.getInstance(context).createNotificationChannel(
+                context.getString(R.string.notifications_notification_note_reminder_channel_id),
+                context.getString(R.string.notifications_notification_note_reminder_channel_name),
+                context.getString(R.string.notifications_notification_note_reminder_channel_descr)
+            )
         }
     }
 }

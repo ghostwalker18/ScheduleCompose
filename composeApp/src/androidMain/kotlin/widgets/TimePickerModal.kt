@@ -37,6 +37,7 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TimePickerModal(
+    title: StringResource? = null,
     confirmButtonText: StringResource,
     dismissButtonText: StringResource,
     onTimeSelected: (hour: Int, minute: Int) -> Unit,
@@ -45,6 +46,11 @@ fun TimePickerModal(
     val timePickerState = rememberTimePickerState(18, 0, true)
 
     AlertDialog(
+        title = {
+            title?.let{
+                Text(stringResource(it))
+            }
+        },
         onDismissRequest = onDismiss,
         dismissButton = {
             TextButton(onClick = onDismiss) {

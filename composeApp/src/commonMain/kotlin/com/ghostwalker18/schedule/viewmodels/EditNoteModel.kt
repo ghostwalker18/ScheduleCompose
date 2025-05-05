@@ -71,6 +71,11 @@ class EditNoteModel : ViewModel() {
      */
     val text = MutableStateFlow("")
 
+    /**
+     * Имеет ли заметка напоминание
+     */
+    var hasNotification = MutableStateFlow(note?.hasNotification ?: false)
+
     init {
         viewModelScope.launch {
             scheduleRepository.getSubjects(scheduleRepository.savedGroup).collect{
@@ -80,23 +85,24 @@ class EditNoteModel : ViewModel() {
     }
 
     /**
-     * Этот метод позволяет задать id заметки для редактирования.
-     * @param id идентификатор
+     * ID заметки
      */
-    fun setNoteID(id: Int) {
-        isEdited = true
-        viewModelScope.launch {
-            notesRepository.getNote(id).collect{
-                it?.let {
-                    note = it
-                    _group.value = it.group
-                    date.value = it.date
-                    text.value = it.text
-                    theme.value = it.theme
+    var id: Int
+        get() = note?.id ?: 0
+        set(value){
+            isEdited = true
+            viewModelScope.launch {
+                notesRepository.getNote(value).collect{
+                    it?.let {
+                        note = it
+                        _group.value = it.group
+                        date.value = it.date
+                        text.value = it.text
+                        theme.value = it.theme
+                    }
                 }
             }
         }
-    }
 
     /**
      * Этот метод позволяет задать группу для заметки.
@@ -143,6 +149,7 @@ class EditNoteModel : ViewModel() {
                 noteToSave.group = _group.value!!
                 noteToSave.theme = theme.value
                 noteToSave.text = text.value
+                noteToSave.hasNotification = hasNotification.value
                 noteToSave.photoIDs = photoIDs.value
             }
             else{
@@ -151,6 +158,7 @@ class EditNoteModel : ViewModel() {
                     group = _group.value ?: "",
                     theme = theme.value,
                     text = text.value,
+                    hasNotification = hasNotification.value,
                     photoIDs = photoIDs.value
                 )
             }

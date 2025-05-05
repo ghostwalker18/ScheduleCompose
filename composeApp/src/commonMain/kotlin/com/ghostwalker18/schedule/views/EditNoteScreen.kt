@@ -68,7 +68,7 @@ fun EditNoteScreen(
     val noteTheme by model.theme.collectAsState()
     val noteText by model.text.collectAsState()
     if(noteID != 0)
-        noteID?.let { model.setNoteID(it) }
+        noteID?.let { model.id = it }
     else {
         model.setGroup(group)
         model.date.value = date

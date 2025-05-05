@@ -75,6 +75,7 @@ object AndroidUtils {
             with(preferences){
                 putBoolean("update_notifications", false)
                 putBoolean("schedule_notifications", false)
+                putBoolean("notes_notifications", false)
             }
             res = false
         }
@@ -92,6 +93,13 @@ object AndroidUtils {
                 )
         ) {
             preferences.putBoolean("update_notifications", false)
+        }
+        if (!NotificationManagerWrapper.getInstance(context)
+                .isNotificationChannelEnabled(
+                    context.getString(R.string.notifications_notification_note_reminder_channel_id)
+                )
+        ) {
+            preferences.putBoolean("notes_notifications", false)
         }
         return res
     }

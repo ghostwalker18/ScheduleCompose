@@ -159,6 +159,11 @@ fun SettingsScreen() {
                                 key = "schedule_notifications",
                                 preferences = preferences
                             )
+                            SwitchPreference(
+                                title = Res.string.notifications_notification_note_reminder_channel_name,
+                                key = "notes_notifications",
+                                preferences = preferences
+                            )
                         }
                     }
                 }
