@@ -43,6 +43,10 @@
     <string name="notifications_notification_schedule_update_channel_descr">
         Кестедегі өзгерістер туралы хабарландырулар алыңыз
     </string>
+    <string name="notifications_notification_note_reminder_channel_name">Ескертпелер</string>
+    <string name="notifications_notification_note_reminder_channel_descr">
+        Жазбаларды еске түсіретін хабарландырулар алыңыз
+    </string>
     <string name="notifications_new_schedule_available">Жаңа кесте орналастырылды:</string>
     <string name="notifications_schedule_unavailable">Ой! Кестені жаңарту мүмкін болмады…</string>
 </resources>

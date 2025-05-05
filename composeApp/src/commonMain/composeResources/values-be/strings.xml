@@ -103,6 +103,7 @@
     <string name="notifications">Апавяшчэнні</string>
     <string name="notifications_notification_app_update_channel_name">Абнаўлення прыкладанняў</string>
     <string name="notifications_notification_schedule_update_channel_name">Расклад</string>
+    <string name="notifications_notification_note_reminder_channel_name">Нататкі</string>
     <string name="main_share_schedule_descr">Падзяліцца раскладам</string>
     <string name="main_download_descr">Спампаваць файлы раскладу</string>
     <string name="main_settings_descr">Адкрыць налады</string>

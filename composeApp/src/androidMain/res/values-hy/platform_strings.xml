@@ -43,6 +43,10 @@
     <string name="notifications_notification_schedule_update_channel_descr">
         Ստացեք ծանուցումներ ժամանակացույցի փոփոխությունների վերաբերյալ
     </string>
+    <string name="notifications_notification_note_reminder_channel_name">Նշումներ</string>
+    <string name="notifications_notification_note_reminder_channel_descr">
+        Ստացեք ծանուցումներ, որոնք հիշեցնում են գրառումները
+    </string>
     <string name="notifications_new_schedule_available">Նոր ժամանակացույցը հրապարակվել է մինչև</string>
     <string name="notifications_schedule_unavailable">Վա՜յ։ Չհաջողվեց թարմացնել ժամանակացույցը...</string>
 </resources>

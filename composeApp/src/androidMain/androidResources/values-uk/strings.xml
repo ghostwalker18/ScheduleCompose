@@ -24,4 +24,9 @@
     <string name="preview_image_clear_descr">Очистити фото</string>
     <string name="photoview_back_descr">Згорнути фото</string>
     <string name="photoview_share_descr">Поділитися фото</string>
+    <string name="add_note_reminder_descr">Додати нагадування</string>
+    <string name="remove_note_reminder">Прибрати нагадування</string>
+    <string name="note_reminder_time">Вибрати час</string>
+    <string name="days_before_delay">За скільки днів нагадати?</string>
+    <string name="days_before_confirm">Вибрати</string>
 </resources>

@@ -22,10 +22,6 @@
     <string name="room">ოფისი</string>
     <string name="subject">თემა</string>
     <string name="teacher">მასწავლებელი</string>
-    <string name="email_subject" translatable="false">Расписание ПАСТ (мобильное)</string>
-    <string name="rustore_link" translatable="false">
-        https://www.rustore.ru/catalog/app/com.ghostwalker18.schedule
-    </string>
     <string name="app_widget_description">ჯგუფის დღის პასტორალური გრაფიკი</string>
     <string name="day">დღე</string>
     <string name="appearance">გარეგნობა</string>
@@ -46,6 +42,10 @@
     <string name="notifications_notification_schedule_update_channel_name">გრაფიკი</string>
     <string name="notifications_notification_schedule_update_channel_descr">
         ღია რედაქტორი
+    </string>
+    <string name="notifications_notification_note_reminder_channel_name">შენიშვნები</string>
+    <string name="notifications_notification_note_reminder_channel_descr">
+        მიიღეთ შეტყობინებები, რომლებიც შეგახსენებთ თქვენს შენიშვნებს
     </string>
     <string name="notifications_new_schedule_available">ახალი გრაფიკი გამოქვეყნდა, სანამ</string>
     <string name="notifications_schedule_unavailable">ოოპ! გრაფიკის განახლება ვერ მოხერხდა…</string>

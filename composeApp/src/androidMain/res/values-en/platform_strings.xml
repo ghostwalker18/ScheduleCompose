@@ -13,7 +13,7 @@
   ~ limitations under the License.
   -->
 <resources>
-    <string name="app_name">Расписание ПАСТ</string>
+    <string name="app_name">Schedule PCACE</string>
     <string name="notes">Notes</string>
     <string name="add_note">New note</string>
     <string name="today">Today</string>
@@ -42,6 +42,10 @@
     <string name="notifications_notification_schedule_update_channel_name">Schedule</string>
     <string name="notifications_notification_schedule_update_channel_descr">
         Receive notifications about schedule changes
+    </string>
+    <string name="notifications_notification_note_reminder_channel_name">Notes</string>
+    <string name="notifications_notification_note_reminder_channel_descr">
+        Receive notifications reminding you of your notes
     </string>
     <string name="notifications_new_schedule_available">A new schedule has been posted until</string>
     <string name="notifications_schedule_unavailable">Oops! Couldn\'t update the schedule…</string>

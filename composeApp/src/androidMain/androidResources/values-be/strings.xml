@@ -24,4 +24,9 @@
     <string name="preview_image_clear_descr">Ачысціць фота</string>
     <string name="photoview_back_descr">Згарнуць фота</string>
     <string name="photoview_share_descr">Падзяліцца фота</string>
+    <string name="add_note_reminder_descr">Дадаць напамін</string>
+    <string name="remove_note_reminder">Прыбраць напамін</string>
+    <string name="note_reminder_time">Выбраць час</string>
+    <string name="days_before_delay">За колькі дзён нагадаць?</string>
+    <string name="days_before_confirm">Выбраць</string>
 </resources>

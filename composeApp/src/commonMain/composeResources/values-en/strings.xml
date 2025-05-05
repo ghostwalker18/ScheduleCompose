@@ -103,6 +103,7 @@
     <string name="notifications">Notifications</string>
     <string name="notifications_notification_app_update_channel_name">Application Updates</string>
     <string name="notifications_notification_schedule_update_channel_name">Schedule</string>
+    <string name="notifications_notification_note_reminder_channel_name">Notes</string>
     <string name="main_share_schedule_descr">Share the schedule</string>
     <string name="main_download_descr">Download schedule files</string>
     <string name="main_settings_descr">Open Settings</string>

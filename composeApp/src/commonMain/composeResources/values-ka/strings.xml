@@ -103,6 +103,7 @@
     <string name="notifications">შეტყობინებები</string>
     <string name="notifications_notification_app_update_channel_name">აპლიკაციის განახლებები</string>
     <string name="notifications_notification_schedule_update_channel_name">გრაფიკი</string>
+    <string name="notifications_notification_note_reminder_channel_name">შენიშვნები</string>
     <string name="main_share_schedule_descr">განრიგის გაზიარება</string>
     <string name="main_download_descr">გრაფიკის ფაილების ჩამოტვირთვა</string>
     <string name="main_settings_descr">პარამეტრების გახსნა</string>

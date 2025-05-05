@@ -24,4 +24,9 @@
     <string name="preview_image_clear_descr">Фотосуретті тазалау</string>
     <string name="photoview_back_descr">Фотосуретті бүктеңіз</string>
     <string name="photoview_share_descr">Фотосуретті бөлісу</string>
+    <string name="add_note_reminder_descr">Еске салғышты қосыңыз</string>
+    <string name="remove_note_reminder">Еске салғышты алып тастаңыз</string>
+    <string name="note_reminder_time">Уақытты таңдаңыз</string>
+    <string name="days_before_delay">Қанша күн еске түсіреді?</string>
+    <string name="days_before_confirm">Таңдау</string>
 </resources>

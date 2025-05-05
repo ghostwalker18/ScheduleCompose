@@ -24,4 +24,9 @@
     <string name="preview_image_clear_descr">Clear photo</string>
     <string name="photoview_back_descr">Collapse photo</string>
     <string name="photoview_share_descr">Share photo</string>
+    <string name="add_note_reminder_descr">Add reminder</string>
+    <string name="remove_note_reminder">Remove reminder</string>
+    <string name="note_reminder_time">Choose a time</string>
+    <string name="days_before_delay">How many days should I remind you?</string>
+    <string name="days_before_confirm">Choose</string>
 </resources>

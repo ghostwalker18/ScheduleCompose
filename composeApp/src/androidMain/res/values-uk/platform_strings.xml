@@ -43,6 +43,10 @@
     <string name="notifications_notification_schedule_update_channel_descr">
         Отримуйте повідомлення про зміни в розкладі
     </string>
+    <string name="notifications_notification_note_reminder_channel_name">Нотатки</string>
+    <string name="notifications_notification_note_reminder_channel_descr">
+        Отримуйте сповіщення, що нагадують про нотатки
+    </string>
     <string name="notifications_new_schedule_available">Викладено новий розклад до</string>
     <string name="notifications_schedule_unavailable">Упс! Не вийшло оновити розклад…</string>
 </resources>

@@ -103,6 +103,7 @@
     <string name="notifications">Bildirişlər</string>
     <string name="notifications_notification_app_update_channel_name">Tətbiq yeniləmələri</string>
     <string name="notifications_notification_schedule_update_channel_name">Cədvəl</string>
+    <string name="notifications_notification_note_reminder_channel_name">Qeydlər</string>
     <string name="main_share_schedule_descr">Cədvəli paylaşın</string>
     <string name="main_download_descr">Cədvəl fayllarını yükləyin</string>
     <string name="main_settings_descr">Parametrləri açın</string>

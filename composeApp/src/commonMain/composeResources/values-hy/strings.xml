@@ -103,6 +103,7 @@
     <string name="notifications">Ծանուցումներ</string>
     <string name="notifications_notification_app_update_channel_name">Հավելվածի թարմացումներ</string>
     <string name="notifications_notification_schedule_update_channel_name">Ժամանակացույց</string>
+    <string name="notifications_notification_note_reminder_channel_name">Նշումներ</string>
     <string name="main_share_schedule_descr">Կիսվել ժամանակացույցով</string>
     <string name="main_download_descr">Ներբեռնեք ժամանակացույցի ֆայլերը</string>
     <string name="main_settings_descr">Բացել կարգավորումները</string>

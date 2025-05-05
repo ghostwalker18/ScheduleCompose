@@ -43,6 +43,10 @@
     <string name="notifications_notification_schedule_update_channel_descr">
         Cədvəl dəyişiklikləri haqqında bildirişlər alın
     </string>
+    <string name="notifications_notification_note_reminder_channel_name">Qeydlər</string>
+    <string name="notifications_notification_note_reminder_channel_descr">
+        Qeydləri xatırladan bildirişlər alın
+    </string>
     <string name="notifications_new_schedule_available">tarixinə qədər yeni cədvəl dərc olunub</string>
     <string name="notifications_schedule_unavailable">Vay! Cədvəli yeniləmək alınmadı...</string>
 </resources>

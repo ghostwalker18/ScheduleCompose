@@ -24,4 +24,9 @@
     <string name="preview_image_clear_descr">Şəkili təmizləyin</string>
     <string name="photoview_back_descr">Fotonu yığcamlaşdırın</string>
     <string name="photoview_share_descr">Foto paylaşın</string>
+    <string name="add_note_reminder_descr">Xatırlatma əlavə edin</string>
+    <string name="remove_note_reminder">Xatırlatmanı silin</string>
+    <string name="note_reminder_time">Vaxt seçin</string>
+    <string name="days_before_delay">Neçə gün xatırlatmaq?</string>
+    <string name="days_before_confirm">Seçin</string>
 </resources>

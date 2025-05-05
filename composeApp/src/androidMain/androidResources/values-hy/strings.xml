@@ -24,4 +24,9 @@
     <string name="preview_image_clear_descr">Մաքրել լուսանկարը</string>
     <string name="photoview_back_descr">Ծալել լուսանկարը</string>
     <string name="photoview_share_descr">Կիսվել լուսանկարով</string>
+    <string name="add_note_reminder_descr">Ավելացնել հիշեցում</string>
+    <string name="remove_note_reminder">Հեռացնել հիշեցումը</string>
+    <string name="note_reminder_time">Ընտրեք ժամանակը</string>
+    <string name="days_before_delay">Քանի օր է հիշեցնում:</string>
+    <string name="days_before_confirm">Ընտրել</string>
 </resources>
