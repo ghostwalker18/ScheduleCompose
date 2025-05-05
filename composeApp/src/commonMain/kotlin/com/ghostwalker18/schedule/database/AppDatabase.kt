@@ -35,7 +35,7 @@ import java.io.File
  * @author  Ипатов Никита
  * @since 1.0
  */
-@Database(entities = [Lesson::class, Note:: class], version = 5, exportSchema = true)
+@Database(entities = [Lesson::class, Note:: class], version = 6, exportSchema = true)
 @TypeConverters(DateConverters::class, PhotoURIArrayConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 

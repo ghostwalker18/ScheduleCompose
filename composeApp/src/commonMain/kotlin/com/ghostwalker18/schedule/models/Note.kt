@@ -41,11 +41,11 @@ data class Note(
     /**
      * Дата заметки
      */
-    @ColumnInfo(name = "noteDate") var date : Calendar,
+    @ColumnInfo(name = "noteDate", index = true) var date : Calendar,
     /**
      * Группа заметки
      */
-    @ColumnInfo(name = "noteGroup") var group : String,
+    @ColumnInfo(name = "noteGroup", index = true) var group : String,
     /**
      * Тема заметки
      */
@@ -57,7 +57,11 @@ data class Note(
     /**
      * Идентификаторы фотографий, приложенных к заметке
      */
-    @ColumnInfo(name = "notePhotoIDs") var photoIDs: List<String>? = emptyList()
+    @ColumnInfo(name = "notePhotoIDs") var photoIDs: List<String>? = emptyList(),
+    /**
+     * Используется ли напоминание для заметки
+     */
+    @ColumnInfo(name="hasNotification", defaultValue = "0") var hasNotification: Boolean = false
 ){
     override fun toString(): String {
         return runBlocking {

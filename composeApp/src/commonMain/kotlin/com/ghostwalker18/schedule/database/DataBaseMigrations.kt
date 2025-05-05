@@ -68,6 +68,31 @@ object DataBaseMigrations {
         }
     }
 
+    private val Migration_5_6 = object : Migration(5, 6) {
+        override fun migrate(connection: SQLiteConnection) {
+            connection.execSQL(
+                "CREATE INDEX IF NOT EXISTS 'index_tblSchedule_groupName' " +
+                    "ON 'tblSchedule' ('groupName')"
+            )
+            connection.execSQL(
+                "CREATE INDEX IF NOT EXISTS 'index_tblSchedule_lessonDate' " +
+                    "ON 'tblSchedule' ('lessonDate')"
+            )
+            connection.execSQL(
+                "CREATE INDEX IF NOT EXISTS 'index_tblNote_noteGroup' " +
+                        "ON 'tblNote' ('noteGroup')"
+            )
+            connection.execSQL(
+                "CREATE INDEX IF NOT EXISTS 'index_tblNote_noteDate' " +
+                        "ON 'tblNote' ('noteDate')"
+            )
+            connection.execSQL(
+                "ALTER TABLE tblNote " +
+                        "ADD hasNotification INTEGER NOT NULL DEFAULT 0"
+            )
+        }
+    }
+
     val migrations: Collection<Migration>
         /**
          * Этот метод возвращает список всех миграций БД приложения
@@ -77,6 +102,7 @@ object DataBaseMigrations {
             MIGRATION_1_2,
             MIGRATION_2_3,
             MIGRATION_3_4,
-            MIGRATION_4_5
+            MIGRATION_4_5,
+            Migration_5_6
         )
 }

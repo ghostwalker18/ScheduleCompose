@@ -35,13 +35,15 @@ import java.util.*
  * @author  Ипатов Никита
  * @since 1.0
  */
-@Entity(tableName = "tblSchedule",
-    primaryKeys = ["lessonDate", "lessonNumber", "groupName", "subjectName"])
+@Entity(
+    tableName = "tblSchedule",
+    primaryKeys = ["lessonDate", "lessonNumber", "groupName", "subjectName"],
+)
 data class Lesson(
     /**
      * Дата занятия
      */
-    @ColumnInfo(name = "lessonDate") val date : Calendar,
+    @ColumnInfo(name = "lessonDate", index = true) val date : Calendar,
     /**
      * Номер пары
      */
@@ -57,7 +59,7 @@ data class Lesson(
     /**
      * Название группы
      */
-    @ColumnInfo(name = "groupName") var group : String,
+    @ColumnInfo(name = "groupName", index = true) var group : String,
     /**
      * Название предмета
      */
