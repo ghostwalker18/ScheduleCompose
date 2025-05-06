@@ -29,4 +29,5 @@
     <string name="note_reminder_time">Уақытты таңдаңыз</string>
     <string name="days_before_delay">Қанша күн еске түсіреді?</string>
     <string name="days_before_confirm">Таңдау</string>
+    <string name="reminder_error">Таңдалған күн мен уақытқа еске салғышты орнату мүмкін болмады</string>
 </resources>

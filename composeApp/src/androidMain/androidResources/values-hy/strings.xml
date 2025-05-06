@@ -29,4 +29,5 @@
     <string name="note_reminder_time">Ընտրեք ժամանակը</string>
     <string name="days_before_delay">Քանի օր է հիշեցնում:</string>
     <string name="days_before_confirm">Ընտրել</string>
+    <string name="reminder_error">Ընտրված ամսաթվի և ժամի հիշեցումը հնարավոր չէ սահմանել</string>
 </resources>

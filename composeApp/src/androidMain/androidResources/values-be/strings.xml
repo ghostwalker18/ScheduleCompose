@@ -29,4 +29,5 @@
     <string name="note_reminder_time">Выбраць час</string>
     <string name="days_before_delay">За колькі дзён нагадаць?</string>
     <string name="days_before_confirm">Выбраць</string>
+    <string name="reminder_error">Не атрымалася ўсталяваць напамін на выбраныя дату і час</string>
 </resources>

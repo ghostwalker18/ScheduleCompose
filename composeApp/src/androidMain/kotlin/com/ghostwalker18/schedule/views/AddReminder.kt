@@ -45,9 +45,11 @@ import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.add_note_reminder_descr
 import scheduledesktop2.composeapp.generated.resources.cancelButtonText
+import scheduledesktop2.composeapp.generated.resources.something_weird
 import scheduledesktop2.composeapp.generated.resources.days_before_confirm
 import scheduledesktop2.composeapp.generated.resources.days_before_delay
 import scheduledesktop2.composeapp.generated.resources.note_reminder_time
+import scheduledesktop2.composeapp.generated.resources.reminder_error
 import scheduledesktop2.composeapp.generated.resources.remove_note_reminder
 import widgets.TimePickerModal
 import java.util.Calendar
@@ -59,7 +61,7 @@ import java.util.concurrent.TimeUnit
  * @author Ипатов Никита
  */
 internal enum class STAGE {
-    READY, CHOOSE_TIME, CHOOSE_DAYS_DELAY, ADD_REMINDER
+    READY, ERROR, CHOOSE_TIME, CHOOSE_DAYS_DELAY, ADD_REMINDER
 }
 
 /**
@@ -80,7 +82,7 @@ actual fun AddReminder(){
 
     scope.launch {
         model.date.collect {
-            requiredTime.set(Calendar.DAY_OF_YEAR, it.get(Calendar.DAY_OF_YEAR))
+            requiredTime.set(Calendar.DAY_OF_YEAR, (it.clone() as Calendar).get(Calendar.DAY_OF_YEAR))
             val now = Calendar.getInstance()
             maxDaysBeforeNotify = calculateTimeDistance(now, requiredTime, TimeUnit.DAYS).toInt()
         }
@@ -120,7 +122,7 @@ actual fun AddReminder(){
             dismissButtonText = Res.string.cancelButtonText,
             onTimeSelected = {
                 hour, minute ->
-                requiredTime.set(Calendar.HOUR, hour)
+                requiredTime.set(Calendar.HOUR_OF_DAY, hour)
                 requiredTime.set(Calendar.MINUTE, minute)
                 stage = STAGE.CHOOSE_DAYS_DELAY
             },
@@ -184,8 +186,29 @@ actual fun AddReminder(){
                     .build()
                 WorkManager.getInstance(context).enqueue(request)
                 model.hasNotification.value = true
+                stage = STAGE.READY
+            } else {
+                stage = STAGE.ERROR
             }
-            stage = STAGE.READY
+        }
+
+        STAGE.ERROR -> {
+            AlertDialog(
+                title = {
+                    Text(stringResource(Res.string.something_weird))
+                },
+                text = {
+                    Text(stringResource(Res.string.reminder_error))
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = { stage = STAGE.READY }
+                    ){
+                        Text(stringResource(Res.string.cancelButtonText))
+                    }
+                },
+                onDismissRequest = { stage = STAGE.READY }
+            )
         }
 
         STAGE.READY -> {/*Not required*/}

@@ -49,23 +49,32 @@ object Utils {
             return null
         try {
             val currentTime = Calendar.getInstance()
-            val startTime = lessonTimes.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0]
-            val endTime = lessonTimes.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+            val startTime = lessonTimes.split("-".toRegex()).dropLastWhile { it.isEmpty() }
+                .toTypedArray()[0]
+            val endTime = lessonTimes.split("-".toRegex()).dropLastWhile { it.isEmpty() }
+                .toTypedArray()[1]
 
             val start = lessonDate.clone() as Calendar
             start[Calendar.HOUR] =
-                startTime.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0].toInt()
+                startTime.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }
+                    .toTypedArray()[0].toInt()
             start[Calendar.MINUTE] =
-                startTime.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1].toInt()
+                startTime.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }
+                    .toTypedArray()[1].toInt()
 
             val end = lessonDate.clone() as Calendar
-            end[Calendar.HOUR] = endTime.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0].toInt()
+            end[Calendar.HOUR] =
+                endTime.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }
+                    .toTypedArray()[0].toInt()
             end[Calendar.MINUTE] =
-                endTime.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1].toInt()
+                endTime.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }
+                    .toTypedArray()[1].toInt()
 
-            return if (currentTime.before(start)) LessonAvailability.NOT_STARTED
-            else if (currentTime.before(end)) LessonAvailability.STARTED
-            else LessonAvailability.ENDED
+            return when {
+                currentTime.before(start) -> LessonAvailability.NOT_STARTED
+                currentTime.before(end) -> LessonAvailability.STARTED
+                else -> LessonAvailability.ENDED
+            }
         } catch (_: Exception) { return null }
     }
 
@@ -77,7 +86,9 @@ object Utils {
     @Synchronized
     fun isDateToday(date: Calendar): Boolean {
         val rightNow = Calendar.getInstance()
-        return rightNow[Calendar.YEAR] == date[Calendar.YEAR] && rightNow[Calendar.MONTH] == date[Calendar.MONTH] && rightNow[Calendar.DAY_OF_MONTH] == date[Calendar.DAY_OF_MONTH]
+        return rightNow[Calendar.YEAR] == date[Calendar.YEAR]
+                && rightNow[Calendar.MONTH] == date[Calendar.MONTH]
+                && rightNow[Calendar.DAY_OF_MONTH] == date[Calendar.DAY_OF_MONTH]
     }
 
     /**
@@ -130,28 +141,30 @@ object Utils {
         try {
             ZipOutputStream(
                 BufferedOutputStream(
-                    Files.newOutputStream(
-                        archive.toPath()
-                    )
+                    Files.newOutputStream(archive.toPath())
                 )
-            ).use { out ->
+            ).use {
+                out ->
                 val data = ByteArray(bufferSize)
                 for (sourceFile in sourceFiles) {
-                    FileInputStream(sourceFile).use { fi ->
-                        BufferedInputStream(fi, bufferSize).use { origin ->
+                    FileInputStream(sourceFile).use {
+                        fi ->
+                        BufferedInputStream(fi, bufferSize).use {
+                            origin ->
                             val entry = ZipEntry(sourceFile.name)
                             out.putNextEntry(entry)
-
                             var count: Int
-                            while ((origin.read(data, 0, bufferSize).also { count = it }) != -1) {
+                            while (
+                                (origin.read(data, 0, bufferSize)
+                                .also { count = it }) != -1
+                            ) {
                                 out.write(data, 0, count)
                             }
                         }
                     }
                 }
             }
-        } catch (_: Exception) { /**/
-        }
+        } catch (_: Exception) { /*Not required*/ }
     }
 
     /**
@@ -191,7 +204,11 @@ object Utils {
         endDate: Calendar,
         timeUnit: TimeUnit
     ): Long {
-        val duration = java.time.Duration.between(startDate.toInstant(), endDate.toInstant())
+        val startDateClone = startDate.clone() as Calendar
+        val endDateClone = endDate.clone() as Calendar
+        val duration = java.time.Duration.between(
+            startDateClone.toInstant(), endDateClone.toInstant()
+        )
         return when(timeUnit){
             TimeUnit.NANOSECONDS -> duration.toNanos()
             TimeUnit.MICROSECONDS -> duration.toMillis() * 1000

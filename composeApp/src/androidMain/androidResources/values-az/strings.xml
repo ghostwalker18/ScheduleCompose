@@ -29,4 +29,5 @@
     <string name="note_reminder_time">Vaxt seçin</string>
     <string name="days_before_delay">Neçə gün xatırlatmaq?</string>
     <string name="days_before_confirm">Seçin</string>
+    <string name="reminder_error">Seçilmiş tarix və vaxt üçün bir öyüd-nəsihət təyin edə bilmədi</string>
 </resources>

@@ -29,4 +29,5 @@
     <string name="note_reminder_time">აირჩიეთ დრო</string>
     <string name="days_before_delay">რამდენი დღე უნდა შეგახსენო?</string>
     <string name="days_before_confirm">აირჩიეთ</string>
+    <string name="reminder_error">ვერ მითითებული შეხსენება შერჩეული თარიღი და დრო</string>
 </resources>
