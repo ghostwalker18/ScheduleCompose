@@ -51,11 +51,11 @@ class NoteReminderNotificationWorker(
                         val openNotesIntent =
                             Intent(applicationContext, MainActivity::class.java)
                         openNotesIntent.putExtra(
-                            "noteDate",
+                            "note_date",
                             DateConverters().toString(it.date)
                         )
                         openNotesIntent.putExtra(
-                            "noteGroup",
+                            "note_group",
                             it.group
                         )
                         NotificationManagerWrapper.getInstance(applicationContext)

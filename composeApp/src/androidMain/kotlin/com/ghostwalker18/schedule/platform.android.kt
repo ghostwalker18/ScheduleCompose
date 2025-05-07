@@ -72,6 +72,12 @@ actual fun addNoteReminder(noteID: Int, delay: Long) {
     WorkManager.getInstance(context).enqueue(request)
 }
 
+actual fun removeNoteReminder(noteID: Int) {
+    val context = ScheduleApp.instance as Context
+    WorkManager.getInstance(context)
+        .cancelAllWorkByTag("schedulePCCE_note_$noteID")
+}
+
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual interface Navigator{
 

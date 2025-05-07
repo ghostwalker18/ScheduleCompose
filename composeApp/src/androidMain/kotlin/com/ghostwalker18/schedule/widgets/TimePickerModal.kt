@@ -16,9 +16,11 @@ package com.ghostwalker18.schedule.widgets
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
+import androidx.compose.material3.TimePickerDefaults
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import org.jetbrains.compose.resources.StringResource
@@ -54,7 +56,10 @@ fun TimePickerModal(
         onDismissRequest = onDismiss,
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text(stringResource(dismissButtonText))
+                Text(
+                    text = stringResource(dismissButtonText),
+                    color = MaterialTheme.colors.primary
+                )
             }
         },
         confirmButton = {
@@ -63,12 +68,21 @@ fun TimePickerModal(
                     onTimeSelected(timePickerState.hour, timePickerState.minute)
                 }
             ){
-                Text(stringResource(confirmButtonText))
+                Text(
+                    text = stringResource(confirmButtonText),
+                    color = MaterialTheme.colors.primary
+                )
             }
         },
         text = {
             TimePicker(
-                state = timePickerState
+                state = timePickerState,
+                colors = TimePickerDefaults.colors(
+                    selectorColor = MaterialTheme.colors.primary,
+                    timeSelectorSelectedContainerColor = MaterialTheme.colors.primary
+                        .copy(alpha = 0.5f),
+                    timeSelectorSelectedContentColor = MaterialTheme.colors.primaryVariant
+                )
             )
         }
     )

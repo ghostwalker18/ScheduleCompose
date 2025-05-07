@@ -14,13 +14,16 @@
 
 package com.ghostwalker18.schedule.widgets
 
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import java.util.*
@@ -67,6 +70,14 @@ fun DatePickerModal(
             }
         }
     ){
-        DatePicker(datePickerState)
+        DatePicker(
+            state = datePickerState,
+            colors = DatePickerDefaults.colors(
+                todayDateBorderColor = MaterialTheme.colors.primaryVariant,
+                selectedDayContainerColor = MaterialTheme.colors.primary,
+                selectedDayContentColor = Color.White,
+                selectedYearContainerColor = MaterialTheme.colors.primary
+            )
+        )
     }
 }

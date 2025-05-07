@@ -14,6 +14,10 @@
 
 package com.ghostwalker18.schedule.views
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.AlertDialog
@@ -34,11 +38,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.work.WorkManager
+import com.ghostwalker18.schedule.removeNoteReminder
 import com.ghostwalker18.schedule.ui.theme.AlertDialogHeaderFontSize
 import com.ghostwalker18.schedule.utils.Utils.calculateTimeDistance
 import com.ghostwalker18.schedule.viewmodels.EditNoteModel
@@ -80,7 +83,6 @@ actual fun AddReminder(){
     var delay by remember { mutableStateOf<Long>(0) }
     var daysBeforeNotify by remember { mutableStateOf(0) }
     var maxDaysBeforeNotify by remember { mutableStateOf(0) }
-    val context = LocalView.current.context
     val scope = rememberCoroutineScope()
     val hasNotification by model.hasNotification.collectAsState()
 
@@ -98,8 +100,7 @@ actual fun AddReminder(){
         IconButton(
             onClick = {
                 if(hasNotification){
-                    WorkManager.getInstance(context)
-                        .cancelAllWorkByTag("schedulePCCE_note_" + model.id)
+                    removeNoteReminder(model.id)
                     model.hasNotification.value = false
                     stage = STAGE.READY
                 } else {
@@ -107,16 +108,25 @@ actual fun AddReminder(){
                 }
             }
         ){
-            if(hasNotification)
-                Icon(
-                    imageVector = Icons.Filled.AlarmOn,
-                    contentDescription = stringResource(Res.string.remove_note_reminder)
-                )
-            else
-                Icon(
-                    imageVector = Icons.Filled.AlarmOff,
-                    contentDescription = stringResource(Res.string.add_note_reminder_descr)
-                )
+            AnimatedContent(
+                targetState = hasNotification,
+                transitionSpec = {
+                    slideInHorizontally{ it } togetherWith fadeOut()
+                }
+            ){
+                targetState ->
+                if(targetState){
+                    Icon(
+                        imageVector = Icons.Filled.AlarmOn,
+                        contentDescription = stringResource(Res.string.remove_note_reminder)
+                    )
+                } else {
+                    Icon(
+                        imageVector = Icons.Filled.AlarmOff,
+                        contentDescription = stringResource(Res.string.add_note_reminder_descr)
+                    )
+                }
+            }
         }
     }
 

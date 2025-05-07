@@ -105,6 +105,7 @@ class EditNoteModel : ViewModel() {
                         date.value = it.date
                         text.value = it.text
                         theme.value = it.theme
+                        hasNotification.value = it.hasNotification
                     }
                 }
             }

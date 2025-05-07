@@ -52,11 +52,19 @@ expect fun getPlatform(): Platform
 expect fun hideKeyboard()
 
 /**
- * Эта функция выдает приложению разрешения на доступ к фото заметок, если того требует платформа
+ * Эта функция выдает приложению разрешения на доступ к фото заметок, если того требует платформа.
  */
 expect fun grantURIPermission(photoIDs: List<String>)
 
+/**
+ * Эта функция добавляет к заметке напоминание, если того требует платформа.
+ */
 expect fun addNoteReminder(noteID: Int, delay: Long)
+
+/**
+ * Эта функция убирает напоминание о заметке, если того требует платформа.
+ */
+expect fun removeNoteReminder(noteID: Int)
 
 /**
  * Этот интерфейс описывает навигацию по приложению.
@@ -70,7 +78,7 @@ expect interface Navigator {
     fun goBack()
 
     /**
-     * Этот метод позволяет перейти к экрану просмотра расписания на день
+     * Этот метод позволяет перейти к экрану просмотра расписания на день.
      */
     fun goScheduleScreen(date: Calendar, group: String?, teacher: String?)
 
@@ -119,7 +127,7 @@ expect interface ShareController {
     fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource>
 
     /**
-     * Этот метод позволяет поделиться ссылкой на приложение
+     * Этот метод позволяет поделиться ссылкой на приложение.
      */
     fun shareLink(): Pair<Boolean, StringResource>
 

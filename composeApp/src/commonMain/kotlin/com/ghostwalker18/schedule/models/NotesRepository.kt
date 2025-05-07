@@ -16,6 +16,7 @@ package com.ghostwalker18.schedule.models
 
 import com.ghostwalker18.schedule.database.AppDatabase
 import com.ghostwalker18.schedule.database.NoteDao
+import com.ghostwalker18.schedule.removeNoteReminder
 import kotlinx.coroutines.flow.Flow
 import java.util.*
 
@@ -98,6 +99,9 @@ class NotesRepository(private val db: AppDatabase) {
      * @param notes заметки для удаления
      */
     suspend fun deleteNotes(notes: Collection<Note>) {
-        for (note in notes) db.noteDao().delete(note)
+        for (note in notes) {
+            db.noteDao().delete(note)
+            removeNoteReminder(note.id)
+        }
     }
 }

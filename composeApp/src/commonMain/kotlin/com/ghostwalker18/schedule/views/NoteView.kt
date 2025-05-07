@@ -85,6 +85,7 @@ fun NoteView(
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(vertical = 10.dp)
             )
             Text(
                 text = note.theme ?: "",
