@@ -56,6 +56,8 @@ expect fun hideKeyboard()
  */
 expect fun grantURIPermission(photoIDs: List<String>)
 
+expect fun addNoteReminder(noteID: Int, delay: Long)
+
 /**
  * Этот интерфейс описывает навигацию по приложению.
  */

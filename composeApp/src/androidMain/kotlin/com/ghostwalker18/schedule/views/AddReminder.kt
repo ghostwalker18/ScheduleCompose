@@ -14,6 +14,7 @@
 
 package com.ghostwalker18.schedule.views
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Icon
@@ -22,6 +23,7 @@ import androidx.compose.material.TextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AlarmOff
 import androidx.compose.material.icons.filled.AlarmOn
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -31,13 +33,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.work.Data
-import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
-import com.ghostwalker18.schedule.notifications.NoteReminderNotificationWorker
+import com.ghostwalker18.schedule.ui.theme.AlertDialogHeaderFontSize
 import com.ghostwalker18.schedule.utils.Utils.calculateTimeDistance
 import com.ghostwalker18.schedule.viewmodels.EditNoteModel
 import kotlinx.coroutines.launch
@@ -51,7 +53,8 @@ import scheduledesktop2.composeapp.generated.resources.days_before_delay
 import scheduledesktop2.composeapp.generated.resources.note_reminder_time
 import scheduledesktop2.composeapp.generated.resources.reminder_error
 import scheduledesktop2.composeapp.generated.resources.remove_note_reminder
-import widgets.TimePickerModal
+import com.ghostwalker18.schedule.widgets.TimePickerModal
+import com.ghostwalker18.schedule.widgets.bottomBorder
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
 
@@ -74,6 +77,7 @@ actual fun AddReminder(){
     val model = viewModel{ EditNoteModel() }
     var stage by remember { mutableStateOf(STAGE.READY) }
     val requiredTime = remember { return@remember Calendar.getInstance() }
+    var delay by remember { mutableStateOf<Long>(0) }
     var daysBeforeNotify by remember { mutableStateOf(0) }
     var maxDaysBeforeNotify by remember { mutableStateOf(0) }
     val context = LocalView.current.context
@@ -132,7 +136,12 @@ actual fun AddReminder(){
         STAGE.CHOOSE_DAYS_DELAY -> {
             AlertDialog(
                 title = {
-                    Text(stringResource(Res.string.days_before_delay))
+                    Text(
+                        text = stringResource(Res.string.days_before_delay),
+                        modifier = Modifier.padding(vertical = 5.dp),
+                        fontSize = AlertDialogHeaderFontSize,
+                        color = MaterialTheme.colors.onBackground
+                    )
                 },
                 text = {
                     TextField(
@@ -155,37 +164,34 @@ actual fun AddReminder(){
                     TextButton(
                         onClick = { stage = STAGE.ADD_REMINDER }
                     ){
-                        Text(stringResource(Res.string.days_before_confirm))
+                        Text(
+                            text = stringResource(Res.string.days_before_confirm),
+                            color = MaterialTheme.colors.primary
+                        )
                     }
                 },
                 dismissButton = {
                     TextButton(
                         onClick = { stage = STAGE.READY }
                     ){
-                        Text(stringResource(Res.string.cancelButtonText))
+                        Text(
+                            text = stringResource(Res.string.cancelButtonText),
+                            color = MaterialTheme.colors.primary
+                        )
                     }
                 },
                 onDismissRequest = { stage = STAGE.READY },
+                backgroundColor = MaterialTheme.colors.background
             )
         }
 
         STAGE.ADD_REMINDER -> {
             requiredTime.add(Calendar.DAY_OF_YEAR, -daysBeforeNotify)
-            val inputData = Data.Builder()
-                .putInt("noteID", model.id)
-                .build()
             val now = Calendar.getInstance()
-            val delay = calculateTimeDistance(now, requiredTime, TimeUnit.MINUTES)
+            delay = calculateTimeDistance(now, requiredTime, TimeUnit.MINUTES)
             if(delay > 0){
-                val request = OneTimeWorkRequest.Builder(
-                    workerClass = NoteReminderNotificationWorker::class.java
-                )
-                    .addTag("schedulePCCE_note_" + model.id)
-                    .setInputData(inputData)
-                    .setInitialDelay(delay, TimeUnit.MINUTES)
-                    .build()
-                WorkManager.getInstance(context).enqueue(request)
                 model.hasNotification.value = true
+                model.delay = delay
                 stage = STAGE.READY
             } else {
                 stage = STAGE.ERROR
@@ -195,7 +201,13 @@ actual fun AddReminder(){
         STAGE.ERROR -> {
             AlertDialog(
                 title = {
-                    Text(stringResource(Res.string.something_weird))
+                    Text(
+                        text = stringResource(Res.string.something_weird),
+                        modifier = Modifier
+                            .padding(vertical = 5.dp)
+                            .bottomBorder(1.dp, MaterialTheme.colors.onError),
+                        fontSize = AlertDialogHeaderFontSize
+                    )
                 },
                 text = {
                     Text(stringResource(Res.string.reminder_error))
@@ -204,10 +216,14 @@ actual fun AddReminder(){
                     TextButton(
                         onClick = { stage = STAGE.READY }
                     ){
-                        Text(stringResource(Res.string.cancelButtonText))
+                        Text(
+                            text = stringResource(Res.string.cancelButtonText),
+                            color = MaterialTheme.colors.primary
+                        )
                     }
                 },
-                onDismissRequest = { stage = STAGE.READY }
+                onDismissRequest = { stage = STAGE.READY },
+                backgroundColor = MaterialTheme.colors.background
             )
         }
 

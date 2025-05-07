@@ -14,18 +14,24 @@
 
 package com.ghostwalker18.schedule
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.core.net.toUri
+import androidx.work.Data
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
+import com.ghostwalker18.schedule.notifications.NoteReminderNotificationWorker
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.qr_code
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 actual fun getScreenOrientation(): Orientation {
     return when (ScheduleApp.instance.resources.configuration.orientation){
@@ -49,6 +55,21 @@ actual fun grantURIPermission(photoIDs: List<String>) {
                 Intent.FLAG_GRANT_READ_URI_PERMISSION
             )
     }
+}
+
+actual fun addNoteReminder(noteID: Int, delay: Long) {
+    val context = ScheduleApp.instance as Context
+    val inputData = Data.Builder()
+        .putInt("noteID", noteID)
+        .build()
+    val request = OneTimeWorkRequest.Builder(
+        workerClass = NoteReminderNotificationWorker::class.java
+    )
+        .addTag("schedulePCCE_note_$noteID")
+        .setInputData(inputData)
+        .setInitialDelay(delay, TimeUnit.MINUTES)
+        .build()
+    WorkManager.getInstance(context).enqueue(request)
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")

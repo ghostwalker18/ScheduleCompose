@@ -27,4 +27,6 @@ actual val Typography = Typography(
     )
 )
 
+val AlertDialogHeaderFontSize = 16.sp
+
 actual val ScheduleTableFontSize = 15.sp

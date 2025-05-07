@@ -91,7 +91,7 @@ interface NoteDao {
      * @return
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(note: Note)
+    suspend fun insert(note: Note): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMany(notes: List<Note>)

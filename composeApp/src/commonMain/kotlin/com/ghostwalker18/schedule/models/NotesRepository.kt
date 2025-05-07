@@ -31,9 +31,10 @@ class NotesRepository(private val db: AppDatabase) {
      * Этот метод позволяет сохранить заметку.
      *
      * @param note заметка
+     * @return ID заметки
      */
-    suspend fun saveNote(note: Note) {
-        db.noteDao().insert(note)
+    suspend fun saveNote(note: Note): Long {
+        return db.noteDao().insert(note)
     }
 
     /**
@@ -41,8 +42,9 @@ class NotesRepository(private val db: AppDatabase) {
      *
      * @param note заметка
      */
-    suspend fun updateNote(note: Note) {
+    suspend fun updateNote(note: Note): Int {
         db.noteDao().update(note)
+        return note.id
     }
 
     /**
@@ -82,6 +84,9 @@ class NotesRepository(private val db: AppDatabase) {
 
     /**
      * Этот метод позволяет получить число заметок для выбранных группы и дня.
+     * @param group группа для заметки
+     * @param date дата заметки
+     * @return кол-во заметок
      */
     fun getNotesCount(group: String, date: Calendar): Flow<Int> {
         return db.noteDao().getNotesCountForDay(group, date)

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package widgets
+package com.ghostwalker18.schedule.widgets
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -67,7 +67,9 @@ fun TimePickerModal(
             }
         },
         text = {
-            TimePicker(timePickerState)
+            TimePicker(
+                state = timePickerState
+            )
         }
     )
 }

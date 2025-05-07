@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.grantURIPermission
+import com.ghostwalker18.schedule.addNoteReminder
 import com.ghostwalker18.schedule.models.Note
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -40,6 +41,11 @@ class EditNoteModel : ViewModel() {
     private val _photoIDs = MutableStateFlow(listOf<String>())
     private val _group = MutableStateFlow(scheduleRepository.savedGroup)
     private var isEdited = false
+
+    /**
+     * Задержка по времени (в минутах), до напоминания о заметке
+     */
+    var delay: Long  = 0
 
     /**
      * Список возможных тем для заметки
@@ -163,10 +169,13 @@ class EditNoteModel : ViewModel() {
                 )
             }
             grantURIPermission(photoIDs.value)
-            if (isEdited)
-                notesRepository.updateNote(noteToSave)
-            else
-                notesRepository.saveNote(noteToSave)
+            if(delay > 0){
+                var id = if (isEdited)
+                    notesRepository.updateNote(noteToSave)
+                else
+                    notesRepository.saveNote(noteToSave).toInt()
+                addNoteReminder(id, delay)
+            }
         }
     }
 }

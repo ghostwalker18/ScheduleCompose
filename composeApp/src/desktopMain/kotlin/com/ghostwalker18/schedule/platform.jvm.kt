@@ -32,6 +32,8 @@ actual fun hideKeyboard(){/*Not required*/}
 
 actual fun grantURIPermission(photoIDs: List<String>) { /*Not required*/ }
 
+actual fun addNoteReminder(noteID: Int, delay: Long) { /*Not required*/ }
+
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual interface Navigator{
 

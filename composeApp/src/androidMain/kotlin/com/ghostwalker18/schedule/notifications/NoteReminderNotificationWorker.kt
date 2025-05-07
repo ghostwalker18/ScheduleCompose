@@ -26,6 +26,7 @@ import com.ghostwalker18.schedule.converters.DateConverters
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 /**
  * Этот класс представляет собой работу
@@ -41,33 +42,43 @@ class NoteReminderNotificationWorker(
     override fun doWork(): Result {
         val noteID = inputData.getInt("noteID", 0)
         val repository = ScheduleApp.instance.notesRepository
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(
+            Dispatchers.IO
+        ).launch {
             repository.getNote(noteID).collect {
                 it?.let{
-                    val openNotesIntent =
-                        Intent(applicationContext, MainActivity::class.java)
-                    openNotesIntent.putExtra(
-                        "noteDate",
-                        DateConverters().toString(it.date)
-                    )
-                    openNotesIntent.putExtra(
-                        "noteGroup",
-                        it.group
-                    )
-                    NotificationManagerWrapper.getInstance(applicationContext)
-                        .showNotification(
-                            applicationContext, AppNotification(
-                                1,
-                                applicationContext.getString(R.string.notes),
-                                it.toString(),
-                                applicationContext.getString(R.string.notifications_notification_note_reminder_channel_id),
-                                applicationContext.getString(R.string.notifications_notification_note_reminder_channel_name)
-                            ),
-                            PendingIntent.getActivity(
-                                applicationContext, 0,
-                                openNotesIntent, PendingIntent.FLAG_IMMUTABLE
-                            )
+                    if(it.hasNotification){
+                        val openNotesIntent =
+                            Intent(applicationContext, MainActivity::class.java)
+                        openNotesIntent.putExtra(
+                            "noteDate",
+                            DateConverters().toString(it.date)
                         )
+                        openNotesIntent.putExtra(
+                            "noteGroup",
+                            it.group
+                        )
+                        NotificationManagerWrapper.getInstance(applicationContext)
+                            .showNotification(
+                                applicationContext, AppNotification(
+                                    Random.Default.nextInt(),
+                                    applicationContext.getString(R.string.notes),
+                                    it.toString(),
+                                    applicationContext.getString(
+                                        R.string.notifications_notification_note_reminder_channel_id
+                                    ),
+                                    applicationContext.getString(
+                                        R.string.notifications_notification_note_reminder_channel_name
+                                    )
+                                ),
+                                PendingIntent.getActivity(
+                                    applicationContext, 0,
+                                    openNotesIntent, PendingIntent.FLAG_IMMUTABLE
+                                )
+                            )
+                        it.hasNotification = false
+                        repository.updateNote(it)
+                    }
                 }
             }
         }
