@@ -17,10 +17,7 @@ package com.ghostwalker18.schedule
 import androidx.compose.runtime.Composable
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
-import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
-import scheduledesktop2.composeapp.generated.resources.Res
-import scheduledesktop2.composeapp.generated.resources.qr_code
 import java.util.*
 
 actual fun getScreenOrientation(): Orientation = Orientation.LandScape
@@ -63,9 +60,7 @@ actual interface ShareController {
 
     actual fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource>
 
-    actual fun shareLink(): Pair<Boolean, StringResource>
+    actual fun shareLink(platform: Platform): Pair<Boolean, StringResource>
 
     actual fun connectToDeveloper(): Pair<Boolean, StringResource>
 }
-
-actual fun getAppQR(): DrawableResource = Res.drawable.qr_code

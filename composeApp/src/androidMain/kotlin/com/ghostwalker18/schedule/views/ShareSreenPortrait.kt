@@ -14,19 +14,30 @@
 
 package com.ghostwalker18.schedule.views
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Computer
+import androidx.compose.material.icons.filled.Smartphone
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ghostwalker18.schedule.ScheduleApp
-import com.ghostwalker18.schedule.getAppQR
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.painterResource
@@ -44,6 +55,7 @@ actual fun ShareAppScreenPortrait(){
     val worker = ScheduleApp.instance.shareController
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
+    var showDesktop by remember { mutableStateOf(false) }
 
     Scaffold(
         scaffoldState =  scaffoldState,
@@ -61,7 +73,8 @@ actual fun ShareAppScreenPortrait(){
             )
         },
         snackbarHost = {
-            SnackbarHost(it) { data ->
+            SnackbarHost(it) {
+                data ->
                 Snackbar(
                     backgroundColor = MaterialTheme.colors.background,
                     contentColor = MaterialTheme.colors.primaryVariant,
@@ -76,6 +89,26 @@ actual fun ShareAppScreenPortrait(){
                 .padding(10.dp)
                 .fillMaxSize()
         ){
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                Spacer(modifier = Modifier.weight(1f))
+                Icon(
+                    imageVector = Icons.Filled.Smartphone,
+                    contentDescription = ""
+                )
+                Switch(
+                    checked = showDesktop,
+                    onCheckedChange = {
+                        showDesktop = it
+                    }
+                )
+                Icon(
+                    imageVector = Icons.Filled.Computer,
+                    contentDescription = ""
+                )
+            }
             Column(
                 modifier = Modifier.weight(0.5f)
             ) {
@@ -86,30 +119,42 @@ actual fun ShareAppScreenPortrait(){
                         .padding(5.dp)
                         .fillMaxWidth()
                 )
-
-                val painter = painterResource(getAppQR())
-                val aspectRatio = painter.intrinsicSize.width / painter.intrinsicSize.height
-
-                Image(
-                    painter = painter,
-                    contentDescription = stringResource(Res.string.share_app_qr_descr),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(aspectRatio)
-                )
+                AnimatedContent(
+                    targetState = showDesktop,
+                    transitionSpec = {
+                        fadeIn() + scaleIn() togetherWith fadeOut() + scaleOut()
+                    }
+                ){
+                    targetState ->
+                    val painter = painterResource(
+                        if(targetState)
+                            Res.drawable.qr_code_github
+                        else
+                            Res.drawable.qr_code_rustore
+                    )
+                    val aspectRatio = painter.intrinsicSize.width / painter.intrinsicSize.height
+                    Image(
+                        painter = painter,
+                        contentDescription = stringResource(Res.string.share_app_qr_descr),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .aspectRatio(aspectRatio)
+                    )
+                }
             }
             Text(
                 text = stringResource(Res.string.or),
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(10.dp)
             )
-            Button({
-                val(showMessageRequired, text) = worker.shareLink()
-                if(showMessageRequired)
-                    scope.launch {
-                        scaffoldState.snackbarHostState.showSnackbar(getString(text))
-                    }
-            },
+            Button(
+                onClick = {
+                    val(showMessageRequired, text) = worker.shareLink()
+                    if(showMessageRequired)
+                        scope.launch {
+                            scaffoldState.snackbarHostState.showSnackbar(getString(text))
+                        }
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp)

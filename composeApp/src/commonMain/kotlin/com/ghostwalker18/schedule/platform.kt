@@ -17,7 +17,6 @@ package com.ghostwalker18.schedule
 import androidx.compose.runtime.Composable
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
-import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import java.util.*
 
@@ -129,15 +128,10 @@ expect interface ShareController {
     /**
      * Этот метод позволяет поделиться ссылкой на приложение.
      */
-    fun shareLink(): Pair<Boolean, StringResource>
+    fun shareLink(platform: Platform): Pair<Boolean, StringResource>
 
     /**
      * Этот метод позволяет связаться с разработчиком.
      */
     fun connectToDeveloper(): Pair<Boolean, StringResource>
 }
-
-/**
- * Эта функция позволяет получить QR код, ведущий к скачиванию этой версии приложения.
- */
-expect fun getAppQR(): DrawableResource
