@@ -30,4 +30,6 @@
     <string name="days_before_delay">How many days should I remind you?</string>
     <string name="days_before_confirm">Choose</string>
     <string name="reminder_error">Couldn't set reminder for selected date and time</string>
+    <string name="remind_after_hour">Remind me in an hour</string>
+    <string name="remind_tomorrow">Remind me tomorrow</string>
 </resources>

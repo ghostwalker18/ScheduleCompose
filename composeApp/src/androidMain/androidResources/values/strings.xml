@@ -30,4 +30,6 @@
     <string name="days_before_delay">За сколько дней напомнить?</string>
     <string name="days_before_confirm">Выбрать</string>
     <string name="reminder_error">Не удалось установить напоминание на выбранные дату и время</string>
+    <string name="remind_after_hour">Напомнить через час</string>
+    <string name="remind_tomorrow">Напомнить завтра</string>
 </resources>

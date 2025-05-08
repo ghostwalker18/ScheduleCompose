@@ -20,15 +20,12 @@ import android.content.res.Configuration
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.core.net.toUri
-import androidx.work.Data
-import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
-import com.ghostwalker18.schedule.notifications.NoteReminderNotificationWorker
+import com.ghostwalker18.schedule.notifications.NoteReminderService
 import org.jetbrains.compose.resources.StringResource
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 actual fun getScreenOrientation(): Orientation {
     return when (ScheduleApp.instance.resources.configuration.orientation){
@@ -56,7 +53,7 @@ actual fun grantURIPermission(photoIDs: List<String>) {
 
 actual fun addNoteReminder(noteID: Int, delay: Long) {
     val context = ScheduleApp.instance as Context
-    val inputData = Data.Builder()
+    /*val inputData = Data.Builder()
         .putInt("noteID", noteID)
         .build()
     val request = OneTimeWorkRequest.Builder(
@@ -66,7 +63,11 @@ actual fun addNoteReminder(noteID: Int, delay: Long) {
         .setInputData(inputData)
         .setInitialDelay(delay, TimeUnit.MINUTES)
         .build()
-    WorkManager.getInstance(context).enqueue(request)
+    WorkManager.getInstance(context).enqueue(request)*/
+    val intent = Intent(context, NoteReminderService::class.java)
+    intent.putExtra("noteID", noteID)
+    intent.putExtra("delay", delay)
+    context.startService(intent)
 }
 
 actual fun removeNoteReminder(noteID: Int) {

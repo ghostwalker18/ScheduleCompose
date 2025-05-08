@@ -30,4 +30,6 @@
     <string name="days_before_delay">Қанша күн еске түсіреді?</string>
     <string name="days_before_confirm">Таңдау</string>
     <string name="reminder_error">Таңдалған күн мен уақытқа еске салғышты орнату мүмкін болмады</string>
+    <string name="remind_after_hour">Бір сағаттан кейін еске түсіріңіз</string>
+    <string name="remind_tomorrow">Ертең еске сал</string>
 </resources>

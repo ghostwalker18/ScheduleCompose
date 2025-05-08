@@ -17,6 +17,7 @@ package com.ghostwalker18.schedule.notifications
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.ghostwalker18.schedule.R
@@ -48,6 +49,7 @@ class NoteReminderNotificationWorker(
             repository.getNote(noteID).collect {
                 it?.let{
                     if(it.hasNotification){
+                        val notificationID = Random.Default.nextInt()
                         val openNotesIntent =
                             Intent(applicationContext, MainActivity::class.java)
                         openNotesIntent.putExtra(
@@ -58,10 +60,40 @@ class NoteReminderNotificationWorker(
                             "note_group",
                             it.group
                         )
+                        val remindAfterDayIntent = remindLaterIntent(
+                            it.id,
+                            notificationID,
+                            1440L
+                        )
+                        val remindAfterHourIntent = remindLaterIntent(
+                            it.id,
+                            notificationID,
+                            60L
+                        )
+                        val actionRemindAfterDay =
+                            NotificationCompat.Action.Builder(
+                                null, "Remind after day",
+                                PendingIntent.getService(
+                                    applicationContext,
+                                    it.id, remindAfterDayIntent,
+                                    PendingIntent.FLAG_IMMUTABLE
+                                )
+                            )
+                                .build()
+                        val actionRemindAfterHour =
+                            NotificationCompat.Action.Builder(
+                                null, "Remind after hour",
+                                PendingIntent.getService(
+                                    applicationContext,
+                                    it.id, remindAfterHourIntent,
+                                    PendingIntent.FLAG_IMMUTABLE
+                                )
+                            )
+                                .build()
+
                         NotificationManagerWrapper.getInstance(applicationContext)
-                            .showNotification(
-                                applicationContext, AppNotification(
-                                    Random.Default.nextInt(),
+                            .showNotification(applicationContext, AppNotification(
+                                    notificationID,
                                     applicationContext.getString(R.string.notes),
                                     it.toString(),
                                     applicationContext.getString(
@@ -74,7 +106,8 @@ class NoteReminderNotificationWorker(
                                 PendingIntent.getActivity(
                                     applicationContext, 0,
                                     openNotesIntent, PendingIntent.FLAG_IMMUTABLE
-                                )
+                                ),
+                                actionRemindAfterHour, actionRemindAfterDay
                             )
                         it.hasNotification = false
                         repository.updateNote(it)
@@ -83,5 +116,13 @@ class NoteReminderNotificationWorker(
             }
         }
         return Result.success()
+    }
+
+    private fun remindLaterIntent(noteID: Int, previousID: Int, delay: Long): Intent {
+        return Intent(applicationContext, NoteReminderService::class.java).apply {
+            putExtra("noteID", noteID)
+            putExtra("previous_notification_id", previousID)
+            putExtra("delay", delay)
+        }
     }
 }

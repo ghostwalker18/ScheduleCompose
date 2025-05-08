@@ -114,6 +114,11 @@
         </receiver>
 
         <service
+                android:name=".notifications.NoteReminderService"
+                android:enabled="true"
+                android:exported="false"/>
+
+        <service
                 android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
                 android:enabled="false"
                 android:exported="false">

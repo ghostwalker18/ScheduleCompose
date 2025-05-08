@@ -24,6 +24,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx. core. app. NotificationCompat.Action
 import com.ghostwalker18.schedule.R
 
 /**
@@ -59,7 +60,8 @@ class NotificationManagerWrapper private constructor(
      */
     fun showNotification(
         context: Context, data: AppNotification,
-       vararg intent: PendingIntent
+        intent: PendingIntent? = null,
+        vararg actions: Action
     ) {
         val builder: NotificationCompat.Builder =
             NotificationCompat.Builder(context, data.channelId)
@@ -67,7 +69,9 @@ class NotificationManagerWrapper private constructor(
                 .setContentTitle(data.title)
                 .setContentText(data.message)
                 .setAutoCancel(true)
-        if (intent.size == 1) builder.setContentIntent(intent[0])
+        intent?.let{ builder.setContentIntent(it) }
+        for(action in actions)
+            builder.addAction(action)
         val notificationManager = NotificationManagerCompat.from(context)
         if (notificationManager.getNotificationChannel(data.channelId) == null) {
             createNotificationChannel(data.channelId, data.channelName, null)

@@ -30,4 +30,6 @@
     <string name="days_before_delay">Neçə gün xatırlatmaq?</string>
     <string name="days_before_confirm">Seçin</string>
     <string name="reminder_error">Seçilmiş tarix və vaxt üçün bir öyüd-nəsihət təyin edə bilmədi</string>
+    <string name="remind_after_hour">Bir saat sonra xatırlat</string>
+    <string name="remind_tomorrow">Sabahı xatırlat</string>
 </resources>
