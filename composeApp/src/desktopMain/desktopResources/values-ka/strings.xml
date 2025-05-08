@@ -34,6 +34,4 @@
     <string name="detailsViewButtonToolTipText">დეტალები</string>
     <string name="folderNameLabelText">საქაღალდე</string>
     <string name="saveButtonText">შენახვა</string>
-    <string name="email_subject" translatable="false">Расписание%20ПАСТ%20(десктоп)</string>
-    <string name="github_link" translatable="false">https://github.com/ghostwalker18/ScheduleCompose/releases/latest</string>
 </resources>

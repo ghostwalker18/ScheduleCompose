@@ -147,4 +147,6 @@
         Uzun basın - tarixə keçin</string>
     <string name="next_week_tooltip">Qısa mətbuat - gələn həftəyə keçin.
         Uzun basın - tarixə keçin</string>
+    <string name="desktop_share">Desktop versiyasını paylaşın</string>
+    <string name="mobile_share">Mobil versiyanı paylaşın</string>
 </resources>

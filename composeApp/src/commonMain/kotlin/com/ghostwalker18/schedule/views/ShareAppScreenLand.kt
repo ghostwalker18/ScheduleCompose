@@ -37,6 +37,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.ghostwalker18.schedule.getPlatform
+import com.ghostwalker18.schedule.Platform
 import com.ghostwalker18.schedule.ScheduleApp
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
@@ -59,7 +61,7 @@ fun ShareAppScreenLand() {
     val worker = ScheduleApp.instance.shareController
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
-    var showDesktop by remember { mutableStateOf(false) }
+    var showDesktop by remember { mutableStateOf(getPlatform() == Platform.Desktop) }
 
     Scaffold(
         scaffoldState =  scaffoldState,
@@ -88,24 +90,34 @@ fun ShareAppScreenLand() {
     ) {
         Column{
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically
             ){
                 Spacer(modifier = Modifier.weight(1f))
-                Icon(
-                    imageVector = Icons.Filled.Smartphone,
-                    contentDescription = ""
-                )
+                ContentWrapper(
+                    toolTip = Res.string.mobile_share
+                ){
+                    Icon(
+                        imageVector = Icons.Filled.Smartphone,
+                        contentDescription = stringResource(Res.string.mobile_share)
+                    )
+                }
                 Switch(
                     checked = showDesktop,
                     onCheckedChange = {
                         showDesktop = it
                     }
                 )
-                Icon(
-                    imageVector = Icons.Filled.Computer,
-                    contentDescription = ""
-                )
+                ContentWrapper(
+                    toolTip = Res.string.desktop_share
+                ){
+                    Icon(
+                        imageVector = Icons.Filled.Computer,
+                        contentDescription = stringResource(Res.string.desktop_share)
+                    )
+                }
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -114,7 +126,8 @@ fun ShareAppScreenLand() {
                     .fillMaxSize()
             ){
                 Column(
-                    modifier = Modifier.weight(0.5f)
+                    modifier = Modifier.weight(0.5f),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
                         text = stringResource(Res.string.scan_qr_code),
@@ -150,7 +163,12 @@ fun ShareAppScreenLand() {
                 )
                 Button(
                     onClick = {
-                        val(showMessageRequired, text) = worker.shareLink()
+                        val(showMessageRequired, text) = worker.shareLink(
+                            if(showDesktop)
+                                Platform.Desktop
+                            else
+                                Platform.Mobile
+                        )
                         if(showMessageRequired)
                             scope.launch {
                                 scaffoldState.snackbarHostState.showSnackbar(getString(text))

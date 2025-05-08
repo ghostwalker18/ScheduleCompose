@@ -147,6 +147,6 @@
         ხანგრძლივი დაჭერა - პაემანზე გადასვლა</string>
     <string name="next_week_tooltip">მოკლე დაჭერით - გადადით შემდეგ კვირაზე.
         ხანგრძლივი დაჭერა - პაემანზე გადასვლა</string>
-    <string name="developer_email" translatable="false">ghostwalker18@mail.ru</string>
-    <string name="repo_address" translatable="false">https://github.com/ghostwalker18/ScheduleCompose/releases/latest</string>
+    <string name="desktop_share">გააზიარეთ დესკტოპის ვერსია</string>
+    <string name="mobile_share">გაუზიარეთ მობილური ვერსია</string>
 </resources>

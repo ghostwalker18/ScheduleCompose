@@ -20,7 +20,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.FileProvider
-import com.ghostwalker18.schedule.R
+import com.ghostwalker18.schedule.Platform
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.ShareController
 import com.ghostwalker18.schedule.models.Lesson
@@ -31,7 +31,9 @@ import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.developer_email
+import scheduledesktop2.composeapp.generated.resources.github_link
 import scheduledesktop2.composeapp.generated.resources.nothing_to_share
+import scheduledesktop2.composeapp.generated.resources.rustore_link
 import java.io.File
 
 /**
@@ -123,10 +125,18 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
         return Pair(false, Res.string.nothing_to_share)
     }
 
-    override fun shareLink(): Pair<Boolean, StringResource> {
+    override fun shareLink(platform: Platform): Pair<Boolean, StringResource> {
+        val link = runBlocking {
+            return@runBlocking getString(
+                if(platform == Platform.Desktop)
+                    Res.string.github_link
+                else
+                    Res.string.rustore_link
+            )
+        }
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.rustore_link) )
+        intent.putExtra(Intent.EXTRA_TEXT, link)
 
         val shareIntent = Intent.createChooser(intent, null)
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

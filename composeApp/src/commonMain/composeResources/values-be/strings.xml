@@ -147,4 +147,6 @@
         Доўгі націск-перайсці да даты</string>
     <string name="next_week_tooltip">Кароткі націск-перайсці да наступнага тыдня.
         Доўгі націск-перайсці да даты</string>
+    <string name="desktop_share">Падзяліцца дэсктопнай версіяй</string>
+    <string name="mobile_share">Падзяліцца мабільнай версіяй</string>
 </resources>

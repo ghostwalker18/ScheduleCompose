@@ -147,6 +147,16 @@
         Долгое нажатие - перейти к дате</string>
     <string name="next_week_tooltip">Короткое нажатие - перейти к следующей неделе.
         Долгое нажатие - перейти к дате</string>
+    <string name="desktop_share">Поделиться декстопной версией</string>
+    <string name="mobile_share">Поделиться мобильной версией</string>
     <string name="developer_email" translatable="false">ghostwalker18@mail.ru</string>
-    <string name="repo_address" translatable="false">https://github.com/ghostwalker18/ScheduleCompose/releases/latest</string>
+    <string name="repo_address" translatable="false">
+        https://github.com/ghostwalker18/ScheduleCompose/releases/latest
+    </string>
+    <string name="github_link" translatable="false">
+        https://github.com/ghostwalker18/ScheduleCompose/releases/latest
+    </string>
+    <string name="rustore_link" translatable="false">
+        https://www.rustore.ru/catalog/app/com.ghostwalker18.schedule
+    </string>
 </resources>

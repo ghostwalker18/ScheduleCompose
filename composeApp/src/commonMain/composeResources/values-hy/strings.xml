@@ -147,4 +147,6 @@
         Երկար սեղմում - անցնել ժամադրության</string>
     <string name="next_week_tooltip">Կարճ սեղմում՝ անցնել հաջորդ շաբաթ։
         Երկար սեղմում - անցնել ժամադրության</string>
+    <string name="desktop_share">Կիսվեք աշխատասեղանի տարբերակով</string>
+    <string name="mobile_share">Կիսվել բջջային տարբերակով</string>
 </resources>

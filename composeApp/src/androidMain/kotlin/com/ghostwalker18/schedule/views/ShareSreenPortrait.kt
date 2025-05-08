@@ -37,6 +37,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.ghostwalker18.schedule.Platform
 import com.ghostwalker18.schedule.ScheduleApp
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
@@ -149,7 +150,12 @@ actual fun ShareAppScreenPortrait(){
             )
             Button(
                 onClick = {
-                    val(showMessageRequired, text) = worker.shareLink()
+                    val(showMessageRequired, text) = worker.shareLink(
+                        if(showDesktop)
+                            Platform.Desktop
+                        else
+                            Platform.Mobile
+                    )
                     if(showMessageRequired)
                         scope.launch {
                             scaffoldState.snackbarHostState.showSnackbar(getString(text))

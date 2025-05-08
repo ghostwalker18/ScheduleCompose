@@ -146,4 +146,6 @@
         Довге натискання-перейти до дати</string>
     <string name="next_week_tooltip">Коротке натискання-перейти до наступного тижня.
         Довге натискання-перейти до дати</string>
+    <string name="desktop_share">Поділитися десктопною версією</string>
+    <string name="mobile_share">Поділитися мобільною версією</string>
 </resources>

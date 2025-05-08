@@ -14,6 +14,7 @@
 
 package com.ghostwalker18.schedule.platform
 
+import com.ghostwalker18.schedule.Platform
 import com.ghostwalker18.schedule.ShareController
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
@@ -88,9 +89,14 @@ class ShareControllerDesktop : ShareController {
         return Pair(true, Res.string.notes_share_completed)
     }
 
-    override fun shareLink(): Pair<Boolean, StringResource> {
+    override fun shareLink(platform: Platform): Pair<Boolean, StringResource> {
         val link = runBlocking {
-            return@runBlocking getString(Res.string.github_link)
+            return@runBlocking getString(
+                if(platform == Platform.Desktop)
+                    Res.string.github_link
+                else
+                    Res.string.rustore_link
+            )
         }
         Toolkit.getDefaultToolkit()
             .systemClipboard

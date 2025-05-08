@@ -23,9 +23,6 @@
     <string name="subject">Предмет</string>
     <string name="teacher">Препод.</string>
     <string name="email_subject" translatable="false">Расписание ПАСТ (мобильное)</string>
-    <string name="rustore_link" translatable="false">
-        https://www.rustore.ru/catalog/app/com.ghostwalker18.schedule
-    </string>
     <string name="app_widget_description">Расписание ПАСТ на день для группы</string>
     <string name="day">День</string>
     <string name="appearance">Внешний вид</string>
