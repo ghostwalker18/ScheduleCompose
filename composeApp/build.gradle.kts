@@ -99,6 +99,11 @@ kotlin {
             }
         }
 
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation(libs.kotlin.test.junit)
+        }
+
         androidMain.dependencies {
             implementation(libs.androidx.appcompat)
             implementation(libs.firebase.common.ktx)
@@ -116,6 +121,12 @@ kotlin {
             implementation ("net.java.dev.jna:jna:5.13.0@aar")
             implementation ("com.alphacephei:vosk-android:0.3.47@aar")
             implementation (project(":models"))
+        }
+
+        androidInstrumentedTest.dependencies{
+            implementation("androidx.test.ext:junit:1.1.5")
+            implementation("org.mockito:mockito-core:4.11.0")
+            implementation("androidx.test.espresso:espresso-core:3.5.1")
         }
     }
 }

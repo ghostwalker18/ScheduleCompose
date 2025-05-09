@@ -44,18 +44,21 @@ object Utils {
      * @return доступность для посещения
      */
     @Synchronized
-    fun isLessonAvailable(lessonDate: Calendar, lessonTimes: String?): LessonAvailability? {
+    fun isLessonAvailable(
+        lessonDate: Calendar,
+        lessonTimes: String?,
+        currentTime: Calendar = Calendar.getInstance()
+    ): LessonAvailability? {
         if (lessonTimes == null)
             return null
         try {
-            val currentTime = Calendar.getInstance()
             val startTime = lessonTimes.split("-".toRegex()).dropLastWhile { it.isEmpty() }
                 .toTypedArray()[0]
             val endTime = lessonTimes.split("-".toRegex()).dropLastWhile { it.isEmpty() }
                 .toTypedArray()[1]
 
             val start = lessonDate.clone() as Calendar
-            start[Calendar.HOUR] =
+            start[Calendar.HOUR_OF_DAY] =
                 startTime.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }
                     .toTypedArray()[0].toInt()
             start[Calendar.MINUTE] =
@@ -63,7 +66,7 @@ object Utils {
                     .toTypedArray()[1].toInt()
 
             val end = lessonDate.clone() as Calendar
-            end[Calendar.HOUR] =
+            end[Calendar.HOUR_OF_DAY] =
                 endTime.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }
                     .toTypedArray()[0].toInt()
             end[Calendar.MINUTE] =
