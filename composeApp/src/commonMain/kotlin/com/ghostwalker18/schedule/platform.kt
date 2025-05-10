@@ -23,7 +23,7 @@ import java.util.*
 /**
  * Это перечисление описывает возможные ориентации экрана для приложения.
  */
-enum class Orientation{
+enum class Orientation {
     Portrait, LandScape
 }
 
@@ -35,7 +35,7 @@ expect fun getScreenOrientation(): Orientation
 /**
  * Это перечисление описывает платформы, под какими может быть запущено приложение.
  */
-enum class Platform{
+enum class Platform {
     Mobile, Desktop
 }
 
