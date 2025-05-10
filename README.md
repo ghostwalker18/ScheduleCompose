@@ -1,3 +1,4 @@
+[![CI/CD GitHub Actions](https://github.com/ghostwalker18/ScheduleCompose/actions/workflows/test-action.yml/badge.svg)](https://github.com/ghostwalker18/ScheduleCompose/actions/workflows/test-action.yml)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=ghostwalker18_ScheduleCompose&metric=alert_status)](https://sonarcloud.io/dashboard?id=ghostwalker18_ScheduleCompose)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ghostwalker18_ScheduleCompose&metric=bugs)](https://sonarcloud.io/summary/new_code?id=ghostwalker18_ScheduleCompose)
 [![Code smells](https://sonarcloud.io/api/project_badges/measure?project=ghostwalker18_ScheduleCompose&metric=code_smells)](https://sonarcloud.io/dashboard?id=ghostwalker18_ScheduleCompose)
