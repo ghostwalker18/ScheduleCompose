@@ -37,6 +37,10 @@
 
 В данном пакете содержатся модели представления приложения.
 
+# Package com.ghostwalker18.schedule.views
+
+
+
 # Package com.ghostwalker18.schedule.widgets
 
 В данном пакете содержатся кастомные элементы UI приложения.

@@ -12,10 +12,16 @@
  * limitations under the License.
  */
 
+import org.gradle.kotlin.dsl.invoke
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.dokka.base.DokkaBase
+import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 import java.io.FileInputStream
+import java.net.URL
 import java.util.*
 
 plugins {
@@ -246,4 +252,53 @@ dependencies{
     implementation(libs.material)
     add("kspDesktop", libs.androidx.room.compiler)
     add("kspAndroid", libs.androidx.room.compiler)
+}
+
+tasks.withType<DokkaTask>().configureEach {
+
+    pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+        footerMessage = "(c) 2025 Ипатов Никита"
+    }
+
+    dokkaSourceSets {
+        named("commonMain") {
+            moduleName.set("Мультиплатформеннное приложение расписания ПАСТ")
+
+            includes.from("src/commonMain/commonMainInfo.md")
+
+            sourceLink {
+                localDirectory.set(file("src/commonMain/kotlin"))
+                remoteUrl.set(URL("https://github.com/ghostwalker18/ScheduleCompose"))
+                remoteLineSuffix.set("#L")
+            }
+        }
+    }
+
+    dokkaSourceSets {
+        named("androidMain") {
+            moduleName.set("Мультиплатформеннное приложение расписания ПАСТ")
+
+            includes.from("src/androidMain/androidMainInfo.md")
+
+            sourceLink {
+                localDirectory.set(file("src/androidMain/kotlin"))
+                remoteUrl.set(URL("https://github.com/ghostwalker18/ScheduleCompose"))
+                remoteLineSuffix.set("#L")
+            }
+        }
+    }
+
+    dokkaSourceSets {
+        named("desktopMain") {
+            moduleName.set("Мультиплатформеннное приложение расписания ПАСТ")
+
+            includes.from("src/desktopMain/desktopMainInfo.md")
+
+            sourceLink {
+                localDirectory.set(file("src/desktopMain/kotlin"))
+                remoteUrl.set(URL("https://github.com/ghostwalker18/ScheduleCompose"))
+                remoteLineSuffix.set("#L")
+            }
+        }
+    }
 }
