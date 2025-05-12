@@ -64,3 +64,5 @@ actual interface ShareController {
 
     actual fun connectToDeveloper(): Pair<Boolean, StringResource>
 }
+
+actual fun notifyEvent(eventName: String) {/* Not required now */}

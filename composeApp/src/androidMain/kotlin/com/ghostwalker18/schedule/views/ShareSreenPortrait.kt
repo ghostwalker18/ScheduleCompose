@@ -39,6 +39,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ghostwalker18.schedule.Platform
 import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.notifyEvent
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.painterResource
@@ -160,6 +161,7 @@ actual fun ShareAppScreenPortrait(){
                         scope.launch {
                             scaffoldState.snackbarHostState.showSnackbar(getString(text))
                         }
+                    notifyEvent("Поделились приложением")
                 },
                 modifier = Modifier
                     .fillMaxWidth()

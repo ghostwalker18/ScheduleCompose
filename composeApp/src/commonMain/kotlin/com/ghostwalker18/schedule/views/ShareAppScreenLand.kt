@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import com.ghostwalker18.schedule.getPlatform
 import com.ghostwalker18.schedule.Platform
 import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.notifyEvent
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.painterResource
@@ -173,6 +174,7 @@ fun ShareAppScreenLand() {
                             scope.launch {
                                 scaffoldState.snackbarHostState.showSnackbar(getString(text))
                             }
+                        notifyEvent("Поделились приложением")
                     },
                     modifier = Modifier
                         .weight(0.5f)

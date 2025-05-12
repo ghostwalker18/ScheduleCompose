@@ -135,3 +135,8 @@ expect interface ShareController {
      */
     fun connectToDeveloper(): Pair<Boolean, StringResource>
 }
+
+/**
+ * Эта функция используется для аналитики о событиях в приложении
+ */
+expect fun notifyEvent(eventName: String)

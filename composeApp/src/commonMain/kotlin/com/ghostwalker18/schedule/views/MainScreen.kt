@@ -38,6 +38,7 @@ import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.days_tab
 import com.ghostwalker18.schedule.viewmodels.DayModel
+import com.ghostwalker18.schedule.notifyEvent
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -96,6 +97,7 @@ fun MainScreen() {
                                                 scope.launch {
                                                     scaffoldState.snackbarHostState.showSnackbar(getString(text))
                                                 }
+                                            notifyEvent("Поделились расписанием занятий")
                                         }
                                         1 -> {
                                             val (showTextRequired, text) = worker.shareTimes()
@@ -103,6 +105,7 @@ fun MainScreen() {
                                                 scope.launch {
                                                     scaffoldState.snackbarHostState.showSnackbar(getString(text))
                                                 }
+                                            notifyEvent("Поделились расписанием звонков")
                                         }
                                     }
                                 }
@@ -161,9 +164,11 @@ fun MainScreen() {
                 links += ScheduleApp.instance.scheduleRepository.linksForFirstCorpusSchedule
                 links += ScheduleApp.instance.scheduleRepository.linksForSecondCorpusSchedule
                 mimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                notifyEvent("Скачали расписание занятий")
             } else {
                 links += listOf(URLs.MONDAY_TIMES_URL, URLs.OTHER_TIMES_URL)
                 mimeType = "image/jpg"
+                notifyEvent("Скачали расписание звонков")
             }
             DownloadDialog(
                 isDownloadDialogEnabled,

@@ -24,6 +24,7 @@ import androidx.work.WorkManager
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
 import com.ghostwalker18.schedule.notifications.NoteReminderService
+import io.appmetrica.analytics.AppMetrica
 import org.jetbrains.compose.resources.StringResource
 import java.util.*
 
@@ -100,4 +101,9 @@ actual interface ShareController {
     actual fun shareLink(platform: Platform): Pair<Boolean, StringResource>
 
     actual fun connectToDeveloper(): Pair<Boolean, StringResource>
+}
+
+actual fun notifyEvent(eventName: String) {
+    if (ScheduleApp.instance.isAppMetricaActivated)
+        AppMetrica.reportEvent(eventName)
 }

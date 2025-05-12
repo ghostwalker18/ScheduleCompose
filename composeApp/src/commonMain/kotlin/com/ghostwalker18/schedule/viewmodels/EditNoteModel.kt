@@ -20,6 +20,7 @@ import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.grantURIPermission
 import com.ghostwalker18.schedule.addNoteReminder
 import com.ghostwalker18.schedule.models.Note
+import com.ghostwalker18.schedule.notifyEvent
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -172,8 +173,10 @@ class EditNoteModel : ViewModel() {
             grantURIPermission(photoIDs.value)
             val id = if (isEdited)
                 notesRepository.updateNote(noteToSave)
-            else
+            else{
+                notifyEvent("Добавлена заметка")
                 notesRepository.saveNote(noteToSave).toInt()
+            }
             if(delay > 0)
                 addNoteReminder(id, delay)
         }
