@@ -42,28 +42,20 @@ actual fun hideKeyboard(){
 }
 
 actual fun grantURIPermission(photoIDs: List<String>) {
+    val contentResolver = ScheduleApp.instance.contentResolver
     for (photoID in photoIDs){
-        ScheduleApp.instance.contentResolver
-            .takePersistableUriPermission(
-                photoID.toUri(),
-                Intent.FLAG_GRANT_READ_URI_PERMISSION
-            )
+        try{
+            contentResolver
+                .takePersistableUriPermission(
+                    photoID.toUri(),
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+        } catch (_: Exception){/* Not required */}
     }
 }
 
 actual fun addNoteReminder(noteID: Int, delay: Long) {
     val context = ScheduleApp.instance as Context
-    /*val inputData = Data.Builder()
-        .putInt("noteID", noteID)
-        .build()
-    val request = OneTimeWorkRequest.Builder(
-        workerClass = NoteReminderNotificationWorker::class.java
-    )
-        .addTag("schedulePCCE_note_$noteID")
-        .setInputData(inputData)
-        .setInitialDelay(delay, TimeUnit.MINUTES)
-        .build()
-    WorkManager.getInstance(context).enqueue(request)*/
     val intent = Intent(context, NoteReminderService::class.java)
     intent.putExtra("noteID", noteID)
     intent.putExtra("delay", delay)
