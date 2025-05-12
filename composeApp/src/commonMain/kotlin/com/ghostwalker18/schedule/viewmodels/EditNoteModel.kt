@@ -170,13 +170,12 @@ class EditNoteModel : ViewModel() {
                 )
             }
             grantURIPermission(photoIDs.value)
-            if(delay > 0){
-                var id = if (isEdited)
-                    notesRepository.updateNote(noteToSave)
-                else
-                    notesRepository.saveNote(noteToSave).toInt()
+            val id = if (isEdited)
+                notesRepository.updateNote(noteToSave)
+            else
+                notesRepository.saveNote(noteToSave).toInt()
+            if(delay > 0)
                 addNoteReminder(id, delay)
-            }
         }
     }
 }
