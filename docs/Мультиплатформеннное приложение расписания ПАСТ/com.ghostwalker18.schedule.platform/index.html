@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>com.ghostwalker18.schedule.platform</title>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../index.html">
+                    Мультиплатформеннное приложение расписания ПАСТ
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        data-filter=":composeApp:dokkaHtml/androidMain">android</button>
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        data-filter=":composeApp:dokkaHtml/commonMain">common</button>
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        data-filter=":composeApp:dokkaHtml/desktopMain">desktop</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":composeApp:dokkaHtml/androidMain"
+                                       data-filter=":composeApp:dokkaHtml/androidMain"/>
+                                <span class="checkbox--icon"></span>
+                                android
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":composeApp:dokkaHtml/commonMain"
+                                       data-filter=":composeApp:dokkaHtml/commonMain"/>
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":composeApp:dokkaHtml/desktopMain"
+                                       data-filter=":composeApp:dokkaHtml/desktopMain"/>
+                                <span class="checkbox--icon"></span>
+                                desktop
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    Мультиплатформеннное приложение расписания ПАСТ
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageIds="Мультиплатформеннное приложение расписания ПАСТ::com.ghostwalker18.schedule.platform////PointingToDeclaration//-1927016931">
+  <div class="breadcrumbs"><a href="../../index.html">Мультиплатформеннное приложение расписания ПАСТ</a><span class="delimiter">/</span><span class="current">com.ghostwalker18.schedule.platform</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/androidMain" data-filterable-set=":composeApp:dokkaHtml/androidMain" data-active="" data-toggle=":composeApp:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/commonMain" data-filterable-set=":composeApp:dokkaHtml/commonMain" data-toggle=":composeApp:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain" data-toggle=":composeApp:dokkaHtml/desktopMain">desktop</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/androidMain"><p class="paragraph">В данном пакете содержится реализация платформо-специфичных классов контроллеров.</p></div><div class="content sourceset-dependent-content" data-togglable=":composeApp:dokkaHtml/commonMain"><p class="paragraph">В данном пакете содержится абстрактное объявление  платформо-специфичных классов контроллеров.</p></div><div class="content sourceset-dependent-content" data-togglable=":composeApp:dokkaHtml/desktopMain"><p class="paragraph">В данном пакете содержится реализация платформо-специфичных классов контроллеров.</p></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="443998524%2FClasslikes%2F589146367" anchor-label="FileTransferable" id="443998524%2FClasslikes%2F589146367" data-filterable-set=":composeApp:dokkaHtml/desktopMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-transferable/index.html"><span>File</span><wbr></wbr><span><span>Transferable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="443998524%2FClasslikes%2F589146367"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain" data-active="" data-toggle=":composeApp:dokkaHtml/desktopMain">desktop</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/desktopMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-file-transferable/index.html">FileTransferable</a> : <a href="https://docs.oracle.com/javase/8/docs/api/java/awt/datatransfer/Transferable.html">Transferable</a></div><div class="brief "><p class="paragraph">Этот класс используется для передачи файлов в системный буфер обмена.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="882081660%2FClasslikes%2F-813795679" anchor-label="ImportController" id="882081660%2FClasslikes%2F-813795679" data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/commonMain" data-filterable-set=":composeApp:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-import-controller/index.html"><span>Import</span><wbr></wbr><span><span>Controller</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="882081660%2FClasslikes%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-import-controller/index.html">ImportController</a></div><div class="brief "><p class="paragraph">Этот класс определяет платформно-зависимые операции для ImportScreen</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-312685801%2FClasslikes%2F816059161" anchor-label="ImportControllerAndroid" id="-312685801%2FClasslikes%2F816059161" data-filterable-set=":composeApp:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/androidMain" data-filterable-set=":composeApp:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-import-controller-android/index.html"><span>Import</span><wbr></wbr><span>Controller</span><wbr></wbr><span><span>Android</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-312685801%2FClasslikes%2F816059161"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/androidMain" data-filterable-set=":composeApp:dokkaHtml/androidMain" data-active="" data-toggle=":composeApp:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-import-controller-android/index.html">ImportControllerAndroid</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span> : <a href="-import-controller/index.html">ImportController</a></div><div class="brief "><p class="paragraph">Этот класс представляет реализацию контроллера экспорта/импорта данных приложения для Android.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-723993078%2FClasslikes%2F589146367" anchor-label="ImportControllerDesktop" id="-723993078%2FClasslikes%2F589146367" data-filterable-set=":composeApp:dokkaHtml/desktopMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-import-controller-desktop/index.html"><span>Import</span><wbr></wbr><span>Controller</span><wbr></wbr><span><span>Desktop</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-723993078%2FClasslikes%2F589146367"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain" data-active="" data-toggle=":composeApp:dokkaHtml/desktopMain">desktop</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/desktopMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-import-controller-desktop/index.html">ImportControllerDesktop</a> : <a href="-import-controller/index.html">ImportController</a></div><div class="brief "><p class="paragraph">Этот класс представляет реализацию контроллера экспорта/импорта данных приложения для десктопа.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1662028880%2FClasslikes%2F589146367" anchor-label="LocalAppLocaleISO" id="1662028880%2FClasslikes%2F589146367" data-filterable-set=":composeApp:dokkaHtml/desktopMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-local-app-locale-i-s-o/index.html"><span>Local</span><wbr></wbr><span>App</span><wbr></wbr><span>Locale</span><wbr></wbr><span><span>ISO</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1662028880%2FClasslikes%2F589146367"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain" data-active="" data-toggle=":composeApp:dokkaHtml/desktopMain">desktop</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/desktopMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-local-app-locale-i-s-o/index.html">LocalAppLocaleISO</a></div><div class="brief "><p class="paragraph">Этот объект используется для контроля языка приложения</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1822394267%2FClasslikes%2F816059161" anchor-label="NavigatorAndroid" id="-1822394267%2FClasslikes%2F816059161" data-filterable-set=":composeApp:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/androidMain" data-filterable-set=":composeApp:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-navigator-android/index.html"><span>Navigator</span><wbr></wbr><span><span>Android</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1822394267%2FClasslikes%2F816059161"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/androidMain" data-filterable-set=":composeApp:dokkaHtml/androidMain" data-active="" data-toggle=":composeApp:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-navigator-android/index.html">NavigatorAndroid</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">navController<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/navigation/NavController.html">NavController</a></span></span><span class="token punctuation">)</span> : <a href="../com.ghostwalker18.schedule/-navigator/index.html">Navigator</a></div><div class="brief "><p class="paragraph">Этот класс представляет собой реализацию контроллера навигации приложения для Android.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2061265752%2FClasslikes%2F589146367" anchor-label="NavigatorDesktop" id="2061265752%2FClasslikes%2F589146367" data-filterable-set=":composeApp:dokkaHtml/desktopMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-navigator-desktop/index.html"><span>Navigator</span><wbr></wbr><span><span>Desktop</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2061265752%2FClasslikes%2F589146367"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain" data-active="" data-toggle=":composeApp:dokkaHtml/desktopMain">desktop</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/desktopMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-navigator-desktop/index.html">NavigatorDesktop</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">navController<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/navigation/NavController.html">NavController</a></span></span><span class="token punctuation">)</span> : <a href="../com.ghostwalker18.schedule/-navigator/index.html">Navigator</a></div><div class="brief "><p class="paragraph">Этот класс осуществляет навигацию по десктопному приложению</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1922346792%2FClasslikes%2F589146367" anchor-label="OsUtils" id="-1922346792%2FClasslikes%2F589146367" data-filterable-set=":composeApp:dokkaHtml/desktopMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-os-utils/index.html"><span>Os</span><wbr></wbr><span><span>Utils</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1922346792%2FClasslikes%2F589146367"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain" data-active="" data-toggle=":composeApp:dokkaHtml/desktopMain">desktop</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/desktopMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-os-utils/index.html">OsUtils</a></div><div class="brief "><p class="paragraph">Этот класс содержит методы и свойства, связанные с операционной системой.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1956518377%2FClasslikes%2F816059161" anchor-label="ShareControllerAndroid" id="1956518377%2FClasslikes%2F816059161" data-filterable-set=":composeApp:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/androidMain" data-filterable-set=":composeApp:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-share-controller-android/index.html"><span>Share</span><wbr></wbr><span>Controller</span><wbr></wbr><span><span>Android</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1956518377%2FClasslikes%2F816059161"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/androidMain" data-filterable-set=":composeApp:dokkaHtml/androidMain" data-active="" data-toggle=":composeApp:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-share-controller-android/index.html">ShareControllerAndroid</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span> : <a href="../com.ghostwalker18.schedule/-share-controller/index.html">ShareController</a></div><div class="brief "><p class="paragraph">Этот класс представляет собой реализацию контроллера шэринга для Android.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1545211100%2FClasslikes%2F589146367" anchor-label="ShareControllerDesktop" id="1545211100%2FClasslikes%2F589146367" data-filterable-set=":composeApp:dokkaHtml/desktopMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-share-controller-desktop/index.html"><span>Share</span><wbr></wbr><span>Controller</span><wbr></wbr><span><span>Desktop</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1545211100%2FClasslikes%2F589146367"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain" data-active="" data-toggle=":composeApp:dokkaHtml/desktopMain">desktop</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/desktopMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-share-controller-desktop/index.html">ShareControllerDesktop</a> : <a href="../com.ghostwalker18.schedule/-share-controller/index.html">ShareController</a></div><div class="brief "><p class="paragraph">Этот класс представляет реализацию контроллера шэринга приложения для десктопа.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>(c) 2025 Ипатов Никита</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

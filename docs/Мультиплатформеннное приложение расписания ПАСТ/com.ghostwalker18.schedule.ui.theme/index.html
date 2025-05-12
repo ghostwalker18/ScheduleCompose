@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>com.ghostwalker18.schedule.ui.theme</title>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../index.html">
+                    Мультиплатформеннное приложение расписания ПАСТ
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        data-filter=":composeApp:dokkaHtml/androidMain">android</button>
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        data-filter=":composeApp:dokkaHtml/commonMain">common</button>
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        data-filter=":composeApp:dokkaHtml/desktopMain">desktop</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":composeApp:dokkaHtml/androidMain"
+                                       data-filter=":composeApp:dokkaHtml/androidMain"/>
+                                <span class="checkbox--icon"></span>
+                                android
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":composeApp:dokkaHtml/commonMain"
+                                       data-filter=":composeApp:dokkaHtml/commonMain"/>
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":composeApp:dokkaHtml/desktopMain"
+                                       data-filter=":composeApp:dokkaHtml/desktopMain"/>
+                                <span class="checkbox--icon"></span>
+                                desktop
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    Мультиплатформеннное приложение расписания ПАСТ
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageIds="Мультиплатформеннное приложение расписания ПАСТ::com.ghostwalker18.schedule.ui.theme////PointingToDeclaration//-1927016931">
+  <div class="breadcrumbs"><a href="../../index.html">Мультиплатформеннное приложение расписания ПАСТ</a><span class="delimiter">/</span><span class="current">com.ghostwalker18.schedule.ui.theme</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/androidMain" data-filterable-set=":composeApp:dokkaHtml/androidMain" data-active="" data-toggle=":composeApp:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/commonMain" data-filterable-set=":composeApp:dokkaHtml/commonMain" data-toggle=":composeApp:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain" data-toggle=":composeApp:dokkaHtml/desktopMain">desktop</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/androidMain"><p class="paragraph">В данном пакете содержится визуальное оформление Android - версии.</p></div><div class="content sourceset-dependent-content" data-togglable=":composeApp:dokkaHtml/commonMain"><p class="paragraph">В данном пакете содержатся общие стили оформления  для обеих версий приложения.</p></div><div class="content sourceset-dependent-content" data-togglable=":composeApp:dokkaHtml/desktopMain"><p class="paragraph">В данном пакете содержится визуальное оформление десктопной версии.</p></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button><button class="section-tab" data-togglable="PROPERTY,EXTENSION_PROPERTY">Properties</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-970378285%2FProperties%2F816059161" anchor-label="AlertDialogHeaderFontSize" id="-970378285%2FProperties%2F816059161" data-filterable-set=":composeApp:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/androidMain" data-filterable-set=":composeApp:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-alert-dialog-header-font-size.html"><span>Alert</span><wbr></wbr><span>Dialog</span><wbr></wbr><span>Header</span><wbr></wbr><span>Font</span><wbr></wbr><span><span>Size</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-970378285%2FProperties%2F816059161"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/androidMain" data-filterable-set=":composeApp:dokkaHtml/androidMain" data-active="" data-toggle=":composeApp:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="-alert-dialog-header-font-size.html">AlertDialogHeaderFontSize</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/unit/TextUnit.html">TextUnit</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-203471776%2FProperties%2F-813795679" anchor-label="DarkColors" id="-203471776%2FProperties%2F-813795679" data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/commonMain" data-filterable-set=":composeApp:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-colors.html"><span>Dark</span><wbr></wbr><span><span>Colors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-203471776%2FProperties%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-colors.html">DarkColors</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Colors.html">Colors</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1386985899%2FProperties%2F-813795679" anchor-label="gray500Color" id="-1386985899%2FProperties%2F-813795679" data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/commonMain" data-filterable-set=":composeApp:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="gray500-color.html"><span><span>gray500Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1386985899%2FProperties%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="gray500-color.html">gray500Color</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1748268274%2FProperties%2F-813795679" anchor-label="LightColors" id="-1748268274%2FProperties%2F-813795679" data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/commonMain" data-filterable-set=":composeApp:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-colors.html"><span>Light</span><wbr></wbr><span><span>Colors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1748268274%2FProperties%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-colors.html">LightColors</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Colors.html">Colors</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1391785459%2FProperties%2F-1927016931" anchor-label="ScheduleTableFontSize" id="-1391785459%2FProperties%2F-1927016931" data-filterable-set=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-schedule-table-font-size.html"><span>Schedule</span><wbr></wbr><span>Table</span><wbr></wbr><span>Font</span><wbr></wbr><span><span>Size</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1391785459%2FProperties%2F-1927016931"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/androidMain" data-filterable-set=":composeApp:dokkaHtml/androidMain" data-active="" data-toggle=":composeApp:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/commonMain" data-filterable-set=":composeApp:dokkaHtml/commonMain" data-toggle=":composeApp:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain" data-toggle=":composeApp:dokkaHtml/desktopMain">desktop</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":composeApp:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">val </span><a href="-schedule-table-font-size.html">ScheduleTableFontSize</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/unit/TextUnit.html">TextUnit</a></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">val </span><a href="-schedule-table-font-size.html">ScheduleTableFontSize</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/unit/TextUnit.html">TextUnit</a></div><div class="brief "><p class="paragraph">Это свойство задает размер шрифта для таблицы с расписанием мобильного и десктопного приложения.</p></div></div><div class="content sourceset-dependent-content" data-togglable=":composeApp:dokkaHtml/desktopMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">val </span><a href="-schedule-table-font-size.html">ScheduleTableFontSize</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/unit/TextUnit.html">TextUnit</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="747165655%2FProperties%2F-1927016931" anchor-label="Typography" id="747165655%2FProperties%2F-1927016931" data-filterable-set=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-typography.html"><span><span>Typography</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="747165655%2FProperties%2F-1927016931"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/androidMain" data-filterable-set=":composeApp:dokkaHtml/androidMain" data-active="" data-toggle=":composeApp:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/commonMain" data-filterable-set=":composeApp:dokkaHtml/commonMain" data-toggle=":composeApp:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain" data-toggle=":composeApp:dokkaHtml/desktopMain">desktop</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":composeApp:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">val </span><a href="-typography.html">Typography</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Typography.html">Typography</a></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">val </span><a href="-typography.html">Typography</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Typography.html">Typography</a></div><div class="brief "><p class="paragraph">Это свойство задает общие настройки шрифтов мобильного и десктопного приложения.</p></div></div><div class="content sourceset-dependent-content" data-togglable=":composeApp:dokkaHtml/desktopMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">val </span><a href="-typography.html">Typography</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material/Typography.html">Typography</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1586523474%2FFunctions%2F-1927016931" anchor-label="ScheduleTheme" id="-1586523474%2FFunctions%2F-1927016931" data-filterable-set=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain"></a>
+          <div class="table-row" data-filterable-current=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-schedule-theme.html"><span>Schedule</span><wbr></wbr><span><span>Theme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1586523474%2FFunctions%2F-1927016931"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/androidMain" data-filterable-set=":composeApp:dokkaHtml/androidMain" data-active="" data-toggle=":composeApp:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/commonMain" data-filterable-set=":composeApp:dokkaHtml/commonMain" data-toggle=":composeApp:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":composeApp:dokkaHtml/desktopMain" data-filterable-set=":composeApp:dokkaHtml/desktopMain" data-toggle=":composeApp:dokkaHtml/desktopMain">desktop</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":composeApp:dokkaHtml/androidMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="-schedule-theme.html"><span class="token function">ScheduleTheme</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">darkTheme<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">content<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":composeApp:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">expect </span><span class="token keyword">fun </span><a href="-schedule-theme.html"><span class="token function">ScheduleTheme</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">darkTheme<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">content<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Эта функция предоставляет тему приложению.</p></div></div><div class="content sourceset-dependent-content" data-togglable=":composeApp:dokkaHtml/desktopMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="-schedule-theme.html"><span class="token function">ScheduleTheme</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">darkTheme<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">content<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>(c) 2025 Ипатов Никита</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
