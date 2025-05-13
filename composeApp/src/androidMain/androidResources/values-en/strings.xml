@@ -32,4 +32,7 @@
     <string name="reminder_error">Couldn't set reminder for selected date and time</string>
     <string name="remind_after_hour">Remind me in an hour</string>
     <string name="remind_tomorrow">Remind me tomorrow</string>
+    <string name="camera_permission_required">Permission to access the camera is required</string>
+    <string name="notification_permission_required">Permission to send notifications is required</string>
+    <string name="mic_permission_required">Permission to access the microphone is required</string>
 </resources>

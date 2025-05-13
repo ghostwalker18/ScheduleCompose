@@ -32,4 +32,7 @@
     <string name="reminder_error">ვერ მითითებული შეხსენება შერჩეული თარიღი და დრო</string>
     <string name="remind_after_hour">შემახსენე ერთ საათში</string>
     <string name="remind_tomorrow">ხვალ რომ შეგახსენოთ</string>
+    <string name="camera_permission_required">საჭიროა კამერაზე წვდომის ნებართვა</string>
+    <string name="notification_permission_required">საჭიროა შეტყობინებების გაგზავნის ნებართვა</string>
+    <string name="mic_permission_required">საჭიროა მიკროფონზე წვდომის ნებართვა</string>
 </resources>

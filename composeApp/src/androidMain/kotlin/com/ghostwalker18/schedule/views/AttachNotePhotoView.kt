@@ -20,6 +20,7 @@ import android.content.pm.PackageManager
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Environment
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibilityScope
@@ -50,8 +51,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.viewmodels.EditNoteModel
+import kotlinx.coroutines.runBlocking
+import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.camera_permission_required
 import scheduledesktop2.composeapp.generated.resources.note_choose_photo_descr
 import scheduledesktop2.composeapp.generated.resources.note_take_photo_descr
 import java.io.File
@@ -76,7 +80,6 @@ actual fun AttachNotePhotoView(
     val takePhotoLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.TakePicture()
     ){
-        _ ->
         photoUri?.let { model.addPhotoID(it) }
         MediaScannerConnection.scanFile(ScheduleApp.instance,
             arrayOf(photoUri), arrayOf("image/jpeg"), null)
@@ -131,11 +134,12 @@ actual fun AttachNotePhotoView(
                 onClick = {
                     if (context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
                         if (shouldShowRequestPermissionRationale(context as Activity, Manifest.permission.CAMERA)) {
-                            /*val toast = Toast.makeText(
+                            val toast = Toast.makeText(
                                 context,
-                                context.resources.getText(R.string.permission_for_photo), Toast.LENGTH_SHORT
+                                runBlocking { getString(Res.string.camera_permission_required) },
+                                Toast.LENGTH_SHORT
                             )
-                            toast.show()*/
+                            toast.show()
                         } else {
                             cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
                         }

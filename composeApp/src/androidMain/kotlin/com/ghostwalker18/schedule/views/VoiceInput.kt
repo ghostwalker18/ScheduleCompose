@@ -17,6 +17,7 @@ package com.ghostwalker18.schedule.views
 import android.Manifest
 import android.app.Activity
 import android.content.Context
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.animateColor
@@ -41,8 +42,11 @@ import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.SpeechRecognizer
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.mic_permission_required
 import scheduledesktop2.composeapp.generated.resources.voice_input_descr
 
 /**
@@ -89,7 +93,7 @@ actual fun VoiceInput(
     IconButton(
         modifier = Modifier
             .background(
-                color = if(isRecording)
+                color = if(isRecording && hasPermissionRecordAudio)
                     animatedColor
                 else
                     IconButtonDefaults.iconButtonColors().containerColor,
@@ -102,11 +106,12 @@ actual fun VoiceInput(
                         context as Activity,
                         Manifest.permission.RECORD_AUDIO)
                 ) {
-                    /*val toast = Toast.makeText(
+                    val toast = Toast.makeText(
                         context,
-                        context.resources.getText(R.string.permission_for_photo), Toast.LENGTH_SHORT
+                        runBlocking { getString(Res.string.mic_permission_required) },
+                        Toast.LENGTH_SHORT
                     )
-                    toast.show()*/
+                    toast.show()
                 } else {
                     audioRecordPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
                 }

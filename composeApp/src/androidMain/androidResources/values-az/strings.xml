@@ -32,4 +32,7 @@
     <string name="reminder_error">Seçilmiş tarix və vaxt üçün bir öyüd-nəsihət təyin edə bilmədi</string>
     <string name="remind_after_hour">Bir saat sonra xatırlat</string>
     <string name="remind_tomorrow">Sabahı xatırlat</string>
+    <string name="camera_permission_required">Kameraya giriş icazəsi tələb olunur</string>
+    <string name="notification_permission_required">Bildiriş göndərmək üçün icazə tələb olunur</string>
+    <string name="mic_permission_required">Mikrofona giriş icazəsi tələb olunur</string>
 </resources>

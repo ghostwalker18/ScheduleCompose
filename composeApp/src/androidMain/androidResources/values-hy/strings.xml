@@ -32,4 +32,7 @@
     <string name="reminder_error">Ընտրված ամսաթվի և ժամի հիշեցումը հնարավոր չէ սահմանել</string>
     <string name="remind_after_hour">Հիշեցրեք մեկ ժամ անց</string>
     <string name="remind_tomorrow">Հիշեցրեք վաղը</string>
+    <string name="camera_permission_required">Տեսախցիկ մուտք գործելու թույլտվություն է պահանջվում</string>
+    <string name="notification_permission_required">Պահանջվում է ծանուցումներ ուղարկելու թույլտվություն</string>
+    <string name="mic_permission_required">Խոսափող մուտք գործելու թույլտվություն է պահանջվում</string>
 </resources>

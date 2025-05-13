@@ -32,4 +32,7 @@
     <string name="reminder_error">Не атрымалася ўсталяваць напамін на выбраныя дату і час</string>
     <string name="remind_after_hour">Нагадаць праз гадзіну</string>
     <string name="remind_tomorrow">Нагадаць заўтра</string>
+    <string name="camera_permission_required">Патрабуецца дазвол на доступ да камеры</string>
+    <string name="notification_permission_required">Патрабуецца дазвол адпраўляць паведамлення</string>
+    <string name="mic_permission_required">Патрабуецца дазвол на доступ да мікрафону</string>
 </resources>

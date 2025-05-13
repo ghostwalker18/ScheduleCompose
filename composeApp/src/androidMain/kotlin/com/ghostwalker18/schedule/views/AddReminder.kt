@@ -14,6 +14,11 @@
 
 package com.ghostwalker18.schedule.views
 
+import android.Manifest
+import android.app.Activity
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
@@ -38,8 +43,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.schedule.removeNoteReminder
 import com.ghostwalker18.schedule.ui.theme.AlertDialogHeaderFontSize
@@ -58,6 +65,9 @@ import scheduledesktop2.composeapp.generated.resources.reminder_error
 import scheduledesktop2.composeapp.generated.resources.remove_note_reminder
 import com.ghostwalker18.schedule.widgets.TimePickerModal
 import com.ghostwalker18.schedule.widgets.bottomBorder
+import kotlinx.coroutines.runBlocking
+import org.jetbrains.compose.resources.getString
+import scheduledesktop2.composeapp.generated.resources.notification_permission_required
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
 
@@ -85,6 +95,19 @@ actual fun AddReminder(){
     var maxDaysBeforeNotify by remember { mutableStateOf(0) }
     val scope = rememberCoroutineScope()
     val hasNotification by model.hasNotification.collectAsState()
+    val context = LocalContext.current
+
+    val notificationPermissionLauncher =  rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ){
+        granted ->
+        stage =
+            if(granted)
+                STAGE.CHOOSE_TIME
+            else
+                STAGE.READY
+
+    }
 
     scope.launch {
         model.date.collect {
@@ -104,7 +127,16 @@ actual fun AddReminder(){
                     model.hasNotification.value = false
                     stage = STAGE.READY
                 } else {
-                    stage = STAGE.CHOOSE_TIME
+                    if(shouldShowRequestPermissionRationale(context as Activity, Manifest.permission.CAMERA)) {
+                        val toast = Toast.makeText(
+                            context,
+                            runBlocking{getString(Res.string.notification_permission_required)},
+                            Toast.LENGTH_SHORT
+                        )
+                        toast.show()
+                    } else {
+                        notificationPermissionLauncher.launch(Manifest.permission.CAMERA)
+                    }
                 }
             }
         ){
