@@ -34,7 +34,8 @@ class NavigatorAndroid(private val navController: NavController) : Navigator {
     }
 
     override fun goScheduleScreen(date: Calendar, group: String?, teacher: String?){
-
+        val dateString = DateConverters().toString(date)!!
+        navController.navigate("schedule/$dateString/$group/$teacher")
     }
 
     override fun goSettingsActivity(){

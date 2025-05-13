@@ -65,20 +65,25 @@ actual fun PhotoPreview(
     val pagerState = rememberPagerState { photoIDs.size }
     val bitmaps = remember { mutableStateMapOf<String, ImageBitmap>() }
     val context = LocalContext.current
-    scope.launch(Dispatchers.IO) {
+
+    scope.launch(
+        Dispatchers.IO
+    ){
         photoIDs.forEach{
-            if(!bitmaps.containsKey(it)){
-                bitmaps[it] = if (Build.VERSION.SDK_INT < 28) {
-                    MediaStore.Images.Media.getBitmap(
-                        context.contentResolver, it.toUri()
-                    ).asImageBitmap()
-                } else {
-                    val source = ImageDecoder.createSource(
-                        context.contentResolver, it.toUri()
-                    )
-                    ImageDecoder.decodeBitmap(source).asImageBitmap()
+            try{
+                if(!bitmaps.containsKey(it)){
+                    bitmaps[it] = if (Build.VERSION.SDK_INT < 28) {
+                        MediaStore.Images.Media.getBitmap(
+                            context.contentResolver, it.toUri()
+                        ).asImageBitmap()
+                    } else {
+                        val source = ImageDecoder.createSource(
+                            context.contentResolver, it.toUri()
+                        )
+                        ImageDecoder.decodeBitmap(source).asImageBitmap()
+                    }
                 }
-            }
+            } catch (_: Exception){ }
         }
     }
 
