@@ -20,7 +20,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import androidx.savedstate.read
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.views.*
 
@@ -76,10 +75,10 @@ fun NavGraphBuilder.baseRoutes(
     ){
         stackEntry ->
         val date = DateConverters().fromString(
-            stackEntry.arguments?.read{ getString("date") }
+            stackEntry.arguments?.getString("date")
         )
-        val group = stackEntry.arguments?.read{ getString("group") }
-        val teacher = stackEntry.arguments?.read{ getString("teacher") }
+        val group = stackEntry.arguments?.getString("group")
+        val teacher = stackEntry.arguments?.getString("teacher")
         ScheduleItemScreen(
             group = group,
             teacher = teacher,
@@ -94,9 +93,9 @@ fun NavGraphBuilder.baseRoutes(
             navArgument("date"){ type = NavType.StringType })
     ){
             stackEntry ->
-        val group = stackEntry.arguments?.read{ getString("group") }
+        val group = stackEntry.arguments?.getString("group")
         val date = DateConverters().fromString(
-            stackEntry.arguments?.read{ getString("date") }
+            stackEntry.arguments?.getString("date")
         )
         NotesScreen(
             group = group,
@@ -115,11 +114,11 @@ fun NavGraphBuilder.baseRoutes(
         )
     ){
             stackEntry ->
-        val group = stackEntry.arguments?.read{ getString("group") }
+        val group = stackEntry.arguments?.getString("group")
         val date = DateConverters().fromString(
-            stackEntry.arguments?.read{ getString("date") }
+            stackEntry.arguments?.getString("date")
         )
-        val noteID = stackEntry.arguments?.read{ getInt("noteID") }
+        val noteID = stackEntry.arguments?.getInt("noteID")
         EditNoteScreen(
             noteID = noteID,
             group = group,

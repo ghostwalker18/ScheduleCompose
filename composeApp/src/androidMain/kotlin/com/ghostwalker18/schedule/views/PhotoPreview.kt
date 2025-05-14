@@ -157,7 +157,7 @@ actual fun PhotoPreview(
                             bitmap = it,
                             modifier = Modifier
                                 .sharedElement(
-                                    sharedContentState = rememberSharedContentState(photoIDs[page]),
+                                    state = rememberSharedContentState(photoIDs[page]),
                                     animatedVisibilityScope = animatedVisibilityScope!!
                                 ).clickable {
                                     ScheduleApp.instance.getNavigator().goPhotoView(photoIDs[page])

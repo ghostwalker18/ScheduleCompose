@@ -23,7 +23,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import androidx.savedstate.read
 import com.ghostwalker18.schedule.*
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.platform.NavigatorAndroid
@@ -63,9 +62,7 @@ class MainActivity : AppCompatActivity() {
                         )
                     ){
                         stackEntry ->
-                        val date = stackEntry.arguments?.read {
-                            getStringOrNull("date")
-                        }
+                        val date = stackEntry.arguments?.getString("date")
                         DateConverters().fromString(date)?.let{ MainScreen(it)}
                     }
 

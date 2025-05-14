@@ -120,7 +120,7 @@ actual class ScheduleApp {
                 ){
                     NavHost(
                         navController = navController,
-                        startDestination = "main"
+                        startDestination = "home"
                     ){
                         baseRoutes()
                     }
