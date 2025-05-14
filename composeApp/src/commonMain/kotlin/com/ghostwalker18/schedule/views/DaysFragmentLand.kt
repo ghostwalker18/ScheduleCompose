@@ -151,11 +151,11 @@ fun DaysFragmentLand(
                         }
                     }
                 }
-                ScheduleItemFragment(Res.string.monday)
-                ScheduleItemFragment(Res.string.tuesday)
-                ScheduleItemFragment(Res.string.wednesday)
-                ScheduleItemFragment(Res.string.thursday)
-                ScheduleItemFragment(Res.string.friday)
+                ScheduleItemFragment(date, Res.string.monday)
+                ScheduleItemFragment(date, Res.string.tuesday)
+                ScheduleItemFragment(date, Res.string.wednesday)
+                ScheduleItemFragment(date, Res.string.thursday)
+                ScheduleItemFragment(date, Res.string.friday)
             }
             Text(status)
             LinearProgressIndicator(

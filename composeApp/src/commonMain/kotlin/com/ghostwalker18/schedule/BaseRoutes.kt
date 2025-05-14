@@ -34,24 +34,8 @@ import com.ghostwalker18.schedule.views.*
 fun NavGraphBuilder.baseRoutes(
     sharedTransitionScope: SharedTransitionScope? = null
 ){
-
-    composable(
-        route = "main?date={date}",
-        arguments = listOf(
-            navArgument("date")
-            {
-                type = NavType.StringType
-            }
-        )
-    ){
-        stackEntry ->
-        val date = stackEntry.arguments?.read {
-            getStringOrNull("date")
-        }
-        if(date == null)
-            MainScreen()
-        else
-            DateConverters().fromString(date)?.let{ MainScreen(it)}
+    composable(route = "home"){
+        MainScreen()
     }
 
     composable(route = "settings"){

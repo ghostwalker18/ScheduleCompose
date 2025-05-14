@@ -46,9 +46,12 @@ import com.ghostwalker18.schedule.widgets.*
  * @since 1.0
  */
 @Composable
-fun ScheduleItemFragment(dayOfWeek: StringResource) {
+fun ScheduleItemFragment(
+    date: Calendar,
+    dayOfWeek: StringResource
+) {
     val navigator = ScheduleApp.instance.getNavigator()
-    val scheduleModel = viewModel{ ScheduleModel() }
+    val scheduleModel = viewModel{ ScheduleModel(date) }
     val notesRepository = ScheduleApp.instance.notesRepository
     val weekDayNumbers = hashMapOf(
         Res.string.monday to Calendar.MONDAY,

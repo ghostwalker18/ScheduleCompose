@@ -23,6 +23,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.savedstate.read
 import com.ghostwalker18.schedule.*
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.platform.NavigatorAndroid
@@ -48,9 +49,25 @@ class MainActivity : AppCompatActivity() {
             SharedTransitionLayout {
                 NavHost(
                     navController = navController,
-                    startDestination = "main"
+                    startDestination = "home"
                 ){
                     baseRoutes(this@SharedTransitionLayout)
+
+                    composable(
+                        route = "main/{date}",
+                        arguments = listOf(
+                            navArgument("date")
+                            {
+                                type = NavType.StringType
+                            }
+                        )
+                    ){
+                        stackEntry ->
+                        val date = stackEntry.arguments?.read {
+                            getStringOrNull("date")
+                        }
+                        DateConverters().fromString(date)?.let{ MainScreen(it)}
+                    }
 
                     composable(
                         route="notePhoto/{photoID}",
@@ -58,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                             navArgument("photoID"){ type = NavType.StringType}
                         )
                     ){
-                            stackEntry ->
+                        stackEntry ->
                         val photoID = stackEntry.arguments?.getString("photoID")!!
                         PhotoViewScreen(
                             photoID = photoID,
@@ -85,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             Navigate to main screen with required date from schedule updated notifications
              */
             intent?.extras?.getString("schedule_date")?.let {
-                navController.navigate("main?date=$it")
+                navController.navigate("main/$it")
             }
             /*
             Navigate to notes screen from note reminder notifications
