@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         setContentWithTheme {
             val navController = rememberNavController()
             ScheduleApp.instance.setNavigator(NavigatorAndroid(navController))
+
             SharedTransitionLayout {
                 NavHost(
                     navController = navController,
@@ -69,6 +70,9 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+            /*
+            Navigate to required screen from Android shortcuts
+            */
             when(intent.extras?.getString("shortcut_id")){
                 "notes" -> ScheduleApp.instance.scheduleRepository.savedGroup?.let {
                     ScheduleApp.instance.getNavigator().goNotesActivity(it, Calendar.getInstance())
@@ -77,7 +81,15 @@ class MainActivity : AppCompatActivity() {
                     ScheduleApp.instance.getNavigator().goEditNoteActivity(it, Calendar.getInstance(), 0)
                 }
             }
-
+            /*
+            Navigate to main screen with required date from schedule updated notifications
+             */
+            intent?.extras?.getString("schedule_date")?.let {
+                navController.navigate("main?date=$it")
+            }
+            /*
+            Navigate to notes screen from note reminder notifications
+            */
             val noteGroup = intent.extras?.getString("note_group")
             val noteDate = intent.extras?.getString("note_date")
             if(noteDate != null && noteGroup != null){

@@ -1,4 +1,3 @@
-package com.ghostwalker18.schedule
 /*
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +12,15 @@ package com.ghostwalker18.schedule
  * limitations under the License.
  */
 
+package com.ghostwalker18.schedule
+
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import androidx.savedstate.read
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.views.*
 
@@ -33,8 +35,23 @@ fun NavGraphBuilder.baseRoutes(
     sharedTransitionScope: SharedTransitionScope? = null
 ){
 
-    composable(route = "main"){
-        MainScreen()
+    composable(
+        route = "main?date={date}",
+        arguments = listOf(
+            navArgument("date")
+            {
+                type = NavType.StringType
+            }
+        )
+    ){
+        stackEntry ->
+        val date = stackEntry.arguments?.read {
+            getStringOrNull("date")
+        }
+        if(date == null)
+            MainScreen()
+        else
+            DateConverters().fromString(date)?.let{ MainScreen(it)}
     }
 
     composable(route = "settings"){
@@ -75,10 +92,10 @@ fun NavGraphBuilder.baseRoutes(
     ){
         stackEntry ->
         val date = DateConverters().fromString(
-            stackEntry.arguments?.getString("date")
+            stackEntry.arguments?.read{ getString("date") }
         )
-        val group = stackEntry.arguments?.getString("group")
-        val teacher = stackEntry.arguments?.getString("teacher")
+        val group = stackEntry.arguments?.read{ getString("group") }
+        val teacher = stackEntry.arguments?.read{ getString("teacher") }
         ScheduleItemScreen(
             group = group,
             teacher = teacher,
@@ -93,9 +110,9 @@ fun NavGraphBuilder.baseRoutes(
             navArgument("date"){ type = NavType.StringType })
     ){
             stackEntry ->
-        val group = stackEntry.arguments?.getString("group")
+        val group = stackEntry.arguments?.read{ getString("group") }
         val date = DateConverters().fromString(
-            stackEntry.arguments?.getString("date")
+            stackEntry.arguments?.read{ getString("date") }
         )
         NotesScreen(
             group = group,
@@ -114,11 +131,11 @@ fun NavGraphBuilder.baseRoutes(
         )
     ){
             stackEntry ->
-        val group = stackEntry.arguments?.getString("group")
+        val group = stackEntry.arguments?.read{ getString("group") }
         val date = DateConverters().fromString(
-            stackEntry.arguments?.getString("date")
+            stackEntry.arguments?.read{ getString("date") }
         )
-        val noteID = stackEntry.arguments?.getInt("noteID")
+        val noteID = stackEntry.arguments?.read{ getInt("noteID") }
         EditNoteScreen(
             noteID = noteID,
             group = group,

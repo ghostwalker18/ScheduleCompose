@@ -25,7 +25,7 @@ import java.util.*
  * @author  Ипатов Никита
  * @since 1.0
  */
-class ScheduleModel : ViewModel() {
+class ScheduleModel(date: Calendar) : ViewModel() {
     /**
      * Группа для показа расписания на неделю
      */
@@ -39,7 +39,7 @@ class ScheduleModel : ViewModel() {
     /**
      * Дата на неделе, для которой надо показать расписание
      */
-    val calendar = MutableStateFlow(Calendar.getInstance())
+    val calendar = MutableStateFlow(date)
 
     /**
      * Этот метод позволяет передвинуть состояние расписания на следующую неделю.

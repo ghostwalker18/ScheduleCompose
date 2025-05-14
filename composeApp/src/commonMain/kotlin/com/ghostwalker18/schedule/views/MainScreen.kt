@@ -45,6 +45,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import com.russhwolf.settings.get
+import java.util.Calendar
 
 /**
  * Эта функция представляет собой главный экран приложения
@@ -54,7 +55,9 @@ import com.russhwolf.settings.get
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    date: Calendar = Calendar.getInstance()
+) {
     val navigator = ScheduleApp.instance.getNavigator()
     val worker = ScheduleApp.instance.shareController
     val scope = rememberCoroutineScope()
@@ -229,8 +232,8 @@ fun MainScreen() {
             HorizontalPager(pagerState){
                 when(it){
                     0 -> when(getScreenOrientation()){
-                        Orientation.Portrait -> DaysFragmentPortrait()
-                        else -> DaysFragmentLand()
+                        Orientation.Portrait -> DaysFragmentPortrait(date)
+                        else -> DaysFragmentLand(date)
                     }
                     1 -> when(getScreenOrientation()){
                         Orientation.Portrait -> TimesFragmentPortrait()

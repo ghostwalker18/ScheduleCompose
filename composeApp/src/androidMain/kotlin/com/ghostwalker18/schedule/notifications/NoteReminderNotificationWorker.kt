@@ -27,6 +27,10 @@ import com.ghostwalker18.schedule.converters.DateConverters
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.getString
+import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.remind_after_hour
+import scheduledesktop2.composeapp.generated.resources.remind_tomorrow
 import kotlin.random.Random
 
 /**
@@ -72,7 +76,7 @@ class NoteReminderNotificationWorker(
                         )
                         val actionRemindAfterDay =
                             NotificationCompat.Action.Builder(
-                                null, "Remind after day",
+                                null, getString(Res.string.remind_tomorrow),
                                 PendingIntent.getService(
                                     applicationContext,
                                     it.id, remindAfterDayIntent,
@@ -82,7 +86,7 @@ class NoteReminderNotificationWorker(
                                 .build()
                         val actionRemindAfterHour =
                             NotificationCompat.Action.Builder(
-                                null, "Remind after hour",
+                                null, getString(Res.string.remind_after_hour),
                                 PendingIntent.getService(
                                     applicationContext,
                                     it.id, remindAfterHourIntent,

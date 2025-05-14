@@ -20,6 +20,7 @@ import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
+import java.util.Calendar
 import org.jetbrains.compose.resources.StringResource
 
 /**
@@ -30,7 +31,9 @@ import org.jetbrains.compose.resources.StringResource
  * @since 1.0
  */
 @Composable
-expect fun DaysFragmentPortrait()
+expect fun DaysFragmentPortrait(
+    date: Calendar = Calendar.getInstance()
+)
 
 /**
  * Эта функция представляет собой элемент интерфейса для отображения

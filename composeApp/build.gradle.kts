@@ -254,21 +254,28 @@ dependencies{
     add("kspAndroid", libs.androidx.room.compiler)
 }
 
+/*
+    Конфигурация для плагина документации Dokka
+ */
 tasks.withType<DokkaTask>().configureEach {
+
+    val appName = "Мультиплатформеннное приложение расписания ПАСТ"
+    val url = "https://github.com/ghostwalker18/ScheduleCompose"
 
     pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
         footerMessage = "(c) 2025 Ипатов Никита"
+        homepageLink = url
     }
 
     dokkaSourceSets {
         named("commonMain") {
-            moduleName.set("Мультиплатформеннное приложение расписания ПАСТ")
+            moduleName.set(appName)
 
             includes.from("src/commonMain/commonMainInfo.md")
 
             sourceLink {
                 localDirectory.set(file("src/commonMain/kotlin"))
-                remoteUrl.set(URL("https://github.com/ghostwalker18/ScheduleCompose"))
+                remoteUrl.set(URL(url))
                 remoteLineSuffix.set("#L")
             }
         }
@@ -276,13 +283,13 @@ tasks.withType<DokkaTask>().configureEach {
 
     dokkaSourceSets {
         named("androidMain") {
-            moduleName.set("Мультиплатформеннное приложение расписания ПАСТ")
+            moduleName.set(appName)
 
             includes.from("src/androidMain/androidMainInfo.md")
 
             sourceLink {
                 localDirectory.set(file("src/androidMain/kotlin"))
-                remoteUrl.set(URL("https://github.com/ghostwalker18/ScheduleCompose"))
+                remoteUrl.set(URL(url))
                 remoteLineSuffix.set("#L")
             }
         }
@@ -290,13 +297,13 @@ tasks.withType<DokkaTask>().configureEach {
 
     dokkaSourceSets {
         named("desktopMain") {
-            moduleName.set("Мультиплатформеннное приложение расписания ПАСТ")
+            moduleName.set(appName)
 
             includes.from("src/desktopMain/desktopMainInfo.md")
 
             sourceLink {
                 localDirectory.set(file("src/desktopMain/kotlin"))
-                remoteUrl.set(URL("https://github.com/ghostwalker18/ScheduleCompose"))
+                remoteUrl.set(URL(url))
                 remoteLineSuffix.set("#L")
             }
         }

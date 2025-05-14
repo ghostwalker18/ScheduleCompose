@@ -83,7 +83,7 @@ class ScheduleUpdateNotificationWorker(
                     val openScheduleIntent =
                         Intent(applicationContext, MainActivity::class.java)
                     openScheduleIntent.putExtra(
-                        "date",
+                        "schedule_date",
                         DateConverters().toString(currentAvailableDate)
                     )
                     NotificationManagerWrapper.getInstance(applicationContext)

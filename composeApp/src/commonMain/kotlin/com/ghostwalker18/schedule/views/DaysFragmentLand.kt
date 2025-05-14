@@ -39,6 +39,7 @@ import scheduledesktop2.composeapp.generated.resources.back
 import scheduledesktop2.composeapp.generated.resources.forward
 import scheduledesktop2.composeapp.generated.resources.monday
 import com.ghostwalker18.schedule.viewmodels.ScheduleModel
+import java.util.Calendar
 
 /**
  * Эта функция представляет собой элемент интерфейса, используемый для
@@ -48,9 +49,11 @@ import com.ghostwalker18.schedule.viewmodels.ScheduleModel
  * @since 1.0
  */
 @Composable
-fun DaysFragmentLand(){
+fun DaysFragmentLand(
+    date: Calendar = Calendar.getInstance()
+){
     val repository = ScheduleApp.instance.scheduleRepository
-    val model: ScheduleModel = viewModel { ScheduleModel() }
+    val model: ScheduleModel = viewModel { ScheduleModel(date) }
     val group by model.group.collectAsState()
     val teacher by model.teacher.collectAsState()
     var status by remember { mutableStateOf("") }

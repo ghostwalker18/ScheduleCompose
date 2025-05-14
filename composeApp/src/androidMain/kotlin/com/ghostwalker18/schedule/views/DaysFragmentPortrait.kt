@@ -40,12 +40,15 @@ import scheduledesktop2.composeapp.generated.resources.forward
 import scheduledesktop2.composeapp.generated.resources.monday
 import com.ghostwalker18.schedule.viewmodels.ScheduleModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import java.util.Calendar
 
 @Preview
 @Composable
-actual fun DaysFragmentPortrait(){
+actual fun DaysFragmentPortrait(
+    date: Calendar
+){
     val repository = ScheduleApp.instance.scheduleRepository
-    val model: ScheduleModel = viewModel { ScheduleModel() }
+    val model: ScheduleModel = viewModel { ScheduleModel(date) }
     val group by model.group.collectAsState()
     val teacher by model.teacher.collectAsState()
     var status by remember { mutableStateOf("") }
