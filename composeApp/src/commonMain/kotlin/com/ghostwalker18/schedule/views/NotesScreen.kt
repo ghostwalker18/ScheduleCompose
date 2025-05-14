@@ -59,7 +59,7 @@ fun NotesScreen(
     sharedTransitionScope: SharedTransitionScope? = null,
     animatedVisibilityScope: AnimatedVisibilityScope? = null
 ){
-    val navigator = ScheduleApp.instance.navigator
+    val navigator = ScheduleApp.instance.getNavigator()
     val worker = ScheduleApp.instance.shareController
     val scope = rememberCoroutineScope()
     val model = viewModel { NotesModel() }

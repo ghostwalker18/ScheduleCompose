@@ -20,15 +20,46 @@ import com.ghostwalker18.schedule.platform.ImportController
 import com.russhwolf.settings.ObservableSettings
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+/**
+ * Базовый прототип приложения для обеих платформ.
+ *
+ * @author Ипатов Никита
+ */
 expect class ScheduleApp() {
+    /**
+     * Репозиторий расписания приложения
+     */
     val scheduleRepository: ScheduleRepository
+
+    /**
+     * Репозиторий заметок приложения
+     */
     val notesRepository: NotesRepository
+
+    /**
+     * Настройки приложения
+     */
     val preferences: ObservableSettings
-    val navigator: Navigator
+
+    /**
+     * Контроллер шэринга приложения
+     */
     val shareController: ShareController
+
+    /**
+     * Контроллер импорта приложения
+     */
     val importController: ImportController
 
+    /**
+     * Этот метод позволяет получить навигатор приложения
+     */
+    fun getNavigator(): Navigator
+
     companion object{
-       val instance: ScheduleApp
+        /**
+         * Синглтон приложения
+         */
+        val instance: ScheduleApp
     }
 }

@@ -47,7 +47,7 @@ import com.ghostwalker18.schedule.widgets.*
  */
 @Composable
 fun ScheduleItemFragment(dayOfWeek: StringResource) {
-    val navigator = ScheduleApp.instance.navigator
+    val navigator = ScheduleApp.instance.getNavigator()
     val scheduleModel = viewModel{ ScheduleModel() }
     val notesRepository = ScheduleApp.instance.notesRepository
     val weekDayNumbers = hashMapOf(
@@ -107,7 +107,7 @@ fun ScheduleItemFragment(dayOfWeek: StringResource) {
                 onClick = {
                     when(mode){
                         "in_fragment" -> model.isOpened.value = !isOpened
-                        "in_activity" -> ScheduleApp.instance.navigator.goScheduleScreen(
+                        "in_activity" -> ScheduleApp.instance.getNavigator().goScheduleScreen(
                             model.getDate().value,
                             model.group,
                             model.teacher

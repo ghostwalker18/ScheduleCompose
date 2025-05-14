@@ -56,7 +56,7 @@ fun ScheduleItemScreen(
     val notesCount by ScheduleApp.instance.notesRepository
         .getNotesCount(group?: "", date)
         .collectAsState(0)
-    val navigator = ScheduleApp.instance.navigator
+    val navigator = ScheduleApp.instance.getNavigator()
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
 
@@ -70,7 +70,7 @@ fun ScheduleItemScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton({ ScheduleApp.instance.navigator.goBack() }){
+                    IconButton({ ScheduleApp.instance.getNavigator().goBack() }){
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, null)
                     }
                 },

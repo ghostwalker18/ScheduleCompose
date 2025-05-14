@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentWithTheme {
             val navController = rememberNavController()
-            ScheduleApp.instance._navigator = NavigatorAndroid(navController)
+            ScheduleApp.instance.setNavigator(NavigatorAndroid(navController))
             SharedTransitionLayout {
                 NavHost(
                     navController = navController,
@@ -64,24 +64,24 @@ class MainActivity : AppCompatActivity() {
                             sharedTransitionScope  = this@SharedTransitionLayout,
                             animatedVisibilityScope = this@composable
                         ){
-                            ScheduleApp.instance.navigator.goBack()
+                            ScheduleApp.instance.getNavigator().goBack()
                         }
                     }
                 }
             }
             when(intent.extras?.getString("shortcut_id")){
                 "notes" -> ScheduleApp.instance.scheduleRepository.savedGroup?.let {
-                    ScheduleApp.instance.navigator.goNotesActivity(it, Calendar.getInstance())
+                    ScheduleApp.instance.getNavigator().goNotesActivity(it, Calendar.getInstance())
                 }
                 "add_note" -> ScheduleApp.instance.scheduleRepository.savedGroup?.let {
-                    ScheduleApp.instance.navigator.goEditNoteActivity(it, Calendar.getInstance(), 0)
+                    ScheduleApp.instance.getNavigator().goEditNoteActivity(it, Calendar.getInstance(), 0)
                 }
             }
 
             val noteGroup = intent.extras?.getString("note_group")
             val noteDate = intent.extras?.getString("note_date")
             if(noteDate != null && noteGroup != null){
-                ScheduleApp.instance.navigator
+                ScheduleApp.instance.getNavigator()
                     .goNotesActivity(
                         noteGroup,
                         DateConverters().fromString(noteDate)!!

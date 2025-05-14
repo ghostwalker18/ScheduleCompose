@@ -58,7 +58,6 @@ actual class ScheduleApp {
         Preferences.userNodeForPackage(ScheduleApp::class.java)
     )
     private lateinit var _navigator: Navigator
-    actual val navigator by lazy { _navigator }
     val database: AppDatabase
 
     private val themeState = MutableStateFlow(preferences["theme", "system"])
@@ -128,6 +127,10 @@ actual class ScheduleApp {
                 }
             }
         }
+    }
+
+    actual fun getNavigator(): Navigator {
+        return _navigator
     }
 
     actual companion object{

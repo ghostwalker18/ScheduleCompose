@@ -55,7 +55,7 @@ import com.russhwolf.settings.get
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
-    val navigator = ScheduleApp.instance.navigator
+    val navigator = ScheduleApp.instance.getNavigator()
     val worker = ScheduleApp.instance.shareController
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()

@@ -60,7 +60,7 @@ fun EditNoteScreen(
     sharedTransitionScope: SharedTransitionScope? = null,
     animatedVisibilityScope: AnimatedVisibilityScope? = null
 ){
-    val navigator = ScheduleApp.instance.navigator
+    val navigator = ScheduleApp.instance.getNavigator()
     val model = viewModel { EditNoteModel() }
     val themes by model.themes.collectAsState()
     val noteDate by model.date.collectAsState()

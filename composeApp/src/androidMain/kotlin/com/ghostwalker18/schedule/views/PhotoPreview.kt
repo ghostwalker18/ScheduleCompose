@@ -160,7 +160,7 @@ actual fun PhotoPreview(
                                     sharedContentState = rememberSharedContentState(photoIDs[page]),
                                     animatedVisibilityScope = animatedVisibilityScope!!
                                 ).clickable {
-                                    ScheduleApp.instance.navigator.goPhotoView(photoIDs[page])
+                                    ScheduleApp.instance.getNavigator().goPhotoView(photoIDs[page])
                                 },
                             contentDescription = stringResource(Res.string.preview_photo_descr)
                         )

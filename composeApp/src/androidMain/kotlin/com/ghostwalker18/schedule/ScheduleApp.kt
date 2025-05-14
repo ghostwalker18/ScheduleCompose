@@ -59,8 +59,7 @@ import kotlinx.coroutines.launch
  */
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual class ScheduleApp : Application() {
-    lateinit var _navigator: Navigator
-    actual val navigator by lazy { _navigator }
+    private lateinit var _navigator: Navigator
 
     private lateinit var _importController: ImportController
     actual val importController by lazy { _importController }
@@ -182,6 +181,17 @@ actual class ScheduleApp : Application() {
                 SpeechRecognizer.initModel(this@ScheduleApp)
             }
         }
+    }
+
+    actual fun getNavigator(): Navigator{
+        return _navigator
+    }
+
+    /**
+     * Этот метод позволяет задать навигатор приложения.
+     */
+    fun setNavigator(navigator: Navigator){
+        _navigator = navigator
     }
 
     /**

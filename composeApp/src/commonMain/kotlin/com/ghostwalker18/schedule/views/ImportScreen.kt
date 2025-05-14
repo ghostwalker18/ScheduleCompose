@@ -42,7 +42,7 @@ import scheduledesktop2.composeapp.generated.resources.operation_type
  */
 @Composable
 fun ImportScreen(){
-    val navigator = ScheduleApp.instance.navigator
+    val navigator = ScheduleApp.instance.getNavigator()
     val controller = ScheduleApp.instance.importController
     val scaffoldState = rememberScaffoldState()
     controller.initController()
