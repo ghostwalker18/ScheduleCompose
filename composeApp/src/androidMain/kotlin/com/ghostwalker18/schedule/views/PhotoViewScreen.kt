@@ -145,7 +145,7 @@ fun PhotoViewScreen(
                         .clickable {
                             onBackPressed()
                         }.sharedElement(
-                            state = rememberSharedContentState(photoID),
+                            sharedContentState = rememberSharedContentState(photoID),
                             animatedVisibilityScope = animatedVisibilityScope!!
                         ),
                     contentDescription = stringResource(Res.string.preview_photo_descr)
