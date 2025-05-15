@@ -42,8 +42,13 @@ class NotificationManagerWrapper private constructor(
      * Этот метод позволяет создать канал для отправки и получения push-уведомлений.
      * @param channelId ID канала
      * @param channelName имя канала
+     * @param channelDescription краткое описание канала для пункта в настройках
      */
-    fun createNotificationChannel(channelId: String, channelName: String?, channelDescription: String?) {
+    fun createNotificationChannel(
+        channelId: String,
+        channelName: String?,
+        channelDescription: String?
+    ){
         val builder = NotificationChannelCompat.Builder(
             channelId,
             NotificationManagerCompat.IMPORTANCE_DEFAULT
@@ -57,6 +62,8 @@ class NotificationManagerWrapper private constructor(
      * Этот метод позволяет показать push-уведомление.
      * @param context контекст приложения
      * @param data сообщение
+     * @param intent действие при нажатии на уведомление
+     * @param actions действия внутри уведомления
      */
     fun showNotification(
         context: Context, data: AppNotification,
@@ -67,6 +74,10 @@ class NotificationManagerWrapper private constructor(
             NotificationCompat.Builder(context, data.channelId)
                 .setSmallIcon(R.drawable.notification_icon)
                 .setContentTitle(data.title)
+                .setStyle(
+                    NotificationCompat.BigTextStyle()
+                        .bigText(data.message)
+                )
                 .setContentText(data.message)
                 .setAutoCancel(true)
         intent?.let{ builder.setContentIntent(it) }

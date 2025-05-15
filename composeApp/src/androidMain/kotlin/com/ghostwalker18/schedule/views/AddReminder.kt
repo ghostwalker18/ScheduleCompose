@@ -16,6 +16,7 @@ package com.ghostwalker18.schedule.views
 
 import android.Manifest
 import android.app.Activity
+import android.os.Build
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -127,7 +128,7 @@ actual fun AddReminder(){
                     model.hasNotification.value = false
                     stage = STAGE.READY
                 } else {
-                    if(shouldShowRequestPermissionRationale(context as Activity, Manifest.permission.CAMERA)) {
+                    if(shouldShowRequestPermissionRationale(context as Activity, Manifest.permission.POST_NOTIFICATIONS)) {
                         val toast = Toast.makeText(
                             context,
                             runBlocking{getString(Res.string.notification_permission_required)},
@@ -135,7 +136,8 @@ actual fun AddReminder(){
                         )
                         toast.show()
                     } else {
-                        notificationPermissionLauncher.launch(Manifest.permission.CAMERA)
+                        if(Build.VERSION.SDK_INT >32)
+                            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
                     }
                 }
             }
