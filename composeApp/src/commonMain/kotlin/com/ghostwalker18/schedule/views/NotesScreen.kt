@@ -174,7 +174,9 @@ fun NotesScreen(
                             ){
                                 IconButton(
                                     onClick = {
-                                        model.deleteNotes(selectedNotes)
+                                        /*Copy is needed due to reference nature of Java*/
+                                        val notesToDelete = selectedNotes.toList()
+                                        model.deleteNotes(notesToDelete)
                                         selectedNotes.clear()
                                     }
                                 ){
