@@ -140,7 +140,19 @@ fun SettingsScreen() {
                             key = "language",
                             entryValues = Res.array.language_values,
                             entries = Res.array.language_entries,
-                            preferences = preferences
+                            preferences = preferences,
+                            entryDrawables = arrayOf(
+                                Res.drawable.un,
+                                Res.drawable.ru,
+                                Res.drawable.by,
+                                Res.drawable.ua,
+                                Res.drawable.kz,
+                                Res.drawable.ge,
+                                Res.drawable.am,
+                                Res.drawable.az,
+                                Res.drawable.us
+                            ),
+                            entryDrawableDescr = Res.string.language_flag_descr
                         )
                     }
                 }

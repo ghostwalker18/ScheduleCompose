@@ -140,6 +140,7 @@
     <string name="lesson_not_started_descr">Занятие не началось</string>
     <string name="go_back_descr">Вернуться на предыдущий экран</string>
     <string name="voice_input_descr">Голосовой ввод</string>
+    <string name="language_flag_descr">Флаг страны</string>
     <string name="notes_tooltip">Показать заметки на день</string>
     <string name="schedule_tooltip">Показать расписание на день</string>
     <string name="developer_tooltip">Связаться с разработчиком</string>

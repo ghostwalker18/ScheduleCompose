@@ -139,6 +139,7 @@
     <string name="lesson_not_started_descr">Заняття не почалося</string>
     <string name="go_back_descr">Повернутися на попередній екран</string>
     <string name="voice_input_descr">Голосове введення</string>
+    <string name="language_flag_descr">Прапор країни</string>
     <string name="notes_tooltip">Показати нотатки на день</string>
     <string name="schedule_tooltip">Показати розклад на день</string>
     <string name="developer_tooltip">Зв\'язатися з розробником</string>

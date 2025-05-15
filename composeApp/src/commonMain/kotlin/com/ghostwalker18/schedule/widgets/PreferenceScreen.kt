@@ -14,12 +14,14 @@
 
 package com.ghostwalker18.schedule.widgets
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -30,8 +32,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
 import com.ghostwalker18.schedule.ui.theme.gray500Color
 import com.russhwolf.settings.Settings
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringArrayResource
 import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringArrayResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -116,7 +120,9 @@ fun ListPreference(title: StringResource,
                    key: String,
                    entryValues: StringArrayResource,
                    entries: StringArrayResource,
-                   preferences: Settings
+                   preferences: Settings,
+                   entryDrawables: Array<DrawableResource>? = null,
+                   entryDrawableDescr: StringResource? = null
 ){
     Column(modifier = Modifier.fillMaxWidth()) {
         var exp by remember { mutableStateOf(false) }
@@ -143,16 +149,34 @@ fun ListPreference(title: StringResource,
         ){
             val optionEntries = stringArrayResource(entries)
             val optionValues = stringArrayResource(entryValues)
-            optionEntries.forEachIndexed{ index, entry ->
-                DropdownMenuItem({
-                    preferences.putString(key, optionValues[index])
-                    exp = false
-                }) {
-                    Text(
+            optionEntries.forEachIndexed {
+                index, entry ->
+                DropdownMenuItem(
+                    onClick = {
+                        preferences.putString(key, optionValues[index])
+                        exp = false
+                    }
+                ){
+                    Row(
                         modifier = Modifier.fillMaxWidth(),
-                        text = entry,
-                        textAlign = TextAlign.Center
-                    )
+                        verticalAlignment = Alignment.CenterVertically
+                    ){
+                        Text(
+                            text = entry,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.weight(1f)
+                        )
+                        entryDrawables?.let {
+                            Image(
+                                painter = painterResource(it[index]),
+                                contentDescription = entryDrawableDescr?.let{
+                                    stringResource(it)
+                                },
+                                modifier = Modifier.size(50.dp)
+                            )
+                        }
+                    }
+
                 }
             }
         }

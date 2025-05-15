@@ -140,6 +140,7 @@
     <string name="lesson_not_started_descr">Dərs başlamadı</string>
     <string name="go_back_descr">Əvvəlki ekrana qayıdın</string>
     <string name="voice_input_descr">Səs daxiletmə</string>
+    <string name="language_flag_descr">Ölkə bayrağı</string>
     <string name="notes_tooltip">Gün üçün qeydləri göstərin</string>
     <string name="schedule_tooltip">Gündəlik cədvəli göstərin</string>
     <string name="developer_tooltip">Tərtibatçı ilə əlaqə saxlayın</string>

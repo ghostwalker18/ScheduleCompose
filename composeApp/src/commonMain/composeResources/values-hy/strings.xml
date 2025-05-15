@@ -140,6 +140,7 @@
     <string name="lesson_not_started_descr">Դասը չի սկսվել</string>
     <string name="go_back_descr">Վերադառնալ նախորդ էկրանին</string>
     <string name="voice_input_descr">Ձայնային մուտքագրում</string>
+    <string name="language_flag_descr">Երկրի դրոշ</string>
     <string name="notes_tooltip">Ցուցադրել օրվա նշումները</string>
     <string name="schedule_tooltip">Ցուցադրել օրական գրաֆիկը</string>
     <string name="developer_tooltip">Կապվեք մշակողի հետ</string>

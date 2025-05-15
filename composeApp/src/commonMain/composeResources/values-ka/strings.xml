@@ -140,6 +140,7 @@
     <string name="lesson_not_started_descr">გაკვეთილი არ დაწყებულა</string>
     <string name="go_back_descr">წინა ეკრანზე დაბრუნება</string>
     <string name="voice_input_descr">ხმოვანი შეყვანა</string>
+    <string name="language_flag_descr">ქვეყნის დროშა</string>
     <string name="notes_tooltip">დღის შენიშვნების ჩვენება</string>
     <string name="schedule_tooltip">ყოველდღიური გრაფიკის ჩვენება</string>
     <string name="developer_tooltip">დაუკავშირდით დეველოპერს</string>
