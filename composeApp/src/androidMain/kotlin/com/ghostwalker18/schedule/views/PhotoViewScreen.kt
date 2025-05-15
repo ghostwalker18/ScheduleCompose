@@ -22,6 +22,7 @@ import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.rememberTransformableState
 import androidx.compose.foundation.gestures.transformable
 import androidx.compose.foundation.layout.*
@@ -36,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
@@ -44,6 +46,16 @@ import scheduledesktop2.composeapp.generated.resources.preview_photo_descr
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.photoview_back_descr
 import scheduledesktop2.composeapp.generated.resources.photoview_share_descr
+
+/**
+ * Минимальный масштаб изображения
+ */
+const val minScale = 1f
+
+/**
+ * Максимальный масштаб изображения
+ */
+const val maxScale = 2.5f
 
 /**
  * Эта функция отображает фото из заметки в полноэкранном режиме.
@@ -132,19 +144,37 @@ fun PhotoViewScreen(
                     .clickable { scale = 1f }
             )
             with(sharedTransitionScope!!){
+                val scaleFactor =
+                    if(scale > minScale && scale <= maxScale)
+                        scale
+                    else if(scale > maxScale)
+                        maxScale
+                    else
+                        minScale
                 Image(
                     bitmap = bitmap,
                     modifier = Modifier
                         .graphicsLayer(
-                            scaleX = if(scale > 1) scale else 1f,
-                            scaleY = if(scale > 1) scale else 1f
+                            scaleX = scaleFactor,
+                            scaleY = scaleFactor
                         )
                         .transformable(state = state)
                         .fillMaxWidth()
                         .aspectRatio(aspectRatio)
-                        .clickable {
-                            onBackPressed()
-                        }.sharedElement(
+                        .pointerInput(
+                            key1 = null
+                        ){
+                            detectTapGestures(
+                                onDoubleTap = {
+                                    scale =
+                                        if(scale !=  minScale)
+                                            minScale
+                                        else
+                                            maxScale
+                                }
+                            )
+                        }
+                        .sharedElement(
                             state = rememberSharedContentState(photoID),
                             animatedVisibilityScope = animatedVisibilityScope!!
                         ),
