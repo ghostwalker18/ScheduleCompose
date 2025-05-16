@@ -50,6 +50,9 @@ if (appMetricaPropertiesFile.exists()){
     appmetrica {
         setPostApiKey(appMetricaProperties["apiKey"].toString())
         enableAnalytics = true
+        offline = {
+            true
+        }
     }
 }
 

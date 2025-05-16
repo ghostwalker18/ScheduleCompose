@@ -46,7 +46,15 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import android.Manifest
 import android.content.pm.PackageManager
+import android.util.Log
+import ru.rustore.sdk.pushclient.common.logger.DefaultLogger
+import io.appmetrica.analytics.AppMetrica
+import io.appmetrica.analytics.AppMetricaConfig
 import kotlinx.coroutines.launch
+import ru.rustore.sdk.pushclient.RuStorePushClient
+import ru.rustore.sdk.universalpush.RuStoreUniversalPushClient
+import ru.rustore.sdk.universalpush.firebase.provides.FirebasePushProvider
+import ru.rustore.sdk.universalpush.rustore.providers.RuStorePushProvider
 
 /**
  * <h1>Schedule</h1>
@@ -119,10 +127,10 @@ actual class ScheduleApp : Application() {
         appUpdateChangedListener = preferences.addBooleanListener(
             "update_notifications", false
         ) {
-            /*if (it) {
+            if (it) {
                 RuStoreUniversalPushClient.subscribeToTopic("update_notifications")
             } else
-                RuStoreUniversalPushClient.unsubscribeFromTopic("update_notifications")*/
+                RuStoreUniversalPushClient.unsubscribeFromTopic("update_notifications")
         }
 
         scheduleUpdateChangedListener = preferences.addBooleanListener(
@@ -162,12 +170,12 @@ actual class ScheduleApp : Application() {
 
         //Initializing of third-party analytics and push services.
         try {
-            /*val appMetricaApiKey = getString(R.string.app_metrica_api_key) //from non-public strings
+            FirebaseApp.initializeApp(this)
+            val appMetricaApiKey = getString(R.string.app_metrica_api_key) //from non-public strings
             val config = AppMetricaConfig.newConfigBuilder(appMetricaApiKey).build()
             // Initializing the AppMetrica SDK.
             AppMetrica.activate(this, config)
-            isAppMetricaActivated = true*/
-            FirebaseApp.initializeApp(this)
+            isAppMetricaActivated = true
             // Initializing the RuStore Push SDK.
             initPushes()
         } catch (_: Exception) { /*Not required*/ }
@@ -198,7 +206,7 @@ actual class ScheduleApp : Application() {
      * Этот метод используется для инициализации доставки Push-уведомлений RuStore и Firebase.
      */
     private fun initPushes() {
-        /*RuStoreUniversalPushClient.init(
+        RuStoreUniversalPushClient.init(
             this,
             RuStorePushProvider(
                 this,
@@ -219,7 +227,6 @@ actual class ScheduleApp : Application() {
                     "AppPushes", "getToken onFailure", throwable
                 )
             }
-        */
         //Do not forget to add same calls in NotificationLocaleUpdater for locale changes updates
         NotificationManagerWrapper.getInstance(this).createNotificationChannel(
             getString(R.string.notifications_notification_app_update_channel_id),
@@ -236,12 +243,10 @@ actual class ScheduleApp : Application() {
             getString(R.string.notifications_notification_note_reminder_channel_name),
             getString(R.string.notifications_notification_note_reminder_channel_descr)
         )
-        /*if (preferences.getBoolean("update_notifications", false)) RuStorePushClient.subscribeToTopic("update_notificatons")
-        if (preferences.getBoolean(
-                "schedule_notifications",
-                false
-            )
-        ) RuStorePushClient.subscribeToTopic("schedule_notifications")*/
+        if (preferences.getBoolean("update_notifications", false))
+            RuStorePushClient.subscribeToTopic("update_notificatons")
+        if (preferences.getBoolean("schedule_notifications", false))
+            RuStorePushClient.subscribeToTopic("schedule_notifications")
     }
 
     /**
