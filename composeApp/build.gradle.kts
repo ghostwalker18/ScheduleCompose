@@ -156,7 +156,7 @@ compose.desktop {
 
     application {
 
-        mainClass = "com.ghostwalker18.schedule.MainKt"
+        mainClass =  BuildNames.mainPackageName + ".MainKt"
 
         buildTypes.release.proguard {
             configurationFiles.from("proguard-rules-desktop.pro")
@@ -165,12 +165,12 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "Schedule PCACE"
-            description = "Desktop app for Petrozavodsk College of Architecture and Civil Engineering schedule"
-            packageVersion = "3.0.0"
-            copyright = "2025 © Ipatov Nikita"
+            packageName = BuildNames.desktopAppName
+            description = BuildNames.desktopAppDescription
+            packageVersion = BuildNames.desktopAppVersion
+            copyright = BuildNames.desktopCopyright
             licenseFile.set(rootProject.file("LICENSE"))
-            vendor = "Ghostwalker18"
+            vendor = BuildNames.desktopAppVendor
 
             linux {
                 iconFile.set(project.file("desktopAppIcons/LinuxIcon.png"))
@@ -185,7 +185,7 @@ compose.desktop {
 }
 
 android {
-    namespace = "com.ghostwalker18.schedule"
+    namespace = BuildNames.mainPackageName
     compileSdk = 35
 
     compileOptions {
@@ -210,11 +210,11 @@ android {
 
     defaultConfig {
         minSdk = 26
-        targetSdk = 35
+        targetSdk = BuildNames.androidTargetSdk
 
-        applicationId = "com.ghostwalker18.schedule"
-        versionCode = 15
-        versionName = "5.0"
+        applicationId = BuildNames.mainPackageName
+        versionCode = BuildNames.androidVersionCode
+        versionName = BuildNames.androidAppVersion
 
         ndkVersion = "25.2.9519653"
         ndk {
@@ -254,15 +254,15 @@ dependencies{
 }
 
 /*
-    Конфигурация для плагина документации Dokka
+ *  Конфигурация для плагина документации Dokka
  */
 tasks.withType<DokkaTask>().configureEach {
 
-    val appName = "Мультиплатформеннное приложение расписания ПАСТ"
-    val url = "https://github.com/ghostwalker18/ScheduleCompose"
+    val appName = BuildNames.docsAppName
+    val url = BuildNames.githubURL
 
     pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
-        footerMessage = "(c) 2025 Ипатов Никита"
+        footerMessage = BuildNames.desktopCopyright
         homepageLink = url
     }
 
