@@ -95,13 +95,8 @@ kotlin {
             implementation("javax.xml.stream:stax-api:1.0")
             implementation("com.fasterxml:aalto-xml:1.2.2")
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha11")
-            implementation("com.squareup.retrofit2:retrofit:2.11.0")
-            implementation("org.jsoup:jsoup:1.16.1")
-            implementation("com.squareup.okhttp3:okhttp"){
-                version{
-                    strictly("3.14.9")
-                }
-            }
+            implementation("com.squareup.retrofit2:retrofit:3.0.0")
+            implementation("org.jsoup:jsoup:1.17.1")
         }
 
         commonTest.dependencies {

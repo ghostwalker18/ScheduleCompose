@@ -12,6 +12,11 @@
  * limitations under the License.
  */
 
+/**
+ * В этом объекте содержится информация для сборки проекта
+ *
+ * @author Ипатов Никита
+ */
 object BuildNames {
     val mainPackageName = "com.ghostwalker18.schedule"
     val desktopAppVendor = "Ghostwalker18"
