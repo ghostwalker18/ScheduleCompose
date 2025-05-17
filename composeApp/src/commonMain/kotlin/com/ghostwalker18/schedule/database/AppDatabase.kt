@@ -84,7 +84,7 @@ abstract class AppDatabase : RoomDatabase() {
             }
             val builder = getDatabaseBuilder(dbName)
                 .addCallback(callback)
-                .setQueryCoroutineContext(Dispatchers.Main)
+                .setQueryCoroutineContext(Dispatchers.IO)
                 .setJournalMode(JournalMode.TRUNCATE)
             for (migration in migrations)
                 builder.addMigrations(migration)

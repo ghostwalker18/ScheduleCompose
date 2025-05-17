@@ -46,6 +46,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import android.Manifest
 import android.content.pm.PackageManager
+import android.os.StrictMode
 import android.util.Log
 import ru.rustore.sdk.pushclient.common.logger.DefaultLogger
 import io.appmetrica.analytics.AppMetrica
@@ -103,6 +104,14 @@ actual class ScheduleApp : Application() {
     override fun onCreate() {
         super.onCreate()
         DynamicColors.applyToActivitiesIfAvailable(this)
+
+        /*Used for checking performance issues*/
+        StrictMode.setThreadPolicy(
+            StrictMode.ThreadPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .build()
+        )
 
         _instance = this
 

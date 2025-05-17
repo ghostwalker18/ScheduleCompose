@@ -87,6 +87,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.androidx.room.runtime)
+            implementation(libs.androidx.room.ktx)
             implementation(libs.sqlite.bundled)
             implementation(libs.sqlite)
             implementation(compose.material3)
