@@ -26,7 +26,11 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
+import androidx.compose.ui.input.nestedscroll.NestedScrollSource
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -69,7 +73,26 @@ fun NotesScreen(
     val notes by model.notes.collectAsState()
     val selectedNotes =  remember { mutableStateListOf<Note>() }
     val isFilterEnabled by model.isFilterEnabled.collectAsState()
+    var isAddNoteVisible by remember { mutableStateOf(true) }
     val keyWord by model.keyword.collectAsState()
+    val nestedScrollConnection = remember {
+        object: NestedScrollConnection {
+            override fun onPreScroll(
+                available: Offset,
+                source: NestedScrollSource
+            ): Offset {
+                // Hide FAB
+                if (available.y < -1) {
+                    isAddNoteVisible = false
+                }
+                // Show FAB
+                if (available.y > 1) {
+                    isAddNoteVisible = true
+                }
+                return Offset.Zero
+            }
+        }
+    }
 
     @Composable
     fun SearchNoteBar(){
@@ -221,18 +244,24 @@ fun NotesScreen(
             }
         },
         floatingActionButton = {
-            FloatingActionButton(
-                { navigator.goEditNoteActivity(model.group!!, model.startDate.value, 0 ) },
-                backgroundColor = MaterialTheme.colors.primaryVariant
+            AnimatedVisibility(
+                visible = isAddNoteVisible,
+                enter = slideInVertically(initialOffsetY = { it * 2 }),
+                exit = slideOutVertically(targetOffsetY = { it * 2 }),
             ){
-                ContentWrapper(
-                    toolTip = Res.string.notes_add_descr
+                FloatingActionButton(
+                    onClick = { navigator.goEditNoteActivity(model.group!!, model.startDate.value, 0 ) },
+                    backgroundColor = MaterialTheme.colors.primaryVariant
                 ){
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.NoteAdd,
-                        tint = Color.White,
-                        contentDescription = stringResource(Res.string.notes_add_descr)
-                    )
+                    ContentWrapper(
+                        toolTip = Res.string.notes_add_descr
+                    ){
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.NoteAdd,
+                            tint = Color.White,
+                            contentDescription = stringResource(Res.string.notes_add_descr)
+                        )
+                    }
                 }
             }
         }
@@ -264,7 +293,9 @@ fun NotesScreen(
             }
             else {
                 LazyColumn(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .nestedScroll(nestedScrollConnection)
                 ){
                     notes.forEach {
                         note ->
