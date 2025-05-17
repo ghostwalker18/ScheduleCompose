@@ -223,42 +223,53 @@ fun EditNoteScreen(
                 sharedTransitionScope = sharedTransitionScope,
                 animatedVisibilityScope = animatedVisibilityScope
             )
-            Row{
-                ContentWrapper(
-                    toolTip = Res.string.note_discard_descr
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ){
+                Box(
+                    modifier = Modifier.weight(0.5f)
                 ){
-                    IconButton(
-                        { navigator.goBack() },
-                        modifier = Modifier
-                            .padding(10.dp)
-                            .background(MaterialTheme.colors.primary)
-                            .weight(0.5f)
+                    ContentWrapper(
+                        toolTip = Res.string.note_discard_descr
                     ){
-                        Icon(
-                            imageVector = Icons.Filled.Close,
-                            contentDescription = stringResource(Res.string.note_discard_descr)
-                        )
+                        IconButton(
+                            onClick = { navigator.goBack() },
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .background(MaterialTheme.colors.primary)
+                                .fillMaxWidth()
+                        ){
+                            Icon(
+                                imageVector = Icons.Filled.Close,
+                                contentDescription = stringResource(Res.string.note_discard_descr)
+                            )
+                        }
                     }
                 }
-                ContentWrapper(
-                    toolTip = Res.string.note_save_descr
+                Box(
+                    modifier = Modifier.weight(0.5f)
                 ){
-                    IconButton(
-                        {
-                            model.saveNote()
-                            navigator.goBack()
-                        },
-                        modifier = Modifier
-                            .padding(10.dp)
-                            .background(MaterialTheme.colors.primary)
-                            .weight(0.5f)
+                    ContentWrapper(
+                        toolTip = Res.string.note_save_descr
                     ){
-                        Icon(
-                            imageVector = Icons.Filled.Save,
-                            contentDescription = stringResource(Res.string.note_save_descr)
-                        )
+                        IconButton(
+                            onClick = {
+                                model.saveNote()
+                                navigator.goBack()
+                            },
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .background(MaterialTheme.colors.primary)
+                                .fillMaxWidth()
+                        ){
+                            Icon(
+                                imageVector = Icons.Filled.Save,
+                                contentDescription = stringResource(Res.string.note_save_descr)
+                            )
+                        }
                     }
                 }
+
             }
         }
     }
