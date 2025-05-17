@@ -19,6 +19,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.SQLiteConnection
 import androidx.sqlite.execSQL
+import com.ghostwalker18.schedule.Platform
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.converters.PhotoURIArrayConverter
 import com.ghostwalker18.schedule.database.DataBaseMigrations.migrations
@@ -26,6 +27,7 @@ import com.ghostwalker18.schedule.getDatabaseBuilder
 import com.ghostwalker18.schedule.getDecoratedDBBuilder
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
+import com.ghostwalker18.schedule.getPlatform
 import kotlinx.coroutines.Dispatchers
 import java.io.File
 
@@ -84,7 +86,12 @@ abstract class AppDatabase : RoomDatabase() {
             }
             val builder = getDatabaseBuilder(dbName)
                 .addCallback(callback)
-                .setQueryCoroutineContext(Dispatchers.IO)
+                .setQueryCoroutineContext(
+                    if(getPlatform() == Platform.Mobile)
+                        Dispatchers.IO
+                    else
+                        Dispatchers.Main
+                )
                 .setJournalMode(JournalMode.TRUNCATE)
             for (migration in migrations)
                 builder.addMigrations(migration)
