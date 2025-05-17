@@ -30,8 +30,8 @@
     <string name="days_before_delay">За скільки днів нагадати?</string>
     <string name="days_before_confirm">Вибрати</string>
     <string name="reminder_error">Не вдалося встановити нагадування на вибрані дату та час</string>
-    <string name="remind_after_hour">Нагадати через годину</string>
-    <string name="remind_tomorrow">Нагадати завтра</string>
+    <string name="remind_after_hour">Через годину</string>
+    <string name="remind_tomorrow">Завтра</string>
     <string name="camera_permission_required">Потрібен дозвіл на доступ до камери</string>
     <string name="notification_permission_required">Потрібен дозвіл відправляти повідомлення</string>
     <string name="mic_permission_required">Потрібен дозвіл на доступ до мікрофона</string>

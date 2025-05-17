@@ -26,6 +26,7 @@ import com.ghostwalker18.schedule.activities.MainActivity
 import com.ghostwalker18.schedule.converters.DateConverters
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -50,72 +51,73 @@ class NoteReminderNotificationWorker(
         CoroutineScope(
             Dispatchers.IO
         ).launch {
-            repository.getNote(noteID).collect {
-                it?.let{
-                    if(it.hasNotification){
-                        val notificationID = Random.Default.nextInt()
-                        val openNotesIntent =
-                            Intent(applicationContext, MainActivity::class.java)
-                        openNotesIntent.putExtra(
-                            "note_date",
-                            DateConverters().toString(it.date)
-                        )
-                        openNotesIntent.putExtra(
-                            "note_group",
-                            it.group
-                        )
-                        val remindAfterDayIntent = remindLaterIntent(
-                            it.id,
-                            notificationID,
-                            1440L
-                        )
-                        val remindAfterHourIntent = remindLaterIntent(
-                            it.id,
-                            notificationID,
-                            60L
-                        )
-                        val actionRemindAfterDay =
-                            NotificationCompat.Action.Builder(
-                                null, getString(Res.string.remind_tomorrow),
-                                PendingIntent.getService(
-                                    applicationContext,
-                                    it.id, remindAfterDayIntent,
-                                    PendingIntent.FLAG_IMMUTABLE
-                                )
+            repository.getNoteOneShot(noteID)?.let{
+                if(it.hasNotification){
+                    val notificationID = Random.Default.nextInt()
+                    val openNotesIntent =
+                        Intent(applicationContext, MainActivity::class.java)
+                    openNotesIntent.putExtra(
+                        "note_date",
+                        DateConverters().toString(it.date)
+                    )
+                    openNotesIntent.putExtra(
+                        "note_group",
+                        it.group
+                    )
+                    val remindAfterDayIntent = remindLaterIntent(
+                        it.id,
+                        notificationID,
+                        1440L
+                    )
+                    val remindAfterHourIntent = remindLaterIntent(
+                        it.id,
+                        notificationID,
+                        60L
+                    )
+                    val actionRemindAfterDay =
+                        NotificationCompat.Action.Builder(
+                            R.drawable.baseline_schedule_24,
+                            getString(Res.string.remind_tomorrow),
+                            PendingIntent.getService(
+                                applicationContext,
+                                it.id, remindAfterDayIntent,
+                                PendingIntent.FLAG_IMMUTABLE
                             )
-                                .build()
-                        val actionRemindAfterHour =
-                            NotificationCompat.Action.Builder(
-                                null, getString(Res.string.remind_after_hour),
-                                PendingIntent.getService(
-                                    applicationContext,
-                                    it.id, remindAfterHourIntent,
-                                    PendingIntent.FLAG_IMMUTABLE
-                                )
+                        )
+                            .build()
+                    val actionRemindAfterHour =
+                        NotificationCompat.Action.Builder(
+                            R.drawable.baseline_schedule_24,
+                            getString(Res.string.remind_after_hour),
+                            PendingIntent.getService(
+                                applicationContext,
+                                it.id, remindAfterHourIntent,
+                                PendingIntent.FLAG_IMMUTABLE
                             )
-                                .build()
+                        )
+                            .build()
 
-                        NotificationManagerWrapper.getInstance(applicationContext)
-                            .showNotification(applicationContext, AppNotification(
-                                    notificationID,
-                                    applicationContext.getString(R.string.notes),
-                                    it.toString(),
-                                    applicationContext.getString(
-                                        R.string.notifications_notification_note_reminder_channel_id
-                                    ),
-                                    applicationContext.getString(
-                                        R.string.notifications_notification_note_reminder_channel_name
-                                    )
-                                ),
-                                PendingIntent.getActivity(
-                                    applicationContext, 0,
-                                    openNotesIntent, PendingIntent.FLAG_IMMUTABLE
-                                ),
-                                actionRemindAfterHour, actionRemindAfterDay
+                    NotificationManagerWrapper.getInstance(applicationContext)
+                        .showNotification(applicationContext, AppNotification(
+                            notificationID,
+                            applicationContext.getString(R.string.notes),
+                            it.toString(),
+                            applicationContext.getString(
+                                R.string.notifications_notification_note_reminder_channel_id
+                            ),
+                            applicationContext.getString(
+                                R.string.notifications_notification_note_reminder_channel_name
                             )
-                        it.hasNotification = false
-                        repository.updateNote(it)
-                    }
+                        ),
+                            PendingIntent.getActivity(
+                                applicationContext, 0,
+                                openNotesIntent, PendingIntent.FLAG_IMMUTABLE
+                            ),
+                            actionRemindAfterHour, actionRemindAfterDay
+                        )
+                    it.hasNotification = false
+                    repository.updateNote(it)
+                    this.coroutineContext.job.cancel()
                 }
             }
         }
@@ -127,6 +129,7 @@ class NoteReminderNotificationWorker(
             putExtra("noteID", noteID)
             putExtra("previous_notification_id", previousID)
             putExtra("delay", delay)
+            putExtra("remindLater", true)
         }
     }
 }

@@ -23,6 +23,9 @@ import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.ghostwalker18.schedule.ScheduleApp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
 /**
@@ -42,7 +45,21 @@ class NoteReminderService: Service() {
         }
         val noteID = intent?.extras?.getInt("noteID")
         val delay = intent?.extras?.getLong("delay") ?: defaultDelay
+        val remindLater = intent?.extras?.getBoolean("remindLater") ?: false
         noteID?.let {
+            if(remindLater){
+                CoroutineScope(
+                    Dispatchers.IO
+                ).launch{
+                    val repo = ScheduleApp.instance.notesRepository
+                    repo.getNoteOneShot(noteID)?.let {
+                        if(it.hasNotification == false){
+                            it.hasNotification = true
+                            repo.updateNote(it)
+                        }
+                    }
+                }
+            }
             val context = ScheduleApp.instance as Context
             val inputData = Data.Builder()
                 .putInt("noteID", it)

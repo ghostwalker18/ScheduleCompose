@@ -38,6 +38,14 @@ interface NoteDao {
     fun getNote(id: Int): Flow<Note?>
 
     /**
+     * Этот метод позволяет получить заметку из базы данных по ее ID.
+     * @param id идентификатор заметки
+     * @return заметка
+     */
+    @Query("SELECT * FROM tblNote WHERE id = :id")
+    suspend fun getNoteOneShot(id: Int): Note?
+
+    /**
      * Этот метод позволяет получить заметки для заданной группы и дня.
      * @param date день
      * @param group группа

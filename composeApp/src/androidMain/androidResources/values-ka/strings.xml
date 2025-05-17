@@ -30,8 +30,8 @@
     <string name="days_before_delay">რამდენი დღე უნდა შეგახსენო?</string>
     <string name="days_before_confirm">აირჩიეთ</string>
     <string name="reminder_error">ვერ მითითებული შეხსენება შერჩეული თარიღი და დრო</string>
-    <string name="remind_after_hour">შემახსენე ერთ საათში</string>
-    <string name="remind_tomorrow">ხვალ რომ შეგახსენოთ</string>
+    <string name="remind_after_hour">ერთ საათში</string>
+    <string name="remind_tomorrow">ხვალ</string>
     <string name="camera_permission_required">საჭიროა კამერაზე წვდომის ნებართვა</string>
     <string name="notification_permission_required">საჭიროა შეტყობინებების გაგზავნის ნებართვა</string>
     <string name="mic_permission_required">საჭიროა მიკროფონზე წვდომის ნებართვა</string>

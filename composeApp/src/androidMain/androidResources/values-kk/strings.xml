@@ -30,8 +30,8 @@
     <string name="days_before_delay">Қанша күн еске түсіреді?</string>
     <string name="days_before_confirm">Таңдау</string>
     <string name="reminder_error">Таңдалған күн мен уақытқа еске салғышты орнату мүмкін болмады</string>
-    <string name="remind_after_hour">Бір сағаттан кейін еске түсіріңіз</string>
-    <string name="remind_tomorrow">Ертең еске сал</string>
+    <string name="remind_after_hour">Бір сағаттан кейін</string>
+    <string name="remind_tomorrow">Ертең</string>
     <string name="camera_permission_required">Камераға кіруге рұқсат қажет</string>
     <string name="notification_permission_required">Хабарлама жіберуге рұқсат қажет</string>
     <string name="mic_permission_required">Микрофонға кіруге рұқсат қажет</string>

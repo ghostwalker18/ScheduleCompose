@@ -59,6 +59,16 @@ class NotesRepository(private val db: AppDatabase) {
     }
 
     /**
+     * Этот метод позволяет получить заметку по ее ID.
+     *
+     * @param id первичный ключ
+     * @return заметка
+     */
+    suspend fun getNoteOneShot(id: Int): Note? {
+        return db.noteDao().getNoteOneShot(id)
+    }
+
+    /**
      * Этот метод позволяет получить заметки для заданных группы и временного промежутка.
      *
      * @param group группа
