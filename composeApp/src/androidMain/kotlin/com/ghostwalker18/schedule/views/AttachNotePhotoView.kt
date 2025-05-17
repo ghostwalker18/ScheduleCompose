@@ -110,7 +110,7 @@ actual fun AttachNotePhotoView(
 
     Column(
         modifier = Modifier
-            .padding(horizontal = 10.dp)
+            .padding(start = 10.dp, end = 10.dp, bottom = 10.dp, top = 0.dp)
             .verticalScroll(rememberScrollState())
     ){
         Row(
@@ -133,7 +133,11 @@ actual fun AttachNotePhotoView(
             IconButton(
                 onClick = {
                     if (context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
-                        if (shouldShowRequestPermissionRationale(context as Activity, Manifest.permission.CAMERA)) {
+                        if (shouldShowRequestPermissionRationale(
+                                context as Activity,
+                                Manifest.permission.CAMERA
+                        )
+                            ){
                             val toast = Toast.makeText(
                                 context,
                                 runBlocking { getString(Res.string.camera_permission_required) },

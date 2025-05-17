@@ -219,15 +219,13 @@ fun EditNoteScreen(
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
-            AttachNotePhotoView(
-                sharedTransitionScope = sharedTransitionScope,
-                animatedVisibilityScope = animatedVisibilityScope
-            )
             Row(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
             ){
                 Box(
-                    modifier = Modifier.weight(0.5f)
+                    modifier = Modifier
+                        .weight(0.5f)
                 ){
                     ContentWrapper(
                         toolTip = Res.string.note_discard_descr
@@ -247,7 +245,8 @@ fun EditNoteScreen(
                     }
                 }
                 Box(
-                    modifier = Modifier.weight(0.5f)
+                    modifier = Modifier
+                        .weight(0.5f)
                 ){
                     ContentWrapper(
                         toolTip = Res.string.note_save_descr
@@ -269,8 +268,11 @@ fun EditNoteScreen(
                         }
                     }
                 }
-
             }
+            AttachNotePhotoView(
+                sharedTransitionScope = sharedTransitionScope,
+                animatedVisibilityScope = animatedVisibilityScope
+            )
         }
     }
 }
