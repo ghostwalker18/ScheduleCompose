@@ -23,6 +23,9 @@ import com.ghostwalker18.schedule.database.AppDatabase.Companion.createAppDataba
 import com.ghostwalker18.schedule.platform.OsUtils
 import java.io.File
 
+/**
+ * Этот метод позволяет получить директорию для создания БД приложения для текущей ОС
+ */
 fun getDatabaseDir(): File{
     val userDirectory = File(System.getProperty("user.home"))
     val currentOS = OsUtils.hostOS

@@ -29,6 +29,7 @@ import com.ghostwalker18.schedule.R
 
 /**
  * Этот класс представляет собой надстройку над NotificationManagerCompat для удобства использования.
+ * @param notificationManager системный менеджер уведомлений
  *
  * @author Ипатов Никита
  * @author RuStore

@@ -20,6 +20,9 @@ import androidx.compose.ui.graphics.Color
 
 val gray500Color = Color(0xff9E9E9E)
 
+/**
+ * Цвета светлой темы приложения
+ */
 val LightColors = lightColors(
     primary = Color(0xff66A101),
     surface = Color(0xff66A101),
@@ -29,6 +32,9 @@ val LightColors = lightColors(
     background = Color(0xfffafafa)
 )
 
+/**
+ * Цвета темной темы приложения
+ */
 val DarkColors = darkColors(
     primary = Color(0xff00574B),
     surface = Color(0xff00574B),

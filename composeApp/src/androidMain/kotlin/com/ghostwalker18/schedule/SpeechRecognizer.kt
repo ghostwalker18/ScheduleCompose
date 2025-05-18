@@ -29,6 +29,7 @@ import java.util.Locale
 
 /**
  * Этот класс осуществляет преобразование речи в голос на Android.
+ * @property context контекст приложения
  *
  * @author Ипатов Никита
  */

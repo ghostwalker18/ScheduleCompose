@@ -20,9 +20,20 @@ package com.ghostwalker18.schedule
  * @since 1.0
  */
 object URLs {
+    /**
+     * URL для скачивания расписания занятий
+     */
     const val BASE_URI = "https://ptgh.onego.ru/9006/"
+
+    /**
+     * URL для скачивания расписания звонков на понедельник
+     */
     const val MONDAY_TIMES_URL =
         "https://r1.nubex.ru/s1748-17b/47698615b7_fit-in~1280x800~filters:no_upscale()__f44488_08.jpg"
+
+    /**
+     * URL для скачивания расписания звонко со вторника по пятницу
+     */
     const val OTHER_TIMES_URL =
         "https://r1.nubex.ru/s1748-17b/320e9d2d69_fit-in~1280x800~filters:no_upscale()__f44489_bb.jpg"
 }

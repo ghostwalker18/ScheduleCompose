@@ -41,6 +41,7 @@ object Utils {
      *
      * @param lessonTimes время проведения занятия
      * @param lessonDate дата занятия
+     * @param currentTime текущая дата и время
      * @return доступность для посещения
      */
     @Synchronized
@@ -118,7 +119,6 @@ object Utils {
 
     /**
      * Этот метод позволяет получить имя скачиваемого файла из ссылки на него.
-     *
      * @param link ссылка на файл
      * @return имя файла
      */

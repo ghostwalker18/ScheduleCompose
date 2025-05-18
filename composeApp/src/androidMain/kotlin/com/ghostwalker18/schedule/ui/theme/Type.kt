@@ -27,6 +27,9 @@ actual val Typography = Typography(
     )
 )
 
+/**
+ * Размер шрифта заголовка диалогового окна
+ */
 val AlertDialogHeaderFontSize = 16.sp
 
 actual val ScheduleTableFontSize = 15.sp

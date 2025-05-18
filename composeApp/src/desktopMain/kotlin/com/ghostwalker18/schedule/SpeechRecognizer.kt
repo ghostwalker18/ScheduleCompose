@@ -117,6 +117,9 @@ class SpeechRecognizer {
         private var model: Model? = null
         private val _isReady = MutableStateFlow(false)
 
+        /**
+         * Этот метод инициализирует модель распознавания речи.
+         */
         fun initModel(){
             try {
                 val modelUrl = ScheduleApp::class.java.getResource("/model-ru-ru")

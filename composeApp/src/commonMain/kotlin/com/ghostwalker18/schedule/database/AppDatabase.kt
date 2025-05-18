@@ -41,14 +41,31 @@ import java.io.File
 @TypeConverters(DateConverters::class, PhotoURIArrayConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
+    /**
+     * Этот метод дает доступ к DAO занятий.
+     */
     abstract fun lessonDao(): LessonDao
 
+    /**
+     * Этот метод дает доступ к DAO заметок.
+     */
     abstract fun noteDao(): NoteDao
 
+    /**
+     * Этот метод экспортирует БД приложения.
+     * @param dataType тип данных для экспорта
+     * @return файл с данными для экспорта
+     */
     suspend fun exportDBFile(dataType: String): File? {
         return com.ghostwalker18.schedule.exportDBFile(dataType)
     }
 
+    /**
+     * Этот метод импортирует БД приложения.
+     * @param dbFile файл с данными для импорта
+     * @param dataType тип данных для импорта
+     * @param importPolicy политика импорта данных
+     */
     suspend fun importDBFile(dbFile: File, dataType: String, importPolicy: String){
         com.ghostwalker18.schedule.importDBFile(dbFile, dataType, importPolicy)
     }
@@ -60,6 +77,7 @@ abstract class AppDatabase : RoomDatabase() {
         const val EXPORT_DATABASE_NAME = "export_database.db"
         const val IMPORT_DATABASE_NAME = "import_database.db"
         private var _instance: AppDatabase? = null
+
         /**
          * Это свойство позволяет получить сконфигурированную базу данных приложения по умолчанию.
          * @return база данных Room

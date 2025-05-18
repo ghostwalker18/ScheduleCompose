@@ -21,9 +21,24 @@ package com.ghostwalker18.schedule.notifications
  * @since 4.1
  */
 data class AppNotification(
+    /**
+     * Идентификатор уведомления
+     */
     val id: Int,
+    /**
+     * Заголовок уведомления
+     */
     val title: String,
+    /**
+     * Текст уведомления
+     */
     val message: String,
+    /**
+     * ID канала уведомлений
+     */
     val channelId: String,
+    /**
+     * Название канала уведомлений
+     */
     val channelName: String
 )

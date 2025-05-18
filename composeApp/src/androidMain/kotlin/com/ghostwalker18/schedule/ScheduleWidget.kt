@@ -30,6 +30,12 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Этот класс представляет собой реализацию Android-виджета приложения,
+ * показывающего пользователю расписание на выбранный день для выбранной группы.
+ *
+ * @author Ипатов Никита
+ */
 class ScheduleWidget : AppWidgetProvider() {
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {

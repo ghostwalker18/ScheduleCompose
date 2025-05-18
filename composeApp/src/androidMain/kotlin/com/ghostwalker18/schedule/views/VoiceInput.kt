@@ -51,6 +51,7 @@ import scheduledesktop2.composeapp.generated.resources.voice_input_descr
 
 /**
  * Эта функция используется для отображения элемента голосового ввода текста.
+ * @param onInput callback, вызываемый при распознавании голосового ввода
  *
  * @author Ипатов Никита
  */

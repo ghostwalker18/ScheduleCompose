@@ -93,11 +93,10 @@ object DataBaseMigrations {
         }
     }
 
+    /**
+     * Это свойство возвращает список всех миграций БД приложения
+     */
     val migrations: Collection<Migration>
-        /**
-         * Этот метод возвращает список всех миграций БД приложения
-         * @return миграции приложения между версиями БД
-         */
         get() = listOf(
             MIGRATION_1_2,
             MIGRATION_2_3,

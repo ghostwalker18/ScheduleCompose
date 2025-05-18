@@ -24,11 +24,14 @@ import com.ghostwalker18.schedule.ui.theme.ScheduleTheme
 /**
  * Эта функция устанавливает содержимое экрана
  * в соответствии с темой приложения и текущим ночным режимом.
+ * @param content содержимое экрана
  *
  * @author Ипатов Никита
  * @since 5.0
  */
-fun ComponentActivity.setContentWithTheme(content: @Composable () -> Unit){
+fun ComponentActivity.setContentWithTheme(
+    content: @Composable () -> Unit
+){
     setContent {
         val theme by ScheduleApp.instance.themeState.collectAsState()
         val isInDarkMode = when(theme){

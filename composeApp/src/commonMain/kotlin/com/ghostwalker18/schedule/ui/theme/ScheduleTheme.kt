@@ -18,6 +18,8 @@ import androidx.compose.runtime.Composable
 
 /**
  * Эта функция предоставляет тему приложению.
+ * @param darkTheme включена ли темная тема
+ * @param content содержимое экрана
  */
 @Composable
 expect fun ScheduleTheme(

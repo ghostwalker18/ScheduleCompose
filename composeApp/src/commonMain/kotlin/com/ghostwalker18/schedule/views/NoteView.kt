@@ -41,6 +41,7 @@ import com.ghostwalker18.schedule.models.Note
 /**
  * Эта функция отображает единичную заметку в списке.
  * @param note заметка для отображения
+ * @param selectedNotes выбранные заметки
  * @param onSelected действие при выборе заметки
  * @param onUnselected действие при отмене выбора заметки
  *

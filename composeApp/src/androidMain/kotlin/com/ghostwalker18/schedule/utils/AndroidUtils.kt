@@ -36,6 +36,7 @@ object AndroidUtils {
 
     /**
      * Этот метод используется для очистки кэша ApachePOI.
+     * @param context контекст приложения
      */
     fun clearPOICache(context: Context) {
         Thread {
@@ -59,7 +60,8 @@ object AndroidUtils {
     /**
      * Этот метод проверяет разрешения приложения
      * и меняет настройки приложения в соответствии с результатом
-     *
+     * @param context контекст приложения
+     * @param preferences настройки приложения
      * @return разрешено ли приложению посылать уведомления
      */
     fun checkNotificationsPermissions(

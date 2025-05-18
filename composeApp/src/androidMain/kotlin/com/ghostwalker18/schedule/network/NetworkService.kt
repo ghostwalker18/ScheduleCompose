@@ -24,6 +24,9 @@ import java.util.concurrent.Executors
 
 /**
  * Этот класс используется для предоставления приложению услуг доступа к сети.
+ * @param context контекст приложения
+ * @param baseUri базовый URL для получения данных приложения
+ * @param preferences настройки приложения
  *
  * @author Ipatov Nikita
  * @since 3.1

@@ -26,6 +26,8 @@ import scheduledesktop2.composeapp.generated.resources.favicon
 
 /**
  * Точка входа в десктопное приложение.
+ *
+ * @author Ипатов Никита
  */
 fun main() = application {
     val tray = rememberTrayState()
