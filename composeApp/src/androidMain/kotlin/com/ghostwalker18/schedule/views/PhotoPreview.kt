@@ -83,7 +83,7 @@ actual fun PhotoPreview(
                         ImageDecoder.decodeBitmap(source).asImageBitmap()
                     }
                 }
-            } catch (_: Exception){ }
+            } catch (_: Exception){/* Not required */ }
         }
     }
 
@@ -149,8 +149,11 @@ actual fun PhotoPreview(
                 shrinkTowards = Alignment.CenterVertically
             )
         ){
-            HorizontalPager(pagerState){
-                    page ->
+            HorizontalPager(
+                state = pagerState,
+                modifier = Modifier.fillMaxWidth()
+            ){
+                page ->
                 bitmaps[photoIDs[page]]?.let {
                     with(sharedTransitionScope!!){
                         Image(
@@ -161,7 +164,9 @@ actual fun PhotoPreview(
                                     animatedVisibilityScope = animatedVisibilityScope!!
                                 ).clickable {
                                     ScheduleApp.instance.getNavigator().goPhotoView(photoIDs[page])
-                                },
+                                }
+                                .fillMaxWidth()
+                                .wrapContentHeight(),
                             contentDescription = stringResource(Res.string.preview_photo_descr)
                         )
                     }
