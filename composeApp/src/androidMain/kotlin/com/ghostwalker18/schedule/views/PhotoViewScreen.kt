@@ -72,16 +72,17 @@ fun PhotoViewScreen(
     animatedVisibilityScope: AnimatedVisibilityScope?,
     onBackPressed: () -> Unit
 ){
-    val bitmap = if (Build.VERSION.SDK_INT < 28) {
-        MediaStore.Images.Media.getBitmap(
-            LocalContext.current.contentResolver, photoID.toUri()
-        ).asImageBitmap()
-    } else {
-        val source = ImageDecoder.createSource(
-            LocalContext.current.contentResolver, photoID.toUri()
-        )
-        ImageDecoder.decodeBitmap(source).asImageBitmap()
-    }
+    val bitmap =
+        if (Build.VERSION.SDK_INT < 28) {
+            MediaStore.Images.Media.getBitmap(
+                LocalContext.current.contentResolver, photoID.toUri()
+            ).asImageBitmap()
+        } else {
+            val source = ImageDecoder.createSource(
+                LocalContext.current.contentResolver, photoID.toUri()
+            )
+            ImageDecoder.decodeBitmap(source).asImageBitmap()
+        }
     var scale by remember { mutableStateOf(1f) }
     val state = rememberTransformableState { zoomChange, _, _ ->
         scale *= zoomChange
@@ -169,7 +170,7 @@ fun PhotoViewScreen(
                             detectTapGestures(
                                 onDoubleTap = {
                                     scale =
-                                        if(scale !=  minScale)
+                                        if (scale != minScale)
                                             minScale
                                         else
                                             maxScale

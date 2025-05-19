@@ -107,6 +107,9 @@ class EditNoteModel : ViewModel() {
                         text.value = it.text
                         theme.value = it.theme
                         hasNotification.value = it.hasNotification
+                        it.photoIDs?.let{
+                            _photoIDs.value = it
+                        }
                     }
                 }
             }
