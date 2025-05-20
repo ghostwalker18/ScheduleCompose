@@ -73,6 +73,7 @@ fun PreferenceCategory(
  * Эта функция служит для отображения настройки в виде переключателя.
  * @param title название настройки
  * @param key ключ для сохранения настройки
+ * @param defaultValue значение по умолчанию для настройки
  * @param preferences объект настроек, где будет сохраняться значение
  *
  * @author Ипатов Никита
@@ -119,7 +120,10 @@ fun SwitchPreference(
  * @param key ключ для сохранения настройки
  * @param entries отображаемые элементы списка
  * @param entryValues значения элементов списка
+ * @param defaultValue значение по умолчанию для настройки
  * @param preferences объект настроек, где будет сохраняться значение
+ * @param entryDrawables значки для элементов списка
+ * @param entryDrawableDescr описание значка для элемента списка
  *
  * @author Ипатов Никита
  * @since 1.0

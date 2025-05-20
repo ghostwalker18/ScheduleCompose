@@ -48,7 +48,7 @@ fun SettingsScreen() {
     val preferences = ScheduleApp.instance.preferences
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
-    val worker =ScheduleApp.instance.shareController
+    val controller = ScheduleApp.instance.shareController
 
     Scaffold(
         topBar = {
@@ -102,6 +102,7 @@ fun SettingsScreen() {
                         SwitchPreference(
                             title = Res.string.option_do_not_update_times,
                             key = "doNotUpdateTimes",
+                            defaultValue = true,
                             preferences = preferences
                         )
                     }
@@ -186,13 +187,14 @@ fun SettingsScreen() {
             Row{
                 Spacer(modifier = Modifier.weight(0.5f))
                 Button(
-                    { navigator.goImportActivity() },
+                    onClick = { navigator.goImportActivity() },
                     modifier = Modifier.weight(0.5f)
                 ){
                     Text(stringResource(Res.string.data_transfer))
                 }
             }
-            Button({ navigator.goShareAppActivity() },
+            Button(
+                onClick = { navigator.goShareAppActivity() },
                 modifier = Modifier.fillMaxWidth()
             ){
                 Text(stringResource(Res.string.share_app))
@@ -207,7 +209,7 @@ fun SettingsScreen() {
                         .fillMaxWidth()
                         .padding(10.dp)
                         .clickable {
-                            val (showMessageRequired, text) = worker.connectToDeveloper()
+                            val (showMessageRequired, text) = controller.connectToDeveloper()
                             if(showMessageRequired)
                                 scope.launch {
                                     scaffoldState.snackbarHostState.showSnackbar(getString(text))

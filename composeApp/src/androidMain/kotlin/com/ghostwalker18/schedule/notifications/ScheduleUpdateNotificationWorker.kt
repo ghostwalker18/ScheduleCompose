@@ -47,69 +47,74 @@ class ScheduleUpdateNotificationWorker(
             Executors.newSingleThreadExecutor()
         )
         return service.submit<Result> {
-            val repository = ScheduleApp.instance.scheduleRepository
-            val lastUpdateResult = repository.lastUpdateResult
-            val lastAvailableDate = runBlocking { repository.getLastKnownLessonDate(repository.savedGroup) }
-            repository.update()
-            repository.updateResult?.whenComplete { updateResult, _ ->
-                if (lastUpdateResult != ScheduleRepository.UpdateResult.FAIL
-                    && updateResult === ScheduleRepository.UpdateResult.FAIL
-                ) {
-                    NotificationManagerWrapper.getInstance(applicationContext)
-                        .showNotification(
-                            applicationContext, AppNotification(
-                                0,
-                                applicationContext.getString(
-                                    R.string.notifications_notification_schedule_update_channel_name
-                                ),
-                                applicationContext.getString(
-                                    R.string.notifications_schedule_unavailable
-                                ),
-                                applicationContext.getString(
-                                    R.string.notifications_notification_schedule_update_channel_id
-                                ),
-                                applicationContext.getString(
-                                    R.string.notifications_notification_schedule_update_channel_name
+            if(ScheduleApp.instance.preferences.getBoolean("schedule_notifications", false)){
+                val repository = ScheduleApp.instance.scheduleRepository
+                val lastUpdateResult = repository.lastUpdateResult
+                val lastAvailableDate = runBlocking {
+                    repository.getLastKnownLessonDate(repository.savedGroup)
+                }
+                repository.update()
+                repository.updateResult?.whenComplete {
+                    updateResult, _ ->
+                    if (lastUpdateResult != ScheduleRepository.UpdateResult.FAIL
+                        && updateResult === ScheduleRepository.UpdateResult.FAIL
+                    ) {
+                        NotificationManagerWrapper.getInstance(applicationContext)
+                            .showNotification(
+                                applicationContext, AppNotification(
+                                    0,
+                                    applicationContext.getString(
+                                        R.string.notifications_notification_schedule_update_channel_name
+                                    ),
+                                    applicationContext.getString(
+                                        R.string.notifications_schedule_unavailable
+                                    ),
+                                    applicationContext.getString(
+                                        R.string.notifications_notification_schedule_update_channel_id
+                                    ),
+                                    applicationContext.getString(
+                                        R.string.notifications_notification_schedule_update_channel_name
+                                    )
                                 )
                             )
+                    }
+                    val currentAvailableDate = runBlocking {
+                        repository.getLastKnownLessonDate(
+                            repository.savedGroup
                         )
-                }
-                val currentAvailableDate = runBlocking {
-                    repository.getLastKnownLessonDate(
-                        repository.savedGroup
-                    )
-                }
-                if (currentAvailableDate?.after(lastAvailableDate) == true) {
-                    val openScheduleIntent =
-                        Intent(applicationContext, MainActivity::class.java)
-                    openScheduleIntent.putExtra(
-                        "schedule_date",
-                        DateConverters().toString(currentAvailableDate)
-                    )
-                    NotificationManagerWrapper.getInstance(applicationContext)
-                        .showNotification(
-                            applicationContext, AppNotification(
-                                0,
-                                applicationContext.getString(
-                                    R.string.notifications_notification_schedule_update_channel_name
+                    }
+                    if (currentAvailableDate?.after(lastAvailableDate) == true) {
+                        val openScheduleIntent =
+                            Intent(applicationContext, MainActivity::class.java)
+                        openScheduleIntent.putExtra(
+                            "schedule_date",
+                            DateConverters().toString(currentAvailableDate)
+                        )
+                        NotificationManagerWrapper.getInstance(applicationContext)
+                            .showNotification(
+                                applicationContext, AppNotification(
+                                    0,
+                                    applicationContext.getString(
+                                        R.string.notifications_notification_schedule_update_channel_name
+                                    ),
+                                    (applicationContext.getString(
+                                        R.string.notifications_new_schedule_available
+                                    )
+                                            + " " + DateConverters()
+                                        .convertForNotification(currentAvailableDate)),
+                                    applicationContext.getString(
+                                        R.string.notifications_notification_schedule_update_channel_id
+                                    ),
+                                    applicationContext.getString(
+                                        R.string.notifications_notification_schedule_update_channel_name
+                                    )
                                 ),
-                                (applicationContext.getString(
-                                    R.string.notifications_new_schedule_available
+                                PendingIntent.getActivity(
+                                    applicationContext, 0,
+                                    openScheduleIntent, PendingIntent.FLAG_IMMUTABLE
                                 )
-                                        + " " + DateConverters()
-                                    .convertForNotification(currentAvailableDate)),
-                                applicationContext.getString(
-                                    R.string.notifications_notification_schedule_update_channel_id
-                                ),
-                                applicationContext.getString(
-                                    R.string.notifications_notification_schedule_update_channel_name
-                                )
-                            ),
-                            PendingIntent.getActivity(
-                                applicationContext, 0,
-                                openScheduleIntent, PendingIntent.FLAG_IMMUTABLE
                             )
-                        )
+                    }
                 }
             }
             Result.success()
