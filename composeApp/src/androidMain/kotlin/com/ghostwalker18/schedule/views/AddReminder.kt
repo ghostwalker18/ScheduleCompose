@@ -49,6 +49,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.removeNoteReminder
 import com.ghostwalker18.schedule.ui.theme.AlertDialogHeaderFontSize
 import com.ghostwalker18.schedule.utils.Utils.calculateTimeDistance
@@ -120,7 +121,9 @@ actual fun AddReminder(){
 
     val noteDate by model.date.collectAsState()
     val now = Calendar.getInstance()
-    if(noteDate.after(now)){
+    if(noteDate.after(now)
+        && ScheduleApp.instance.preferences.getBoolean("notes_notifications", false)
+        ){
         IconButton(
             onClick = {
                 if(hasNotification){
@@ -128,7 +131,9 @@ actual fun AddReminder(){
                     model.hasNotification.value = false
                     stage = STAGE.READY
                 } else {
-                    if(shouldShowRequestPermissionRationale(context as Activity, Manifest.permission.POST_NOTIFICATIONS)) {
+                    if(shouldShowRequestPermissionRationale(
+                            context as Activity, Manifest.permission.POST_NOTIFICATIONS)
+                        ){
                         val toast = Toast.makeText(
                             context,
                             runBlocking{getString(Res.string.notification_permission_required)},
@@ -136,7 +141,7 @@ actual fun AddReminder(){
                         )
                         toast.show()
                     } else {
-                        if(Build.VERSION.SDK_INT >32)
+                        if(Build.VERSION.SDK_INT > 32)
                             notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
                     }
                 }
