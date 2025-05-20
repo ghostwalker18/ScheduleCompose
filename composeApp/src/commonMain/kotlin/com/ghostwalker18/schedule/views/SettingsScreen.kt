@@ -120,6 +120,7 @@ fun SettingsScreen() {
                         SwitchPreference(
                             title = Res.string.option_enable_caching,
                             key = "enableCaching",
+                            defaultValue = true,
                             preferences = preferences
                         )
                     }
@@ -140,6 +141,7 @@ fun SettingsScreen() {
                             key = "language",
                             entryValues = Res.array.language_values,
                             entries = Res.array.language_entries,
+                            defaultValue = "system",
                             preferences = preferences,
                             entryDrawables = arrayOf(
                                 Res.drawable.un,
@@ -174,6 +176,7 @@ fun SettingsScreen() {
                             SwitchPreference(
                                 title = Res.string.notifications_notification_note_reminder_channel_name,
                                 key = "notes_notifications",
+                                defaultValue = true,
                                 preferences = preferences
                             )
                         }

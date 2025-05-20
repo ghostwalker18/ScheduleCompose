@@ -17,6 +17,7 @@ package com.ghostwalker18.schedule.widgets
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,6 +25,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,9 +34,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
 import com.ghostwalker18.schedule.ui.theme.gray500Color
 import com.russhwolf.settings.Settings
+import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringArrayResource
 import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.getStringArray
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringArrayResource
 import org.jetbrains.compose.resources.stringResource
@@ -75,12 +79,17 @@ fun PreferenceCategory(
  * @since 1.0
  */
 @Composable
-fun SwitchPreference(title: StringResource,
-                     key: String,
-                     defaultValue: Boolean = false,
-                     preferences: Settings
+fun SwitchPreference(
+    title: StringResource,
+    key: String,
+    defaultValue: Boolean = false,
+    preferences: Settings
 ){
+    //Initializing preferences with default value (at once)
+    remember { preferences.putBoolean(key, preferences.getBoolean(key, defaultValue)) }
+
     var checked by remember { mutableStateOf(preferences.getBoolean(key, defaultValue)) }
+
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
@@ -116,25 +125,69 @@ fun SwitchPreference(title: StringResource,
  * @since 1.0
  */
 @Composable
-fun ListPreference(title: StringResource,
-                   key: String,
-                   entryValues: StringArrayResource,
-                   entries: StringArrayResource,
-                   preferences: Settings,
-                   entryDrawables: Array<DrawableResource>? = null,
-                   entryDrawableDescr: StringResource? = null
+fun ListPreference(
+    title: StringResource,
+    key: String,
+    entryValues: StringArrayResource,
+    entries: StringArrayResource,
+    defaultValue: String? = null,
+    preferences: Settings,
+    entryDrawables: Array<DrawableResource>? = null,
+    entryDrawableDescr: StringResource? = null
 ){
-    Column(modifier = Modifier.fillMaxWidth()) {
+    //Initializing preferences with default value (at once)
+    val currentValue = remember {
+        return@remember defaultValue?.let{
+            runBlocking {
+                val value = preferences.getString(key, it)
+                preferences.putString(key, value)
+                return@runBlocking value
+            }
+        }
+    }
+    var currentValueImage: Int? by rememberSaveable {
+
+        fun searchDrawableFor (entryValues: StringArrayResource, value: String?): Int? {
+            return value?.let{
+                val entryArray = runBlocking { getStringArray(entryValues) }
+                return entryArray.indexOf(value)
+            }
+        }
+
+        mutableStateOf(searchDrawableFor(entryValues, currentValue))
+    }
+
+    Column(
+        modifier = Modifier.fillMaxWidth()
+    ){
         var exp by remember { mutableStateOf(false) }
-        Text(
-            text = stringResource(title),
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(5.dp)
-                .clickable {
-                    exp = true
-                })
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ){
+            Text(
+                text = stringResource(title),
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    //.fillMaxWidth()
+                    .padding(5.dp)
+                    .clickable {
+                        exp = true
+                    }
+            )
+            currentValueImage?.let{
+                index ->
+                entryDrawables?.let{
+                    Image(
+                        painter = painterResource(it[index]),
+                        contentDescription = null,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+            }
+        }
         DropdownMenu(
             expanded = exp,
             properties = PopupProperties(
@@ -153,6 +206,9 @@ fun ListPreference(title: StringResource,
                 index, entry ->
                 DropdownMenuItem(
                     onClick = {
+                        entryDrawables?.let {
+                            currentValueImage = index
+                        }
                         preferences.putString(key, optionValues[index])
                         exp = false
                     }
