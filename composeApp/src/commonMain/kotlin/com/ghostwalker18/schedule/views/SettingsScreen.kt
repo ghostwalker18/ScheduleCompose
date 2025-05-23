@@ -89,19 +89,19 @@ fun SettingsScreen() {
                     ){
                         ListPreference(
                             title = Res.string.schedule_style,
-                            key = "scheduleStyle",
+                            key = ScheduleAppSettings.ScheduleSettings.ScheduleStyle.key,
                             entryValues = Res.array.schedule_style_values,
                             entries = Res.array.schedule_style_entries,
                             preferences = preferences
                         )
                         SwitchPreference(
                             title = Res.string.option_add_teacher_search,
-                            key = "addTeacherSearch",
+                            key = ScheduleAppSettings.ScheduleSettings.TeacherSearch.key,
                             preferences = preferences
                         )
                         SwitchPreference(
                             title = Res.string.option_do_not_update_times,
-                            key = "doNotUpdateTimes",
+                            key = ScheduleAppSettings.ScheduleSettings.UpdateTimes.key,
                             defaultValue = true,
                             preferences = preferences
                         )
@@ -113,15 +113,15 @@ fun SettingsScreen() {
                     ){
                         ListPreference(
                             title = Res.string.option_download_for,
-                            key = "downloadFor",
+                            key = ScheduleAppSettings.NetworkSettings.DownloadFor.key,
                             entryValues = Res.array.download_values,
                             entries =  Res.array.download_entries,
                             preferences = preferences
                         )
                         SwitchPreference(
                             title = Res.string.option_enable_caching,
-                            key = "enableCaching",
-                            defaultValue = true,
+                            key = ScheduleAppSettings.NetworkSettings.EnableCaching.key,
+                            defaultValue = ScheduleAppSettings.NetworkSettings.EnableCaching.defaultValue,
                             preferences = preferences
                         )
                     }
@@ -132,17 +132,17 @@ fun SettingsScreen() {
                     ){
                         ListPreference(
                             title = Res.string.option_theme,
-                            key = "theme",
+                            key = ScheduleAppSettings.AppSettings.Theme.key,
                             entryValues = Res.array.theme_values,
                             entries = Res.array.theme_entries,
                             preferences = preferences
                         )
                         ListPreference(
                             title = Res.string.option_language,
-                            key = "language",
+                            key = ScheduleAppSettings.AppSettings.Language.key,
                             entryValues = Res.array.language_values,
                             entries = Res.array.language_entries,
-                            defaultValue = "system",
+                            defaultValue = ScheduleAppSettings.AppSettings.Language.defaultValue,
                             preferences = preferences,
                             entryDrawables = arrayOf(
                                 Res.drawable.un,
@@ -166,18 +166,20 @@ fun SettingsScreen() {
                         ){
                             SwitchPreference(
                                 title = Res.string.notifications_notification_app_update_channel_name,
-                                key = "update_notifications",
+                                key = ScheduleAppSettings.NotificationSettings.UpdateNotifications.key,
+                                defaultValue = ScheduleAppSettings.NotificationSettings.UpdateNotifications.defaultValue,
                                 preferences = preferences
                             )
                             SwitchPreference(
                                 title = Res.string.notifications_notification_schedule_update_channel_name,
-                                key = "schedule_notifications",
+                                key = ScheduleAppSettings.NotificationSettings.ScheduleNotifications.key,
+                                defaultValue = ScheduleAppSettings.NotificationSettings.ScheduleNotifications.defaultValue,
                                 preferences = preferences
                             )
                             SwitchPreference(
                                 title = Res.string.notifications_notification_note_reminder_channel_name,
-                                key = "notes_notifications",
-                                defaultValue = true,
+                                key = ScheduleAppSettings.NotificationSettings.NotesNotifications.key,
+                                defaultValue = ScheduleAppSettings.NotificationSettings.NotesNotifications.defaultValue,
                                 preferences = preferences
                             )
                         }

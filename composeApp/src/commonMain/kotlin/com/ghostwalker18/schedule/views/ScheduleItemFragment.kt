@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.ScheduleAppSettings
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
@@ -63,7 +64,10 @@ fun ScheduleItemFragment(
     )
 
     val model = viewModel(key =dayOfWeek.key) { DayModel() }
-    val mode = ScheduleApp.instance.preferences["scheduleStyle", "in_fragment"]
+    val mode = ScheduleApp.instance.preferences[
+        ScheduleAppSettings.ScheduleSettings.ScheduleStyle.key,
+        ScheduleAppSettings.ScheduleSettings.ScheduleStyle.defaultValue
+    ]
     if(mode == "in_activity") model.isOpened.value = false
 
     val date by model.getDate().collectAsState()

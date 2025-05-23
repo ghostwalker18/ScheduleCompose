@@ -129,7 +129,8 @@ fun DaysFragmentLand(
                     }
                 }
                 if(ScheduleApp.instance.preferences.getBoolean(
-                        "addTeacherSearch", true
+                        ScheduleAppSettings.ScheduleSettings.TeacherSearch.key,
+                        ScheduleAppSettings.ScheduleSettings.TeacherSearch.defaultValue
                 )){
                     Text(
                         text = stringResource(Res.string.teacher_choice_text),

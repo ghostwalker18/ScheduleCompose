@@ -15,6 +15,7 @@
 package com.ghostwalker18.schedule.models
 
 import androidx.compose.ui.graphics.painter.Painter
+import com.ghostwalker18.schedule.ScheduleAppSettings
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.get
 import com.ghostwalker18.schedule.converters.IConverter
@@ -74,7 +75,7 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
     val status = _status.asStateFlow()
 
     /**
-     * Это свойство представляет собой  список всех преподавателей техникума.
+     * Это свойство представляет собой список всех преподавателей техникума.
      */
     val teachers: Flow<Array<String>>
         get() = db.lessonDao().getTeachers().flowOn(Dispatchers.IO)
@@ -186,10 +187,14 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
      */
     fun getLessons(date: Calendar, teacher: String?, group: String?): Flow<Array<Lesson>> {
         return if (teacher != null && group != null)
-            db.lessonDao().getLessonsForGroupWithTeacher(date, group, teacher).flowOn(Dispatchers.IO)
-        else if (teacher != null) db.lessonDao().getLessonsForTeacher(date, teacher).flowOn(Dispatchers.IO)
-        else if (group != null) db.lessonDao().getLessonsForGroup(date, group).flowOn(Dispatchers.IO)
-        else flowOf(emptyArray<Lesson>()).flowOn(Dispatchers.IO)
+            db.lessonDao().getLessonsForGroupWithTeacher(date, group, teacher)
+                .flowOn(Dispatchers.IO)
+        else if (teacher != null) db.lessonDao().getLessonsForTeacher(date, teacher)
+            .flowOn(Dispatchers.IO)
+        else if (group != null) db.lessonDao().getLessonsForGroup(date, group)
+            .flowOn(Dispatchers.IO)
+        else flowOf(emptyArray<Lesson>())
+            .flowOn(Dispatchers.IO)
     }
 
     /**
@@ -200,27 +205,38 @@ abstract class ScheduleRepository(protected open val db: AppDatabase,
     }
 
     /**
-     * Этот метод позволяет обновить расписание занятий  и звоноков в репозитории
+     * Этот метод позволяет обновить расписание занятий и звонков в репозитории
      * в соответствии с настройками приложения.
      */
     fun update() {
-        val downloadFor = preferences["downloadFor", "all"]
+        val downloadFor = preferences[
+            ScheduleAppSettings.NetworkSettings.DownloadFor.key,
+            ScheduleAppSettings.NetworkSettings.DownloadFor.defaultValue
+        ]
         if (allJobsDone) {
             allJobsDone = false
             updateFutures.clear()
             if (downloadFor == "all" || downloadFor == "first")
                 updateFutures.add(
-                    CompletableFuture.supplyAsync({ this.updateFirstCorpus() }, updateExecutorService)
+                    CompletableFuture.supplyAsync(
+                        { this.updateFirstCorpus() }, updateExecutorService
+                    )
                 )
             if (downloadFor == "all" || downloadFor == "second")
                 updateFutures.add(
-                    CompletableFuture.supplyAsync({ this.updateSecondCorpus() }, updateExecutorService)
+                    CompletableFuture.supplyAsync(
+                        { this.updateSecondCorpus() }, updateExecutorService
+                    )
                 )
             updateFutures.add(
-                CompletableFuture.supplyAsync({ this.updateTimes() }, updateExecutorService)
+                CompletableFuture.supplyAsync(
+                    { this.updateTimes() }, updateExecutorService
+                )
             )
 
-            updateResult = CompletableFuture.allOf(*updateFutures.toTypedArray<CompletableFuture<*>>())
+            updateResult = CompletableFuture.allOf(
+                *updateFutures.toTypedArray<CompletableFuture<*>>()
+            )
                 .thenApplyAsync({
                     allJobsDone = true
                     for (future in updateFutures) {

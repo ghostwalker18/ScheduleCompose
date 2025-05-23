@@ -119,22 +119,28 @@ actual class ScheduleApp : Application() {
             PreferenceManager.getDefaultSharedPreferences(this)
         )
 
-        _themeState = MutableStateFlow(preferences["theme", "system"])
+        _themeState = MutableStateFlow(preferences[
+            ScheduleAppSettings.AppSettings.Theme.key,
+            ScheduleAppSettings.AppSettings.Theme.defaultValue
+        ])
         themeState = _themeState
         themeChangedListener = preferences.addStringListener(
-            "theme", "system"
+            ScheduleAppSettings.AppSettings.Theme.key,
+            ScheduleAppSettings.AppSettings.Theme.defaultValue
         ){
             _themeState.value = it
         }
 
         localeChangedListener = preferences.addStringListener(
-            "language", "ru"
+            ScheduleAppSettings.AppSettings.Language.key,
+            ScheduleAppSettings.AppSettings.Language.defaultValue
         ){
             setLocale(it)
         }
 
         appUpdateChangedListener = preferences.addBooleanListener(
-            "update_notifications", false
+            ScheduleAppSettings.NotificationSettings.UpdateNotifications.key,
+            ScheduleAppSettings.NotificationSettings.UpdateNotifications.defaultValue
         ) {
             if (it) {
                 RuStoreUniversalPushClient.subscribeToTopic("update_notifications")
@@ -143,7 +149,8 @@ actual class ScheduleApp : Application() {
         }
 
         scheduleUpdateChangedListener = preferences.addBooleanListener(
-            "schedule_notifications", false
+            ScheduleAppSettings.NotificationSettings.ScheduleNotifications.key,
+            ScheduleAppSettings.NotificationSettings.ScheduleNotifications.defaultValue
         ){
             if (it) {
                 val constraints = Constraints.Builder()
@@ -252,10 +259,10 @@ actual class ScheduleApp : Application() {
             getString(R.string.notifications_notification_note_reminder_channel_name),
             getString(R.string.notifications_notification_note_reminder_channel_descr)
         )
-        if (preferences.getBoolean("update_notifications", false))
-            RuStorePushClient.subscribeToTopic("update_notificatons")
-        if (preferences.getBoolean("schedule_notifications", false))
-            RuStorePushClient.subscribeToTopic("schedule_notifications")
+        if (preferences.getBoolean(
+                ScheduleAppSettings.NotificationSettings.UpdateNotifications.key,
+                ScheduleAppSettings.NotificationSettings.UpdateNotifications.defaultValue
+        )) RuStorePushClient.subscribeToTopic("update_notificatons")
     }
 
     /**

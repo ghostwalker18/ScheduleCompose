@@ -60,18 +60,26 @@ actual class ScheduleApp {
     private lateinit var _navigator: Navigator
     val database: AppDatabase
 
-    private val themeState = MutableStateFlow(preferences["theme", "system"])
-    var language by mutableStateOf(preferences.getString("language", "ru"))
+    private val themeState = MutableStateFlow(preferences[
+        ScheduleAppSettings.AppSettings.Theme.key,
+        ScheduleAppSettings.AppSettings.Theme.defaultValue
+    ])
+    var language by mutableStateOf(preferences[
+        ScheduleAppSettings.AppSettings.Language.key,
+        ScheduleAppSettings.AppSettings.Language.defaultValue
+    ])
 
 
     private val themeChangedListener = preferences.addStringListener(
-        "theme", "system"
+        ScheduleAppSettings.AppSettings.Theme.key,
+        ScheduleAppSettings.AppSettings.Theme.defaultValue
     ){
         themeState.value = it
     }
 
     private val localeChangedListener = preferences.addStringListener(
-        "language", "ru"
+        ScheduleAppSettings.AppSettings.Language.key,
+        ScheduleAppSettings.AppSettings.Language.defaultValue
     ){
         language = it
     }

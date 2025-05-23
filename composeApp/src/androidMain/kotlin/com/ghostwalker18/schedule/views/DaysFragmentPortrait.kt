@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.ScheduleAppSettings
 import com.ghostwalker18.schedule.widgets.AutocompleteTextView
 import com.ghostwalker18.schedule.widgets.CustomButton
 import com.ghostwalker18.schedule.widgets.DatePickerModal
@@ -103,7 +104,10 @@ actual fun DaysFragmentPortrait(
                     )
                 }
             }
-            if(ScheduleApp.instance.preferences.getBoolean("addTeacherSearch", true)){
+            if(ScheduleApp.instance.preferences.getBoolean(
+                    ScheduleAppSettings.ScheduleSettings.TeacherSearch.key,
+                    ScheduleAppSettings.ScheduleSettings.TeacherSearch.defaultValue
+            )){
                 Text(
                     text = stringResource(Res.string.teacher_choice_text),
                     color = MaterialTheme.colors.primaryVariant
