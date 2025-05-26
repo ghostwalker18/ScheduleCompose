@@ -95,6 +95,11 @@
     <string name="unpacking_import_db">Импортталған деректерді ашу</string>
     <string name="import_failed">Операцияны орындау мүмкін болмады</string>
     <string name="import_success">Операция сәтті аяқталды</string>
+    <string name="clear_app_data">Деректерді өшіру</string>
+    <string name="clear_app_data_button">Тазалау</string>
+    <string name="clear_data">Жоюға арналған деректер</string>
+    <string name="clearing_start">Тазалау басталды</string>
+    <string name="clearing_ended">Тазалау аяқталды. Жойылды: %1$d жазбалар және %2$d сабақтар</string>
     <string name="download_approvement">Жүктеуді растау</string>
     <string name="download_notice">Жүктеуге арналған кесте файлдарының саны: %1$d. оларды жүктеп алғыңыз келе ме?</string>
     <string name="download_ok">Жүктеу</string>

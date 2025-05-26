@@ -95,6 +95,11 @@
     <string name="unpacking_import_db">იმპორტირებული მონაცემების ამოღება</string>
     <string name="import_failed">ოპერაცია ვერ შესრულდა</string>
     <string name="import_success">ოპერაცია წარმატებით დასრულდა</string>
+    <string name="clear_app_data">წმინდა მონაცემები</string>
+    <string name="clear_app_data_button">ნათელი</string>
+    <string name="clear_data">მონაცემები წაშლა</string>
+    <string name="clearing_start">დასუფთავება დაიწყო</string>
+    <string name="clearing_ended">დასუფთავება დასრულებულია. წაშლილია: %1$d შენიშვნები და %2$d კლასები</string>
     <string name="download_approvement">ჩამოტვირთვის დადასტურება</string>
     <string name="download_notice">ჩამოსატვირთი გრაფიკის ფაილების რაოდენობა: %1$d. გსურთ მათი ჩამოტვირთვა?</string>
     <string name="download_ok">ჩამოტვირთვა</string>

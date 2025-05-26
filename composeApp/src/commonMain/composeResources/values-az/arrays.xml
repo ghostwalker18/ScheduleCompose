@@ -58,4 +58,10 @@
         <item>Dəyişdirmə</item>
         <item>Birləşmə</item>
     </string-array>
+
+    <string-array name="clear_data_types_entries">
+        <item>Qeydlər</item>
+        <item>Cədvəl</item>
+        <item>Cədvəl və qeydlər</item>
+    </string-array>
 </resources>

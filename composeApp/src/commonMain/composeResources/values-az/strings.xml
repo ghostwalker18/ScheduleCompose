@@ -95,6 +95,11 @@
     <string name="unpacking_import_db">İdxal məlumatlarının paketdən çıxarılması</string>
     <string name="import_failed">Əməliyyatı tamamlamaq alınmadı</string>
     <string name="import_success">Əməliyyat uğurla başa çatıb.</string>
+    <string name="clear_app_data">Məlumatları silin</string>
+    <string name="clear_app_data_button">Təmizləyin</string>
+    <string name="clear_data">Silinəcək məlumatlar</string>
+    <string name="clearing_start">Təmizləmə başladı</string>
+    <string name="clearing_ended">Təmizləmə tamamlandı. Silindi: %1$d qeydlər və %2$d dərslər</string>
     <string name="download_approvement">Yükləməni təsdiqləyin</string>
     <string name="download_notice">Endirmək üçün cədvəl fayllarının sayı: %1$d. Onları yükləmək istəyirsiniz?</string>
     <string name="download_ok">Yüklə</string>

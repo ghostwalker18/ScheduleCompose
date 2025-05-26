@@ -58,4 +58,10 @@
         <item>Փոխարինում</item>
         <item>Միաձուլում</item>
     </string-array>
+
+    <string-array name="clear_data_types_entries">
+        <item>Նշումներ</item>
+        <item>Ժամանակացույց</item>
+        <item>Ժամանակացույց և նշումներ</item>
+    </string-array>
 </resources>

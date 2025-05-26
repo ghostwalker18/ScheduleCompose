@@ -84,8 +84,9 @@ actual class ScheduleApp : Application() {
     private lateinit var scheduleUpdateChangedListener: SettingsListener
     private lateinit var appUpdateChangedListener: SettingsListener
 
-    lateinit var database: AppDatabase
+    lateinit var _database: AppDatabase
         private set
+    actual val database by lazy { _database }
 
     private lateinit var _notesRepository: NotesRepository
     actual val notesRepository by lazy { _notesRepository }
@@ -171,15 +172,15 @@ actual class ScheduleApp : Application() {
             }
         }
 
-        database = AppDatabase.instance
+        _database = AppDatabase.instance
         _scheduleRepository = ScheduleRepositoryAndroid(
             this,
-            database,
+            _database,
             NetworkService(this, URLs.BASE_URI, preferences).getScheduleAPI(),
             preferences
         )
         scheduleRepository.update()
-        _notesRepository = NotesRepository(database)
+        _notesRepository = NotesRepository(_database)
 
         _shareController = ShareControllerAndroid(this)
         _importController = ImportControllerAndroid(this)

@@ -95,6 +95,11 @@
     <string name="unpacking_import_db">Розпакування імпортних даних</string>
     <string name="import_failed">Не вдалося виконати операцію</string>
     <string name="import_success">Операція успішно виконана</string>
+    <string name="clear_app_data">Очистити дані</string>
+    <string name="clear_app_data_button">Очистити</string>
+    <string name="clear_data">Дані для видалення</string>
+    <string name="clearing_start">Очищення розпочато</string>
+    <string name="clearing_ended">Очищення завершено. Видалено: %1$d нотаток і %2$d занять</string>
     <string name="download_approvement">Підтвердження скачування</string>
     <string name="download_notice">Кількість файлів розкладу для завантаження: %1$d. ви хочете завантажити їх?</string>
     <string name="download_ok">Завантажити</string>

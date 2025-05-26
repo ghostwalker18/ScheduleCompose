@@ -58,7 +58,7 @@ actual class ScheduleApp {
         Preferences.userNodeForPackage(ScheduleApp::class.java)
     )
     private lateinit var _navigator: Navigator
-    val database: AppDatabase
+    actual val database: AppDatabase
 
     private val themeState = MutableStateFlow(preferences[
         ScheduleAppSettings.AppSettings.Theme.key,

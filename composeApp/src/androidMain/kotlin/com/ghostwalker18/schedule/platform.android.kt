@@ -82,6 +82,8 @@ actual interface Navigator{
 
     actual fun goImportActivity()
 
+    actual fun goClearDataScreen()
+
     actual fun goNotesActivity(group: String, date: Calendar)
 
     actual fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?)

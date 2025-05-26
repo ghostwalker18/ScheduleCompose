@@ -44,8 +44,8 @@ import scheduledesktop2.composeapp.generated.resources.operation_type
 fun ImportScreen(){
     val navigator = ScheduleApp.instance.getNavigator()
     val controller = ScheduleApp.instance.importController
-    val scaffoldState = rememberScaffoldState()
     controller.initController()
+    val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     val operationStatus by controller.status.collectAsState()
     if(operationStatus != ImportController.OperationStatus.Ready){
@@ -79,7 +79,8 @@ fun ImportScreen(){
             )
         },
         snackbarHost = {
-            SnackbarHost(it) { data ->
+            SnackbarHost(it) {
+                data ->
                 Snackbar(
                     backgroundColor = MaterialTheme.colors.background,
                     contentColor = MaterialTheme.colors.primaryVariant,
@@ -91,6 +92,7 @@ fun ImportScreen(){
         var operationType by remember { mutableStateOf("export") }
         var dataType by remember { mutableStateOf("schedule") }
         var importMode by remember { mutableStateOf("replace") }
+
         Column(
             modifier = Modifier
                 .padding(10.dp)
@@ -151,7 +153,7 @@ fun ImportScreen(){
             }
             Spacer(Modifier.weight(0.5f))
             Button(
-                {
+                onClick = {
                     controller.importPolicy = importMode
                     controller.dataType = dataType
                     if (operationType == "import")

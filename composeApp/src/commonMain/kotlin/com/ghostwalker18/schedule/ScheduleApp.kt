@@ -14,6 +14,7 @@
 
 package com.ghostwalker18.schedule
 
+import com.ghostwalker18.schedule.database.AppDatabase
 import com.ghostwalker18.schedule.models.ScheduleRepository
 import com.ghostwalker18.schedule.models.NotesRepository
 import com.ghostwalker18.schedule.platform.ImportController
@@ -26,6 +27,12 @@ import com.russhwolf.settings.ObservableSettings
  * @author Ипатов Никита
  */
 expect class ScheduleApp() {
+
+    /**
+     * БД приложения
+     */
+    val database: AppDatabase
+
     /**
      * Репозиторий расписания приложения
      */

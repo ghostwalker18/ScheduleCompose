@@ -74,7 +74,7 @@ class ImportControllerAndroid(val context: Context) : ImportController() {
                                     Utils.unzip(archive, databaseCache)
                                     importedFile = File(databaseCache, "export_database.db")
                                     _status.value = OperationStatus.Doing
-                                    ScheduleApp.instance.database.importDBFile(
+                                    ScheduleApp.instance._database.importDBFile(
                                         importedFile, dataType, importPolicy
                                     )
                                 }
@@ -96,7 +96,7 @@ class ImportControllerAndroid(val context: Context) : ImportController() {
         shareDBFileLauncher = rememberLauncherForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ){
-            ScheduleApp.instance.database.deleteExportDBFile()
+            ScheduleApp.instance._database.deleteExportDBFile()
             val exportedFile = File(context.cacheDir, "database/$DATABASE_ARCHIVE")
             if (exportedFile.exists()) exportedFile.delete()
         }
@@ -116,7 +116,7 @@ class ImportControllerAndroid(val context: Context) : ImportController() {
         scope.launch {
             try {
                 _status.value = OperationStatus.Doing
-                val file = ScheduleApp.instance.database
+                val file = ScheduleApp.instance._database
                     .exportDBFile(dataType)
                 val databaseCache = File(context.cacheDir, "database")
                 if (!databaseCache.exists()) databaseCache.mkdir()

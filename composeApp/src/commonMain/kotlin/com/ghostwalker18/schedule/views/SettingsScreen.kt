@@ -187,10 +187,19 @@ fun SettingsScreen() {
                 }
             }
             Row{
-                Spacer(modifier = Modifier.weight(0.5f))
+                Button(
+                    onClick = { navigator.goClearDataScreen() },
+                    modifier = Modifier
+                        .weight(0.5f)
+                        .padding(end = 5.dp)
+                ){
+                    Text(stringResource(Res.string.clear_app_data))
+                }
                 Button(
                     onClick = { navigator.goImportActivity() },
-                    modifier = Modifier.weight(0.5f)
+                    modifier = Modifier
+                        .weight(0.5f)
+                        .padding(start = 5.dp)
                 ){
                     Text(stringResource(Res.string.data_transfer))
                 }

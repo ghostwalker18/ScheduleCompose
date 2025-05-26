@@ -112,7 +112,7 @@ interface LessonDao {
      * Этот метод позволяет синхронно удалить все содержимое tblSchedule
      */
     @Query("DELETE FROM tblSchedule")
-    suspend fun deleteAllLessons()
+    suspend fun deleteAllLessons(): Int
 
     /**
      * Этот метод позволяет вставить элемент Lesson в БД.

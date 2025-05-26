@@ -49,6 +49,10 @@ class NavigatorDesktop(private val navController: NavController) : Navigator {
         navController.navigate("import")
     }
 
+    override fun goClearDataScreen(){
+        navController.navigate("clearData")
+    }
+
     override fun goNotesActivity(group: String, date: Calendar) {
         val dateString = DateConverters().toString(date)!!
         navController.navigate("notes/$group/$dateString")

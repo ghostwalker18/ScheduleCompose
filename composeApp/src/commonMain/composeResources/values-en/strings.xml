@@ -95,6 +95,11 @@
     <string name="unpacking_import_db">Unpacking the imported data</string>
     <string name="import_failed">The operation could not be performed</string>
     <string name="import_success">The operation was completed successfully</string>
+    <string name="clear_app_data">Clear data</string>
+    <string name="clear_app_data_button">Clear</string>
+    <string name="clear_data">Data for deleting</string>
+    <string name="clearing_start">Clearing started</string>
+    <string name="clearing_ended">Clearing finished. Deletes: %1$d notes and %2$d lessons.</string>
     <string name="download_approvement">Download confirmation</string>
     <string name="download_notice">Number of schedule files to download: %1$d. Do you want to download them?</string>
     <string name="download_ok">Download</string>

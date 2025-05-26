@@ -58,4 +58,10 @@
         <item>Заміна</item>
         <item>Злиття</item>
     </string-array>
+
+    <string-array name="clear_data_types_entries">
+        <item>Нотатки</item>
+        <item>Розклад</item>
+        <item>Розклад і нотатки</item>
+    </string-array>
 </resources>

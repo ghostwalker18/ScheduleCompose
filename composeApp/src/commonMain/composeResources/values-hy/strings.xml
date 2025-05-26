@@ -95,6 +95,11 @@
     <string name="unpacking_import_db">Ներմուծման տվյալների վերափաթեթավորում</string>
     <string name="import_failed">Գործողությունը չհաջողվեց ավարտել</string>
     <string name="import_success">Գործողությունը հաջողությամբ ավարտվեց։</string>
+    <string name="clear_app_data">Մաքրել տվյալները</string>
+    <string name="clear_app_data_button">Մաքրել</string>
+    <string name="clear_data">Տվյալները ջնջելու համար</string>
+    <string name="clearing_start">Մաքրումը սկսված է</string>
+    <string name="clearing_ended">Մաքրումն ավարտված է: Ջնջված է ՝ %1$d նշումներ և %2$d դասեր</string>
     <string name="download_approvement">Հաստատեք ներբեռնումը</string>
     <string name="download_notice">Ներբեռնվող ժամանակացույցի ֆայլերի քանակը՝ %1$d: Ուզու՞մ եք ներբեռնել դրանք։</string>
     <string name="download_ok">Ներբեռնել</string>

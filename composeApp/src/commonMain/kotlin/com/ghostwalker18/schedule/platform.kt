@@ -97,6 +97,11 @@ expect interface Navigator {
     fun goImportActivity()
 
     /**
+     * Этот метод позволяет перейти к экрану удаления данных приложения
+     */
+    fun goClearDataScreen()
+
+    /**
      * Этот метод позволяет перейти к экрану заметок приложения.
      */
     fun goNotesActivity(group: String, date: Calendar)
