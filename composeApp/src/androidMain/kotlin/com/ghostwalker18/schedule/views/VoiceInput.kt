@@ -20,22 +20,28 @@ import android.content.Context
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mic
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.runtime.*
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
@@ -49,12 +55,6 @@ import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.mic_permission_required
 import scheduledesktop2.composeapp.generated.resources.voice_input_descr
 
-/**
- * Эта функция используется для отображения элемента голосового ввода текста.
- * @param onInput callback, вызываемый при распознавании голосового ввода
- *
- * @author Ипатов Никита
- */
 @Composable
 actual fun VoiceInput(
     onInput: (text: String) -> Unit
@@ -124,8 +124,23 @@ actual fun VoiceInput(
             }
         }
     ){
-        Icon(
-            imageVector = Icons.Filled.Mic,
-            contentDescription = stringResource(Res.string.voice_input_descr))
+        Box(
+            contentAlignment = Alignment.Center
+        ){
+            AnimatedVisibility(
+                enter = fadeIn(),
+                exit = fadeOut(),
+                visible = isRecording
+            ){
+                CircularProgressIndicator(
+                    color = MaterialTheme.colors.primaryVariant,
+                    trackColor = animatedColor
+                )
+            }
+            Icon(
+                imageVector = Icons.Filled.Mic,
+                contentDescription = stringResource(Res.string.voice_input_descr)
+            )
+        }
     }
 }

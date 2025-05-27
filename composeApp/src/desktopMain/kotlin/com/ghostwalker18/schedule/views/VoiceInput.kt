@@ -14,23 +14,30 @@
 
 package com.ghostwalker18.schedule.views
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mic
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.ghostwalker18.schedule.SpeechRecognizer
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.voice_input_descr
@@ -51,6 +58,7 @@ actual fun VoiceInput(
         ),
         label = "color"
     )
+    val scope = rememberCoroutineScope()
 
     IconButton(
         modifier = Modifier
@@ -68,13 +76,29 @@ actual fun VoiceInput(
                 recognizer.startRecognition()
             } else {
                 isRecording = false
-                onInput(recognizer.getResult())
+                scope.launch {
+                    onInput(recognizer.getResult())
+                }
             }
         }
     ){
-        Icon(
-            imageVector = Icons.Filled.Mic,
-            contentDescription = stringResource(Res.string.voice_input_descr)
-        )
+        Box(
+            contentAlignment = Alignment.Center
+        ){
+            AnimatedVisibility(
+                enter = fadeIn(),
+                exit = fadeOut(),
+                visible = isRecording
+            ){
+                CircularProgressIndicator(
+                    color = MaterialTheme.colors.primaryVariant,
+                    trackColor = animatedColor
+                )
+            }
+            Icon(
+                imageVector = Icons.Filled.Mic,
+                contentDescription = stringResource(Res.string.voice_input_descr)
+            )
+        }
     }
 }
