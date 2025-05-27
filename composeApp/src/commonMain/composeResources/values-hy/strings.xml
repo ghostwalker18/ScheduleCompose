@@ -98,6 +98,10 @@
     <string name="clear_app_data">Մաքրել տվյալները</string>
     <string name="clear_app_data_button">Մաքրել</string>
     <string name="clear_data">Տվյալները ջնջելու համար</string>
+    <string name="clear_approvement">Ջնջման հաստատում</string>
+    <string name="clear_notice_notes">Դուք իսկապես ցանկանում եք հեռացնել %1$d նշումներ?</string>
+    <string name="clear_notice_lessons">Դուք իսկապես ցանկանում եք հեռացնել %1$d դասեր?</string>
+    <string name="clear_notice">Դուք իսկապես ցանկանում եք հեռացնել %1$d նշումներ և %2$d Զբաղմունքներ?</string>
     <string name="clearing_start">Մաքրումը սկսված է</string>
     <string name="clearing_ended">Մաքրումն ավարտված է: Ջնջված է ՝ %1$d նշումներ և %2$d դասեր</string>
     <string name="download_approvement">Հաստատեք ներբեռնումը</string>

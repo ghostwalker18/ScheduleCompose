@@ -98,6 +98,10 @@
     <string name="clear_app_data">წმინდა მონაცემები</string>
     <string name="clear_app_data_button">ნათელი</string>
     <string name="clear_data">მონაცემები წაშლა</string>
+    <string name="clear_approvement">წაშლის დადასტურება</string>
+    <string name="clear_notice_notes">თქვენ ნამდვილად გსურთ წაშალოთ %1$d შენიშვნები?</string>
+    <string name="clear_notice_lessons">ნამდვილად გსურთ წაშალოთ კლასების %1$d?</string>
+    <string name="clear_notice">ნამდვილად გსურთ წაშალოთ %1$d შენიშვნები და %2$d საქმიანობა?</string>
     <string name="clearing_start">დასუფთავება დაიწყო</string>
     <string name="clearing_ended">დასუფთავება დასრულებულია. წაშლილია: %1$d შენიშვნები და %2$d კლასები</string>
     <string name="download_approvement">ჩამოტვირთვის დადასტურება</string>

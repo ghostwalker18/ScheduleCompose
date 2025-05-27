@@ -98,6 +98,10 @@
     <string name="clear_app_data">Ачысціць дадзеныя</string>
     <string name="clear_app_data_button">Ачысціць</string>
     <string name="clear_data">Дадзеныя для выдалення</string>
+    <string name="clear_approvement">Пацверджанне выдалення</string>
+    <string name="clear_notice_notes">Вы сапраўды хочаце выдаліць %1$d нататак?</string>
+    <string name="clear_notice_lessons">Вы сапраўды хочаце выдаліць %1$d заняткаў?</string>
+    <string name="clear_notice">Вы сапраўды хочаце выдаліць %1$d нататак і %2$d заняткаў?</string>
     <string name="clearing_start">Ачыстка пачата</string>
     <string name="clearing_ended">Ачыстка завершана. Выдалена: %1$d нататак і %2$d заняткаў</string>
     <string name="download_approvement">Пацверджанне запампоўкі</string>

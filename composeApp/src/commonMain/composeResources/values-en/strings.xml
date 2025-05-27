@@ -98,6 +98,10 @@
     <string name="clear_app_data">Clear data</string>
     <string name="clear_app_data_button">Clear</string>
     <string name="clear_data">Data for deleting</string>
+    <string name="clear_approvement">Delete confirmation</string>
+    <string name="clear_notice_notes">Do you really want to delete %1$d notes?</string>
+    <string name="clear_notice_lessons">Do you really want to delete %1$d lessons?</string>
+    <string name="clear_notice">Do you really want to delete %1$d notes and %2$d lessons?</string>
     <string name="clearing_start">Clearing started</string>
     <string name="clearing_ended">Clearing finished. Deletes: %1$d notes and %2$d lessons.</string>
     <string name="download_approvement">Download confirmation</string>

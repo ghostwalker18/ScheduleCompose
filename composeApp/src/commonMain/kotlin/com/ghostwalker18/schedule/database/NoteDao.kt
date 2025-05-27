@@ -88,6 +88,12 @@ interface NoteDao {
     suspend fun getAllNotes(): List<Note>
 
     /**
+     * Этот метод возвращает кол-во заметок в таблице.
+     */
+    @Query("SELECT COUNT(*) FROM tblNote")
+    fun getNotesCount(): Flow<Int>
+
+    /**
      * Этот метод позволяет синхронно удалить все содержимое tblNote
      */
     @Query("DELETE FROM tblNote")
@@ -101,8 +107,13 @@ interface NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(note: Note): Long
 
+    /**
+     * Этот метод позволяет внести заметки в БД.
+     * @param notes заметки
+     * @return
+     */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMany(notes: List<Note>)
+    suspend fun insertMany(notes: Collection<Note>)
 
     /**
      * Этот метод позволяет обновить заметку из БД.

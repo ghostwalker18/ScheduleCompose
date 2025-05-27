@@ -109,6 +109,12 @@ interface LessonDao {
     suspend fun getAllLessons(): List<Lesson>
 
     /**
+     * Этот метод возвращает кол-во занятий в таблицу
+     */
+    @Query("SELECT COUNT(*) FROM tblSchedule")
+    fun getLessonsCount(): Flow<Int>
+
+    /**
      * Этот метод позволяет синхронно удалить все содержимое tblSchedule
      */
     @Query("DELETE FROM tblSchedule")

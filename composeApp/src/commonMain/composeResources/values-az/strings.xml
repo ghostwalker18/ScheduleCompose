@@ -98,6 +98,10 @@
     <string name="clear_app_data">Məlumatları silin</string>
     <string name="clear_app_data_button">Təmizləyin</string>
     <string name="clear_data">Silinəcək məlumatlar</string>
+    <string name="clear_approvement">Silinmənin təsdiqlənməsi</string>
+    <string name="clear_notice_notes">Həqiqətən %1$d qeydləri silmək istəyirsiniz?</string>
+    <string name="clear_notice_lessons">Həqiqətən %1$d sinifini silmək istəyirsiniz?</string>
+    <string name="clear_notice">Həqiqətən %1$d qeydləri və %2$d dərsləri silmək istəyirsiniz?</string>
     <string name="clearing_start">Təmizləmə başladı</string>
     <string name="clearing_ended">Təmizləmə tamamlandı. Silindi: %1$d qeydlər və %2$d dərslər</string>
     <string name="download_approvement">Yükləməni təsdiqləyin</string>

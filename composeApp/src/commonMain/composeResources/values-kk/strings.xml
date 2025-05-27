@@ -98,6 +98,10 @@
     <string name="clear_app_data">Деректерді өшіру</string>
     <string name="clear_app_data_button">Тазалау</string>
     <string name="clear_data">Жоюға арналған деректер</string>
+    <string name="clear_approvement">Жоюды растау</string>
+    <string name="clear_notice_notes">Сіз шынымен %1$d жазбаларын жойғыңыз келе ме?</string>
+    <string name="clear_notice_lessons">Сіз шынымен %1$d сеанстарын жойғыңыз келе ме?</string>
+    <string name="clear_notice">Сіз шынымен %1$d жазбаларын және %2$d әрекеттерін жойғыңыз келе ме?</string>
     <string name="clearing_start">Тазалау басталды</string>
     <string name="clearing_ended">Тазалау аяқталды. Жойылды: %1$d жазбалар және %2$d сабақтар</string>
     <string name="download_approvement">Жүктеуді растау</string>
