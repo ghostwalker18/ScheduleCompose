@@ -157,6 +157,12 @@ fun SettingsScreen() {
                             ),
                             entryDrawableDescr = Res.string.language_flag_descr
                         )
+                        SwitchPreference(
+                            title = Res.string.option_translit,
+                            key = ScheduleAppSettings.AppSettings.Translit.key,
+                            defaultValue = ScheduleAppSettings.AppSettings.Translit.defaultValue,
+                            preferences = preferences
+                        )
                     }
                 }
                 if(getPlatform() == Platform.Mobile){

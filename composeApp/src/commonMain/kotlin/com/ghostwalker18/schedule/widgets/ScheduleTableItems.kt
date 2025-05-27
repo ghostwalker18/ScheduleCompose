@@ -50,7 +50,10 @@ import java.util.*
  * @since 1.0
  */
 @Composable
-fun ScheduleTable(lessons: Array<Lesson>){
+fun ScheduleTable(
+    lessons: Array<Lesson>,
+    translitEnabled: Boolean = true
+){
     Row(
         modifier = Modifier
             .height(intrinsicSize = IntrinsicSize.Max)
@@ -103,12 +106,38 @@ fun ScheduleTable(lessons: Array<Lesson>){
                         }
                     null -> return
                 }
-            TableCell(lesson.number, 0.1f, ScheduleTableFontSize)
+            TableCell(
+                if(translitEnabled)
+                    Utils.transliterate(lesson.number)
+                else
+                    lesson.number,
+                0.1f, ScheduleTableFontSize
+            )
             if(getScreenOrientation() == Orientation.LandScape)
                 TableCell(lesson.times?: "", 0.2f, ScheduleTableFontSize)
-            TableCell(lesson.subject, 0.45f, ScheduleTableFontSize)
-            TableCell(lesson.teacher?: "", 0.2f, ScheduleTableFontSize)
-            TableCell(lesson.room?: "", 0.15f, ScheduleTableFontSize)
+            TableCell(
+                if(translitEnabled)
+                    Utils.transliterate(lesson.subject)
+                else
+                    lesson.subject,
+                0.45f, ScheduleTableFontSize
+            )
+            val teacher = lesson.teacher?: ""
+            TableCell(
+                if(translitEnabled)
+                    Utils.transliterate(teacher)
+                else
+                    teacher,
+                0.2f, ScheduleTableFontSize
+            )
+            val room = lesson.room?: ""
+            TableCell(
+                if(translitEnabled)
+                    Utils.transliterate(room)
+                else
+                    room,
+                0.15f, ScheduleTableFontSize
+            )
         }
     }
 }

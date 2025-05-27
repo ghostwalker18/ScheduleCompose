@@ -222,4 +222,55 @@ object Utils {
             TimeUnit.DAYS -> duration.toDays()
         }
     }
+
+    /**
+     * Эта функция позволяет транслитерировать строку.
+     * @param input строка на русском языке
+     * @return транслитерированная латиницей строка
+     */
+    fun transliterate(input: String): String {
+        val translitTable = hashMapOf(
+            'а' to "a", 'А' to "A",
+            'б' to "b", 'Б' to "B",
+            'в' to "v", 'В' to "V",
+            'г' to "g", 'Г' to "G",
+            'д' to "d", 'Д' to "D",
+            'е' to "e", 'Е' to "E",
+            'ё' to "yo", 'Ё' to "Yo",
+            'ж' to "zh", 'Ж' to "Zh",
+            'з' to "z", 'З' to "Z",
+            'и' to "i", 'И' to "I",
+            'й' to "j", 'Й' to "J",
+            'к' to "k", 'К' to "K",
+            'л' to "l", 'Л' to "L",
+            'м' to "m", 'М' to "M",
+            'н' to "n", 'Н' to "N",
+            'о' to "o", 'О' to "O",
+            'п' to "p", 'П' to "P",
+            'р' to "r", 'Р' to "R",
+            'с' to "s", 'С' to "S",
+            'т' to "t", 'Т' to "T",
+            'у' to "u", 'У' to "UU",
+            'ф' to "f", 'Ф' to "F",
+            'х' to "h", 'Х' to "H",
+            'ц' to "ts", 'Ц' to "Ts",
+            'ч' to "ch", 'Ч' to "Ch",
+            'ш' to "sh", 'Ш' to "Sh",
+            'щ' to "sch", 'Щ' to "Sch",
+            'ь' to "'", 'Ь' to "'",
+            'ы' to "y", 'Ы' to "Y",
+            'ъ' to "", 'Ъ' to "",
+            'э' to "e", 'Э' to "E",
+            'ю' to "ju", 'Ю' to "Ju",
+            'я' to "ja", 'Я' to "Ja",
+        )
+        var output = ""
+        for(symbol in input){
+            output += if(symbol in translitTable.keys)
+                translitTable[symbol]
+            else
+                symbol
+        }
+        return output
+    }
 }

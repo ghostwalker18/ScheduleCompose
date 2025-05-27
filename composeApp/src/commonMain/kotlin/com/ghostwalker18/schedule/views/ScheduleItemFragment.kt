@@ -74,6 +74,10 @@ fun ScheduleItemFragment(
     val lessons by model.lessons.collectAsState()
     val isOpened by model.isOpened.collectAsState()
     val notesCount by notesRepository.getNotesCount(model.group?: "", date).collectAsState(0)
+    val translitEnabled = ScheduleApp.instance.preferences.getBoolean(
+        ScheduleAppSettings.AppSettings.Translit.key,
+        ScheduleAppSettings.AppSettings.Translit.defaultValue
+    )
 
     model.viewModelScope.launch {
         scheduleModel.group.collect{
@@ -142,7 +146,7 @@ fun ScheduleItemFragment(
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                ScheduleTable(lessons)
+                ScheduleTable(lessons, translitEnabled)
                 ContentWrapper(
                     toolTip = Res.string.notes_tooltip
                 ){

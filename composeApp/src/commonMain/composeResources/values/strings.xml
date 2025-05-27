@@ -28,6 +28,7 @@
     <string name="today">Сегодня</string>
     <string name="app_settings">Приложение</string>
     <string name="option_theme">Тема</string>
+    <string name="option_translit">Транслит для расписания</string>
     <string name="option_add_teacher_search">Поиск по преподавателю</string>
     <string name="date">Дата</string>
     <string name="number">Пара</string>

@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.ScheduleAppSettings
 import com.ghostwalker18.schedule.widgets.ScheduleTable
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
@@ -59,6 +60,10 @@ fun ScheduleItemScreen(
     val navigator = ScheduleApp.instance.getNavigator()
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
+    val translitEnabled = ScheduleApp.instance.preferences.getBoolean(
+        ScheduleAppSettings.AppSettings.Translit.key,
+        ScheduleAppSettings.AppSettings.Translit.defaultValue
+    )
 
     Scaffold(
         scaffoldState = scaffoldState,
@@ -108,7 +113,7 @@ fun ScheduleItemScreen(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            ScheduleTable(lessons)
+            ScheduleTable(lessons, translitEnabled)
             IconButton(
                 {
                     group?.let{

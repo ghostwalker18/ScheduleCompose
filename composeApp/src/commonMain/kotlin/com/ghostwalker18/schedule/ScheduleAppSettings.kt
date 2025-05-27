@@ -70,6 +70,11 @@ object ScheduleAppSettings {
             const val key = "language"
             const val defaultValue = "system"
         }
+
+        object  Translit {
+            const val key = "enableTranslit"
+            const val defaultValue = false
+        }
     }
 
     /**

@@ -28,6 +28,7 @@
     <string name="today">დღეს</string>
     <string name="app_settings">გამოყენება</string>
     <string name="option_theme">თემა</string>
+    <string name="option_translit">ტრანსლიტერაცია გრაფიკისთვის</string>
     <string name="option_add_teacher_search">მასწავლებლის ძებნა</string>
     <string name="date">თარიღი</string>
     <string name="number">წყვილი</string>

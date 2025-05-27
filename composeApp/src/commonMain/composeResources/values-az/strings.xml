@@ -28,6 +28,7 @@
     <string name="today">Bu gün</string>
     <string name="app_settings">Ərizə</string>
     <string name="option_theme">Mövzu</string>
+    <string name="option_translit">Cədvəl üçün transliterasiya</string>
     <string name="option_add_teacher_search">Müəllim tərəfindən axtarış</string>
     <string name="date">Tarix</string>
     <string name="number">Cütləşdirmək</string>

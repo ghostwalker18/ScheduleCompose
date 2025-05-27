@@ -28,6 +28,7 @@
     <string name="today">Այսօր</string>
     <string name="app_settings">Դիմում</string>
     <string name="option_theme">Թեմա</string>
+    <string name="option_translit">Տրանսլիտ ժամանակացույցի համար</string>
     <string name="option_add_teacher_search">Որոնել ըստ ուսուցչի</string>
     <string name="date">Ամսաթիվ</string>
     <string name="number">Զույգ</string>
