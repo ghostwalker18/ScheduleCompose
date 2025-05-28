@@ -17,11 +17,11 @@ package com.ghostwalker18.schedule.platform
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.FileProvider
 import androidx.core.net.toUri
@@ -41,6 +41,8 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.*
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.io.File
 
 /**
@@ -197,6 +199,10 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
                 noteDate.setText(
                     getString(Res.string.date) + ": " + DateConverters().toString(note.date)
                 )
+                val noteGroup = document.createParagraph().createRun()
+                noteGroup.setText(
+                    getString(Res.string.group) + ": " + note.group
+                )
                 val noteTheme = document.createParagraph().createRun()
                 noteTheme.setText(
                     getString(Res.string.note_theme) + ": " + note.theme
@@ -218,26 +224,39 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
                             if (Build.VERSION.SDK_INT < 28) {
                                 MediaStore.Images.Media.getBitmap(
                                     context.contentResolver, item.toUri()
-                                ).asImageBitmap()
+                                )
                             } else {
                                 val source = ImageDecoder.createSource(
                                     context.contentResolver, item.toUri()
                                 )
-                                ImageDecoder.decodeBitmap(source).asImageBitmap()
+                                ImageDecoder.decodeBitmap(source)
                             }
                         val aspectRatio = bitmap.height / bitmap.width
-                        context.contentResolver.openInputStream(
-                            Uri.parse(item)).use {
-                            picture.addPicture(
-                                it,
-                                XWPFDocument.PICTURE_TYPE_JPEG,
-                                String.format("photo_$index.jpeg"),
-                                Units.toEMU(450.0),
-                                Units.toEMU(450.0 * aspectRatio)
-                            )
-                        }
+                        val bitmapStream = ByteArrayOutputStream()
+                        bitmap.compress(
+                            Bitmap.CompressFormat.JPEG,
+                            when(bitmap.width){
+                                in 0..1080 -> 100
+                                in 1080..2160 -> 66
+                                in 2160.. 4320 -> 44
+                                else -> 33
+                            },
+                            bitmapStream
+                        )
+                        val bitmapBytes = bitmapStream.toByteArray()
+                        bitmapStream.close()
+                        val bitmapInputStream = ByteArrayInputStream(bitmapBytes)
+                        picture.addPicture(
+                            ByteArrayInputStream(bitmapBytes),
+                            XWPFDocument.PICTURE_TYPE_JPEG,
+                            String.format("photo_$index.jpeg"),
+                            Units.toEMU(450.0),
+                            Units.toEMU(450.0 * aspectRatio)
+                        )
+                        bitmapInputStream.close()
                     }
                 }
+                document.createParagraph()
             }
 
             context.openFileOutput(outputFileName, Context.MODE_PRIVATE).use {
