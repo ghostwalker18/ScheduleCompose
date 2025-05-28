@@ -58,6 +58,7 @@
     <string name="no_notes_now">შენიშვნები ჯერ არ არის</string>
     <string name="edit_notes_activity">შენიშვნის დამატება / რედაქტირება</string>
     <string name="note_theme">შენიშვნის საგანი</string>
+    <string name="attached_photos">თანდართული ფოტოები</string>
     <string name="choose_date">აირჩიეთ თარიღი</string>
     <string name="filters">ფილტრები</string>
     <string name="for_group">ჯგუფისათვის</string>

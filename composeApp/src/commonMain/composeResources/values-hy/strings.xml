@@ -58,6 +58,7 @@
     <string name="no_notes_now">Դեռևս նշումներ չկան</string>
     <string name="edit_notes_activity">Ավելացնել/խմբագրել նշումը</string>
     <string name="note_theme">Նշման թեման</string>
+    <string name="attached_photos">Կից լուսանկարներ</string>
     <string name="choose_date">Ընտրեք ամսաթիվը</string>
     <string name="filters">Ֆիլտրեր</string>
     <string name="for_group">Խմբի համար</string>

@@ -58,6 +58,7 @@
     <string name="no_notes_now">Hələ qeyd yoxdur</string>
     <string name="edit_notes_activity">Qeyd əlavə et/redaktə et</string>
     <string name="note_theme">Qeydin mövzusu</string>
+    <string name="attached_photos">Əlavə edilmiş şəkillər</string>
     <string name="choose_date">Tarix seçin</string>
     <string name="filters">Filtrlər</string>
     <string name="for_group">Qrup üçün</string>

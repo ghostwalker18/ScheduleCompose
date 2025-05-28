@@ -58,6 +58,7 @@
     <string name="no_notes_now">Пока нет заметок</string>
     <string name="edit_notes_activity">Добавить / редактировать заметку</string>
     <string name="note_theme">Тема заметки</string>
+    <string name="attached_photos">Приложенные фотографии</string>
     <string name="choose_date">Выберите дату</string>
     <string name="filters">Фильтры</string>
     <string name="for_group">Для группы</string>

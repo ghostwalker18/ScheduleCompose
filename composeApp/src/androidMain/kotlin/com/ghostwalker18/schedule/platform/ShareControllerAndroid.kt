@@ -17,9 +17,14 @@ package com.ghostwalker18.schedule.platform
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.graphics.ImageDecoder
 import android.net.Uri
+import android.os.Build
+import android.provider.MediaStore
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.FileProvider
+import androidx.core.net.toUri
 import com.ghostwalker18.schedule.Platform
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.ShareController
@@ -189,23 +194,46 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
             val document = XWPFDocument()
             for(note in notes){
                 val noteDate = document.createParagraph().createRun()
-                noteDate.setText(DateConverters().toString(note.date))
+                noteDate.setText(
+                    getString(Res.string.date) + ": " + DateConverters().toString(note.date)
+                )
                 val noteTheme = document.createParagraph().createRun()
-                noteTheme.setText(note.theme)
+                noteTheme.setText(
+                    getString(Res.string.note_theme) + ": " + note.theme
+                )
                 val noteText = document.createParagraph().createRun()
-                noteText.setText(note.text)
-                val pictures = document.createParagraph().createRun()
+                noteText.setText(
+                    getString(Res.string.text) + ": " + note.text
+                )
+
+                val notePhotos = document.createParagraph().createRun()
+                notePhotos.setText(
+                    getString(Res.string.attached_photos) + ":"
+                )
                 note.photoIDs?.let{
                     it.forEachIndexed {
                         index, item ->
+                        val picture = document.createParagraph().createRun()
+                        val bitmap =
+                            if (Build.VERSION.SDK_INT < 28) {
+                                MediaStore.Images.Media.getBitmap(
+                                    context.contentResolver, item.toUri()
+                                ).asImageBitmap()
+                            } else {
+                                val source = ImageDecoder.createSource(
+                                    context.contentResolver, item.toUri()
+                                )
+                                ImageDecoder.decodeBitmap(source).asImageBitmap()
+                            }
+                        val aspectRatio = bitmap.height / bitmap.width
                         context.contentResolver.openInputStream(
                             Uri.parse(item)).use {
-                            pictures.addPicture(
+                            picture.addPicture(
                                 it,
                                 XWPFDocument.PICTURE_TYPE_JPEG,
                                 String.format("photo_$index.jpeg"),
-                                Units.toEMU(100.0),
-                                Units.toEMU(100.0)
+                                Units.toEMU(450.0),
+                                Units.toEMU(450.0 * aspectRatio)
                             )
                         }
                     }

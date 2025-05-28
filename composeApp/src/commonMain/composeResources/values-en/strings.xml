@@ -58,6 +58,7 @@
     <string name="no_notes_now">There are no notes yet</string>
     <string name="edit_notes_activity">Add / edit note</string>
     <string name="note_theme">Note\'s theme</string>
+    <string name="attached_photos">Attached photos</string>
     <string name="choose_date">Select a date</string>
     <string name="filters">Filters</string>
     <string name="for_group">For group:</string>

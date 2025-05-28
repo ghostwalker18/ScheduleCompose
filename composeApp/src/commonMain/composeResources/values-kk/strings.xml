@@ -58,6 +58,7 @@
     <string name="no_notes_now">Әзірге жазбалар жоқ</string>
     <string name="edit_notes_activity">Жазбаны қосу / өңдеу</string>
     <string name="note_theme">Ескерту тақырыбы</string>
+    <string name="attached_photos">Қосымша фотосуреттер</string>
     <string name="choose_date">Күнді таңдаңыз</string>
     <string name="filters">Сүзгілер</string>
     <string name="for_group">Топ үшін:</string>
