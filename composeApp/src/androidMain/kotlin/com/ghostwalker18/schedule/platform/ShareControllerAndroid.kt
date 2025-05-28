@@ -23,17 +23,19 @@ import androidx.core.content.FileProvider
 import com.ghostwalker18.schedule.Platform
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.ShareController
+import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
 import io.appmetrica.analytics.AppMetrica
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.apache.poi.util.Units
+import org.apache.poi.xwpf.usermodel.XWPFDocument
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.getString
-import scheduledesktop2.composeapp.generated.resources.Res
-import scheduledesktop2.composeapp.generated.resources.developer_email
-import scheduledesktop2.composeapp.generated.resources.github_link
-import scheduledesktop2.composeapp.generated.resources.nothing_to_share
-import scheduledesktop2.composeapp.generated.resources.rustore_link
+import scheduledesktop2.composeapp.generated.resources.*
 import java.io.File
 
 /**
@@ -43,6 +45,8 @@ import java.io.File
  * @author Ипатов Никита
  */
 class ShareControllerAndroid(private val context: Context) : ShareController {
+
+    val scope = CoroutineScope(Dispatchers.IO)
 
     override fun shareSchedule(lessons: Collection<Lesson>): Pair<Boolean, StringResource> {
         if(lessons.isEmpty()){
@@ -106,6 +110,10 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
     }
 
     override fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource> {
+        if(notes.isEmpty()){
+            return Pair(true, Res.string.nothing_to_share)
+        }
+
         val notesToShare = StringBuilder()
         for (note in notes) {
             notesToShare.append(note.toString()).append("\n")
@@ -163,6 +171,71 @@ class ShareControllerAndroid(private val context: Context) : ShareController {
         } catch (_: ActivityNotFoundException) {
             return Pair(true, Res.string.developer_email)
         } catch (_: Exception) { /*Not required*/ }
+        return Pair(false, Res.string.nothing_to_share)
+    }
+
+    override fun shareNotesPDF(notes: Collection<Note>): Pair<Boolean, StringResource> {
+        if(notes.isEmpty()){
+            return Pair(true, Res.string.nothing_to_share)
+        }
+
+        val outputFileName = "notes.docx"
+        val fileMIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        val file = File(outputFileName)
+        if(file.exists())
+            file.delete()
+
+        scope.launch {
+            val document = XWPFDocument()
+            for(note in notes){
+                val noteDate = document.createParagraph().createRun()
+                noteDate.setText(DateConverters().toString(note.date))
+                val noteTheme = document.createParagraph().createRun()
+                noteTheme.setText(note.theme)
+                val noteText = document.createParagraph().createRun()
+                noteText.setText(note.text)
+                val pictures = document.createParagraph().createRun()
+                note.photoIDs?.let{
+                    it.forEachIndexed {
+                        index, item ->
+                        context.contentResolver.openInputStream(
+                            Uri.parse(item)).use {
+                            pictures.addPicture(
+                                it,
+                                XWPFDocument.PICTURE_TYPE_JPEG,
+                                String.format("photo_$index.jpeg"),
+                                Units.toEMU(100.0),
+                                Units.toEMU(100.0)
+                            )
+                        }
+                    }
+                }
+            }
+
+            context.openFileOutput(outputFileName, Context.MODE_PRIVATE).use {
+                outputStream ->
+                document.write(outputStream)
+            }
+            document.close()
+            val notesPDFUri = FileProvider.getUriForFile(
+                context,
+                "com.ghostwalker18.schedule.timefilesprovider",
+                File(context.filesDir, outputFileName)
+            )
+
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.putExtra(Intent.EXTRA_STREAM, notesPDFUri)
+            intent.type = fileMIME
+
+            val shareIntent = Intent.createChooser(intent, null)
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            context.startActivity(shareIntent, null)
+        }
+
+        if (ScheduleApp.instance.isAppMetricaActivated)
+            AppMetrica.reportEvent("Поделились заметками c фото")
+
         return Pair(false, Res.string.nothing_to_share)
     }
 }

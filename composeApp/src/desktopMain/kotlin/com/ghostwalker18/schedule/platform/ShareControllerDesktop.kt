@@ -49,16 +49,15 @@ class ShareControllerDesktop : ShareController {
         if(lessons.isEmpty()){
             return Pair(true, Res.string.nothing_to_share)
         }
-        else {
-            val builder = StringBuilder()
-            for(lesson in lessons){
-                builder.append(lesson.toString(), "\n")
-            }
-            Toolkit.getDefaultToolkit()
-                .systemClipboard
-                .setContents(StringSelection(builder.toString()), null)
-            return Pair(true, Res.string.share_completed)
+
+        val builder = StringBuilder()
+        for(lesson in lessons){
+            builder.append(lesson.toString(), "\n")
         }
+        Toolkit.getDefaultToolkit()
+            .systemClipboard
+            .setContents(StringSelection(builder.toString()), null)
+        return Pair(true, Res.string.share_completed)
     }
 
     /**
@@ -78,6 +77,10 @@ class ShareControllerDesktop : ShareController {
     }
 
     override fun shareNotes(notes: Collection<Note>): Pair<Boolean, StringResource> {
+        if(notes.isEmpty()){
+            return Pair(true, Res.string.nothing_to_share)
+        }
+
         val builder = StringBuilder()
         for(note in notes){
             builder.append(note.toString())
@@ -118,5 +121,9 @@ class ShareControllerDesktop : ShareController {
                 .setContents(StringSelection(runBlocking { return@runBlocking getString(Res.string.developer_email) }), null)
             return Pair(true, Res.string.share_email_completed)
         }
+    }
+
+    override fun shareNotesPDF(notes: Collection<Note>): Pair<Boolean, StringResource> {
+        return Pair(false, Res.string.nothing_to_share)
     }
 }

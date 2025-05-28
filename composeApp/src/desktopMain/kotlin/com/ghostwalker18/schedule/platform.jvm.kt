@@ -65,6 +65,8 @@ actual interface ShareController {
     actual fun shareLink(platform: Platform): Pair<Boolean, StringResource>
 
     actual fun connectToDeveloper(): Pair<Boolean, StringResource>
+
+    actual fun shareNotesPDF(notes: Collection<Note>): Pair<Boolean, StringResource>
 }
 
 actual fun notifyEvent(eventName: String) {/* Not required now */}

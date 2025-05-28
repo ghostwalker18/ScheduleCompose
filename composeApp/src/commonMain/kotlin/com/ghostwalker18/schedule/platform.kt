@@ -139,6 +139,8 @@ expect interface ShareController {
      * Этот метод позволяет связаться с разработчиком.
      */
     fun connectToDeveloper(): Pair<Boolean, StringResource>
+
+    fun shareNotesPDF(notes: Collection<Note>): Pair<Boolean, StringResource>
 }
 
 /**
