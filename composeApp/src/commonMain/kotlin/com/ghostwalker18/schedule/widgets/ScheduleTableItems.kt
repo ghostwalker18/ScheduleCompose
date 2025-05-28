@@ -24,6 +24,13 @@ import androidx.compose.material.icons.outlined.AccessTime
 import androidx.compose.material.icons.outlined.EventAvailable
 import androidx.compose.material.icons.outlined.EventBusy
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -37,6 +44,8 @@ import com.ghostwalker18.schedule.ui.theme.ScheduleTableFontSize
 import com.ghostwalker18.schedule.ui.theme.gray500Color
 import com.ghostwalker18.schedule.utils.Utils
 import com.ghostwalker18.schedule.views.ContentWrapper
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*
@@ -55,6 +64,18 @@ fun ScheduleTable(
     lessons: Array<Lesson>,
     translitEnabled: Boolean = true
 ){
+    // update lesson availability after each minute
+    var availabilityWatchdog by remember { mutableStateOf(0) }
+    val scope = rememberCoroutineScope()
+    LaunchedEffect(key1 = Unit) {
+        scope.launch {
+            while (true){
+                delay(60000)
+                availabilityWatchdog += 1
+            }
+        }
+    }
+
     Row(
         modifier = Modifier
             .height(intrinsicSize = IntrinsicSize.Max)
@@ -69,44 +90,47 @@ fun ScheduleTable(
         TableCell(stringResource(Res.string.room), 0.15f, ScheduleTableFontSize)
     }
     lessons.forEachIndexed{
-            index, lesson ->
+        index, lesson ->
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .height(intrinsicSize = IntrinsicSize.Max)
                 .background(color = if (index % 2 == 0) gray500Color else MaterialTheme.colors.background)
         ) {
-            if(Utils.isDateToday(lesson.date))
-                when(Utils.isLessonAvailable(lesson.date, lesson.times)){
-                    Utils.LessonAvailability.ENDED ->
-                        ContentWrapper(
-                            toolTip = Res.string.lesson_ended_descr
-                        ){
-                            Icon(
-                                imageVector = Icons.Outlined.EventBusy,
-                                contentDescription = stringResource(Res.string.lesson_ended_descr)
-                            )
-                        }
-                    Utils.LessonAvailability.STARTED ->
-                        ContentWrapper(
-                            toolTip = Res.string.lesson_available_descr
-                        ){
-                            Icon(
-                                imageVector = Icons.Outlined.AccessTime,
-                                contentDescription = stringResource(Res.string.lesson_available_descr)
-                            )
-                        }
-                    Utils.LessonAvailability.NOT_STARTED ->
-                        ContentWrapper(
-                            toolTip = Res.string.lesson_not_started_descr
-                        ){
-                            Icon(
-                                imageVector = Icons.Outlined.EventAvailable,
-                                contentDescription = stringResource(Res.string.lesson_not_started_descr)
-                            )
-                        }
-                    null -> return
+            key(availabilityWatchdog) {
+                if(Utils.isDateToday(lesson.date)){
+                    when(Utils.isLessonAvailable(lesson.date, lesson.times)){
+                        Utils.LessonAvailability.ENDED ->
+                            ContentWrapper(
+                                toolTip = Res.string.lesson_ended_descr
+                            ){
+                                Icon(
+                                    imageVector = Icons.Outlined.EventBusy,
+                                    contentDescription = stringResource(Res.string.lesson_ended_descr)
+                                )
+                            }
+                        Utils.LessonAvailability.STARTED ->
+                            ContentWrapper(
+                                toolTip = Res.string.lesson_available_descr
+                            ){
+                                Icon(
+                                    imageVector = Icons.Outlined.AccessTime,
+                                    contentDescription = stringResource(Res.string.lesson_available_descr)
+                                )
+                            }
+                        Utils.LessonAvailability.NOT_STARTED ->
+                            ContentWrapper(
+                                toolTip = Res.string.lesson_not_started_descr
+                            ){
+                                Icon(
+                                    imageVector = Icons.Outlined.EventAvailable,
+                                    contentDescription = stringResource(Res.string.lesson_not_started_descr)
+                                )
+                            }
+                        null -> return
+                    }
                 }
+            }
             TableCell(
                 if(translitEnabled)
                     Utils.transliterate(lesson.number)
