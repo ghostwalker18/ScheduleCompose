@@ -107,6 +107,7 @@ fun SettingsScreen() {
                         )
                     }
                 }
+
                 item{
                     PreferenceCategory(
                         title = stringResource(Res.string.network_settings)
@@ -126,6 +127,7 @@ fun SettingsScreen() {
                         )
                     }
                 }
+
                 item {
                     PreferenceCategory(
                         title = stringResource(Res.string.app_settings)
@@ -165,6 +167,7 @@ fun SettingsScreen() {
                         )
                     }
                 }
+
                 if(getPlatform() == Platform.Mobile){
                     item {
                         PreferenceCategory(

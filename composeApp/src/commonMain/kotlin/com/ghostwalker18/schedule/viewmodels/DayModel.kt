@@ -77,6 +77,9 @@ class DayModel : ViewModel() {
         return _date.asStateFlow()
     }
 
+    /**
+     * Этот метод обновляет список занятий в модели
+     */
     private fun revalidateLessons(){
         _lessonsMediator = repository.getLessons(_date.value, teacher, group)
         viewModelScope.launch {

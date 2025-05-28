@@ -44,9 +44,11 @@ import kotlin.reflect.KFunction1
  * @author  Ипатов Никита
  * @since 1.0
  */
-abstract class ScheduleRepository(protected open val db: AppDatabase,
-                                  private val api: ScheduleNetworkAPI,
-                                  private val preferences: Settings) {
+abstract class ScheduleRepository(
+    protected open val db: AppDatabase,
+    private val api: ScheduleNetworkAPI,
+    private val preferences: Settings
+) {
     private val mainSelector = "h2:contains(Расписание занятий и объявления:) + div > table > tbody"
     private var updateFutures: MutableList<CompletableFuture<UpdateResult>> = mutableListOf()
     private val updateExecutorService: ExecutorService = Executors.newFixedThreadPool(4)

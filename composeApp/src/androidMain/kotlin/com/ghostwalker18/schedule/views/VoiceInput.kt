@@ -94,10 +94,11 @@ actual fun VoiceInput(
     IconButton(
         modifier = Modifier
             .background(
-                color = if(isRecording && hasPermissionRecordAudio)
-                    animatedColor
-                else
-                    IconButtonDefaults.iconButtonColors().containerColor,
+                color =
+                    if(isRecording && hasPermissionRecordAudio)
+                        animatedColor
+                    else
+                        IconButtonDefaults.iconButtonColors().containerColor,
                 shape = CircleShape
             ),
         enabled = true,

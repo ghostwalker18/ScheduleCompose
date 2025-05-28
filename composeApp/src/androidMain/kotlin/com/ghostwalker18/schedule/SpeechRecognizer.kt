@@ -36,6 +36,7 @@ import java.util.Locale
 class SpeechRecognizer(val context: Context): RecognitionListener {
     private var speechService: SpeechService? = null
     private var speechToText: String = ""
+
     /**
      * Это свойство отображает готовность распознавателя к работе.
      */

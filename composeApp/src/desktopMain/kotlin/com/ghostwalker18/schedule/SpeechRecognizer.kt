@@ -42,6 +42,7 @@ class SpeechRecognizer {
     private val buffer = ByteArray(BUFFER_SIZE)
     private var shouldRecord = false
     private var speechToText = ""
+
     /**
      * Это свойство отображает готовность распознавателя к работе.
      */

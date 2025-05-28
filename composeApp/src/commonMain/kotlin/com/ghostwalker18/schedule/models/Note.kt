@@ -34,30 +34,37 @@ import java.util.*
  */
 @Entity(tableName = "tblNote")
 data class Note(
+
     /**
      * Идентификатор заметки
      */
     @PrimaryKey(autoGenerate = true) val id : Int = 0,
+
     /**
      * Дата заметки
      */
     @ColumnInfo(name = "noteDate", index = true) var date : Calendar,
+
     /**
      * Группа заметки
      */
     @ColumnInfo(name = "noteGroup", index = true) var group : String,
+
     /**
      * Тема заметки
      */
     @ColumnInfo(name = "noteTheme") var theme: String?,
+
     /**
      * Текст заметки
      */
     @ColumnInfo(name = "noteText") var text: String,
+
     /**
      * Идентификаторы фотографий, приложенных к заметке
      */
     @ColumnInfo(name = "notePhotoIDs") var photoIDs: List<String>? = emptyList(),
+
     /**
      * Используется ли напоминание для заметки
      */

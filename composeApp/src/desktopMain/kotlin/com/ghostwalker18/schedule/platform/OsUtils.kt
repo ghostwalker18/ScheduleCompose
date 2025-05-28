@@ -31,6 +31,7 @@ class OsUtils {
     }
 
     companion object {
+
         /**
          * Это свойство описывает тип ОС хоста.
          */

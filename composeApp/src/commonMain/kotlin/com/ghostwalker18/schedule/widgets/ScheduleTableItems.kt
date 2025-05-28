@@ -89,6 +89,7 @@ fun ScheduleTable(
         TableCell(stringResource(Res.string.teacher), 0.2f, ScheduleTableFontSize)
         TableCell(stringResource(Res.string.room), 0.15f, ScheduleTableFontSize)
     }
+
     lessons.forEachIndexed{
         index, lesson ->
         Row(

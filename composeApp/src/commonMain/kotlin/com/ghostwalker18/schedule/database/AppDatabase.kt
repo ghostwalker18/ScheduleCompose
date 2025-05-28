@@ -94,6 +94,11 @@ abstract class AppDatabase : RoomDatabase() {
                 return _instance!!
             }
 
+        /**
+         * Этот метод создает БД приложения с заданным именем из заданного файла
+         * @param dbName имя БД
+         * @param dbFile файл из которого будет создана БД
+         */
         fun createAppDatabase(dbName: String, dbFile: File? = null): AppDatabase{
             val callback = object : Callback() {
                 override fun onCreate(connection: SQLiteConnection) {

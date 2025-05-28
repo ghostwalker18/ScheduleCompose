@@ -209,8 +209,7 @@ class ScheduleRepositoryDesktop(
                             _otherTimes.value = bufferedImage.toPainter()
                             ImageIO.write(bufferedImage, "jpg", mondayTimesFile)
                         }
-                    } catch (_: Exception) { /*Not required*/
-                    }
+                    } catch (_: Exception) { /*Not required*/ }
                 }
 
                 override fun onFailure(call: Call<ResponseBody?>, t: Throwable) { /*Not required*/ }
@@ -221,8 +220,7 @@ class ScheduleRepositoryDesktop(
                 _mondayTimes.value = bitmap1.toPainter()
                 val bitmap2 = ImageIO.read(otherTimesFile)
                 _otherTimes.value = bitmap2.toPainter()
-            } catch (_: Exception) { /*Not required*/
-            }
+            } catch (_: Exception) { /*Not required*/ }
         }
         return UpdateResult.SUCCESS
     }

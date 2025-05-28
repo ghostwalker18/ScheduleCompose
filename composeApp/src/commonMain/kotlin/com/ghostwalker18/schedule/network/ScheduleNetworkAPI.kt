@@ -29,9 +29,16 @@ import retrofit2.http.Url
  * @since 1.0
  */
 interface ScheduleNetworkAPI {
+
+    /**
+     * Это свойство возвращает расписание звонков на понедельник.
+     */
     @get:GET(URLs.MONDAY_TIMES_URL)
     val mondayTimes: Call<ResponseBody?>?
 
+    /**
+     * Это свойство возвращает файл с расписанием звонков со вторника по пятницу.
+     */
     @get:GET(URLs.OTHER_TIMES_URL)
     val otherTimes: Call<ResponseBody?>?
 
@@ -43,6 +50,9 @@ interface ScheduleNetworkAPI {
     @GET
     fun getScheduleFile(@Url url: String?): Call<ResponseBody?>?
 
+    /**
+     * Это свойство возвращает главную страницу сайта техникума с расписанием занятий.
+     */
     @get:GET(URLs.BASE_URI)
     val mainPage: Call<Document?>?
 }

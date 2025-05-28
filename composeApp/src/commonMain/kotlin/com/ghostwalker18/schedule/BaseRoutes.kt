@@ -96,7 +96,7 @@ fun NavGraphBuilder.baseRoutes(
             navArgument("group"){ type = NavType.StringType },
             navArgument("date"){ type = NavType.StringType })
     ){
-            stackEntry ->
+        stackEntry ->
         val group = stackEntry.arguments?.getString("group")
         val date = DateConverters().fromString(
             stackEntry.arguments?.getString("date")
@@ -117,7 +117,7 @@ fun NavGraphBuilder.baseRoutes(
             navArgument("noteID"){ type = NavType.IntType },
         )
     ){
-            stackEntry ->
+        stackEntry ->
         val group = stackEntry.arguments?.getString("group")
         val date = DateConverters().fromString(
             stackEntry.arguments?.getString("date")

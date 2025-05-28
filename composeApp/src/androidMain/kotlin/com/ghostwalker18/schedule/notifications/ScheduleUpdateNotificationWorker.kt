@@ -21,6 +21,7 @@ import androidx.work.ListenableWorker
 import androidx.work.WorkerParameters
 import com.ghostwalker18.schedule.R
 import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.ScheduleAppSettings
 import com.ghostwalker18.schedule.activities.MainActivity
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.models.ScheduleRepository
@@ -47,7 +48,10 @@ class ScheduleUpdateNotificationWorker(
             Executors.newSingleThreadExecutor()
         )
         return service.submit<Result> {
-            if(ScheduleApp.instance.preferences.getBoolean("schedule_notifications", false)){
+            if(ScheduleApp.instance.preferences.getBoolean(
+                    ScheduleAppSettings.NotificationSettings.ScheduleNotifications.key,
+                    ScheduleAppSettings.NotificationSettings.ScheduleNotifications.defaultValue
+            )){
                 val repository = ScheduleApp.instance.scheduleRepository
                 val lastUpdateResult = repository.lastUpdateResult
                 val lastAvailableDate = runBlocking {

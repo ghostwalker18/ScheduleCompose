@@ -50,6 +50,7 @@ fun ListView(
         var exp by remember { mutableStateOf(false) }
         val initialValue = stringArrayResource(entries)[0]
         var selectedOption by remember { mutableStateOf(initialValue) }
+
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier

@@ -16,6 +16,7 @@ package com.ghostwalker18.schedule
 
 /**
  * Этот объект содержит все настройки приложения
+ *
  * @author Ипатов Никита
  */
 object ScheduleAppSettings {
@@ -25,16 +26,25 @@ object ScheduleAppSettings {
      */
     object ScheduleSettings {
 
+        /**
+         * Стиль расписания
+         */
         object ScheduleStyle {
             const val key = "scheduleStyle"
             const val defaultValue = "in_fragment"
         }
 
+        /**
+         * Поиск по преподавателю
+         */
         object TeacherSearch {
             const  val key = "addTeacherSearch"
             const val defaultValue = false
         }
 
+        /**
+         * Обновление расписания звонков
+         */
         object UpdateTimes {
             const val key = "doNotUpdateTimes"
         }
@@ -45,11 +55,17 @@ object ScheduleAppSettings {
      */
     object NetworkSettings {
 
+        /**
+         * Для какого корпуса скачивать
+         */
         object DownloadFor {
             const val key = "downloadFor"
             const val defaultValue = "all"
         }
 
+        /**
+         * Поддержка кэширования
+         */
         object EnableCaching {
             const val key = "enableCaching"
             const val defaultValue = true
@@ -61,16 +77,25 @@ object ScheduleAppSettings {
      */
     object AppSettings {
 
+        /**
+         * Тема приложения
+         */
         object Theme {
             const val key = "theme"
             const val defaultValue = "system"
         }
 
+        /**
+         * Язык приложения
+         */
         object Language {
             const val key = "language"
             const val defaultValue = "system"
         }
 
+        /**
+         * Транслитерация расписания
+         */
         object  Translit {
             const val key = "enableTranslit"
             const val defaultValue = false
@@ -82,16 +107,25 @@ object ScheduleAppSettings {
      */
     object NotificationSettings {
 
+        /**
+         * Уведомления об обновлениях приложения
+         */
         object UpdateNotifications{
             const val key = "update_notifications"
             const val defaultValue = false
         }
 
+        /**
+         * Уведомления об изменениях в расписании
+         */
         object ScheduleNotifications {
             const val key = "schedule_notifications"
             const val defaultValue = false
         }
 
+        /**
+         * Уведомления о напоминаниях к заметкам
+         */
         object NotesNotifications {
             const val key = "notes_notifications"
             const val defaultValue = true

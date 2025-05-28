@@ -64,6 +64,7 @@ expect class ScheduleApp() {
     fun getNavigator(): Navigator
 
     companion object{
+
         /**
          * Синглтон приложения
          */

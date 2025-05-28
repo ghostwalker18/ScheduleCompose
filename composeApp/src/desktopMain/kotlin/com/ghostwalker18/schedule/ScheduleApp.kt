@@ -69,7 +69,6 @@ actual class ScheduleApp {
         ScheduleAppSettings.AppSettings.Language.defaultValue
     ])
 
-
     private val themeChangedListener = preferences.addStringListener(
         ScheduleAppSettings.AppSettings.Theme.key,
         ScheduleAppSettings.AppSettings.Theme.defaultValue
