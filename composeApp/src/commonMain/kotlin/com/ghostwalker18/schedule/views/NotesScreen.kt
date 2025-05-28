@@ -39,6 +39,7 @@ import com.ghostwalker18.schedule.models.Note
 import org.jetbrains.compose.resources.stringResource
 import com.ghostwalker18.schedule.viewmodels.NotesModel
 import com.ghostwalker18.schedule.ScheduleApp
+import com.ghostwalker18.schedule.widgets.CustomButton
 import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -191,7 +192,9 @@ fun NotesScreen(
                         }
                     }
                     AnimatedVisibility(selectedNotes.isNotEmpty()){
-                        Row {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
                             ContentWrapper(
                                 toolTip = Res.string.notes_delete_selected_descr
                             ){
@@ -212,7 +215,7 @@ fun NotesScreen(
                             ContentWrapper(
                                 toolTip = Res.string.notes_share_selected_descr
                             ){
-                                IconButton(
+                                CustomButton(
                                     onClick = {
                                         val (showTextRequired, text) = worker.shareNotes(selectedNotes)
                                         if (showTextRequired)
@@ -221,8 +224,17 @@ fun NotesScreen(
                                                     getString(text)
                                                 )
                                             }
+                                    },
+                                    onLongClick = {
+                                        val (showTextRequired, text) = worker.shareNotesPDF(selectedNotes)
+                                        if (showTextRequired)
+                                            scope.launch {
+                                                scaffoldState.snackbarHostState.showSnackbar(
+                                                    getString(text)
+                                                )
+                                            }
                                     }
-                                ){
+                                ) {
                                     Icon(
                                         imageVector = Icons.Filled.Share,
                                         contentDescription = stringResource(Res.string.notes_share_selected_descr)
