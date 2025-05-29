@@ -161,4 +161,6 @@
         ხანგრძლივი დაჭერა - პაემანზე გადასვლა</string>
     <string name="desktop_share">გააზიარეთ დესკტოპის ვერსია</string>
     <string name="mobile_share">გაუზიარეთ მობილური ვერსია</string>
+    <string name="more_options">მეტი ვარიანტი</string>
+    <string name="info">მითითება</string>
 </resources>

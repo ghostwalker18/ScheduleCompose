@@ -110,6 +110,11 @@ expect interface Navigator {
      * Этот метод позволяет перейти к экрану добавления/редактирования заметок приложения.
      */
     fun goEditNoteActivity(group: String, date: Calendar, noteID: Int? = null)
+
+    /**
+     * Этот метод позволяет перейти к экрану справки.
+     */
+    fun goInfoScreen()
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
@@ -140,6 +145,9 @@ expect interface ShareController {
      */
     fun connectToDeveloper(): Pair<Boolean, StringResource>
 
+    /**
+     * Этот метод позволяет поделиться заметками в формате Microsoft Word.
+     */
     fun shareNotesPDF(notes: Collection<Note>): Pair<Boolean, StringResource>
 }
 

@@ -64,6 +64,10 @@ class NavigatorAndroid(private val navController: NavController) : Navigator {
         navController.navigate("editNote/$group/$dateString/$noteID")
     }
 
+    override fun goInfoScreen() {
+        navController.navigate("info")
+    }
+
     override fun goPhotoView(photoID: String) {
         val encodedID = URLEncoder.encode(photoID, StandardCharsets.UTF_8.toString())
         navController.navigate("notePhoto/$encodedID")

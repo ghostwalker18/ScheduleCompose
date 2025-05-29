@@ -88,6 +88,8 @@ actual interface Navigator{
 
     actual fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?)
 
+    actual fun goInfoScreen()
+
     fun goPhotoView(photoID: String)
 }
 

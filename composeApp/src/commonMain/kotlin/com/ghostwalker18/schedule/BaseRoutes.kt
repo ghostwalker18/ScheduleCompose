@@ -56,6 +56,10 @@ fun NavGraphBuilder.baseRoutes(
         ClearDataScreen()
     }
 
+    composable(route = "info"){
+        InfoScreen()
+    }
+
     composable(
         route = "schedule/{date}/{group}/{teacher}",
         arguments = listOf(

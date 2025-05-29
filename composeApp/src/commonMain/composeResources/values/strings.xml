@@ -171,4 +171,6 @@
     <string name="rustore_link" translatable="false">
         https://www.rustore.ru/catalog/app/com.ghostwalker18.schedule
     </string>
+    <string name="more_options">Больше вариантов</string>
+    <string name="info">Справка</string>
 </resources>

@@ -51,6 +51,8 @@ actual interface Navigator{
     actual fun goNotesActivity(group: String, date: Calendar)
 
     actual fun goEditNoteActivity(group: String, date: Calendar, noteID: Int?)
+
+    actual fun goInfoScreen()
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")

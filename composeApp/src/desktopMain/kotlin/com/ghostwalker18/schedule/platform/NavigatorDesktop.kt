@@ -62,4 +62,8 @@ class NavigatorDesktop(private val navController: NavController) : Navigator {
         val dateString = DateConverters().toString(date)!!
         navController.navigate("editNote/$group/$dateString/$noteID")
     }
+
+    override fun goInfoScreen() {
+        navController.navigate("info")
+    }
 }

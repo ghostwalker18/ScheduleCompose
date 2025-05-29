@@ -23,7 +23,6 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Download
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -44,6 +43,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import com.ghostwalker18.schedule.widgets.MainScreenMenu
 import com.russhwolf.settings.get
 import java.util.Calendar
 
@@ -59,7 +59,6 @@ import java.util.Calendar
 fun MainScreen(
     date: Calendar = Calendar.getInstance()
 ) {
-    val navigator = ScheduleApp.instance.getNavigator()
     val worker = ScheduleApp.instance.shareController
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
@@ -79,7 +78,10 @@ fun MainScreen(
                 title = { Text(stringResource(Res.string.schedule)) },
                 actions = {
                     AnimatedVisibility(pagerState.currentPage == 0
-                            && ScheduleApp.instance.preferences["scheduleStyle", "in_fragment"] == "in_fragment"
+                            && ScheduleApp.instance.preferences[
+                                ScheduleAppSettings.ScheduleSettings.ScheduleStyle.key,
+                                ScheduleAppSettings.ScheduleSettings.ScheduleStyle.defaultValue
+                            ] == "in_fragment"
                             || pagerState.currentPage == 1
                     ){
                         ContentWrapper(
@@ -132,14 +134,9 @@ fun MainScreen(
                         }
                     }
                     ContentWrapper(
-                        toolTip = Res.string.main_settings_descr
+                        toolTip = Res.string.more_options
                     ){
-                        IconButton({ navigator.goSettingsActivity() }){
-                            Icon(
-                                imageVector = Icons.Filled.Settings,
-                                contentDescription = stringResource(Res.string.main_settings_descr)
-                            )
-                        }
+                        MainScreenMenu()
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
