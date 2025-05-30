@@ -100,6 +100,7 @@ kotlin {
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha11")
             implementation("com.squareup.retrofit2:retrofit:3.0.0")
             implementation("org.jsoup:jsoup:1.17.1")
+            implementation("be.digitalia.compose.htmlconverter:htmlconverter:1.0.4")
         }
 
         commonTest.dependencies {

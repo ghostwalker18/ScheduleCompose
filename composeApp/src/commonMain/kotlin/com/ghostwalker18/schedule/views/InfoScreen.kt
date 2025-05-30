@@ -19,6 +19,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
@@ -26,7 +27,13 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
+import be.digitalia.compose.htmlconverter.HtmlStyle
+import be.digitalia.compose.htmlconverter.htmlToAnnotatedString
+import com.ghostwalker18.schedule.AppInfo
 import com.ghostwalker18.schedule.ScheduleApp
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -59,11 +66,23 @@ fun InfoScreen(){
             )
         }
     ){
+        val linkColor = MaterialTheme.colors.primary
+        val text = remember {
+            htmlToAnnotatedString(
+                AppInfo.info,
+                style = HtmlStyle(
+                    textLinkStyles = TextLinkStyles(
+                        style = SpanStyle(color = linkColor)
+                    )
+                )
+            )
+        }
+
         Text(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState()),
-            text = ""
+            text = text
         )
     }
 }
