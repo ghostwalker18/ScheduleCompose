@@ -15,8 +15,10 @@
 package com.ghostwalker18.schedule.views
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -26,19 +28,27 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material.Scaffold
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.unit.dp
 import be.digitalia.compose.htmlconverter.HtmlStyle
 import be.digitalia.compose.htmlconverter.htmlToAnnotatedString
-import com.ghostwalker18.schedule.AppInfo
 import com.ghostwalker18.schedule.ScheduleApp
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.Res
+import scheduledesktop2.composeapp.generated.resources.app_info
 import scheduledesktop2.composeapp.generated.resources.go_back_descr
 import scheduledesktop2.composeapp.generated.resources.info
+import scheduledesktop2.composeapp.generated.resources.notes_add_descr
 
 /**
  * Эта функция отображает экран справки приложения
@@ -49,6 +59,8 @@ import scheduledesktop2.composeapp.generated.resources.info
 fun InfoScreen(){
     val scaffoldState = rememberScaffoldState()
     val navigator = ScheduleApp.instance.getNavigator()
+    val scrollState = rememberScrollState()
+    val scope = rememberCoroutineScope()
 
     Scaffold(
         scaffoldState = scaffoldState,
@@ -64,12 +76,32 @@ fun InfoScreen(){
                     }
                 }
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    scope.launch {
+                        scrollState.animateScrollTo(0)
+                    }
+                },
+                backgroundColor = MaterialTheme.colors.primaryVariant
+            ){
+                ContentWrapper(
+                    toolTip = Res.string.notes_add_descr
+                ){
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Default.KeyboardArrowLeft,
+                        tint = Color.White,
+                        contentDescription = stringResource(Res.string.notes_add_descr)
+                    )
+                }
+            }
         }
     ){
         val linkColor = MaterialTheme.colors.primary
         val text = remember {
             htmlToAnnotatedString(
-                AppInfo.info,
+                runBlocking { getString(Res.string.app_info) } ,
                 style = HtmlStyle(
                     textLinkStyles = TextLinkStyles(
                         style = SpanStyle(color = linkColor)
@@ -81,7 +113,8 @@ fun InfoScreen(){
         Text(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
+                .verticalScroll(scrollState)
+                .padding(10.dp),
             text = text
         )
     }
