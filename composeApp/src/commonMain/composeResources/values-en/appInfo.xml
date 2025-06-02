@@ -64,144 +64,143 @@
         <h4> Notes </h4>
         <h4> Settings </h4>
         <p>
-            В настройках приложения доступны следующие пункты:
+        The following items are available in the application settings:
             <ul>
-                <li> Режим отображения расписания </li>
-                <li> Поиск по преподавателю </li>
-                <li> Не обновлять звонки </li>
-                <li> Скачивать расписание для </li>
-                <li> Включить кэширование </li>
-                <li> Тема </li>
-                <li> Язык </li>
-                <li> Транслит для расписания </li>
+                <li> Schedule display mode </li>
+                <li> Search by teacher </li>
+                <li> Do not update times </li>
+                <li> Download schedule for </li>
+                <li> Enable caching </li>
+                <li> Theme </li>
+                <li> Language </li>
+                <li> Transliteration for schedule </li>
             </ul>
-            Для мобильной версии, список расширяется следующими пунктами: <br>
-            Категория <b>Уведомления</b>
+        For the mobile version, the list is expanded by the following items: <br>
+        Category <b>Notifications</b>
             <ul>
-                <li> Обновления приложений </li>
-                <li> Расписание </li>
-                <li> Заметки </li>
+                <li> Application updates </li>
+                <li> Schedule </li>
+                <li> Notes </li>
             </ul>
-            Помимо этих пунктов, в настройках доступны следующие функции:
+        In addition to these items, the following functions are available in the settings:
             <ul>
-                <li> Очистить данные </li>
-                <li> Перенос данных </li>
-                <li> Поделиться приложением </li>
-                <li> Связаться с разработчиком</li>
-            </ul>
-        </p>
-        <p>
-            Пункт <b>Режим отображения расписания</b></br>
-            Данный пункт меню настроек позволяет выбрать между следующими режимами отображения расписания:
-            <ul>
-                <li> В отдельном окне. Данный режим отображает расписание на каждый день в отдельном окне.</li>
-                <li> Вместе. Данный режим отображает расписания для всех дней вместе.</li>
+                <li> Clear data </li>
+                <li> Transfer data </li>
+                <li> Share the application </li>
+                <li> Contact the developer</li>
             </ul>
         </p>
         <p>
-            Пункт <b>Поиск по преподавателю</b></br>
-            Данный пункт добавляет на главный экран возможность поиска занятий по преподавателю.
+            <b>Schedule display mode</b></br>
+            This menu item allows you to choose between the following schedule display modes:
+                <ul>
+                    <li> In a separate window. This mode displays the schedule for each day in a separate window.</li>
+                    <li> Together. This mode displays the schedules for all days together.</li>
+                </ul>
         </p>
         <p>
-            Пункт <b>Не обновлять звонки</b></br>
-            При активации данного пункта, расписание звонков скачивается только один раз при установке приложения,
-            что поможет сэкономить интернет-траффик пользователя.
+            Item <b>Search by teacher</b></br>
+            This item adds the ability to search for classes by teacher to the main screen.
         </p>
         <p>
-            Пункт <b>Скачивать расписание для</b></br>
-            Данный пункт меню позволяет выбрать корпус техникума для скачивания расписания из следующих вариантов:
+            Item <b>Do not update times</b></br>
+            When this item is activated, the times schedule is downloaded only once when installing the application,
+            which will help save the user's Internet traffic.
+        </p>
+        <p>
+            Item <b>Download schedule for</b></br>
+            This menu item allows you to select the college building to download the schedule from the following options:
+                <ul>
+                    <li>All buildings </li>
+                    <li>First building </li>
+                    <li>Second building </li>
+                </ul>
+            Specifying the desired option will help save the user's Internet traffic.
+        </p>
+        <p>
+            Item <b>Enable caching</b></br>
+            This menu item allows you to enable caching of network requests,
+            which will help save the user's Internet traffic.
+        </p>
+        <p>
+            Item <b>Theme</b></br>
+            In this item, you can select the application theme from the following options:
+                <ul>
+                    <li>Light theme</li>
+                    <li>Dark theme</li>
+                </ul>
+            The system theme option is also available, which sets the application theme to the user's current theme selected in the system.
+        </p>
+        <p>
+            Item <b>Language</b></br>
+            This item allows you to select the language of the application interface.<br>
+            This item affects only the interface language, the schedule is still only available in Russian.<br>
+            The following languages ​​are currently supported:
+                <ul>
+                    <li> Russian </li>
+                    <li> Belarusian </li>
+                    <li> Kazakh </li>
+                    <li> Ukrainian </li>
+                    <li> Azerbaijan </li>
+                    <li> Armenian </li>
+                    <li> Georgian </li>
+                    <li> English </li>
+                </ul>
+            The system language option is also available, which sets the language of the application to the user's system,
+            if it is in the list of supported ones, and Russian otherwise.
+        </p>
+        <p>
+            Item <b>Transliteration for schedule</b></br>
+            This item enables transliteration of the class schedule in Latin letters,
+            which may be convenient for non-Russian-speaking users.
+        </p>
+        <p>
+            <i>Items for the mobile version:</i>
+        </p>
+        <p>
+            Item <b>Application updates</b><br>
+            By activating this item, the user can receive notifications about updates
+            of the mobile and desktop versions of the application.
+        </p>
+        <p>
+            Item <b>Schedule</b><br>
+            By activating this item, the user can receive notifications about updates
+            of the schedule, the Internet traffic consumption of the application in this case will increase.
+        </p>
+        <p>
+            Item <b>Notes</b><br>
+            By activating this item, the user can add reminders to notes.
+        </p>
+        <p>
+            <i>Additional functions:</i>
+        <p>
+            <b>Clear data</b><br>
+            Allows you to delete selected data from the device memory:
             <ul>
-                <li>Всех корпусов </li>
-                <li> Первого корпуса </li>
-                <li> Второго корпуса </li>
-            </ul>
-            Указание нужного варианта поможет сэкономить интернет-траффик пользователя.
-        </p>
-        <p>
-            Пункт <b>Включить кэширование</b></br>
-            Данный пункт меню позволяет включить кэширование сетевых запросов,
-            что поможет сохранить интернет-траффик пользователя.
-        </p>
-        <p>
-            Пункт <b>Тема</b></br>
-            В этом пункте можно выбрать тему оформления приложения из следующих вариантов:
-            <ul>
-                <li> Светлая тема</li>
-                <li> Тёмная тема</li>
-            </ul>
-            Также доступна опция системная тема, которая задает темой приложения текущую
-            выбранную в системе тему пользователя.
-        </p>
-        <p>
-            Пункт <b>Язык</b></br>
-            Данный пункт позволяет выбрать язык интерфейса приложения.<br>
-            Этот пункт влияет только на язык интерфейса, расписание все еще доступно только на русском языке.<br>
-            На данный момент поддерживаются следующие языки:
-            <ul>
-                <li> Русский язык </li>
-                <li> Белорусский язык </li>
-                <li> Казахский язык </li>
-                <li> Украинский язык</li>
-                <li> Азербайджанский язык </li>
-                <li> Армянский язык </li>
-                <li> Грузинский язык</li>
-                <li> Английский язык</li>
-            </ul>
-            Также доступна опция системный язык, которая задает языком приложения язык системы пользователя,
-            если он в списке поддерживаемых, и русский в ином случае.
-        </p>
-        <p>
-            Пункт <b>Транслит для расписания</b></br>
-            Данный пункт включает транслитерацию расписания занятий латинскими буквами,
-            что может быть удобно нерусскоязычным пользователям.
-        </p>
-        <p>
-            <i>Пункты для мобильной версии:</i>
-        </p>
-        <p>
-            Пункт <b>Обновления приложений</b><br>
-            Активировав данный пункт, пользователь получает возможность получать уведомления об обновлениях
-            мобильной и десктопной версий приложения.
-        </p>
-        <p>
-            Пункт <b>Расписание</b><br>
-            Активировав данный пункт, пользователь получает возможность получать уведомления об обновлениях
-            расписания, расход интернет-траффика приложения в данном случае увеличится.
-        </p>
-        <p>
-            Пункт <b>Заметки</b><br>
-            Активировав данный пункт, пользователь получает возможность добавлять напоминания к заметкам.
-        </p>
-        <p>
-            <i>Дополнительные функции:</i>
-        <p>
-            Функция <b>Очистить данные</b><br>
-            Позволяет удалить из памяти устройства выбранные данные:
-            <ul>
-                <li> Заметки </li>
-                <li> Расписание </li>
-                <li> Расписание и заметки </li>
+                <li> Notes </li>
+                <li> Schedule </li>
+                <li> Schedule and notes </li>
             </ul>
         </p>
         <p>
-            Функция <b>Перенос данных</b><br>
-            Позволяет извлечь в архив (экспорт) данные приложения на выбор:
-            <ul>
-                <li> Заметки </li>
-                <li> Расписание </li>
-                <li> Расписание и заметки </li>
-            </ul>
-            или же внести в приложение данные (импорт), созданные ранее при помощи операции экспорта.
+            <b>Transfer data</b><br>
+            Allows you to extract to the archive (export) the application data of your choice:
+                <ul>
+                    <li> Notes </li>
+                    <li> Schedule </li>
+                    <li> Schedule and notes </li>
+                </ul>
+            or enter data into the application (import) created earlier using the export operation.
         </p>
         <p>
-            Функция <b>Поделиться приложением</b><br>
-            Позволяет поделиться ссылкой для скачивания десктопной или мобильной версии приложения.
-            Ссылка доступна как в текстовом виде, так и в виде QR кода.
+            <b>Share application</b><br> function
+            Allows you to share a link to download the desktop or mobile version of the application.
+            The link is available both in text form and as a QR code.
         </p>
         <p>
-            Функция <b>Связаться с разработчиком</b><br>
-            Активируется зажатием копирайта приложения.<br>
-            Позволяет отправить электронное письмо с обратной связью разработчику приложения.
+            <b>Contact developer</b><br> function
+            Activated by pressing the application copyright.<br>
+            Allows you to send an email with feedback to the application developer.
         </p>
         <h4> Source code </h4>
         <p> The source code of the application is on the website:

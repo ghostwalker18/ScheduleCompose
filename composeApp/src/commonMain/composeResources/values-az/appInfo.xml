@@ -63,144 +63,144 @@
         <h4> Qeydlər </h4>
         <h4> Parametrlər </h4>
         <p>
-            В настройках приложения доступны следующие пункты:
+            Tətbiq parametrlərində aşağıdakı maddələr mövcuddur:
             <ul>
-                <li> Режим отображения расписания </li>
-                <li> Поиск по преподавателю </li>
-                <li> Не обновлять звонки </li>
-                <li> Скачивать расписание для </li>
-                <li> Включить кэширование </li>
-                <li> Тема </li>
-                <li> Язык </li>
-                <li> Транслит для расписания </li>
+                <li> Cədvəl ekran rejimi </li>
+                <li> Müəllim axtarışı </li>
+                <li> Zəngləri yeniləməyin </li>
+                <li> Üçün cədvəli Yükləyin </li>
+                <li> Önbelleği aktivləşdirin </li>
+                <li> Mövzu </li>
+                <li> Dil </li>
+                <li> Cədvəl üçün Transliterasiya </li>
             </ul>
-            Для мобильной версии, список расширяется следующими пунктами: <br>
-            Категория <b>Уведомления</b>
+            Mobil versiyası üçün, siyahısı aşağıdakı maddələr ilə genişləndirilir: <br>
+            Kateqoriya <b>Bildirişlər</b>
             <ul>
-                <li> Обновления приложений </li>
-                <li> Расписание </li>
-                <li> Заметки </li>
+                <li> Təkliflərlə Tanışlıq </li>
+                <li> Mesaj </li>
+                <li> Qeydlər </li>
             </ul>
-            Помимо этих пунктов, в настройках доступны следующие функции:
+            Bu maddələrə əlavə olaraq parametrlərdə aşağıdakı xüsusiyyətlər mövcuddur:
             <ul>
-                <li> Очистить данные </li>
-                <li> Перенос данных </li>
-                <li> Поделиться приложением </li>
-                <li> Связаться с разработчиком</li>
-            </ul>
-        </p>
-        <p>
-            Пункт <b>Режим отображения расписания</b></br>
-            Данный пункт меню настроек позволяет выбрать между следующими режимами отображения расписания:
-            <ul>
-                <li> В отдельном окне. Данный режим отображает расписание на каждый день в отдельном окне.</li>
-                <li> Вместе. Данный режим отображает расписания для всех дней вместе.</li>
+                <li> Məlumatları silin </li>
+                <li> Məlumat ötürülməsi </li>
+                <li> Tətbiqi paylaşın </li>
+                <li> Geliştirici ilə əlaqə saxlayın </li>
             </ul>
         </p>
         <p>
-            Пункт <b>Поиск по преподавателю</b></br>
-            Данный пункт добавляет на главный экран возможность поиска занятий по преподавателю.
-        </p>
-        <p>
-            Пункт <b>Не обновлять звонки</b></br>
-            При активации данного пункта, расписание звонков скачивается только один раз при установке приложения,
-            что поможет сэкономить интернет-траффик пользователя.
-        </p>
-        <p>
-            Пункт <b>Скачивать расписание для</b></br>
-            Данный пункт меню позволяет выбрать корпус техникума для скачивания расписания из следующих вариантов:
+            Maddə <b>Cədvəl ekran rejimi</b></br>
+            Parametrlər menyusunun bu elementi aşağıdakı cədvəl ekran rejimləri arasında seçim etməyə imkan verir:
             <ul>
-                <li>Всех корпусов </li>
-                <li> Первого корпуса </li>
-                <li> Второго корпуса </li>
-            </ul>
-            Указание нужного варианта поможет сэкономить интернет-траффик пользователя.
-        </p>
-        <p>
-            Пункт <b>Включить кэширование</b></br>
-            Данный пункт меню позволяет включить кэширование сетевых запросов,
-            что поможет сохранить интернет-траффик пользователя.
-        </p>
-        <p>
-            Пункт <b>Тема</b></br>
-            В этом пункте можно выбрать тему оформления приложения из следующих вариантов:
-            <ul>
-                <li> Светлая тема</li>
-                <li> Тёмная тема</li>
-            </ul>
-            Также доступна опция системная тема, которая задает темой приложения текущую
-            выбранную в системе тему пользователя.
-        </p>
-        <p>
-            Пункт <b>Язык</b></br>
-            Данный пункт позволяет выбрать язык интерфейса приложения.<br>
-            Этот пункт влияет только на язык интерфейса, расписание все еще доступно только на русском языке.<br>
-            На данный момент поддерживаются следующие языки:
-            <ul>
-                <li> Русский язык </li>
-                <li> Белорусский язык </li>
-                <li> Казахский язык </li>
-                <li> Украинский язык</li>
-                <li> Азербайджанский язык </li>
-                <li> Армянский язык </li>
-                <li> Грузинский язык</li>
-                <li> Английский язык</li>
-            </ul>
-            Также доступна опция системный язык, которая задает языком приложения язык системы пользователя,
-            если он в списке поддерживаемых, и русский в ином случае.
-        </p>
-        <p>
-            Пункт <b>Транслит для расписания</b></br>
-            Данный пункт включает транслитерацию расписания занятий латинскими буквами,
-            что может быть удобно нерусскоязычным пользователям.
-        </p>
-        <p>
-            <i>Пункты для мобильной версии:</i>
-        </p>
-        <p>
-            Пункт <b>Обновления приложений</b><br>
-            Активировав данный пункт, пользователь получает возможность получать уведомления об обновлениях
-            мобильной и десктопной версий приложения.
-        </p>
-        <p>
-            Пункт <b>Расписание</b><br>
-            Активировав данный пункт, пользователь получает возможность получать уведомления об обновлениях
-            расписания, расход интернет-траффика приложения в данном случае увеличится.
-        </p>
-        <p>
-            Пункт <b>Заметки</b><br>
-            Активировав данный пункт, пользователь получает возможность добавлять напоминания к заметкам.
-        </p>
-        <p>
-            <i>Дополнительные функции:</i>
-        <p>
-            Функция <b>Очистить данные</b><br>
-            Позволяет удалить из памяти устройства выбранные данные:
-            <ul>
-                <li> Заметки </li>
-                <li> Расписание </li>
-                <li> Расписание и заметки </li>
+                <li> Ayrı bir pəncərədə. Bu rejimdən göstərir cədvəli hər gün ayrı bir pəncərə. </li>
+                <li> Birlikdə. Bu rejimdən göstərir çizelgeleri üçün bütün gün bir yerdəyik. </li>
             </ul>
         </p>
         <p>
-            Функция <b>Перенос данных</b><br>
-            Позволяет извлечь в архив (экспорт) данные приложения на выбор:
+            Maddə <b>Müəllim tərəfindən axtarış</b></br>
+            Bu maddə əsas ekrana müəllimə görə dərs axtarmaq imkanı əlavə edir.
+        </p>
+        <p>
+            Maddə <b>Zəngləri yeniləməyin</b></br>
+            Bu maddə aktivləşdirildikdə, zəng cədvəli tətbiqi quraşdırarkən yalnız bir dəfə yüklənir,
+            bu, istifadəçinin internet trafikinə qənaət etməyə kömək edəcəkdir.
+        </p>
+        <p>
+            Maddə <b>Üçün cədvəli Yükləyin</b> </br>
+            Bu maddə menyu seçmək üçün imkan verir korpusu texnikumunun download cədvəli aşağıdakı variantları:
             <ul>
-                <li> Заметки </li>
-                <li> Расписание </li>
-                <li> Расписание и заметки </li>
+                <li> Bütün hallar </li>
+                <li> Birinci korpus </li>
+                <li> Ikinci korpus </li>
             </ul>
-            или же внести в приложение данные (импорт), созданные ранее при помощи операции экспорта.
+            Doğru seçimi göstərmək istifadəçinin internet trafikinə qənaət etməyə kömək edəcəkdir.
         </p>
         <p>
-            Функция <b>Поделиться приложением</b><br>
-            Позволяет поделиться ссылкой для скачивания десктопной или мобильной версии приложения.
-            Ссылка доступна как в текстовом виде, так и в виде QR кода.
+            Maddə <b>Önbelleği aktivləşdirin</b></br>
+            Bu menyu seçimi şəbəkə sorğularının önbelleğini aktivləşdirməyə imkan verir,
+            istifadəçinin internet trafikini qorumağa kömək edəcək.
         </p>
         <p>
-            Функция <b>Связаться с разработчиком</b><br>
-            Активируется зажатием копирайта приложения.<br>
-            Позволяет отправить электронное письмо с обратной связью разработчику приложения.
+            Maddə <b>Mövzu</b></br>
+            Bu bənddə aşağıdakı seçimlərdən tətbiqin dizayn mövzusunu seçə bilərsiniz:
+            <ul>
+                <li> Yüngül mövzu </li>
+                <li> Qaranlıq mövzu </li>
+            </ul>
+            Tətbiq mövzusunu cari olaraq təyin edən sistem mövzusu seçimi də mövcuddur
+            sistemdə seçilmiş istifadəçi mövzusu.
+        </p>
+        <p>
+            Maddə <b>Dil</b></br>
+            Bu maddə tətbiqin interfeys dilini seçməyə imkan verir.<br>
+            Bu maddə yalnız interfeys dilini təsir edir, Cədvəl hələ də yalnız rus dilində mövcuddur.<br>
+            Hazırda aşağıdakı dillər dəstəklənir:
+            <ul>
+                <li> Rus günahı </li>
+                <li> Belarus günahı </li>
+                <li> Qazax günahı </li>
+                <li> Ukrayna günah </li>
+                <li> Azərbaycan günahı </li>
+                <li> erməni günahı </li>
+                <li> Gürcü günahı </li>
+                <li> İngilis resept </li>
+            </ul>
+            Tətbiqin dilini istifadəçi sisteminin dilini təyin edən sistem dili seçimi də mövcuddur,
+            əgər o, dəstəklənənlər siyahısındadırsa və başqa bir vəziyyətdə rus.
+        </p>
+        <p>
+            Maddə <b>Cədvəl üçün Transliterasiya</b></br>
+            Bu maddə latın hərfləri ilə dərs cədvəlinin transliterasiyasını əhatə edir,
+            rusdilli olmayan istifadəçilər üçün əlverişli ola bilər.
+        </p>
+        <p>
+            <i>Mobil versiya üçün maddələr:</i>
+        </p>
+        <p>
+            Maddə <b>Tətbiq yeniləmələri</b><br>
+            Bu elementi aktivləşdirərək istifadəçi yeniləmələr barədə bildiriş almaq imkanı əldə edir
+            tətbiqin mobil və masaüstü Versiyaları.
+        </p>
+        <p>
+            Maddə <b>Cədvəl</b><br>
+            Bu elementi aktivləşdirərək istifadəçi yeniləmələr barədə bildiriş almaq imkanı əldə edir
+            cədvəllər, Bu vəziyyətdə tətbiqin İnternet trafikinin istehlakı artacaq.
+        </p>
+        <p>
+            Maddə <b>Qeydlər</b><br>
+            Bu elementi aktivləşdirərək istifadəçi qeydlərə xatırlatmalar əlavə etmək imkanı əldə edir.
+        </p>
+        <p>
+            <i>Əlavə xüsusiyyətlər:</i>
+        <p>
+            Funksiya <b>Məlumatları silin</b><br>
+            Seçilmiş məlumatları cihaz yaddaşından silməyə imkan verir:
+            <ul>
+                <li> Qeydlər </li>
+                <li> Təsvir </li>
+                <li> Təsvir və qeydlər </li>
+            </ul>
+        </p>
+        <p>
+            Funksiya <b>Məlumat ötürülməsi</b><br>
+            Seçmək üçün arxiv (ixrac) app data çıxarış imkan verir:
+            <ul>
+                <li> Qeydlər </li>
+                <li> Təsvir </li>
+                <li> Təsvir və qeydlər </li>
+            </ul>
+            və ya əvvəllər ixrac əməliyyatından istifadə edərək yaradılan məlumatları (idxal) tətbiqə daxil edin.
+        </p>
+        <p>
+            Funksiya <b>Tətbiqi paylaşın</b><br>
+            Tətbiqin masaüstü və ya mobil versiyasını yükləmək üçün bir link paylaşmağa imkan verir.
+            Bağlantı həm mətn, həm də QR kodu şəklində mövcuddur.
+        </p>
+        <p>
+            Funksiya <b>geliştirici ilə əlaqə saxlayın</b><br>
+            Tətbiqin kopiraytını sıxaraq aktivləşdirilir.<br>
+            Tətbiqin tərtibatçısına rəy e-poçtu göndərməyə imkan verir.
         </p>
         <h4> Mənbə kodu </h4>
         <p> Tətbiqin mənbə kodu veb saytdadır:
