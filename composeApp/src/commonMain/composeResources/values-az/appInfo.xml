@@ -204,7 +204,15 @@
             Tətbiqin kopiraytını sıxaraq aktivləşdirilir.<br>
             Tətbiqin tərtibatçısına rəy e-poçtu göndərməyə imkan verir.
         </p>
-        <h4> Виджет </h4>
+        <h4> Vidcet </h4>
+        <p>
+            Android üçün tətbiqin mobil versiyasında istifadəçi cihazın əsas ekranında yerləşdirə bilər
+            vidceti əlavə edərkən seçilmiş qrup üçün cədvəli olan vidcet. Həmçinin, vidcet əlavə edərkən,
+            istifadəçi cədvəli göstərmək üçün günü seçə bilər: bu gün və ya sabah,
+            və widget mövzusu: açıq, qaranlıq və ya sistem. Android versiyası 12-dən yuxarı olan istifadəçilər
+            üçün "Dinamik rənglərdən istifadə et" seçimi mövcuddur; aktivləşdirildikdə, widget rəngləri
+            əsas ekran divar kağızının rəngini nəzərə alacaq.
+        </p>
         <h4> Mənbə kodu </h4>
         <p> Tətbiqin mənbə kodu veb saytdadır:
             <a href="https://github.com/ghostwalker18/ScheduleCompose"> Github </a>

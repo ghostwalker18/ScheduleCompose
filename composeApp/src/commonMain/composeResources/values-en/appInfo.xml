@@ -205,6 +205,14 @@
             Allows you to send an email with feedback to the application developer.
         </p>
         <h4> Widget </h4>
+        <p>
+            In the mobile version of the application for Android, the user can place on the main screen of the device
+            a widget with a schedule for the group selected when adding the widget. Also, when adding a widget,
+            the user can select the day to display the schedule: today or tomorrow,
+            and the widget theme: light, dark or system. For users with Android version higher than 12,
+            the "Use dynamic colors" option is available; when activated, the widget colors
+            will take into account the color of the main screen wallpaper.
+        </p>
         <h4> Source code </h4>
         <p> The source code of the application is on the website:
             <a href="https://github.com/ghostwalker18/ScheduleCompose"> Github </a>
