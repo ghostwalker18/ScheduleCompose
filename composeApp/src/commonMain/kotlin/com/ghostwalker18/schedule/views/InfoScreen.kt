@@ -14,6 +14,9 @@
 
 package com.ghostwalker18.schedule.views
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -48,7 +51,7 @@ import scheduledesktop2.composeapp.generated.resources.Res
 import scheduledesktop2.composeapp.generated.resources.app_info
 import scheduledesktop2.composeapp.generated.resources.go_back_descr
 import scheduledesktop2.composeapp.generated.resources.info
-import scheduledesktop2.composeapp.generated.resources.notes_add_descr
+import scheduledesktop2.composeapp.generated.resources.scroll_up
 
 /**
  * Эта функция отображает экран справки приложения
@@ -78,22 +81,28 @@ fun InfoScreen(){
             )
         },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    scope.launch {
-                        scrollState.animateScrollTo(0)
-                    }
-                },
-                backgroundColor = MaterialTheme.colors.primaryVariant
+            AnimatedVisibility(
+                visible = scrollState.value > 10,
+                enter = fadeIn(),
+                exit = fadeOut()
             ){
-                ContentWrapper(
-                    toolTip = Res.string.notes_add_descr
+                FloatingActionButton(
+                    onClick = {
+                        scope.launch {
+                            scrollState.animateScrollTo(0)
+                        }
+                    },
+                    backgroundColor = MaterialTheme.colors.primaryVariant
                 ){
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Default.KeyboardArrowLeft,
-                        tint = Color.White,
-                        contentDescription = stringResource(Res.string.notes_add_descr)
-                    )
+                    ContentWrapper(
+                        toolTip = Res.string.scroll_up
+                    ){
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Default.KeyboardArrowLeft,
+                            tint = Color.White,
+                            contentDescription = stringResource(Res.string.scroll_up)
+                        )
+                    }
                 }
             }
         }

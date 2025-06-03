@@ -20,6 +20,8 @@
             <li> Schedule </li>
             <li> Notes </li>
             <li> Settings </li>
+            <li> Widget </li>
+            <li> Source code </li>
         </ul>
         <h4> Schedule </h4>
         <p>
@@ -202,6 +204,7 @@
             Activated by pressing the application copyright.<br>
             Allows you to send an email with feedback to the application developer.
         </p>
+        <h4> Widget </h4>
         <h4> Source code </h4>
         <p> The source code of the application is on the website:
             <a href="https://github.com/ghostwalker18/ScheduleCompose"> Github </a>

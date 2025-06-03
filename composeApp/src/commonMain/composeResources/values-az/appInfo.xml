@@ -20,6 +20,8 @@
             <li> Cədvəl </li>
             <li> Qeydlər </li>
             <li> Parametrlər </li>
+            <li> Vidcet </li>
+            <li> Mənbə kodu </li>
         </ul>
         <h4> Cədvəl </h4>
         <p>
@@ -202,6 +204,7 @@
             Tətbiqin kopiraytını sıxaraq aktivləşdirilir.<br>
             Tətbiqin tərtibatçısına rəy e-poçtu göndərməyə imkan verir.
         </p>
+        <h4> Виджет </h4>
         <h4> Mənbə kodu </h4>
         <p> Tətbiqin mənbə kodu veb saytdadır:
             <a href="https://github.com/ghostwalker18/ScheduleCompose"> Github </a>
