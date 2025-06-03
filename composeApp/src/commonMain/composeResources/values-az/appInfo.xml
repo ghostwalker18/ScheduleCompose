@@ -16,13 +16,13 @@
     <string name="app_info">
         <![CDATA[
         <h2> Tətbiq yardımı </h2>
-        <ul>
-            <li> Cədvəl </li>
-            <li> Qeydlər </li>
-            <li> Parametrlər </li>
-            <li> Vidcet </li>
-            <li> Mənbə kodu </li>
-        </ul>
+            <ul>
+                <li> Cədvəl </li>
+                <li> Qeydlər </li>
+                <li> Parametrlər </li>
+                <li> Vidcet </li>
+                <li> Mənbə kodu </li>
+            </ul>
         <h4> Cədvəl </h4>
         <p>
             Cari həftə üçün dərs cədvəli olan nişan tətbiqə daxil olduqda dərhal istifadəçiyə açılır.
@@ -38,66 +38,107 @@
         </p>
         <p>
             Cədvəl ekranının yuxarı hissəsindəki İdarəetmə Panelində soldan sağa aşağıdakı düymələr mövcuddur:
-            <ul>
-                <li><b>Paylaş</b></li>
-                <li><b>Cədvəli Yükləyin</b></li>
-                <li><b>Daha çox seçim</b></li>
-            </ul>
+                <ul>
+                    <li><b>Paylaş</b></li>
+                    <li><b>Cədvəli Yükləyin</b></li>
+                    <li><b>Daha çox seçim</b></li>
+                </ul>
         </p>
         <p>
             Düymə <b>"Paylaş"</b><br>
             Açıq nişandan asılı olaraq (<b>"Dərs cədvəli"</b> və ya <b>"Zəng cədvəli"</b>),
             düyməni basdıqda müvafiq olaraq baş verir:
-            <ul>
-                <li>Həftənin açıq günləri üçün dərs cədvəlini bölüşmək imkanı üçün bir ekran açılır</li>
-                <li>Zəng cədvəlini bölüşmək imkanı üçün bir ekran açılır</li>
-            </ul>
+                <ul>
+                    <li>Həftənin açıq günləri üçün dərs cədvəlini bölüşmək imkanı üçün bir ekran açılır</li>
+                    <li>Zəng cədvəlini bölüşmək imkanı üçün bir ekran açılır</li>
+                </ul>
         </p>
         <p>
             Düymə <b>"Yüklə"</b><br>
             Açıq nişandan asılı olaraq (<b>"Dərs cədvəli"</b> və ya <b>"Zəng cədvəli"</b>),
             düyməni basdıqda müvafiq olaraq baş verir:
-            <ul>
-                <li>Mövcud mənbə sənədləri dərs cədvəli ilə yüklənir</li>
-                <li>Mövcud mənbə faylları zəng cədvəli ilə yüklənir</li>
-            </ul>
+                <ul>
+                    <li>Mövcud mənbə sənədləri dərs cədvəli ilə yüklənir</li>
+                    <li>Mövcud mənbə faylları zəng cədvəli ilə yüklənir</li>
+                </ul>
         </p>
-        <h4> Qeydlər </h4>
+        <h4> Qeydlər </ h4>
+        <p>
+            İstifadəçi cədvəli üçün qeydlərini edə və görə bilər. Bu funksiyanı istifadə etmək üçün,
+            Gün üçün sinif cədvəlinin altındakı nişan nişanını vurun. Tıklayarak istifadəçi qeydlərə girir.
+            <b>Ekran "Qeydlər"</b><br>
+            Bu ekranda əvvəllər seçilmiş qruplar və günlər üçün istifadəçi tərəfindən yaradılan bütün qeydlər var.
+            Qeydlərə basaraq istifadəçi aşağıdakı məqsədlər üçün onları seçə bilər:
+                <ul>
+                    <li> redaktə (1 qeyd seçilibsə) </li>
+                    <li> silmək </li>
+                    <li> Paylaş </li>
+                </ul>
+            <b> Qeydlərin yaradılması </ b> <br>
+            Qeydlərin notlarının alt sağ küncündə "bir qeyd yarat" düyməsini basaraq istifadəçi alır
+            qeydlər yaratmaq üçün ekranda. Bu ekranda istifadəçi göstərə bilər:
+                <ul>
+                    <li> Qeyd üçün tarix </li>
+                    <li> Qeyd üçün Qrup </li>
+                    <li> Qeyd üçün mövzu </li>
+                    <li> Qeydin mətni.
+                        Notun mətni klaviaturadan istifadə edərək, eləcə də səs girişi istifadə edilə bilər
+                        (İnternetə qoşulmadan da işləyir).
+                    </li>
+                </ul>
+            <br><i>mobil versiya üçün putkct </i><br>
+            Tətbiqin mobil versiyası üçün bir notun yaradılması zamanı çəkilən fotoları əlavə edə bilərsiniz,
+            həm də qalereyadan seçilən cihaz.
+            <br><i> mobil versiya üçün putkct </i><br>
+            <b> Qeydlərin xatırlatmaları </ b> <br>
+            Tətbiqin mobil versiyasının istifadəçiləri üçün bu elementi parametrlərdə aktivləşdirsələr,
+            Qeydləri yaratdıqda və ya redaktə edərkən bunun üçün xatırlatma yaratmaq mümkündür. Bir öyüd-nəsihət yaratarkən,
+            İstifadəçiyə tətbiqin notu xatırlatdığı vaxt təklif ediləcəkdir. Həm də təklif ediləcəkdir
+            Bir qeyddən bir notu xatırladan bir neçə gün seçimi. Təyin olunmuş vaxt və gündə bir qeyd barədə bildiriş,
+            Bir saat və ya günə təxirə salmaq qabiliyyəti ilə istifadəçiyə çatdırılacaqdır.
+            <b> Qeydlər üçün axtarış </ b> <br>
+            İstifadəçi onların məzmununa dair qeydlər axtara bilər. Bunu etmək üçün bir imtahanda axtarmaq üçün bir söz daxil etməlisiniz
+            Qeydlərin ekranının başındakı giriş sahəsi. Giriş prosesində istifadəçi qeydlər göstərəcək,
+            bu sözü ehtiva edir.
+            <b> Qeydlərin filtrlənməsi </ b> <br>
+            İstifadəçiyə qeydlər axtarışının sağında qeydlərin filtri mövcuddur. Bu filtr üçün qeydlər tapmağa imkan verir
+            bu qruplar və vaxt dövrü.
+        </p>
         <h4> Parametrlər </h4>
         <p>
             Tətbiq parametrlərində aşağıdakı maddələr mövcuddur:
-            <ul>
-                <li> Cədvəl ekran rejimi </li>
-                <li> Müəllim axtarışı </li>
-                <li> Zəngləri yeniləməyin </li>
-                <li> Üçün cədvəli Yükləyin </li>
-                <li> Önbelleği aktivləşdirin </li>
-                <li> Mövzu </li>
-                <li> Dil </li>
-                <li> Cədvəl üçün Transliterasiya </li>
-            </ul>
+                <ul>
+                    <li> Cədvəl ekran rejimi </li>
+                    <li> Müəllim axtarışı </li>
+                    <li> Zəngləri yeniləməyin </li>
+                    <li> Üçün cədvəli Yükləyin </li>
+                    <li> Önbelleği aktivləşdirin </li>
+                    <li> Mövzu </li>
+                    <li> Dil </li>
+                    <li> Cədvəl üçün Transliterasiya </li>
+                </ul>
             Mobil versiyası üçün, siyahısı aşağıdakı maddələr ilə genişləndirilir: <br>
             Kateqoriya <b>Bildirişlər</b>
-            <ul>
-                <li> Təkliflərlə Tanışlıq </li>
-                <li> Mesaj </li>
-                <li> Qeydlər </li>
-            </ul>
+                <ul>
+                    <li> Təkliflərlə Tanışlıq </li>
+                    <li> Mesaj </li>
+                    <li> Qeydlər </li>
+                </ul>
             Bu maddələrə əlavə olaraq parametrlərdə aşağıdakı xüsusiyyətlər mövcuddur:
-            <ul>
-                <li> Məlumatları silin </li>
-                <li> Məlumat ötürülməsi </li>
-                <li> Tətbiqi paylaşın </li>
-                <li> Geliştirici ilə əlaqə saxlayın </li>
-            </ul>
+                <ul>
+                    <li> Məlumatları silin </li>
+                    <li> Məlumat ötürülməsi </li>
+                    <li> Tətbiqi paylaşın </li>
+                    <li> Geliştirici ilə əlaqə saxlayın </li>
+                </ul>
         </p>
         <p>
             Maddə <b>Cədvəl ekran rejimi</b></br>
             Parametrlər menyusunun bu elementi aşağıdakı cədvəl ekran rejimləri arasında seçim etməyə imkan verir:
-            <ul>
-                <li> Ayrı bir pəncərədə. Bu rejimdən göstərir cədvəli hər gün ayrı bir pəncərə. </li>
-                <li> Birlikdə. Bu rejimdən göstərir çizelgeleri üçün bütün gün bir yerdəyik. </li>
-            </ul>
+                <ul>
+                    <li> Ayrı bir pəncərədə. Bu rejimdən göstərir cədvəli hər gün ayrı bir pəncərə. </li>
+                    <li> Birlikdə. Bu rejimdən göstərir çizelgeleri üçün bütün gün bir yerdəyik. </li>
+                </ul>
         </p>
         <p>
             Maddə <b>Müəllim tərəfindən axtarış</b></br>
@@ -111,11 +152,11 @@
         <p>
             Maddə <b>Üçün cədvəli Yükləyin</b> </br>
             Bu maddə menyu seçmək üçün imkan verir korpusu texnikumunun download cədvəli aşağıdakı variantları:
-            <ul>
-                <li> Bütün hallar </li>
-                <li> Birinci korpus </li>
-                <li> Ikinci korpus </li>
-            </ul>
+                <ul>
+                    <li> Bütün hallar </li>
+                    <li> Birinci korpus </li>
+                    <li> Ikinci korpus </li>
+                </ul>
             Doğru seçimi göstərmək istifadəçinin internet trafikinə qənaət etməyə kömək edəcəkdir.
         </p>
         <p>
@@ -126,10 +167,10 @@
         <p>
             Maddə <b>Mövzu</b></br>
             Bu bənddə aşağıdakı seçimlərdən tətbiqin dizayn mövzusunu seçə bilərsiniz:
-            <ul>
-                <li> Yüngül mövzu </li>
-                <li> Qaranlıq mövzu </li>
-            </ul>
+                <ul>
+                    <li> Yüngül mövzu </li>
+                    <li> Qaranlıq mövzu </li>
+                </ul>
             Tətbiq mövzusunu cari olaraq təyin edən sistem mövzusu seçimi də mövcuddur
             sistemdə seçilmiş istifadəçi mövzusu.
         </p>
@@ -138,16 +179,16 @@
             Bu maddə tətbiqin interfeys dilini seçməyə imkan verir.<br>
             Bu maddə yalnız interfeys dilini təsir edir, Cədvəl hələ də yalnız rus dilində mövcuddur.<br>
             Hazırda aşağıdakı dillər dəstəklənir:
-            <ul>
-                <li> Rus günahı </li>
-                <li> Belarus günahı </li>
-                <li> Qazax günahı </li>
-                <li> Ukrayna günah </li>
-                <li> Azərbaycan günahı </li>
-                <li> erməni günahı </li>
-                <li> Gürcü günahı </li>
-                <li> İngilis resept </li>
-            </ul>
+                <ul>
+                    <li> Rus günahı </li>
+                    <li> Belarus günahı </li>
+                    <li> Qazax günahı </li>
+                    <li> Ukrayna günah </li>
+                    <li> Azərbaycan günahı </li>
+                    <li> erməni günahı </li>
+                    <li> Gürcü günahı </li>
+                    <li> İngilis resept </li>
+                </ul>
             Tətbiqin dilini istifadəçi sisteminin dilini təyin edən sistem dili seçimi də mövcuddur,
             əgər o, dəstəklənənlər siyahısındadırsa və başqa bir vəziyyətdə rus.
         </p>
@@ -178,20 +219,20 @@
         <p>
             Funksiya <b>Məlumatları silin</b><br>
             Seçilmiş məlumatları cihaz yaddaşından silməyə imkan verir:
-            <ul>
-                <li> Qeydlər </li>
-                <li> Təsvir </li>
-                <li> Təsvir və qeydlər </li>
-            </ul>
+                <ul>
+                    <li> Qeydlər </li>
+                    <li> Təsvir </li>
+                    <li> Təsvir və qeydlər </li>
+                </ul>
         </p>
         <p>
             Funksiya <b>Məlumat ötürülməsi</b><br>
             Seçmək üçün arxiv (ixrac) app data çıxarış imkan verir:
-            <ul>
-                <li> Qeydlər </li>
-                <li> Təsvir </li>
-                <li> Təsvir və qeydlər </li>
-            </ul>
+                <ul>
+                    <li> Qeydlər </li>
+                    <li> Təsvir </li>
+                    <li> Təsvir və qeydlər </li>
+                </ul>
             və ya əvvəllər ixrac əməliyyatından istifadə edərək yaradılan məlumatları (idxal) tətbiqə daxil edin.
         </p>
         <p>
@@ -214,9 +255,9 @@
             əsas ekran divar kağızının rəngini nəzərə alacaq.
         </p>
         <h4> Mənbə kodu </h4>
-        <p> Tətbiqin mənbə kodu veb saytdadır:
-            <a href="https://github.com/ghostwalker18/ScheduleCompose"> Github </a>
-            <br>
+        <p>
+            Tətbiqin mənbə kodu veb saytdadır:
+            <a href="https://github.com/ghostwalker18/ScheduleCompose"> Github </a> <br>
             Tətbiqin mənbə kodu və tətbiqin özü lisenziya altında paylanır Apache 2.0
         </p>
         ]]>

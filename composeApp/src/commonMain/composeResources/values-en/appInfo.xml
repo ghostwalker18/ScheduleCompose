@@ -16,13 +16,13 @@
     <string name="app_info">
         <![CDATA[
         <h2> Help about the application </h2>
-        <ul>
-            <li> Schedule </li>
-            <li> Notes </li>
-            <li> Settings </li>
-            <li> Widget </li>
-            <li> Source code </li>
-        </ul>
+            <ul>
+                <li> Schedule </li>
+                <li> Notes </li>
+                <li> Settings </li>
+                <li> Widget </li>
+                <li> Source code </li>
+            </ul>
         <h4> Schedule </h4>
         <p>
             The tab with the schedule of classes for the current week opens to the user immediately upon logging into the application.
@@ -39,31 +39,72 @@
         </p>
         <p>
             The following buttons are available in the control panel at the top of the schedule screen, from left to right:
-            <ul>
-                <li><b>Share</b></li>
-                <li><b>Download schedule</b></li>
-                <li><b>More options</b></li>
-            </ul>
+                <ul>
+                    <li><b>Share</b></li>
+                    <li><b>Download schedule</b></li>
+                    <li><b>More options</b></li>
+                </ul>
         </p>
         <p>
             Button <b>"Share"</b><br>
             Depending on the opened tab (<b>"Lessons Schedule"</b> or <b>"Times Schedule"</b>),
             when the button is clicked, the corresponding happens:
-            <ul>
-                <li>A screen opens to share the lessons schedule for the opened days of the week</li>
-                <li>A screen opens to share the times schedule</li>
-            </ul>
+                <ul>
+                    <li>A screen opens to share the lessons schedule for the opened days of the week</li>
+                    <li>A screen opens to share the times schedule</li>
+                </ul>
         </p>
         <p>
             Button <b>"Download schedule"</b><br>
             Depending on the open tab (<b>"Lessons Schedule"</b> or <b>"Times Schedule"</b>),
             when the button is clicked, the corresponding happens:
-            <ul>
-                <li>The available source files with the lessons schedule are downloaded.</li>
-                <li>The available source files with the times schedule are downloaded.</li>
-            </ul>
+                <ul>
+                    <li>The available source files with the lessons schedule are downloaded.</li>
+                    <li>The available source files with the times schedule are downloaded.</li>
+                </ul>
         </p>
-        <h4> Notes </h4>
+        <h4> Notes </ h4>
+        <p>
+        The user can make and view his notes for the schedule. To use this function,
+        Click on the badge icon at the bottom of the class schedule for the day. By clicking it, the user gets on the notes.
+        <b> <b> Screen "Notes" </b> <br>
+        This screen contains all notes created by the user for previously selected groups and days.
+        By pressing notes, the user can choose them for the following purposes:
+            <ul>
+                <li> edit (if 1 note is selected) </li>
+                <li> Delete </li>
+                <li> Share </li>
+            </ul>
+        <br> <b> Creation of notes </b> <br>
+        By clicking on the "Create a note" button in the lower right corner of the notes of the notes, the user gets
+        on the screen of creating notes. On this screen, the user may indicate:
+            <ul>
+                <li> date for note </li>
+                <li> Group for note </li>
+                <li> The topic for the note </li>
+                <li> The text of the note.
+                    The text of the note can be entered using the keyboard, as well as voice input
+                    (works even without connecting to the Internet).
+                </li>
+            </ul>
+        <br> <i> For the mobile version </i> <br>
+        For a mobile version of the application, you can attach photos taken during the creation of a note,
+        as well as the device selected from the gallery.
+        <br> <i> For the mobile version </i> <br>
+        <br> <b> reminders of notes </b> <br>
+        For users of the mobile version of the application, if they activated this item in the settings,
+        When creating or editing the notes, it is available to create recall for it. When creating a reminder,
+        The user will be offered the time in which the application will remind him of the note. It will also be proposed
+        The choice of a number of days for which it is worth reminding us of a note. At the appointed time and day, a notification of a note,
+        With the ability to postpone it for an hour or day, it will be delivered to the user.
+        <br> <b> Search for notes </b> <br>
+        The user can look for notes on their content. To do this, you need to enter a word to search in a test
+        The field of input at the top of the screen of notes. In the process of input, the user will show notes,
+        containing this word.
+        <br> <b> Filtering of notes </b> <br>
+        To the right of the search for notes to the user is available a filter of notes. This filter allows you to find notes for
+        these groups and time period.
+        </p>
         <h4> Settings </h4>
         <p>
         The following items are available in the application settings:
@@ -178,11 +219,11 @@
         <p>
             <b>Clear data</b><br>
             Allows you to delete selected data from the device memory:
-            <ul>
-                <li> Notes </li>
-                <li> Schedule </li>
-                <li> Schedule and notes </li>
-            </ul>
+                <ul>
+                    <li> Notes </li>
+                    <li> Schedule </li>
+                    <li> Schedule and notes </li>
+                </ul>
         </p>
         <p>
             <b>Transfer data</b><br>
@@ -214,9 +255,9 @@
             will take into account the color of the main screen wallpaper.
         </p>
         <h4> Source code </h4>
-        <p> The source code of the application is on the website:
-            <a href="https://github.com/ghostwalker18/ScheduleCompose"> Github </a>
-            <br>
+        <p>
+            The source code of the application is on the website:
+            <a href="https://github.com/ghostwalker18/ScheduleCompose"> Github </a> <br>
             The source code of the application and the application itself are distributed under the Apache 2.0 license
         </p>
         ]]>
