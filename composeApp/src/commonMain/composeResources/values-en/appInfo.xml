@@ -30,7 +30,7 @@
             the user should click on the button with the required date. Buttons <b>"Back"</b> and <b>"Forward"</b>
             with a short press allows the user to skip to the previous or next week, respectively,
             and with a long press, they allow the user to select and switch to an arbitrary date in the schedule.
-            The <b> button"Update schedule"</b>, located at the bottom of the screen, allows you to update the schedule
+            The button <b>"Update schedule"</b>, located at the bottom of the screen, allows you to update the schedule
             manually if necessary.
         </p>
         <p>
@@ -63,15 +63,15 @@
                     <li>The available source files with the times schedule are downloaded.</li>
                 </ul>
         </p>
-        <h4> Notes </ h4>
+        <h4> Notes </h4>
         <p>
         The user can make and view his notes for the schedule. To use this function,
         Click on the badge icon at the bottom of the class schedule for the day. By clicking it, the user gets on the notes.
-        <b> <b> Screen "Notes" </b> <br>
+        <br><b> Screen "Notes" </b> <br>
         This screen contains all notes created by the user for previously selected groups and days.
         By pressing notes, the user can choose them for the following purposes:
             <ul>
-                <li> edit (if 1 note is selected) </li>
+                <li> Edit (if 1 note is selected) </li>
                 <li> Delete </li>
                 <li> Share </li>
             </ul>
@@ -79,7 +79,7 @@
         By clicking on the "Create a note" button in the lower right corner of the notes of the notes, the user gets
         on the screen of creating notes. On this screen, the user may indicate:
             <ul>
-                <li> date for note </li>
+                <li> Date for note </li>
                 <li> Group for note </li>
                 <li> The topic for the note </li>
                 <li> The text of the note.
@@ -89,14 +89,14 @@
             </ul>
         <br> <i> For the mobile version </i> <br>
         For a mobile version of the application, you can attach photos taken during the creation of a note,
-        as well as the device selected from the gallery.
-        <br> <i> For the mobile version </i> <br>
-        <br> <b> reminders of notes </b> <br>
+        as well as the device selected from the gallery.<br><br>
+        <i> For the mobile version </i> <br>
+        <b> Reminders of notes </b> <br>
         For users of the mobile version of the application, if they activated this item in the settings,
         When creating or editing the notes, it is available to create recall for it. When creating a reminder,
         The user will be offered the time in which the application will remind him of the note. It will also be proposed
         The choice of a number of days for which it is worth reminding us of a note. At the appointed time and day, a notification of a note,
-        With the ability to postpone it for an hour or day, it will be delivered to the user.
+        With the ability to postpone it for an hour or day, it will be delivered to the user.<br>
         <br> <b> Search for notes </b> <br>
         The user can look for notes on their content. To do this, you need to enter a word to search in a test
         The field of input at the top of the screen of notes. In the process of input, the user will show notes,

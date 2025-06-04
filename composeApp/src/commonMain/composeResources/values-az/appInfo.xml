@@ -30,7 +30,7 @@
             istifadəçi tələb olunan tarixlə düyməni basmalıdır. <b>"Geri"</b> və <b>"Irəli"</b>
             düymələri qısa basıldıqda istifadəçiyə müvafiq olaraq əvvəlki və ya gələn həftəyə keçməyə imkan verir,
              Uzun basdıqda isə istifadəçiyə cədvəldə təsadüfi bir tarix seçməyə və keçməyə imkan verir.
-            Ekranın altındakı <b>"cədvəli yeniləyin"</b> düyməsi, lazım olduqda cədvəli əl ilə yeniləməyə imkan verir.
+            Ekranın altındakı <b>"Cədvəli yeniləyin"</b> düyməsi, lazım olduqda cədvəli əl ilə yeniləməyə imkan verir.
         </p>
         <p>
             Texniki məktəbdə zəng cədvəli istifadəçi üçün müvafiq nişanı tıkladığınız zaman mövcuddur.
@@ -62,19 +62,19 @@
                     <li>Mövcud mənbə faylları zəng cədvəli ilə yüklənir</li>
                 </ul>
         </p>
-        <h4> Qeydlər </ h4>
+        <h4> Qeydlər </h4>
         <p>
             İstifadəçi cədvəli üçün qeydlərini edə və görə bilər. Bu funksiyanı istifadə etmək üçün,
             Gün üçün sinif cədvəlinin altındakı nişan nişanını vurun. Tıklayarak istifadəçi qeydlərə girir.
-            <b>Ekran "Qeydlər"</b><br>
+            <br><b>Ekran "Qeydlər"</b><br>
             Bu ekranda əvvəllər seçilmiş qruplar və günlər üçün istifadəçi tərəfindən yaradılan bütün qeydlər var.
             Qeydlərə basaraq istifadəçi aşağıdakı məqsədlər üçün onları seçə bilər:
                 <ul>
-                    <li> redaktə (1 qeyd seçilibsə) </li>
-                    <li> silmək </li>
+                    <li> Redaktə (1 qeyd seçilibsə) </li>
+                    <li> Silmək </li>
                     <li> Paylaş </li>
                 </ul>
-            <b> Qeydlərin yaradılması </ b> <br>
+            <b> Qeydlərin yaradılması </b><br>
             Qeydlərin notlarının alt sağ küncündə "bir qeyd yarat" düyməsini basaraq istifadəçi alır
             qeydlər yaratmaq üçün ekranda. Bu ekranda istifadəçi göstərə bilər:
                 <ul>
@@ -86,21 +86,21 @@
                         (İnternetə qoşulmadan da işləyir).
                     </li>
                 </ul>
-            <br><i>mobil versiya üçün putkct </i><br>
+            <br><i>Mobil versiya üçün element</i><br>
             Tətbiqin mobil versiyası üçün bir notun yaradılması zamanı çəkilən fotoları əlavə edə bilərsiniz,
-            həm də qalereyadan seçilən cihaz.
-            <br><i> mobil versiya üçün putkct </i><br>
-            <b> Qeydlərin xatırlatmaları </ b> <br>
+            həm də qalereyadan seçilən cihaz.<br><br>
+            <i>Mobil versiya üçün element</i><br>
+            <b>Qeydlərin xatırlatmaları</b><br>
             Tətbiqin mobil versiyasının istifadəçiləri üçün bu elementi parametrlərdə aktivləşdirsələr,
             Qeydləri yaratdıqda və ya redaktə edərkən bunun üçün xatırlatma yaratmaq mümkündür. Bir öyüd-nəsihət yaratarkən,
             İstifadəçiyə tətbiqin notu xatırlatdığı vaxt təklif ediləcəkdir. Həm də təklif ediləcəkdir
             Bir qeyddən bir notu xatırladan bir neçə gün seçimi. Təyin olunmuş vaxt və gündə bir qeyd barədə bildiriş,
-            Bir saat və ya günə təxirə salmaq qabiliyyəti ilə istifadəçiyə çatdırılacaqdır.
-            <b> Qeydlər üçün axtarış </ b> <br>
+            Bir saat və ya günə təxirə salmaq qabiliyyəti ilə istifadəçiyə çatdırılacaqdır.<br>
+            <br><b>Qeydlər üçün axtarış</b><br>
             İstifadəçi onların məzmununa dair qeydlər axtara bilər. Bunu etmək üçün bir imtahanda axtarmaq üçün bir söz daxil etməlisiniz
             Qeydlərin ekranının başındakı giriş sahəsi. Giriş prosesində istifadəçi qeydlər göstərəcək,
             bu sözü ehtiva edir.
-            <b> Qeydlərin filtrlənməsi </ b> <br>
+            <br><b>Qeydlərin filtrlənməsi</b><br>
             İstifadəçiyə qeydlər axtarışının sağında qeydlərin filtri mövcuddur. Bu filtr üçün qeydlər tapmağa imkan verir
             bu qruplar və vaxt dövrü.
         </p>
