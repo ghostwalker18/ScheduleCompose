@@ -17,6 +17,7 @@ package com.ghostwalker18.schedule.views
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -35,6 +36,7 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
@@ -118,13 +120,19 @@ fun InfoScreen(){
                 )
             )
         }
-
-        Text(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(scrollState)
-                .padding(10.dp),
-            text = text
-        )
+        Box(
+            modifier = Modifier.fillMaxSize()
+        ){
+            Text(
+                modifier = Modifier
+                    .verticalScroll(scrollState)
+                    .padding(10.dp),
+                text = text
+            )
+            ScrollBar(
+                modifier = Modifier.align(Alignment.CenterEnd),
+                state = scrollState
+            )
+        }
     }
 }

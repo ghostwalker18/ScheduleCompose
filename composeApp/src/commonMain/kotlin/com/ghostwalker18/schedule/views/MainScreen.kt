@@ -43,7 +43,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import com.ghostwalker18.schedule.widgets.MainScreenMenu
+import com.ghostwalker18.schedule.components.MainScreenMenu
 import com.russhwolf.settings.get
 import java.util.Calendar
 

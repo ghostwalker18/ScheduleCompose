@@ -30,8 +30,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ghostwalker18.schedule.widgets.AutocompleteTextView
-import com.ghostwalker18.schedule.widgets.DatePickerModal
+import com.ghostwalker18.schedule.components.AutocompleteTextView
+import com.ghostwalker18.schedule.components.DatePickerModal
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.*
 import org.jetbrains.compose.resources.stringResource

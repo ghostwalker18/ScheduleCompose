@@ -14,6 +14,7 @@
 
 package com.ghostwalker18.schedule
 
+import androidx.compose.foundation.ScrollState
 import androidx.compose.runtime.Composable
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note

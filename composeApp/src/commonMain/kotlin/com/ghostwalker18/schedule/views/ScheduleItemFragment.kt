@@ -37,7 +37,7 @@ import com.ghostwalker18.schedule.viewmodels.DayModel
 import com.ghostwalker18.schedule.viewmodels.ScheduleModel
 import com.russhwolf.settings.get
 import java.util.*
-import com.ghostwalker18.schedule.widgets.*
+import com.ghostwalker18.schedule.components.*
 
 /**
  * Эта функция отображает элемент расписания на день

@@ -18,6 +18,7 @@ import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -39,7 +40,7 @@ import com.ghostwalker18.schedule.models.Note
 import org.jetbrains.compose.resources.stringResource
 import com.ghostwalker18.schedule.viewmodels.NotesModel
 import com.ghostwalker18.schedule.ScheduleApp
-import com.ghostwalker18.schedule.widgets.CustomButton
+import com.ghostwalker18.schedule.components.CustomButton
 import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.*
 import scheduledesktop2.composeapp.generated.resources.Res
@@ -304,28 +305,38 @@ fun NotesScreen(
                 )
             }
             else {
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .nestedScroll(nestedScrollConnection)
-                ){
-                    notes.forEach {
-                        note ->
-                        item {
-                            NoteView(
-                                note = note,
-                                selectedNotes = selectedNotes,
-                                sharedTransitionScope = sharedTransitionScope,
-                                animatedVisibilityScope = animatedVisibilityScope,
-                                onSelected = {
-                                    selectedNotes.add(note)
-                                },
-                                onUnselected = {
-                                    selectedNotes.remove(note)
-                                }
-                            )
+                Box{
+                    val state = rememberLazyListState()
+
+                    LazyColumn(
+                        state = state,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(12.dp)
+                            .nestedScroll(nestedScrollConnection)
+                    ){
+                        notes.forEach {
+                            note ->
+                            item {
+                                NoteView(
+                                    note = note,
+                                    selectedNotes = selectedNotes,
+                                    sharedTransitionScope = sharedTransitionScope,
+                                    animatedVisibilityScope = animatedVisibilityScope,
+                                    onSelected = {
+                                        selectedNotes.add(note)
+                                    },
+                                    onUnselected = {
+                                        selectedNotes.remove(note)
+                                    }
+                                )
+                            }
                         }
                     }
+                    ScrollBar(
+                        modifier = Modifier.align(Alignment.CenterEnd),
+                        state = state
+                    )
                 }
             }
         }

@@ -22,7 +22,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.ghostwalker18.schedule.widgets.ListView
+import com.ghostwalker18.schedule.components.ListView
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.platform.ImportController
 import kotlinx.coroutines.launch

@@ -29,9 +29,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.ScheduleAppSettings
-import com.ghostwalker18.schedule.widgets.AutocompleteTextView
-import com.ghostwalker18.schedule.widgets.CustomButton
-import com.ghostwalker18.schedule.widgets.DatePickerModal
+import com.ghostwalker18.schedule.components.AutocompleteTextView
+import com.ghostwalker18.schedule.components.CustomButton
+import com.ghostwalker18.schedule.components.DatePickerModal
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import scheduledesktop2.composeapp.generated.resources.*

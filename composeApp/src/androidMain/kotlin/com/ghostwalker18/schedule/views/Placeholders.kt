@@ -14,7 +14,9 @@
 
 package com.ghostwalker18.schedule.views
 
+import androidx.compose.foundation.gestures.ScrollableState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.StringResource
 
 @Composable
@@ -23,4 +25,9 @@ actual fun ContentWrapper(
     content: @Composable () -> Unit
 ) {
     content()
+}
+
+@Composable
+actual fun ScrollBar(modifier: Modifier, state: ScrollableState?){
+
 }

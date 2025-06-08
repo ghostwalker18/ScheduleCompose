@@ -27,9 +27,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ghostwalker18.schedule.widgets.AutocompleteTextView
-import com.ghostwalker18.schedule.widgets.CustomButton
-import com.ghostwalker18.schedule.widgets.DatePickerModal
+import com.ghostwalker18.schedule.components.AutocompleteTextView
+import com.ghostwalker18.schedule.components.CustomButton
+import com.ghostwalker18.schedule.components.DatePickerModal
 import com.ghostwalker18.schedule.*
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
@@ -102,62 +102,73 @@ fun DaysFragmentLand(
                 .absolutePadding(left = 5.dp, right = 5.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(
+            val scrollState = rememberScrollState()
+
+            Box(
                 modifier = Modifier
                     .weight(1f)
-                    .verticalScroll(rememberScrollState())
             ){
-                Text(
-                    text = stringResource(Res.string.group_choice_text),
-                    color = MaterialTheme.colors.primaryVariant
-                )
-                Row {
-                    AutocompleteTextView(
-                        value = group ?: "",
-                        options = groups,
-                        modifier = Modifier.weight(1f)
-                    ){
-                        model.group.value = it
-                    }
-                    IconButton({
-                        model.group.value = null
-                    }){
-                        Icon(
-                            imageVector = Icons.Filled.Close,
-                            contentDescription = stringResource(Res.string.days_group_clear_descr)
-                        )
-                    }
-                }
-                if(ScheduleApp.instance.preferences.getBoolean(
-                        ScheduleAppSettings.ScheduleSettings.TeacherSearch.key,
-                        ScheduleAppSettings.ScheduleSettings.TeacherSearch.defaultValue
-                )){
+                Column(
+                    modifier = Modifier
+                        .verticalScroll(scrollState)
+                        .padding(horizontal = 12.dp)
+                ){
                     Text(
-                        text = stringResource(Res.string.teacher_choice_text),
+                        text = stringResource(Res.string.group_choice_text),
                         color = MaterialTheme.colors.primaryVariant
                     )
                     Row {
                         AutocompleteTextView(
-                            value = teacher ?: "",
-                            options = teachers,
+                            value = group ?: "",
+                            options = groups,
                             modifier = Modifier.weight(1f)
                         ){
-                            model.teacher.value = it
+                            model.group.value = it
                         }
-                        IconButton({ model.teacher.value = null })
-                        {
+                        IconButton({
+                            model.group.value = null
+                        }){
                             Icon(
                                 imageVector = Icons.Filled.Close,
-                                contentDescription = stringResource(Res.string.days_teacher_clear_descr)
+                                contentDescription = stringResource(Res.string.days_group_clear_descr)
                             )
                         }
                     }
+                    if(ScheduleApp.instance.preferences.getBoolean(
+                            ScheduleAppSettings.ScheduleSettings.TeacherSearch.key,
+                            ScheduleAppSettings.ScheduleSettings.TeacherSearch.defaultValue
+                        )){
+                        Text(
+                            text = stringResource(Res.string.teacher_choice_text),
+                            color = MaterialTheme.colors.primaryVariant
+                        )
+                        Row {
+                            AutocompleteTextView(
+                                value = teacher ?: "",
+                                options = teachers,
+                                modifier = Modifier.weight(1f)
+                            ){
+                                model.teacher.value = it
+                            }
+                            IconButton({ model.teacher.value = null })
+                            {
+                                Icon(
+                                    imageVector = Icons.Filled.Close,
+                                    contentDescription = stringResource(Res.string.days_teacher_clear_descr)
+                                )
+                            }
+                        }
+                    }
+                    ScheduleItemFragment(date, Res.string.monday)
+                    ScheduleItemFragment(date, Res.string.tuesday)
+                    ScheduleItemFragment(date, Res.string.wednesday)
+                    ScheduleItemFragment(date, Res.string.thursday)
+                    ScheduleItemFragment(date, Res.string.friday)
                 }
-                ScheduleItemFragment(date, Res.string.monday)
-                ScheduleItemFragment(date, Res.string.tuesday)
-                ScheduleItemFragment(date, Res.string.wednesday)
-                ScheduleItemFragment(date, Res.string.thursday)
-                ScheduleItemFragment(date, Res.string.friday)
+                ScrollBar(
+                    modifier = Modifier.align(Alignment.CenterEnd),
+                    state = scrollState
+                )
             }
             Text(status)
             LinearProgressIndicator(

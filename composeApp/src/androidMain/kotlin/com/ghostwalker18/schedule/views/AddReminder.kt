@@ -65,8 +65,8 @@ import scheduledesktop2.composeapp.generated.resources.days_before_delay
 import scheduledesktop2.composeapp.generated.resources.note_reminder_time
 import scheduledesktop2.composeapp.generated.resources.reminder_error
 import scheduledesktop2.composeapp.generated.resources.remove_note_reminder
-import com.ghostwalker18.schedule.widgets.TimePickerModal
-import com.ghostwalker18.schedule.widgets.bottomBorder
+import com.ghostwalker18.schedule.components.TimePickerModal
+import com.ghostwalker18.schedule.components.bottomBorder
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.getString
 import scheduledesktop2.composeapp.generated.resources.notification_permission_required

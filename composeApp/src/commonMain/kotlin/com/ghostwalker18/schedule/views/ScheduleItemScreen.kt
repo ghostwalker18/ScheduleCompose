@@ -28,7 +28,7 @@ import androidx.compose.ui.Modifier
 import com.ghostwalker18.schedule.converters.DateConverters
 import com.ghostwalker18.schedule.ScheduleApp
 import com.ghostwalker18.schedule.ScheduleAppSettings
-import com.ghostwalker18.schedule.widgets.ScheduleTable
+import com.ghostwalker18.schedule.components.ScheduleTable
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource

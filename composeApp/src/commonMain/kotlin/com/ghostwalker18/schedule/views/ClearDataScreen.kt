@@ -46,7 +46,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ghostwalker18.schedule.ScheduleApp
-import com.ghostwalker18.schedule.widgets.ListView
+import com.ghostwalker18.schedule.components.ListView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString

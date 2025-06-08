@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.ghostwalker18.schedule.widgets
+package com.ghostwalker18.schedule.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

@@ -17,6 +17,7 @@ package com.ghostwalker18.schedule.views
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.foundation.gestures.ScrollableState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
@@ -86,6 +87,16 @@ expect fun ContentWrapper(
     toolTip: StringResource,
     content: @Composable () -> Unit
 )
+
+/**
+ * Эта функция добавляет скроллбар к экрану для десктопной версии.
+ * @param modifier модификатор скроллбара
+ * @param state состояние скролла. Доступны варианты: ScrollState, LazyListState
+ *
+ * @author Ипатов Никита
+ */
+@Composable
+expect fun ScrollBar(modifier: Modifier = Modifier, state: ScrollableState? = null)
 
 /**
  * Эта функция отображает интерфейс приложения фотографий к заметке.

@@ -17,17 +17,19 @@ package com.ghostwalker18.schedule.views
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ghostwalker18.schedule.*
-import com.ghostwalker18.schedule.widgets.ListPreference
-import com.ghostwalker18.schedule.widgets.PreferenceCategory
-import com.ghostwalker18.schedule.widgets.SwitchPreference
+import com.ghostwalker18.schedule.components.ListPreference
+import com.ghostwalker18.schedule.components.PreferenceCategory
+import com.ghostwalker18.schedule.components.SwitchPreference
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
@@ -79,121 +81,128 @@ fun SettingsScreen() {
                 .fillMaxSize()
                 .padding(10.dp)
         ){
-            LazyColumn(
-                modifier = Modifier
-                    .weight(1f)
+            Box(
+                modifier = Modifier.weight(1f)
             ){
-                item {
-                    PreferenceCategory(
-                        title = stringResource(Res.string.schedule_settings)
-                    ){
-                        ListPreference(
-                            title = Res.string.schedule_style,
-                            key = ScheduleAppSettings.ScheduleSettings.ScheduleStyle.key,
-                            entryValues = Res.array.schedule_style_values,
-                            entries = Res.array.schedule_style_entries,
-                            preferences = preferences
-                        )
-                        SwitchPreference(
-                            title = Res.string.option_add_teacher_search,
-                            key = ScheduleAppSettings.ScheduleSettings.TeacherSearch.key,
-                            preferences = preferences
-                        )
-                        SwitchPreference(
-                            title = Res.string.option_do_not_update_times,
-                            key = ScheduleAppSettings.ScheduleSettings.UpdateTimes.key,
-                            defaultValue = true,
-                            preferences = preferences
-                        )
-                    }
-                }
+                val scrollState = rememberLazyListState()
 
-                item{
-                    PreferenceCategory(
-                        title = stringResource(Res.string.network_settings)
-                    ){
-                        ListPreference(
-                            title = Res.string.option_download_for,
-                            key = ScheduleAppSettings.NetworkSettings.DownloadFor.key,
-                            entryValues = Res.array.download_values,
-                            entries =  Res.array.download_entries,
-                            preferences = preferences
-                        )
-                        SwitchPreference(
-                            title = Res.string.option_enable_caching,
-                            key = ScheduleAppSettings.NetworkSettings.EnableCaching.key,
-                            defaultValue = ScheduleAppSettings.NetworkSettings.EnableCaching.defaultValue,
-                            preferences = preferences
-                        )
-                    }
-                }
-
-                item {
-                    PreferenceCategory(
-                        title = stringResource(Res.string.app_settings)
-                    ){
-                        ListPreference(
-                            title = Res.string.option_theme,
-                            key = ScheduleAppSettings.AppSettings.Theme.key,
-                            entryValues = Res.array.theme_values,
-                            entries = Res.array.theme_entries,
-                            preferences = preferences
-                        )
-                        ListPreference(
-                            title = Res.string.option_language,
-                            key = ScheduleAppSettings.AppSettings.Language.key,
-                            entryValues = Res.array.language_values,
-                            entries = Res.array.language_entries,
-                            defaultValue = ScheduleAppSettings.AppSettings.Language.defaultValue,
-                            preferences = preferences,
-                            entryDrawables = arrayOf(
-                                Res.drawable.un,
-                                Res.drawable.ru,
-                                Res.drawable.by,
-                                Res.drawable.ua,
-                                Res.drawable.kz,
-                                Res.drawable.ge,
-                                Res.drawable.am,
-                                Res.drawable.az,
-                                Res.drawable.us
-                            ),
-                            entryDrawableDescr = Res.string.language_flag_descr
-                        )
-                        SwitchPreference(
-                            title = Res.string.option_translit,
-                            key = ScheduleAppSettings.AppSettings.Translit.key,
-                            defaultValue = ScheduleAppSettings.AppSettings.Translit.defaultValue,
-                            preferences = preferences
-                        )
-                    }
-                }
-
-                if(getPlatform() == Platform.Mobile){
+                LazyColumn(
+                    state = scrollState,
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                ){
                     item {
                         PreferenceCategory(
-                            title = stringResource(Res.string.notifications)
+                            title = stringResource(Res.string.schedule_settings)
                         ){
-                            SwitchPreference(
-                                title = Res.string.notifications_notification_app_update_channel_name,
-                                key = ScheduleAppSettings.NotificationSettings.UpdateNotifications.key,
-                                defaultValue = ScheduleAppSettings.NotificationSettings.UpdateNotifications.defaultValue,
+                            ListPreference(
+                                title = Res.string.schedule_style,
+                                key = ScheduleAppSettings.ScheduleSettings.ScheduleStyle.key,
+                                entryValues = Res.array.schedule_style_values,
+                                entries = Res.array.schedule_style_entries,
                                 preferences = preferences
                             )
                             SwitchPreference(
-                                title = Res.string.notifications_notification_schedule_update_channel_name,
-                                key = ScheduleAppSettings.NotificationSettings.ScheduleNotifications.key,
-                                defaultValue = ScheduleAppSettings.NotificationSettings.ScheduleNotifications.defaultValue,
+                                title = Res.string.option_add_teacher_search,
+                                key = ScheduleAppSettings.ScheduleSettings.TeacherSearch.key,
                                 preferences = preferences
                             )
                             SwitchPreference(
-                                title = Res.string.notifications_notification_note_reminder_channel_name,
-                                key = ScheduleAppSettings.NotificationSettings.NotesNotifications.key,
-                                defaultValue = ScheduleAppSettings.NotificationSettings.NotesNotifications.defaultValue,
+                                title = Res.string.option_do_not_update_times,
+                                key = ScheduleAppSettings.ScheduleSettings.UpdateTimes.key,
+                                defaultValue = true,
                                 preferences = preferences
                             )
                         }
                     }
+
+                    item{
+                        PreferenceCategory(
+                            title = stringResource(Res.string.network_settings)
+                        ){
+                            ListPreference(
+                                title = Res.string.option_download_for,
+                                key = ScheduleAppSettings.NetworkSettings.DownloadFor.key,
+                                entryValues = Res.array.download_values,
+                                entries =  Res.array.download_entries,
+                                preferences = preferences
+                            )
+                            SwitchPreference(
+                                title = Res.string.option_enable_caching,
+                                key = ScheduleAppSettings.NetworkSettings.EnableCaching.key,
+                                defaultValue = ScheduleAppSettings.NetworkSettings.EnableCaching.defaultValue,
+                                preferences = preferences
+                            )
+                        }
+                    }
+
+                    item {
+                        PreferenceCategory(
+                            title = stringResource(Res.string.app_settings)
+                        ){
+                            ListPreference(
+                                title = Res.string.option_theme,
+                                key = ScheduleAppSettings.AppSettings.Theme.key,
+                                entryValues = Res.array.theme_values,
+                                entries = Res.array.theme_entries,
+                                preferences = preferences
+                            )
+                            ListPreference(
+                                title = Res.string.option_language,
+                                key = ScheduleAppSettings.AppSettings.Language.key,
+                                entryValues = Res.array.language_values,
+                                entries = Res.array.language_entries,
+                                defaultValue = ScheduleAppSettings.AppSettings.Language.defaultValue,
+                                preferences = preferences,
+                                entryDrawables = arrayOf(
+                                    Res.drawable.un, Res.drawable.ru,
+                                    Res.drawable.by, Res.drawable.ua,
+                                    Res.drawable.kz, Res.drawable.ge,
+                                    Res.drawable.am, Res.drawable.az,
+                                    Res.drawable.us
+                                ),
+                                entryDrawableDescr = Res.string.language_flag_descr
+                            )
+                            SwitchPreference(
+                                title = Res.string.option_translit,
+                                key = ScheduleAppSettings.AppSettings.Translit.key,
+                                defaultValue = ScheduleAppSettings.AppSettings.Translit.defaultValue,
+                                preferences = preferences
+                            )
+                        }
+                    }
+
+                    if(getPlatform() == Platform.Mobile){
+                        item {
+                            PreferenceCategory(
+                                title = stringResource(Res.string.notifications)
+                            ){
+                                SwitchPreference(
+                                    title = Res.string.notifications_notification_app_update_channel_name,
+                                    key = ScheduleAppSettings.NotificationSettings.UpdateNotifications.key,
+                                    defaultValue = ScheduleAppSettings.NotificationSettings.UpdateNotifications.defaultValue,
+                                    preferences = preferences
+                                )
+                                SwitchPreference(
+                                    title = Res.string.notifications_notification_schedule_update_channel_name,
+                                    key = ScheduleAppSettings.NotificationSettings.ScheduleNotifications.key,
+                                    defaultValue = ScheduleAppSettings.NotificationSettings.ScheduleNotifications.defaultValue,
+                                    preferences = preferences
+                                )
+                                SwitchPreference(
+                                    title = Res.string.notifications_notification_note_reminder_channel_name,
+                                    key = ScheduleAppSettings.NotificationSettings.NotesNotifications.key,
+                                    defaultValue = ScheduleAppSettings.NotificationSettings.NotesNotifications.defaultValue,
+                                    preferences = preferences
+                                )
+                            }
+                        }
+                    }
                 }
+                ScrollBar(
+                    modifier = Modifier.align(Alignment.CenterEnd),
+                    state = scrollState
+                )
             }
             Row{
                 Button(
