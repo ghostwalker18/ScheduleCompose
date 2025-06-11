@@ -19,4 +19,7 @@
     <locale android:name="be"/>
     <locale android:name="kk"/>
     <locale android:name="uk"/>
+    <locale android:name="hy"/>
+    <locale android:name="ka"/>
+    <locale android:name="az"/>
 </locale-config>

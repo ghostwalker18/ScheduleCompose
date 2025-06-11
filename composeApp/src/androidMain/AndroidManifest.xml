@@ -19,6 +19,8 @@
 
     <uses-feature android:name="android.hardware.camera.any"
                   android:required="false"/>
+    <uses-feature android:name="android.hardware.microphone"
+                  android:required="false"/>
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -35,6 +37,7 @@
     <application
             android:name=".ScheduleApp"
             android:usesCleartextTraffic="false"
+            android:localeConfig="@xml/local_config"
             android:allowBackup="true"
             android:dataExtractionRules="@xml/data_extraction_rules"
             android:fullBackupContent="@xml/backup_rules"
