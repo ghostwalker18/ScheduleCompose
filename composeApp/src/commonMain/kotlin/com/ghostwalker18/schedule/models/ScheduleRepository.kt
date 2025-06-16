@@ -1,4 +1,6 @@
 /*
+ * Copyright 2025 Ipatov Nikita
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,8 +28,6 @@ import kotlinx.coroutines.flow.*
 import com.ghostwalker18.schedule.network.ScheduleNetworkAPI
 import kotlinx.coroutines.CoroutineScope
 import org.apache.poi.ss.usermodel.Workbook
-import org.jsoup.nodes.Document
-import org.jsoup.select.Elements
 import java.io.IOException
 import java.util.*
 import java.util.concurrent.Callable
@@ -114,8 +114,8 @@ abstract class ScheduleRepository(
         get() {
             val links: MutableList<String> = ArrayList()
             try {
-                val doc: Document? = api.mainPage?.execute()?.body()
-                val linkElements: Elements? = doc
+                val doc = api.mainPage?.execute()?.body()
+                val linkElements = doc
                     ?.select(mainSelector)?.get(0)
                     ?.select("tr")?.get(1)
                     ?.select("td")?.get(1)
@@ -139,8 +139,8 @@ abstract class ScheduleRepository(
         get() {
             val links: MutableList<String> = ArrayList()
             try {
-                val doc: Document? = api.mainPage?.execute()?.body()
-                val linkElements: Elements? = doc
+                val doc = api.mainPage?.execute()?.body()
+                val linkElements = doc
                     ?.select(mainSelector)?.get(0)
                     ?.select("tr")?.get(1)
                     ?.select("td")?.get(0)
@@ -166,7 +166,7 @@ abstract class ScheduleRepository(
         fun toInt(): Int = if (this == SUCCESS) 0 else 1
 
         companion object{
-            fun fromInt(i: Int): UpdateResult = if (i == 0) SUCCESS else FAIL
+            fun fromInt(i: Int) = if (i == 0) SUCCESS else FAIL
         }
     }
 

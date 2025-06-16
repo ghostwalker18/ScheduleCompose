@@ -1,4 +1,6 @@
 /*
+ * Copyright 2025 Ipatov Nikita
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +16,6 @@
 
 package com.ghostwalker18.schedule
 
-import androidx.compose.foundation.ScrollState
 import androidx.compose.runtime.Composable
 import com.ghostwalker18.schedule.models.Lesson
 import com.ghostwalker18.schedule.models.Note
